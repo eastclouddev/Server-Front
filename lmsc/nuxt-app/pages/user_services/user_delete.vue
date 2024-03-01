@@ -1,20 +1,31 @@
 <template>
+  <NuxtLayout>
     <div>
       <h1>ユーザー削除</h1>
+      <input v-model="userId" type="number" placeholder="Enter User ID to delete" />
       <button @click="deleteUser">Delete User</button>
     </div>
-  </template>
+  </NuxtLayout>
+</template>
   
-  <script setup>
+<script setup>
   import { ref } from 'vue';
   import { UserService } from '~/services/UserService.js';
-  import { useRouter } from 'vue-router';
   
-  const router = useRouter();
-  const userId = ref(2); // 動的に設定すべきだが暫定として2を設定
+  const userId = ref('');
   
   const deleteUser = async () => {
-    await UserService.deleteUser(userId.value);
-    // router.push('/users'); 
+    if (!userId.value) {
+      alert('Please enter a valid User ID');
+      return;
+    }
+
+    try {
+      await UserService.deleteUser(userId.value);
+      alert('User delete successfully');
+      userId.value = '';
+    } catch (error) {
+      alert(error.message);
+    }
   };
-  </script>
+</script>

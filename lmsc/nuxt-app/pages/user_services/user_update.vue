@@ -1,35 +1,39 @@
 <template>
+  <NuxtLayout>
     <div>
-      <h2>Edit User</h2>
-      <form @submit.prevent="updateUser">
-        <input v-model="editUserData.name" type="text" placeholder="Name" />
-        <input v-model="editUserData.email" type="email" placeholder="Email" />
-        <input v-model="editUserData.password" type="text" placeholder="PassWord" />
-        <button type="submit">Update User</button>
-      </form>
+      <h2>ユーザー編集</h2>
+      <input v-model="userId" placeholder="User ID" type="number" />
+      <input v-model="editUserData.name" type="text" placeholder="Name" />
+      <input v-model="editUserData.email" type="email" placeholder="Email" />
+      <input v-model="editUserData.password" type="text" placeholder="PassWord" />
+      <button  @click="updateUser">Update User</button>
     </div>
-  </template>
+  </NuxtLayout>
+</template>
   
-  <script setup>
+<script setup>
   import { ref } from 'vue';
-  import { useRoute } from 'vue-router';
   import { UserService } from '~/services/UserService.js';
   
-  const route = useRoute();
-  const userId = ref(2); // 動的に設定すべきだが暫定として2を設定
-  //const userId = ref(route.params.id); // URLからIDを取得
+  const userId = ref('');
   const editUserData = ref({
     name: '',
     email: '',
     password: '',
   });
-  
-  onMounted(async () => {
-    const userData = await UserService.getUserById(userId.value);
-    editUserData.value = userData;
-  });
-  
+
   const updateUser = async () => {
-    await UserService.updateUser(userId.value, editUserData.value);
+    if (!userId.value) {
+      alert('Please enter a valid user ID');
+      return;
+    }
+    const updatedUser = await UserService.updateUser(userId.value, editUserData.value);
+    console.log('User created:', updatedUser);
+    alert('User update successfully');
+
+    userId.value = '';
+    editUserData.value.name = '';
+    editUserData.value.email = '';
+    editUserData.value.password = '';
   };
-  </script>
+</script>
