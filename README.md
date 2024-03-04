@@ -1,5 +1,7 @@
 # Server-Front
 
+## ※※編集中※※
+
 
 ## Server-Frontの環境を単独で起動する方法
 1. Server-Frontへ移動する
