@@ -1,7 +1,20 @@
 <template>
   <div>
-    <img alt="Vue logo" src="../assets/logo.png">
-    <test_component />
+    <Header />
     <slot />
+    <Footer />
   </div>
 </template>
+
+<script>
+import Header from '/components/Header.vue';
+import Footer from '/components/Footer.vue';
+
+export default {
+  components: {
+    Header,
+    Footer,
+  },
+}
+</script>
+
