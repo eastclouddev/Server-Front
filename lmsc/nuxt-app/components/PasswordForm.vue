@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  // props: ['value'],
+  props: ['value'],
   data() {
     return {
       form: {
