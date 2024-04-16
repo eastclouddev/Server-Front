@@ -2,13 +2,15 @@
   <NuxtLayout>
     <div class="wrap">
       <h1 class="wrap_title">ログイン</h1>
+      <sampleform />
       <form @submit.prevent="login">
         <div class="form_wrap">
           <EmailForm v-model="email" />
           <PasswordForm v-model="password" />
         </div>
-        <ButtonSubmit color-orange class="button" >ログイン</ButtonSubmit>
+        <ButtonSubmit color-orange class="button">ログイン</ButtonSubmit>
       </form>
+      <FormulateInput />
     </div>
   </NuxtLayout>
 </template>
@@ -25,7 +27,8 @@ export default {
   methods: {
     async login() {
       try {
-        // console.log(this);
+        consol.log('Email:',this.email);
+        consol.log('Password:',this.password);
         const response = await axios.post('http://localhost:8080/login', {
           email: this.email,
           password: this.password
@@ -62,4 +65,3 @@ export default {
   margin: 0 auto;
 }
 </style>
-
