@@ -3,8 +3,7 @@
     <div class="inner_wrap">
       <label class="inner_item">パスワード</label>
       <div class="inner_formwrap" v-bind:class="{ 'error-border': form.password.errorMessage }">
-        <input @keyup="validatePassword" @blur="validatePassword" :type="showPassword ? 'text' : 'password'"
-          v-model="form.password.val" placeholder="パスワードを入力" >
+          <input type="password" id="password" :value="value" @input="$emit('input', $event.target.value)" @keyup="validatePassword" @blur="validatePassword" :type="showPassword ? 'text' : 'password'" placeholder="パスワードを入力" />
         <span @click="togglePasswordVisibility">
           <img v-if="showPassword" src="/assets/show_password.svg" class="password_icon" aria-hidden="true">
           <img v-else class="password_icon" src="/assets/hide_password.svg" aria-hidden="true">

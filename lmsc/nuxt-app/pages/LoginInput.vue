@@ -4,8 +4,8 @@
       <h1 class="wrap_title">ログイン</h1>
       <form @submit.prevent="login">
         <div class="form_wrap">
-          <EmailForm v-model="email" />
-          <PasswordForm v-model="password" />
+          <EmailForm :value="email" @input="email = $event.target.value" />
+          <PasswordForm :value="password" @input="password = $event.target.value" />
         </div>
         <ButtonSubmit color-orange class="button" >ログイン</ButtonSubmit>
       </form>
@@ -25,7 +25,8 @@ export default {
   methods: {
     async login() {
       try {
-        // console.log(this);
+        console.log('Email:', this.email);
+        console.log('Password:', this.password);
         const response = await axios.post('http://localhost:8080/login', {
           email: this.email,
           password: this.password

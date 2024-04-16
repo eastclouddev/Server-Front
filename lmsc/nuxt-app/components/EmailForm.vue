@@ -2,8 +2,7 @@
   <div class="inner">
     <label class="inner_item">メールアドレス</label>
     <div>
-      <input @keyup="validateEmail" v-bind:class="{ 'error-border': form.email.errorMessage }" @blur="validateEmail"
-        type="text" v-model="form.email.val" placeholder="XXXXXXX @example .com" >
+        <input type="email" id="email" :value="value" @input="$emit('input', $event.target.value)" @keyup="validateEmail" v-bind:class="{ 'error-border': form.email.errorMessage }" @blur="validateEmail" placeholder="XXXXXXX @example .com" />
       <p class="errorMessage">{{ form.email.errorMessage }}</p>
     </div>
   </div>
