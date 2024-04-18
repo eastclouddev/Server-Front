@@ -3,19 +3,33 @@
     <div class="inputlist">
       <h1 class="inputlist_title">ユーザー情報入力</h1>
       <div class="inputlist_inner">
-        <label class="inputlist_label" v-for="item in items" :key="item">{{ item }}
-          <input class="inputlist_box" type="text" disabled v-model="message">
+        <label class="inputlist_label" v-for="item in items" :key="item"
+          >{{ item }}
+          <input class="inputlist_box" type="text" disabled v-model="message" />
         </label>
         <p>パスワード</p>
         <div class="inputlist_textwrap">
           <p class="inputlist_text">
-            個人情報は<a class="inputlist_link" href="">プライバシーポリシー</a>に従って取り扱いします。
+            個人情報は<a class="inputlist_link" href="">プライバシーポリシー</a
+            >に従って取り扱いします。
           </p>
           <div class="inputlist_teamofuse">
-            <input class="custom_checkbox" type="checkbox" id="checkbox" v-model="checked">
-            <p class="inputlist_text"><a class="inputlist_link" href="">利用規約</a>を確認する。</p>
+            <input
+              class="custom_checkbox"
+              type="checkbox"
+              id="checkbox"
+              v-model="checked"
+            />
+            <p class="inputlist_text">
+              <a class="inputlist_link" href="">利用規約</a>を確認する。
+            </p>
           </div>
-          <Button color-orange class="inputlist_button" to="/user_services/user_create">入力情報を確認する</Button>
+          <Button
+            color-orange
+            class="inputlist_button"
+            to="/user_services/user_create"
+            >入力情報を確認する</Button
+          >
         </div>
       </div>
     </div>
@@ -29,7 +43,7 @@ export default {
       message: ['API'],
     }
   },
-};
+}
 </script>
 <style lang="scss" scoped>
 .inputlist {
@@ -39,7 +53,7 @@ export default {
   &_title {
     font-weight: bold;
     font-size: 25px;
-    border-bottom: solid 1px #CFCFCF;
+    border-bottom: solid 1px #cfcfcf;
     padding-bottom: 15px;
   }
 
@@ -61,8 +75,8 @@ export default {
     width: 400px;
     border: none;
     border-radius: 5px;
-    background-color: #EBEBEB;
-    text-decoration-color: #B5B5B5;
+    background-color: #ebebeb;
+    text-decoration-color: #b5b5b5;
     padding: 0 18px;
   }
 
@@ -91,7 +105,6 @@ export default {
   }
 }
 
-
 .custom_checkbox {
   appearance: none;
   -webkit-appearance: none;
@@ -111,7 +124,7 @@ export default {
 }
 
 .custom_checkbox:checked::before {
-  content: "\2713";
+  content: '\2713';
   display: block;
   text-align: center;
   color: white;
