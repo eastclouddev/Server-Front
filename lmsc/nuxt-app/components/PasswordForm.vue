@@ -3,29 +3,49 @@
     <div class="inner_wrap">
       <label class="inner_item">パスワード</label>
       <div class="inner_formwrap" v-bind:class="{ 'error-border': form.password.errorMessage }">
-        <input @keyup="validatePassword" @blur="validatePassword" :type="showPassword ? 'text' : 'password'"
-          v-model="form.password.val" placeholder="パスワードを入力" >
-        <span @click="togglePasswordVisibility">
-          <img v-if="showPassword" src="/assets/show_password.svg" class="password_icon" aria-hidden="true">
-          <img v-else class="password_icon" src="/assets/hide_password.svg" aria-hidden="true">
-        </span>
+        <!-- <FormulateInput
+          type="password"
+          label="パスワード"
+          v-model="form.password.val"
+          @input="() => validatePassword(form.password.val) "
+          :validation="{
+            regex: /^[a-zA-Z0-9]{8,14}$/,
+            error: {
+              regex: '半角英数のみ使用できます。',
+              required: 'パスワードを入力してください。',
+              length: '8文字以上14文字以内で入力してください。'
+            }
+          }"
+          :messages="{
+            required: form.password.errorMessage,
+            regex: form.password.errorMessage,
+            length: form.password.errorMessage
+          }"
+          :class="{
+            'error-border': form.password.errorMessage
+          }"
+          placeholder= "パスワードを入力"
+        /> -->
       </div>
+      <span @click="togglePasswordVisibility">
+        <img v-if="showPassword" src="/assets/show_password.svg" class="password_icon" aria-hidden="true">
+        <img v-else class="password_icon" src="/assets/hide_password.svg" aria-hidden="true">
+      </span>
     </div>
-    <div class="inner_text">
-      <p class="message">※半角英数字の組み合わせ（8桁以上14文字以下）</p>
-      <p class="errorMessage">{{ form.password.errorMessage }}</p>
-    </div>
+  </div>
+  <div class="inner_text">
+    <p class="message">※半角英数字の組み合わせ（8桁以上14文字以下）</p>
+    <p class="errorMessage">{{ form.password.errorMessage }}</p>
   </div>
 </template>
 
 <script>
+import { FormulateInput } from '@braid/vue-formulate'
 export default {
-  // props: ['value'],
   data() {
     return {
       form: {
         password: {
-          label: "パスワード",
           val: null,
           errorMessage: null
         },
@@ -34,30 +54,21 @@ export default {
     }
   },
   methods: {
-    validatePassword() {
+    validatePassword(value) {
       const { password } = this.form
       const maxLength = 14
       const minLength = 8
-      const regex = /^[a-zA-Z0-9]{8,14}$/;
-      if (!password.val) {
-        password.errorMessage = `${password.label}を入力してください。`
-        return
-      }
-      password.errorMessage = null
-      if (password.val.length > maxLength) {
-        password.errorMessage = `${password.label}は${minLength}文字以上${maxLength}文字以内で入力してください。`
-        return
-      }
-      password.errorMessage = null
 
-      password.errorMessage = null
-      if (!regex.test(password.val)) {
-        password.errorMessage = `${password.label}は半角英数のみ使用できます。`
-        return
+      if (!value) {
+        password.errorMessage = 'パスワードを入力してください。'
+        return false
       }
-    },
-    onSubmit() {
-      this.validatePassword()
+      if (value.length < minLength || value.length > maxLength) {
+        password.errorMessage = '8文字以上14文字以内で入力してください。'
+        return false
+      }
+      password.errorMessage = null
+      return true
     },
     togglePasswordVisibility() {
       this.showPassword = !this.showPassword;
@@ -65,7 +76,6 @@ export default {
   }
 }
 </script>
-
 <style lang="scss" scoped>
 form {
   width: 620px;

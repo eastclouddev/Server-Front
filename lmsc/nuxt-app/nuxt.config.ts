@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
 export default defineNuxtConfig({
   devtools: { enabled: true },
   buildModules: ['@nuxtjs/axios',],
@@ -15,7 +16,7 @@ export default defineNuxtConfig({
     path:'@/components/',
     pathPrefix:false
     }],
-  // plugins: [
-  //   { src: '~/plugins/vee-validate.js', mode: 'client' }
-  // ],
+   plugins: [
+    '~/plugins/vue-formulate'
+  ]
 })
