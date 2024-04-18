@@ -1,5 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import vuetify from 'vite-plugin-vuetify'
+import VuetifyPlugin from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
   devtools: {
@@ -14,9 +14,12 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        // 他のメタタグもここで定義する場合は追加します
       ],
     },
+  },
+  css: ['vuetify/styles'],
+  build: {
+    transpile: ['vuetify'],
   },
   components: [
     {
@@ -31,6 +34,6 @@ export default defineNuxtConfig({
     define: {
       'process.env.DEBUG': false,
     },
-    plugins: [vuetify()],
+    plugins: [VuetifyPlugin()],
   },
 })
