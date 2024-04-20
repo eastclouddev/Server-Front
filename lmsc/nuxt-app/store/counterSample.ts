@@ -12,4 +12,5 @@ export const useCounterStore = defineStore("counter", {
       this.count--;
     },
   },
+  persist: true, // ここで永続化を有効にするか選択できます
 });
