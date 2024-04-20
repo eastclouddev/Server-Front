@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { FormulateInput } from '@braid/vue-formulate'
+// import { FormulateInput } from '@braid/vue-formulate'
 export default {
   data() {
     return {
