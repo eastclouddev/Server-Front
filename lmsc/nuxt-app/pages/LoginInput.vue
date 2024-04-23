@@ -10,38 +10,38 @@
         </div>
         <ButtonSubmit color-orange class="button">ログイン</ButtonSubmit>
       </form>
-      <FormulateInput />
+      <!-- <FormulateInput /> -->
     </div>
   </NuxtLayout>
 </template>
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   data() {
     return {
-      email: '',
-      password: ''
+      email: "",
+      password: "",
     };
   },
   methods: {
     async login() {
       try {
-        consol.log('Email:',this.email);
-        consol.log('Password:',this.password);
-        const response = await axios.post('http://localhost:8080/login', {
+        consol.log("Email:", this.email);
+        consol.log("Password:", this.password);
+        const response = await axios.post("http://localhost:8080/login", {
           email: this.email,
-          password: this.password
+          password: this.password,
         });
 
-        console.log('Form submitted:', response.data);
+        console.log("Form submitted:", response.data);
         // ログイン成功時に画面遷移
-        this.$router.push('/dashbord');
+        this.$router.push("/dashbord");
       } catch (error) {
-        console.error('ログインエラー', error);
+        console.error("ログインエラー", error);
         // ログイン失敗
       }
-    }
+    },
   },
 };
 </script>
@@ -52,7 +52,7 @@ export default {
   &_title {
     font-weight: bold;
     font-size: 25px;
-    border-bottom: solid 1px #CFCFCF;
+    border-bottom: solid 1px #cfcfcf;
     padding-bottom: 15px;
   }
 }

@@ -7,12 +7,17 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "gen:openapi-type": "rimraf src/generated/api && openapi2aspida",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@aspida/axios": "^1.14.0",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/vuetify": "^1.12.3",
     "@vee-validate/rules": "^4.12.6",
+    "aspida": "^1.14.0",
     "axios": "^1.6.8",
     "nuxt": "^3.10.2",
     "nuxt-sass-resources-loader": "^2.0.5",
@@ -22,6 +27,8 @@
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
+    "openapi2aspida": "^0.23.2",
+    "rimraf": "^5.0.5",
     "sass": "^1.74.1"
   }
 }

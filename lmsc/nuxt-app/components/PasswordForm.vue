@@ -2,7 +2,10 @@
   <div class="inner">
     <div class="inner_wrap">
       <label class="inner_item">パスワード</label>
-      <div class="inner_formwrap" v-bind:class="{ 'error-border': form.password.errorMessage }">
+      <div
+        class="inner_formwrap"
+        v-bind:class="{ 'error-border': form.password.errorMessage }"
+      >
         <!-- <FormulateInput
           type="password"
           label="パスワード"
@@ -28,8 +31,18 @@
         /> -->
       </div>
       <span @click="togglePasswordVisibility">
-        <img v-if="showPassword" src="/assets/show_password.svg" class="password_icon" aria-hidden="true">
-        <img v-else class="password_icon" src="/assets/hide_password.svg" aria-hidden="true">
+        <img
+          v-if="showPassword"
+          src="/assets/show_password.svg"
+          class="password_icon"
+          aria-hidden="true"
+        />
+        <img
+          v-else
+          class="password_icon"
+          src="/assets/hide_password.svg"
+          aria-hidden="true"
+        />
       </span>
     </div>
   </div>
@@ -40,41 +53,41 @@
 </template>
 
 <script>
-import { FormulateInput } from '@braid/vue-formulate'
+// import { FormulateInput } from '@braid/vue-formulate'
 export default {
   data() {
     return {
       form: {
         password: {
           val: null,
-          errorMessage: null
+          errorMessage: null,
         },
       },
-      showPassword: false
-    }
+      showPassword: false,
+    };
   },
   methods: {
     validatePassword(value) {
-      const { password } = this.form
-      const maxLength = 14
-      const minLength = 8
+      const { password } = this.form;
+      const maxLength = 14;
+      const minLength = 8;
 
       if (!value) {
-        password.errorMessage = 'パスワードを入力してください。'
-        return false
+        password.errorMessage = "パスワードを入力してください。";
+        return false;
       }
       if (value.length < minLength || value.length > maxLength) {
-        password.errorMessage = '8文字以上14文字以内で入力してください。'
-        return false
+        password.errorMessage = "8文字以上14文字以内で入力してください。";
+        return false;
       }
-      password.errorMessage = null
-      return true
+      password.errorMessage = null;
+      return true;
     },
     togglePasswordVisibility() {
       this.showPassword = !this.showPassword;
-    }
-  }
-}
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
 form {
@@ -101,26 +114,26 @@ form {
     display: flex;
     align-items: center;
     width: 400px;
-    text-decoration-color: #B5B5B5;
-    background-color: #EBEBEB;
+    text-decoration-color: #b5b5b5;
+    background-color: #ebebeb;
     border-radius: 5px;
     padding: 0 18px;
     margin-bottom: 10px;
   }
-    input {
-      background-color: #EBEBEB;
-      height: 51px;
-      width: 400px;
-      outline: none;
-      border: none;
-    }
+  input {
+    background-color: #ebebeb;
+    height: 51px;
+    width: 400px;
+    outline: none;
+    border: none;
+  }
 
-    &_text {
-      width: 400px;
-      display: block;
-      flex-direction: column;
-      margin-left: 30%;
-    }
+  &_text {
+    width: 400px;
+    display: block;
+    flex-direction: column;
+    margin-left: 30%;
+  }
 }
 
 .password_icon {
@@ -128,7 +141,7 @@ form {
 }
 
 .error-border {
-  border: 1px solid #FF0000;
+  border: 1px solid #ff0000;
 }
 
 .message {
@@ -138,7 +151,7 @@ form {
 
 .errorMessage {
   font-size: 12px;
-  color: #FF0000;
+  color: #ff0000;
   margin: 0;
 }
 </style>
