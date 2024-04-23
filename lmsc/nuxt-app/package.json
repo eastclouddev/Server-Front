@@ -23,7 +23,8 @@
     "vee-validate": "^4.5.8",
     "vue": "^3.4.19",
     "vue-router": "^4.2.5",
-    "vuetify": "^3.6.0-alpha.2"
+    "vuetify": "^3.6.0-alpha.2",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "prettier": "^3.2.5",
