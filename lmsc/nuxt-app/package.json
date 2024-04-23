@@ -8,7 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "gen:openapi-type": "rimraf src/generated/api && openapi2aspida",
+    "gen:openapi-type": "rimraf generated/api && openapi2aspida -c aspida.config.cjs",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
