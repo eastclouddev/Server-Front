@@ -6213,6 +6213,11 @@ vuetify@^2.6:
   resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-2.7.2.tgz#b2b687e519257d789a63b87c418f98099f38990f"
   integrity sha512-qr04ww7uzAPQbpk751x4fSdjsJ+zREzjQ/rBlcQGuWS6MIMFMXcXcwvp4+/tnGsULZxPMWfQ0kmZmg5Yc/XzgQ==
 
+vuetify@^3.6.0-beta.0.0:
+  version "3.6.0-beta.0.0"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-3.6.0-beta.0.0.tgz#3e34311e5a97544f4de9f603fcb639234e4befb9"
+  integrity sha512-tG/d+nDEXsY33jr7B0Z/NBEkB9YSkDfb2X4wCL3B2fr2ggWv6H/WkhUtyiksuS/7s7ZYWPik8Obtoe4yqiVj4w==
+
 webidl-conversions@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-3.0.1.tgz#24534275e2a7bc6be7bc86611cc16ae0a5654871"

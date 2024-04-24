@@ -9,6 +9,7 @@
     </v-container>
   </NuxtLayout>
 </template>
+
 <script setup>
 import LoginForm from "~/features/auth/login/LoginForm.vue";
 </script>
