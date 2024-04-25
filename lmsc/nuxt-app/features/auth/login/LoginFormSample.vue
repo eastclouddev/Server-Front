@@ -49,8 +49,8 @@ const handleSubmit = async () => {
     });
 
     // ログイン成功時の処理
-    console.log("Login successful:", response);
-    // トークンをストレージに保存するなどの処理を行う
+    console.log("Login successed:", response);
+    // ログイン状態をpiniaに保存するなどの処理を行う
     // 例: localStorage.setItem('access_token', response.access_token);
 
     // ログイン後のリダイレクト処理

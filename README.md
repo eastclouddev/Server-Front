@@ -33,7 +33,7 @@ feature から横断的に使われるような機能は nuxt-app 配下の comp
 
 API との連携は OpenAPI スキーマで行なっています。
 スキーマファイルは Server-API をローカルで立ち上げると生成されます。
-バックエンドのリポジトリでターミナルを 2 つ用意してそれぞれ `ydocker-compose up -d --build` を実行し、フロントのリポジトリで `yarn gen:openapi-type` を実行するとスキーマから TypeScript の API クライアント・型が自動生成されます。
+バックエンドのリポジトリでターミナルを 2 つ用意してそれぞれ `docker-compose up -d --build` を実行し、フロントのリポジトリで `yarn gen:openapi-type` を実行するとスキーマから TypeScript の API クライアント・型が自動生成されます。
 aspida というツールによって実現されています。
 
 ## Deploy
