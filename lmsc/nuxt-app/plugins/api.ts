@@ -5,12 +5,11 @@ import api from "~/generated/api/$api";
 
 export default defineNuxtPlugin((nuxtApp) => {
   const config = {
-    // baseURL: process.env.API_BASE_URL,
-    baseURL: "http://localhost:8080",
+    baseURL: "/",
     headers: {
       "Content-Type": "application/json; utf-8",
     },
-    withCredentials: true,
+    withCredentials: false,
   };
 
   const axiosInstance = axios.create(config);

@@ -31,6 +31,7 @@ const password = ref("");
 
 const handleSubmit = async () => {
   const deviceInfo = {
+    device_type: "PC",
     device_name: "Web",
     uuid: "unique_device_identifier",
   };

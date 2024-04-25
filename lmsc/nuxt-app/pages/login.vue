@@ -1,3 +1,7 @@
+<!-- 
+    このページは削除して大丈夫です！
+    こちらはサンプルのログインページを作成する際に、/loginが無いとエラーが出るため作成しました。 
+-->
 <template>
   <NuxtLayout>
     <Head>
@@ -9,7 +13,6 @@
     </v-container>
   </NuxtLayout>
 </template>
-
 <script setup>
 import LoginFormSample from "~/features/auth/login/LoginFormSample.vue";
 </script>
