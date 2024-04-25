@@ -4,7 +4,6 @@ module.exports = {
   outputEachDir: false,
   trailingSlash: true,
   openapi: {
-    // inputFile: "http://localhost:8080/docs-yaml",
     inputFile: "http://localhost:8080/openapi.json",
   },
 };
