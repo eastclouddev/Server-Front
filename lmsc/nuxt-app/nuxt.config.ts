@@ -1,3 +1,6 @@
+// https://nuxt.com/docs/api/configuration/nuxt-config
+import VuetifyPlugin from 'vite-plugin-vuetify';
+
 export default defineNuxtConfig({
   devtools: {
     enabled: true,
@@ -14,10 +17,24 @@ export default defineNuxtConfig({
       ],
     },
   },
+  css: ['vuetify/styles'],
+  build: {
+    transpile: ['vuetify'],
+  },
   components: [
     {
       path: '@/components/',
       pathPrefix: false,
     },
   ],
-})
+  vite: {
+    ssr: {
+      noExternal: ['vuetify'],
+    },
+    define: {
+      'process.env.DEBUG': false,
+    },
+    plugins: [VuetifyPlugin()],
+  },
+  plugins: ["~/plugins/api"],
+});
