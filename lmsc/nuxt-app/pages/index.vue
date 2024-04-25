@@ -24,7 +24,7 @@ import { onMounted, ref } from "vue";
 
 const users = ref([]);
 
-onMounted(async () => {
-  users.value = await UserService.getUsers(0, 100);
-});
+// onMounted(async () => {
+//   users.value = await UserService.getUsers(0, 100);
+// });
 </script>

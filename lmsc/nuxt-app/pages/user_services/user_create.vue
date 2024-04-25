@@ -35,8 +35,8 @@ const userData = ref({
 
 const createUser = async () => {
   try {
-    const newUser = await UserService.createUser(userData.value);
-    console.log("User created:", newUser);
+    // const newUser = await UserService.createUser(userData.value);
+    // console.log("User created:", newUser);
     alert("User created successfully");
     userData.value.name = "";
     userData.value.email = "";

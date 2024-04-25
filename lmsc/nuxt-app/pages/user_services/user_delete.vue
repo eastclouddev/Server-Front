@@ -25,7 +25,7 @@ const deleteUser = async () => {
   }
 
   try {
-    await UserService.deleteUser(userId.value);
+    // await UserService.deleteUser(userId.value);
     alert("User delete successfully");
     userId.value = "";
   } catch (error) {

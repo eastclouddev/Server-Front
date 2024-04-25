@@ -40,10 +40,10 @@ const updateUser = async () => {
     alert("Please enter a valid user ID");
     return;
   }
-  const updatedUser = await UserService.updateUser(
-    userId.value,
-    editUserData.value
-  );
+  // const updatedUser = await UserService.updateUser(
+  //   userId.value,
+  //   editUserData.value
+  // );
   console.log("User created:", updatedUser);
   alert("User update successfully");
 
