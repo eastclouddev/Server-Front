@@ -13,18 +13,18 @@
       <NuxtLink to="/user_services/user_create">ユーザー追加</NuxtLink>
       <NuxtLink to="/user_services/user_delete">ユーザー削除</NuxtLink>
       <NuxtLink to="/user_services/user_update">ユーザー編集</NuxtLink>
-      <NuxtLink to="/get_sample">サンプル</NuxtLink>
+      <!-- <NuxtLink to="/get_sample">サンプル</NuxtLink> -->
     </div>
   </NuxtLayout>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
-import { UserService } from '~/services/UserService.js'
+import { onMounted, ref } from "vue";
+// import { UserService } from '~/services/UserService.js';
 
-const users = ref([])
+const users = ref([]);
 
-onMounted(async () => {
-  users.value = await UserService.getUsers(0, 100)
-})
+// onMounted(async () => {
+//   users.value = await UserService.getUsers(0, 100);
+// });
 </script>
