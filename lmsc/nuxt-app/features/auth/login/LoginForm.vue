@@ -7,8 +7,8 @@
       <v-card-text>
         <v-form @submit.prevent="handleSubmit" class="content_box">
           <v-card flat style="margin:10% 0;">
-            <EmailForm v-model="email" />
-            <PasswordForm v-model="password" />
+            <EmailForm label="メールアドレス" v-model="email" />
+            <PasswordForm label="パスワード" v-model="password" />
           </v-card>
           <v-card flat style="text-align: center;">
             <p class="pb-2">※パスワードを忘れた方は<a href="" target="_blank" color="#242424">こちら</a></p>

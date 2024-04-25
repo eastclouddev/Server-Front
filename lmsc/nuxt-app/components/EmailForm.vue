@@ -1,18 +1,14 @@
 <template>
-  <v-container class="d-flex justify-space-between">
-    <v-row class="align-center">
-      <v-col class="text-left text-md-left">
-        <label style=" font-size: 1em; font-weight: bold;" color="#242424">メールアドレス</label>
-      </v-col>
-      <v-col class="text-center text-md-right">
-        <v-card flat class=" d-flex flex-column" width="25rem">
-          <v-sheet :class="{ 'error': errors.email }" class="my-0 pr-4 pb-4 pl-4" color="#EBEBEB">
-            <v-text-field hide-details="auto" placeholder="XXXXXXX@example.com" variant="plain" type="email"
-              v-model="email"></v-text-field>
-          </v-sheet>
-          <p class="error_message">{{ errors.email }}</p>
-        </v-card>
-      </v-col>
+  <v-container class="d-flex justify-space-between mb-3">
+    <v-row class="align-center justify-space-between">
+      <label style="font-size: 1em; font-weight: bold;">{{ label }}</label>
+      <v-card flat class=" d-flex flex-column" width="25rem">
+        <v-sheet :class="{ 'error': errors.email }" class="my-0 pr-4 pb-4 pl-4" color="#EBEBEB">
+          <v-text-field hide-details="auto" placeholder="XXXXXXX@example.com" variant="plain" type="email"
+            v-model="email"></v-text-field>
+        </v-sheet>
+        <p class="error_message">{{ errors.email }}</p>
+      </v-card>
     </v-row>
   </v-container>
 </template>
@@ -27,6 +23,11 @@ setLocale({
   string: {
     email: 'メールアドレスの形式が正しくありません。',
   },
+});
+const props = defineProps({
+  modelValue: String,
+  label: String,
+  placeholder: String
 });
 
 const schema = object({

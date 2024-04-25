@@ -1,69 +1,49 @@
 <template>
-  <div class="form">
-    <label style="font-size: 1em; font-weight: bold;" color="#242424">パスワード<span class="required-mark">必須</span></label>
-    <v-text-field v-model="password" type="password"></v-text-field>
-    <p>※半角英数字の組み合わせ（8桁以上14文字以下）</p>
-
-    <label style="font-size: 1em; font-weight: bold;" color="#242424">パスワード（確認）<span
-        class="required-mark">必須</span></label>
-    <v-text-field v-model="confirmPassword" type="password" :error="passwordMismatch"></v-text-field>
-    <p>※確認のため同じパスワードを入力してください。</p>
-
-  </div>
+  <v-container>
+    <v-sheet class="d-flex align-center justify-space-between mb-3">
+      <v-card flat class=" d-flex align-center " width=" 11rem">
+        <label style="font-size: 1em; font-weight: bold;">パスワード</label>
+        <span class="required-mark">必須</span>
+      </v-card>
+      <v-card flat>
+        <PasswordForm v-model="passwordInput" />
+      </v-card>
+    </v-sheet>
+    <v-sheet class="d-flex align-center justify-space-between mb-3">
+      <v-card flat class=" d-flex align-center" width="11rem">
+        <label style="font-size: 1em; font-weight: bold;">パスワード(確認)</label>
+        <span class="required-mark">必須</span>
+      </v-card>
+      <v-card flat class="text-left">
+        <PasswordForm v-model="passwordConfirm" />
+        <p v-if="passwordMismatch" class="error_message" style="padding:0 1%;">パスワードが一致しません。</p>
+      </v-card>
+    </v-sheet>
+  </v-container>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      password: '',
-      confirmPassword: ''
-    };
-  },
-  computed: {
-    passwordMismatch() {
-      return this.password !== this.confirmPassword;
-    }
-  }
-};
-</script>
-<style lang="scss" scoped>
-.error {
-  border: 1px solid red;
-  border-radius: 5px;
-}
+<script setup>
+import { ref, computed } from 'vue';
+import PasswordForm from '@/components/PasswordForm.vue';
 
+const passwordInput = ref('');
+const passwordConfirm = ref('');
+
+const passwordMismatch = computed(() => passwordInput.value !== passwordConfirm.value);
+</script>
+<style>
 .error_message {
   color: #FF0000;
   font-size: 0.75em;
+  text-align: left;
 }
 
 .required-mark {
   color: #FFFF;
   background-color: #FF5A36;
   border-radius: 5px;
-  font-size: 0.75em;
-  padding: 0.5%;
-  margin: 1%;
-}
-
-@media screen and (max-width: 768px) {
-  .form {
-    display: flex;
-    flex-direction: column;
-
-    &_label {
-      font-size: 2em;
-      margin-bottom: 20px;
-    }
-
-    &_input {
-      width: 548px;
-    }
-  }
-
-  .error_message {
-    font-size: 1em;
-  }
+  font-weight: bold;
+  padding: 1% 2%;
+  margin: 3%;
 }
 </style>

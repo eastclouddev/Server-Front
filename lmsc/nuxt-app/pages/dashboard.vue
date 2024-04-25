@@ -1,9 +1,7 @@
 <template>
-  <NuxtLayout>
-    <div>
-      <p>ダッシュボードの表示</p>
-    </div>
-  </NuxtLayout>
+  <div>
+    <p>ダッシュボードの表示</p>
+  </div>
 </template>
 <script></script>
 <style></style>
