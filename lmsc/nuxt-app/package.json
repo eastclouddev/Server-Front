@@ -7,16 +7,25 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "gen:openapi-type": "rimraf generated/api && openapi2aspida -c aspida.config.cjs",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@mdi/font": "^7.4.47",
     "@nuxt/schema": "^3.11.2",
     "@nuxt/types": "^2.17.3",
+=======
+    "@aspida/axios": "^1.14.0",
+    "@mdi/font": "^7.4.47",
+>>>>>>> develop
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/vuetify": "^1.12.3",
     "@pinia/nuxt": "^0.5.1",
     "@vee-validate/rules": "^4.12.6",
+    "aspida": "^1.14.0",
     "axios": "^1.6.8",
     "nuxt": "^3.10.2",
     "nuxt-sass-resources-loader": "^2.0.5",
@@ -24,8 +33,10 @@
     "pinia-plugin-persistedstate": "^3.2.1",
     "prisma": "^5.10.0",
     "vee-validate": "^4.5.8",
+    "vite-plugin-vuetify": "^2.0.3",
     "vue": "^3.4.19",
     "vue-router": "^4.2.5",
+<<<<<<< HEAD
     "vuetify": "^3.6.0-alpha.2",
     "yup": "^1.4.0"
   },
@@ -34,5 +45,15 @@
     "sass": "^1.74.1",
     "typescript": "^5.4.5",
     "vite-plugin-vuetify": "^2.0.3"
+=======
+    "vuetify": "^3.5.17"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "cors": "^2.8.5",
+    "openapi2aspida": "^0.23.2",
+    "rimraf": "^5.0.5",
+    "sass": "^1.74.1"
+>>>>>>> develop
   }
 }

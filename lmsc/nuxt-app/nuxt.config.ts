@@ -1,5 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+<<<<<<< HEAD
 import VuetifyPlugin from 'vite-plugin-vuetify'
+=======
+import VuetifyPlugin from 'vite-plugin-vuetify';
+>>>>>>> develop
 
 export default defineNuxtConfig({
   devtools: {
@@ -36,4 +40,9 @@ export default defineNuxtConfig({
     },
     plugins: [VuetifyPlugin()],
   },
+<<<<<<< HEAD
 })
+=======
+  plugins: ["~/plugins/api"],
+});
+>>>>>>> develop
