@@ -13,14 +13,9 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@mdi/font": "^7.4.47",
     "@nuxt/schema": "^3.11.2",
     "@nuxt/types": "^2.17.3",
-=======
-    "@aspida/axios": "^1.14.0",
-    "@mdi/font": "^7.4.47",
->>>>>>> develop
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/vuetify": "^1.12.3",
     "@pinia/nuxt": "^0.5.1",
@@ -36,24 +31,15 @@
     "vite-plugin-vuetify": "^2.0.3",
     "vue": "^3.4.19",
     "vue-router": "^4.2.5",
-<<<<<<< HEAD
     "vuetify": "^3.6.0-alpha.2",
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@aspida/axios": "^1.14.0",
+    "@aspida/fetch": "^1.14.0",
     "prettier": "^3.2.5",
     "sass": "^1.74.1",
     "typescript": "^5.4.5",
     "vite-plugin-vuetify": "^2.0.3"
-=======
-    "vuetify": "^3.5.17"
-  },
-  "devDependencies": {
-    "@types/cors": "^2.8.17",
-    "cors": "^2.8.5",
-    "openapi2aspida": "^0.23.2",
-    "rimraf": "^5.0.5",
-    "sass": "^1.74.1"
->>>>>>> develop
   }
 }
