@@ -37,4 +37,8 @@ export default defineNuxtConfig({
     plugins: [VuetifyPlugin()],
   },
   plugins: ["~/plugins/api"],
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> origin/feature/login-vuetify-vee-validate

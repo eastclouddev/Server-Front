@@ -13,6 +13,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@aspida/axios": "^1.14.0",
     "@mdi/font": "^7.4.47",
     "@nuxt/schema": "^3.11.2",
     "@nuxt/types": "^2.17.3",
@@ -37,6 +38,10 @@
   "devDependencies": {
     "@aspida/axios": "^1.14.0",
     "@aspida/fetch": "^1.14.0",
+    "@types/cors": "^2.8.17",
+    "cors": "^2.8.5",
+    "openapi2aspida": "^0.23.2",
+    "rimraf": "^5.0.5",
     "prettier": "^3.2.5",
     "sass": "^1.74.1",
     "typescript": "^5.4.5",

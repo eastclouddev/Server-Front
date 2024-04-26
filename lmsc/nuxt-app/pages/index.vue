@@ -17,12 +17,12 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
-// import { UserService } from '~/services/UserService.js'
+import { onMounted, ref } from "vue";
+// import { UserService } from '~/services/UserService.js';
 
-const users = ref([])
+const users = ref([]);
 
-onMounted(async () => {
-  users.value = await UserService.getUsers(0, 100)
-})
+// onMounted(async () => {
+//   users.value = await UserService.getUsers(0, 100);
+// });
 </script>
