@@ -4,9 +4,9 @@
     <Meta name="description" content="iDemy | ユーザー情報入力画面" />
   </Head>
   <v-container>
-    <userInvitationForm />
+    <UserInvitationForm />
   </v-container>
 </template>
 <script setup>
-import userInvitationForm from '~/features/userInvitation/userInvitationForm.vue'
+import UserInvitationForm from '~/features/auth/userInvitation/UserInvitationForm.vue'
 </script>

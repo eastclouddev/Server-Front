@@ -1,55 +1,38 @@
 <template>
-  <div class="page">
-    <h1> Work Ready利用規約</h1>
-    <ul>
-      <li v-for="(item, index) in items" :key="index">
-        <h2>{{ item.heading }}</h2>
-        <ul>
-          <li v-for="(message, i) in item.messages" :key="i">{{ message }}</li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-  <p>
-
-  </p>
+  <v-container>
+    <v-card>
+      <v-card-title class="pt-2 pb-2 pl-0" :class="{ 'hidden-sm-and-down': isSM }" :style="{ fontSize: isSM ? '2em' : '1.6em', fontWeight: 'bold' }" color="#242424">ログイン</v-card-title>
+      <v-card-text class="hidden-sm-and-down" :style="{ fontSize: isSM ? '1.5em' : '1em' }">テキスト</v-card-text>
+    </v-card>
+  </v-container>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      items: [
-        {
-          heading: '第1章（総則）',
-          messages: [
-            '株式会社iConnect（以下「当社」といいます。）は、当社が運営するWork Ready（以下「本サービス」といいます。）を利用することに関して、以下の通りWork Ready利用規約（以下「本規約」といいます。）を定めます。サービスの利用をお申込みいただく際は、事前に本規約を十分ご理解いただいた上でご同意いただくものとし、本サービスの申し込みを行った時点で本規約の内容を承諾したものとみなされるものとします。'
-          ]
-        },
-        {
-          heading: '第１条（総則）',
-          messages: [
-            '1 本規約は、利用者と当社との間の本サービスの利用に関わる一切の関係に適用されるものとします。',
-            '2 当社が本規約以外に別途利用者向けに本サービスに関する利用条件等（以下「別途利用条件等」といいます。）を提示した場合は、利用者は、本規約のほか、別途利用条件等に従って本サービスを利用するものとします。',
-            '3 本規約の内容と別途利用条件等の内容とが異なる場合には、本規約の規定が優先して適用されるものとします。',
-            '4 本サービスに関連して当社以外により提供されるサービス（以下、併せて「外部サービス等」と総称します。）については、外部サービス等について定められる利用規約等に従ってご利用ください。'
-          ]
-        },
-        {
-          heading: '第２条（利用登録）',
-          messages: [
-            '1 本サービスの利用希望者は、当社の定める利用規約を遵守することに同意し、当社の定める登録方法によって登録情報を当社に提供して、利用登録を申請するものとし、当社がこれを承認し、当社が定める方法で通知することによって、利用登録が完了します。',
-            '2 利用希望者は、前項に基づく登録の申請に当たり、以下の各号に掲げる全ての事項を確認し同意の上、申請するものとします。'
-          ]
-        },
-        {
-          heading: '第４条',
-          messages: [
-            '4 本サービスに関連して当社以外により提供されるサービス（以下、併せて「外部サービス等」と総称します。）については、外部サービス等について定められる利用規約等に従ってご利用ください。'
-          ]
-        },
-      ]
+      isSM: false
+    };
+  },
+  mounted() {
+    // 初期化時に一度チェック
+    this.checkDeviceWidth();
+
+    // ウィンドウのリサイズイベントを監視してデバイスの幅をチェック
+    window.addEventListener('resize', this.checkDeviceWidth);
+  },
+  methods: {
+    // デバイスの幅に応じてフラグを更新
+    checkDeviceWidth() {
+      this.isSM = window.innerWidth < 576;  // sm ブレイクポイント未満の場合 true
     }
   },
+  beforeDestroy() {
+    // イベントリスナーを削除
+    window.removeEventListener('resize', this.checkDeviceWidth);
+  }
 }
 </script>
+
+<style scoped>
+</style>

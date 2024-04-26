@@ -1,20 +1,20 @@
 <template>
   <v-container style="margin:10% 0;">
-    <v-card flat class=" mx-auto" max-width="620">
-      <v-card-title class="pt-2 pb-2 pl-0" style="font-size: 1.6em; font-weight: bold;"
+    <v-card flat class="mx-auto" max-width="620">
+      <v-card-title class="pt-2 pb-2 pl-0 sp_title"  style="font-size:1.5em; font-weight: bold;"
         color="#242424">ログイン</v-card-title>
       <v-divider class="#CFCFCF" thickness="1"></v-divider>
       <v-card-text>
-        <v-form @submit.prevent="handleSubmit" class="content_box">
-          <v-card flat style="margin:10% 0;">
-            <EmailForm label="メールアドレス" v-model="email" />
-            <PasswordForm label="パスワード" v-model="password" />
-          </v-card>
-          <v-card flat style="text-align: center;">
-            <p class="pb-2">※パスワードを忘れた方は<a href="" target="_blank" color="#242424">こちら</a></p>
-            <Button type="submit" width="25rem" height="6ex" style="font-size: 1.5em;" buttonText=" ログイン"></Button>
-          </v-card>
-        </v-form>
+          <v-form @submit.prevent="handleSubmit" class="content_box">
+            <v-card flat style="margin:10% 0;">
+              <EmailForm label="メールアドレス" v-model="email" />
+              <PasswordForm label="パスワード" v-model="password" />
+            </v-card>
+            <v-card flat style="text-align: center;">
+              <p class="pb-2 sp_text">※パスワードを忘れた方は<a href="" target="_blank" color="#242424">こちら</a></p>
+              <Button type="submit" color="#FF5A36" style="font-size: 1.5em;" buttonText=" ログイン"></Button>
+            </v-card>
+          </v-form>
       </v-card-text>
     </v-card>
   </v-container>
@@ -35,19 +35,14 @@ const handleSubmit = () => {
 }
 </script>
 <style lang="scss" scoped>
-
 @media screen and (max-width: 768px) {
-  .content {
-    &_title {
-      font-size: 2.5em;
-      padding: 2.5% 0;
-    }
-    &_text {
-      font-size: 1.4em;
-    }
+  .sp {
+   &_title {
+    font-size: 2.5em !important;
   }
-  .formwrap{
-    margin: 10% 5%;
+  &_text {
+    font-size: 1.4em;
+  }
   }
 }
 </style>
