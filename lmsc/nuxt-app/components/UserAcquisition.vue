@@ -1,16 +1,43 @@
 <template>
   <v-container>
-    <v-row class="d-flex justify-space-between justify-start sp_content" v-for=" item in items" :key="item.id">
-      <label class="sp_label" style="font-weight: bold;" color="#242424">{{ item.label }}</label>
-      <v-sheet width="25rem" class="mb-5 pr-4 pb-4 pl-4 sp_field" color="#EBEBEB" style="border-radius: 5%;">
-        <v-text-field hide-details="auto" variant="plain" disabled type="text">{{ item.data
-          }}</v-text-field>
-      </v-sheet>
+    <v-row class="align-center justify-space-between pb-4" v-for=" item in items" :key="item.id">
+      <label class="sp_label" style="font-size: 1em; font-weight: bold;">{{ item.label }}</label>
+      <v-card flat class="sp_field d-flex flex-column" width="25rem">
+        <v-sheet class="my-0 pr-4 pb-4 pl-4">
+          <v-text-field hide-details="auto" placeholder="API取得" variant="plain"
+            v-model="password" full-width></v-text-field>
+        </v-sheet>
+      </v-card>
+      <v-divider class="#CFCFCF mb-5" thickness="1" dotted></v-divider>
+    </v-row>
+    <v-row class="align-center justify-space-between pb-4">
+      <label class="sp_label" style="font-size: 1em; font-weight: bold;">パスワード</label>
+      <v-card flat class="sp_field d-flex flex-column" width="25rem">
+        <v-sheet class="my-0 pr-4 pb-4 pl-4">
+          <v-text-field hide-details="auto" placeholder="API取得" variant="plain"
+          v-model="password" :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+          :type="showPassword ? 'text' : 'password'" readonly full-width></v-text-field>
+        </v-sheet>
+      </v-card>
+      <v-divider class="#CFCFCF" thickness="1"></v-divider>
     </v-row>
   </v-container>
 </template>
 
 <script setup>
+export default {
+data() {
+    return {
+      password: '', // パスワードを保持するデータ
+      showPassword: false // パスワードの表示状態を管理するデータ
+    }
+  },
+  methods: {
+    togglePasswordVisibility() {
+      this.showPassword = !this.showPassword; // パスワードの表示状態を反転させる
+    }
+  }
+}
 const items = [
   {
     label: "お名前",

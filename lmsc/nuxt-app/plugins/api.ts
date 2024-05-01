@@ -5,7 +5,7 @@ import api from "~/generated/api/$api";
 
 export default defineNuxtPlugin((nuxtApp) => {
   const config = {
-    baseURL: "/",
+    baseURL: "http://localhost:8080/",
     headers: {
       "Content-Type": "application/json; utf-8",
     },

@@ -5,7 +5,7 @@
         color="#242424">ログイン</v-card-title>
       <v-divider class="#CFCFCF" thickness="1"></v-divider>
       <v-card-text>
-          <v-form @submit.prevent="handleSubmit" class="content_box">
+          <v-form @submit.prevent="handleSubmit">
             <v-card flat style="margin:10% 0;">
               <EmailForm label="メールアドレス" v-model="email" />
               <PasswordForm label="パスワード" v-model="password" />
@@ -19,20 +19,45 @@
     </v-card>
   </v-container>
 </template>
-
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useNuxtApp } from "#app";
 
-const email = ref('');
-const password = ref('');
-const router = useRouter();
+const { $api } = useNuxtApp();
 
-const handleSubmit = () => {
-  console.log('email:', email.value, 'password:', password.value);
-  // ログイン成功
-  router.push('/dashboard');
-}
+const email = ref("");
+const password = ref("");
+
+const handleSubmit = async () => {
+  const deviceInfo = {
+    device_type: "PC",
+    device_name: "Web",
+    uuid: "unique_device_identifier",
+  };
+  console.log("email.value:", email.value);
+  console.log("password.value:", password.value);
+  console.log("deviceInfo:", deviceInfo);
+
+  try {
+    const response = await $api.login.$post({
+      body: {
+        email: email.value,
+        password: password.value,
+        device_info: deviceInfo,
+      },
+    });
+
+    // ログイン成功時の処理
+    console.log("Login successed:", response);
+    // ログイン状態をpiniaに保存するなどの処理を行う
+    // 例: localStorage.setItem('access_token', response.access_token);
+
+    navigateTo('/dashboard');
+  } catch (error) {
+    // ログイン失敗時の処理
+    console.error("Login failed:", error);
+    // エラーメッセージの表示などの処理を行う
+  }
+};
 </script>
 <style lang="scss" scoped>
 @media screen and (max-width: 768px) {
