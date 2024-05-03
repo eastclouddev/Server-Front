@@ -14,10 +14,13 @@
 </template>
 
 <script setup lang="ts">
+import { useGetCourse } from "~/features/course/api/getCourse";
 import CourseDetails from "~/features/course/courseDetail/components/CourseDetails.vue";
 
 const route = useRoute();
-const courseId = route.params.id;
+const courseId = Number(route.params.id);
+const { data, error, status } = useGetCourse(courseId);
+console.log(data, error, status);
 
 // ここでAPIやデータストアからcourseIdを使ってコースデータを取得する
 const course = {
