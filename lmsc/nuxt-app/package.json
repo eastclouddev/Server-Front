@@ -30,7 +30,8 @@
     "vite-plugin-vuetify": "^2.0.3",
     "vue": "^3.4.19",
     "vue-router": "^4.2.5",
-    "vuetify": "^3.5.17"
+    "vuetify": "^3.5.17",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
