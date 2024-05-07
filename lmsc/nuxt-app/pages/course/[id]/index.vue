@@ -21,7 +21,8 @@ const route = useRoute();
 const courseId = Number(route.params.id);
 const { data, error, status } = useGetCourse(courseId);
 
-console.log("取得データ", data, error, status);
+console.log("status:", status.value);
+console.log("error:", error.value);
 console.log("data:", data.value);
 console.log("title:", data.value?.title);
 console.log("courseId:", courseId);

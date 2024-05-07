@@ -44,11 +44,11 @@
 import { ref } from "vue";
 import { useDisplay } from "vuetify";
 import CourseVideo from "./CourseVideo.vue";
-import CourseTabs from "./CourseTabs.vue";
-import CourseContent from "./CourseContent.vue";
-import CourseOverview from "./CourseOverview.vue";
-import CourseQuestions from "./CourseQuestions.vue";
-import CourseSubmissions from "./CourseSubmissions.vue";
+import CourseTabs from "@/features/course/courseDetail/components/CourseTabs.vue";
+import CourseContent from "@/features/course/courseDetail/components/CourseContent.vue";
+import CourseOverview from "@/features/course/courseDetail/components/CourseOverview.vue";
+import CourseQuestions from "@/features/course/courseDetail/components/CourseQuestions.vue";
+import CourseSubmissions from "@/features/course/courseDetail/components/CourseSubmissions.vue";
 
 const props = defineProps<{
   title: string;
