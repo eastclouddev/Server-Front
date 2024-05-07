@@ -27,7 +27,7 @@ class Config {
       process.env.NEXT_PUBLIC_VITE_SERVICE_URL ?? "http://localhost:5001"
     );
     this.apiEndpoint =
-      process.env.NEXT_PUBLIC_BC_API_ENDPOINT ?? "http://localhost:8080/v1";
+      process.env.NEXT_PUBLIC_BC_API_ENDPOINT ?? "http://localhost:8080";
     this.apiMocking = process.env.NEXT_PUBLIC_VITE_API_MOCKING === "true";
   }
 }

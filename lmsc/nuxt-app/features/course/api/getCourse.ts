@@ -21,7 +21,7 @@ export function useGetCourse(courseId: number) {
   const { data, error, status } = useAsyncData(
     `course-${courseId}`,
     () => getCourse(courseId),
-    { server: false }
+    { server: true }
   );
 
   return { data, error, status };
