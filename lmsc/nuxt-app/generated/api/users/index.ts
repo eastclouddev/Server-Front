@@ -1,9 +1,9 @@
 /* eslint-disable */
-import type * as Types from '../../../@types'
+import type * as Types from '../@types'
 
 export type Methods = {
   /**
-   * 受講生一覧（法人、法人代行)
+   * 受講生一覧(管理者)
    * 
    * Parameters
    * -----------------------
@@ -14,21 +14,21 @@ export type Methods = {
    * limit: int
    *     1ページ当たりの記事数
    * 
-   * Returns
+   * Return
    * -----------------------
    * users: array
    *     user_id: int
    *         ユーザーのID
    *     first_name: str
-   *         ユーザーの名
+   *         名前
    *     last_name: str
-   *         ユーザーの姓
+   *         姓
    *     email: str
-   *         ユーザーのメールアドレス
+   *         メールアドレス
    *     role: str
-   *         ユーザーのロール
+   *         ユーザーの役割
    *     last_login: str
-   *         最終ログイン日（ISO 8601形式）
+   *         最終ログイン日時（ISO 8601形式）
    */
   get: {
     query: {
@@ -39,6 +39,6 @@ export type Methods = {
 
     status: 200
     /** Successful Response */
-    resBody: Types.StudentListResponseBody
+    resBody: Types.UserListResponseBody
   }
 }

@@ -20,7 +20,9 @@ import CourseDetails from "~/features/course/courseDetail/components/CourseDetai
 const route = useRoute();
 const courseId = Number(route.params.id);
 const { data, error, status } = useGetCourse(courseId);
-console.log(data, error, status);
+console.log("取得データ", data, error, status);
+console.log("data:", data);
+console.log("courseId:", courseId);
 
 // ここでAPIやデータストアからcourseIdを使ってコースデータを取得する
 const course = {
