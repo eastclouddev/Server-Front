@@ -28,7 +28,7 @@
           </span>
         </div>
         <div>
-          <a href="">学習記録詳細</a>
+          <a href="" style="color:#222222;">学習記録詳細</a>
         </div>
         </v-sheet>
         <v-sheet color="#FFF7EC" class="d-flex" style="align-items: flex-end;">

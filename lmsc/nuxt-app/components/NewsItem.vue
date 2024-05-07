@@ -15,7 +15,7 @@
             <a>{{ newsItem.title }}</a>
           </div>
         </template>
-        <a href="" style="display: flex; justify-content: flex-end;">もっとみる</a>
+        <a href="" style="display: flex; justify-content: flex-end; color:#222222;">もっとみる</a>
       </v-sheet>
     </v-card>
   </v-container>

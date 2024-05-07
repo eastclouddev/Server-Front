@@ -1,8 +1,8 @@
 <template>
   <v-sheet flat class="mx-auto mb-8 pa-10" width="60rem">
     <div class="d-flex align-center">
-      <img src="/assets/review.svg" class="pr-3" alt="">
-      <h3>課題提出</h3>
+      <img src="/assets/question.svg" class="pr-3" alt="">
+      <h3>質問リスト</h3>
     </div>
     <v-sheet>
       <v-list>
