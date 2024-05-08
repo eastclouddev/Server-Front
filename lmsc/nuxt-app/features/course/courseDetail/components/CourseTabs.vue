@@ -58,7 +58,6 @@ watch(
     background-color: #fafafa;
     border-radius: 4px;
     padding: 10px 20px;
-    border-bottom: none !important;
 
     &--selected {
       font-weight: bold;
