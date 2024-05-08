@@ -30,14 +30,10 @@
         </v-col>
         <v-col cols="12" md="10">
           <div v-if="!showFullDescription">
-            <div
-              v-for="(paragraph, index) in visibleDescription"
-              :key="index"
-              class="mb-4"
-            >
-              {{ paragraph }}
+            <div class="mb-4">
+              {{ visibleDescription }}
             </div>
-            <div v-if="description.length > 3" class="text-right">
+            <div v-if="description.length > 100" class="text-right">
               <a
                 href="#"
                 @click.prevent="showFullDescription = true"
@@ -52,12 +48,8 @@
             </div>
           </div>
           <div v-else>
-            <div
-              v-for="(paragraph, index) in description"
-              :key="index"
-              class="mb-4"
-            >
-              {{ paragraph }}
+            <div class="mb-4">
+              {{ description }}
             </div>
           </div>
         </v-col>
@@ -72,14 +64,14 @@ const props = defineProps<{
   title: string;
   level: string;
   duration: number;
-  description: string[];
+  description: string;
 }>();
 
 const showFullDescription = ref(false);
 
 const visibleDescription = computed(() => {
-  return showFullDescription.value
+  return showFullDescription.value || props.description.length <= 300
     ? props.description
-    : props.description.slice(0, 3);
+    : props.description.slice(0, 300) + "...";
 });
 </script>

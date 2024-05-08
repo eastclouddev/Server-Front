@@ -52,7 +52,7 @@ const props = defineProps<{
   title: string;
   level: string;
   duration: number;
-  description: string[];
+  description: string;
 }>();
 
 const { smAndDown, mdAndUp } = useDisplay();
