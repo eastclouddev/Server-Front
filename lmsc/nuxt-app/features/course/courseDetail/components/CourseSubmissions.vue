@@ -1,4 +1,3 @@
-<!-- CourseSubmissions.vue -->
 <template>
   <v-card flat>
     <v-card-title class="text-h6">課題提出</v-card-title>

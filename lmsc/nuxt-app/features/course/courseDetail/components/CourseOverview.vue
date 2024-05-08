@@ -1,4 +1,3 @@
-<!-- CourseOverview.vue -->
 <template>
   <v-card
     flat

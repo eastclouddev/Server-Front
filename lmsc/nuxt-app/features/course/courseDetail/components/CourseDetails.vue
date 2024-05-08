@@ -1,4 +1,3 @@
-<!-- CourseDetail.vue -->
 <template>
   <v-container>
     <v-row>
@@ -9,7 +8,7 @@
             <CourseTabs v-model:tab="tab" />
             <v-window v-model="tab">
               <v-window-item value="course-content" v-if="smAndDown">
-                <CourseContent />
+                <CourseContent :sections="props.course?.sections || []" />
               </v-window-item>
               <v-window-item value="overview">
                 <CourseOverview
@@ -30,7 +29,7 @@
       </v-col>
       <client-only>
         <v-col cols="12" md="4" v-if="mdAndUp">
-          <CourseContent />
+          <CourseContent :sections="props.course?.sections || []" />
         </v-col>
       </client-only>
     </v-row>

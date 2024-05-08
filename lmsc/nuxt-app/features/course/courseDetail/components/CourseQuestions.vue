@@ -1,4 +1,3 @@
-<!-- CourseQuestions.vue -->
 <template>
   <v-card flat>
     <v-card-title class="text-h6">質問</v-card-title>
