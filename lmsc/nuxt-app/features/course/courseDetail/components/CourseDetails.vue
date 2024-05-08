@@ -13,10 +13,9 @@
               </v-window-item>
               <v-window-item value="overview">
                 <CourseOverview
-                  :title="title"
-                  :level="level"
-                  :duration="duration"
-                  :description="description"
+                  :title="$props.course?.title || ''"
+                  :duration="30.5"
+                  :description="$props.course?.description || ''"
                 />
               </v-window-item>
               <v-window-item value="questions">
@@ -47,13 +46,9 @@ import CourseContent from "@/features/course/courseDetail/components/CourseConte
 import CourseOverview from "@/features/course/courseDetail/components/CourseOverview.vue";
 import CourseQuestions from "@/features/course/courseDetail/components/CourseQuestions.vue";
 import CourseSubmissions from "@/features/course/courseDetail/components/CourseSubmissions.vue";
+import type { CourseDetailResponseBody } from "~/generated/api/@types";
 
-const props = defineProps<{
-  title: string;
-  level: string;
-  duration: number;
-  description: string;
-}>();
+const props = defineProps<{ course: CourseDetailResponseBody | null }>();
 
 const { smAndDown, mdAndUp } = useDisplay();
 const tab = ref("overview");

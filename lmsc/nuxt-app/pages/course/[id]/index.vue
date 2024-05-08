@@ -2,12 +2,7 @@
   <v-container>
     <v-row>
       <v-col>
-        <CourseDetails
-          :title="course.title"
-          :level="course.level"
-          :duration="course.duration"
-          :description="course.description"
-        />
+        <CourseDetails :course="data" />
       </v-col>
     </v-row>
   </v-container>
@@ -29,8 +24,7 @@ console.log("courseId:", courseId);
 
 const course = {
   title: data.value?.title || "",
-  level: "初級",
-  duration: 30.5,
   description: data.value?.description || "",
+  section: data.value?.sections || "",
 };
 </script>

@@ -16,7 +16,7 @@
         </v-col>
         <v-col cols="12" md="10">
           <div>
-            <div>スキルレベル: {{ level }}</div>
+            <div>スキルレベル: 初級</div>
             <div>学習時間: {{ duration }}時間</div>
           </div>
         </v-col>
@@ -62,7 +62,6 @@ import { ref, computed } from "vue";
 
 const props = defineProps<{
   title: string;
-  level: string;
   duration: number;
   description: string;
 }>();
