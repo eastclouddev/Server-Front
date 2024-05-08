@@ -1,6 +1,6 @@
 <!-- CourseOverview.vue -->
 <template>
-  <v-card flat>
+  <v-card flat :style="{ backgroundColor: `rgb(var(--v-theme-background))` }">
     <v-card-title class="text-h5">{{ title }}</v-card-title>
     <v-card-subtitle class="d-flex align-center">
       <v-chip :color="levelColor" text-color="white" class="mr-4">{{

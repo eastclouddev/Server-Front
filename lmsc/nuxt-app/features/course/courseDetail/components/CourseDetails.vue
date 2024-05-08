@@ -4,30 +4,28 @@
     <v-row>
       <v-col cols="12" md="8">
         <CourseVideo />
-        <v-card>
+        <v-card flat>
           <client-only>
             <CourseTabs v-model:tab="tab" />
-            <v-card-text>
-              <v-window v-model="tab">
-                <v-window-item value="course-content" v-if="smAndDown">
-                  <CourseContent />
-                </v-window-item>
-                <v-window-item value="overview">
-                  <CourseOverview
-                    :title="title"
-                    :level="level"
-                    :duration="duration"
-                    :description="description"
-                  />
-                </v-window-item>
-                <v-window-item value="questions">
-                  <CourseQuestions />
-                </v-window-item>
-                <v-window-item value="submissions">
-                  <CourseSubmissions />
-                </v-window-item>
-              </v-window>
-            </v-card-text>
+            <v-window v-model="tab">
+              <v-window-item value="course-content" v-if="smAndDown">
+                <CourseContent />
+              </v-window-item>
+              <v-window-item value="overview">
+                <CourseOverview
+                  :title="title"
+                  :level="level"
+                  :duration="duration"
+                  :description="description"
+                />
+              </v-window-item>
+              <v-window-item value="questions">
+                <CourseQuestions />
+              </v-window-item>
+              <v-window-item value="submissions">
+                <CourseSubmissions />
+              </v-window-item>
+            </v-window>
           </client-only>
         </v-card>
       </v-col>

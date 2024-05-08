@@ -1,13 +1,18 @@
 <template>
   <v-tabs
     v-model="currentTab"
-    class="bg-white text-black"
+    class="custom-tabs"
     @update:model-value="updateTab($event as string)"
   >
-    <v-tab value="course-content" v-if="smAndDown">コース内容</v-tab>
-    <v-tab value="overview">概要</v-tab>
-    <v-tab value="questions">質問</v-tab>
-    <v-tab value="submissions">課題提出</v-tab>
+    <v-tab
+      v-for="tab in tabs"
+      :key="tab.value"
+      :value="tab.value"
+      v-show="!tab.showOnSmallOnly || smAndDown"
+      class="custom-tab"
+    >
+      {{ tab.label }}
+    </v-tab>
   </v-tabs>
 </template>
 
@@ -26,6 +31,14 @@ const emit = defineEmits<{
 const { smAndDown } = useDisplay();
 const currentTab = ref(props.tab);
 
+// タブのデータをリストとして定義
+const tabs = ref([
+  { label: "コース内容", value: "course-content", showOnSmallOnly: true },
+  { label: "概要", value: "overview", showOnSmallOnly: false },
+  { label: "質問", value: "questions", showOnSmallOnly: false },
+  { label: "課題提出", value: "submissions", showOnSmallOnly: false },
+]);
+
 const updateTab = (value: string) => {
   emit("update:tab", value);
 };
@@ -37,3 +50,29 @@ watch(
   }
 );
 </script>
+
+<style lang="scss" scoped>
+.custom-tabs {
+  .v-tab {
+    margin-right: 8px;
+    background-color: #fafafa;
+    border-radius: 4px;
+    padding: 10px 20px;
+    border-bottom: none !important;
+
+    &--selected {
+      font-weight: bold;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+</style>
+
+<style>
+.custom-tabs .v-tab__slider {
+  opacity: 0 !important;
+}
+</style>
