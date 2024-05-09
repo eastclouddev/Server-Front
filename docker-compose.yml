@@ -7,6 +7,8 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./lmsc/nuxt-app:/app
+      - ./lmsc/nuxt-app:/app:delegated
       - /app/node_modules
     command: yarn dev
+    environment:
+      - NODE_ENV=development
