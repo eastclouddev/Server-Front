@@ -5,13 +5,21 @@
     </v-card-title>
     <v-card-text>
       <v-list :style="{ backgroundColor: 'transparent' }">
-        <template
+        <div
           v-for="(section, sectionIndex) in props.sections"
           :key="section.section_id"
         >
           <v-list-item
             @click="toggleSection(sectionIndex)"
-            class="section-item"
+            :style="{
+              marginBottom:
+                !smAndDown && isSectionExpanded(sectionIndex) ? '0px' : '10px',
+              'background-color': '#fff7ec',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              width: '100%',
+            }"
           >
             <v-list-item-title>
               <strong>{{ section.title }}</strong>
@@ -29,22 +37,54 @@
               />
             </template>
           </v-list-item>
+
           <v-expand-transition>
             <div v-show="isSectionExpanded(sectionIndex)">
               <v-list-item
-                v-for="curriculum in section.curriculums"
+                v-for="(curriculum, index) in section.curriculums"
                 :key="curriculum.curriculum_id"
-                class="ml-4"
+                :class="{ 'mb-2': smAndDown }"
+                :style="{
+                  backgroundColor: 'white',
+                  padding: '0px',
+                  borderBottom:
+                    !smAndDown && index !== section.curriculums.length - 1
+                      ? '1px solid #FFF7EC'
+                      : 'none',
+                }"
               >
-                <v-list-item-title>{{ curriculum.title }}</v-list-item-title>
+                <template v-slot:prepend>
+                  <v-checkbox
+                    :style="{
+                      alignSelf: 'center',
+                      color: '#FF5A36',
+                      marginBottom: '5px',
+                    }"
+                  />
+                </template>
+                <v-list-item-title :style="{ alignSelf: 'center' }">
+                  {{ curriculum.title }}
+                </v-list-item-title>
+                <v-list-item-subtitle
+                  :style="{
+                    opacity: 1,
+                    display: 'flex',
+                    alignItems: 'center',
+                    marginTop: '10px',
+                  }"
+                >
+                  <img src="/assets/video-icon.svg" />
+                  <span class="ml-2">5:30</span>
+                </v-list-item-subtitle>
               </v-list-item>
             </div>
           </v-expand-transition>
-        </template>
+        </div>
       </v-list>
     </v-card-text>
   </v-card>
 </template>
+
 <script setup lang="ts">
 import { ref } from "vue";
 import { useDisplay } from "vuetify";
@@ -94,9 +134,3 @@ const cardStyles = computed(() => {
   }
 });
 </script>
-<style scoped>
-.section-item {
-  background-color: #fff7ec;
-  margin-bottom: 10px;
-}
-</style>
