@@ -2,10 +2,12 @@ FROM node:lts
 
 WORKDIR /app
 
-COPY ../../lmsc/nuxt-app/package*.json ./
+RUN command -v yarn >/dev/null 2>&1 || npm install -g yarn
 
-RUN npm install
+COPY ./lmsc/nuxt-app/package.json ./lmsc/nuxt-app/yarn.lock ./
 
-COPY ../../lmsc/nuxt-app/ /app
+RUN yarn install --force
 
-CMD ["npm", "run", "dev"]
+COPY ./lmsc/nuxt-app/ /app
+
+CMD ["yarn", "dev"]
