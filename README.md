@@ -18,7 +18,7 @@ required:
 docker-compose up --build
 ```
 
-### 2. ローカルサーバーの起動
+### 2. ローカルサーバーの起動(nuxt-app ディレクトリで実行)
 
 ```zsh
 yarn install
