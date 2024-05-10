@@ -8,7 +8,7 @@ const axiosInstance = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  withCredentials: true, // クロスオリジン通信時のクッキーの送信を許可する
+  withCredentials: true,
 });
 
 export default axiosInstance;
