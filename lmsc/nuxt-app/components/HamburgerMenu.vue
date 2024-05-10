@@ -17,7 +17,7 @@
       <!-- 受講生メニュー -->
       <MenuStudent />
       <!-- 法人・法人代行メニュー -->
-      <!-- <MenuCorporation /> -->
+      <MenuCorporation />
       <!-- メンターメニュー -->
       <!-- 管理者メニュー -->
     </v-list>

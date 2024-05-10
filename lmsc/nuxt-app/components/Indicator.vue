@@ -20,7 +20,7 @@
       style="border-radius: 5px; position: relative;"
     ></v-progress-linear>
     <div class="d-flex align-center justify-end">
-    <v-icon class="status-icon" color="#FF0000">{{ statusIcon }}</v-icon>
+  <v-icon class="status-icon" :color="status === '完了' ? '#10BED2' : '#FF0000'">{{ statusIcon }}</v-icon>
     <span class="status">{{ status }}</span>
     </div>
   </v-sheet>

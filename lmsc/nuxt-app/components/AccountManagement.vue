@@ -9,24 +9,16 @@
     style="border-radius: 0 5px 5px 5px; box-shadow: 4px 5px 6px -3px rgba(0, 0, 0, 0.2);">
 
     <v-sheet class="mx-auto mt-8 mb-8" width="50rem" color="#F5F5F5">
-      <v-table class="mb-5">
-        <tbody>
-          <tr style="height:50px;">
-            <th class="text-center" style="font-weight:bold; color: #FFFFFF; background-color: #292737; border-top-left-radius: 5px; border-bottom-left-radius: 5px">
-              受講生
-            </th>
-            <td class="text-center" style="border-top-right-radius: 5px; border-bottom-right-radius: 5px;">{{ studentsCount }}個</td>
-          </tr>
-          <tr style="height:50px;">
-            <th class="text-center" style="font-weight:bold; color: #FFFFFF; background-color: #292737; background-color: #292737; border-top-left-radius: 5px; border-bottom-left-radius: 5px">
-              法人・法人代行
-            </th>
-            <td class="text-center" style="border-top-right-radius: 5px; border-bottom-right-radius: 5px;">{{ corporationsCount }}個</td>
-          </tr>
-        </tbody>
-      </v-table>
+      <v-card class="d-flex align-center mb-2" style="height: 50px; border-radius: 5px;" >
+        <label class="text-center" style="width: 25rem; line-height:50px; font-weight: bold; color: #FFFFFF; background-color: #292737;">受講生</label>
+        <div class="text-center" style="width: 25rem;">{{ studentsCount }}個</div>
+      </v-card>
+      <v-card class="d-flex align-center mb-4" style="height: 50px; border-radius: 5px;">
+        <label class="text-center" style="width: 25rem; line-height:50px; font-weight: bold; color: #FFFFFF; background-color: #292737;">法人・法人代行</label>
+        <div class="text-center" style="width: 25em;">{{ corporationsCount }}個</div>
+      </v-card>
       <div class="d-flex justify-end">
-        <Button color="#FF5136" buttonText="ユーザー一覧へ"></Button>
+        <Button color="#FF5136" style="width:20rem;" buttonText="ユーザー一覧へ"></Button>
       </div>
     </v-sheet>
     </v-card>
