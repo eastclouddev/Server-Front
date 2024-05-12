@@ -2,8 +2,11 @@
 
 ## 概要
 
-idemy-frontend  
-required:
+idemy-frontend
+
+推奨バージョン
+
+- nodejs --> v20.13.1
 
 ## Usage
 
