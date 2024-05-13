@@ -1,0 +1,48 @@
+<script setup lang="ts">
+import NewsHeader from '~/components/NewsHeader.vue'
+import NewsView from '~/components/NewsView.vue'
+import NewsBtn from '~/components/NewsBtn.vue'
+</script>
+
+<template>
+  <main>
+    <div class="main center">
+      <NewsHeader />
+      <NewsView />
+      <NewsBtn />
+    </div>
+  </main>
+  <div class="space"></div>
+</template>
+
+<style scoped lang="scss">
+// Variables
+$main_color: #242424;
+$accent_color: #ff5a36;
+
+main {
+  width: 100%;
+  height: auto;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  width: auto;
+}
+
+.center {
+  margin: 0 auto;
+}
+.space {
+  width: 100%;
+  height: 1500px;
+}
+
+@media screen and (max-width: 768px) {
+  .main {
+    max-width: 708px;
+    gap: 65px;
+  }
+}
+</style>
