@@ -1,7 +1,7 @@
 
 <template>
   <v-container class="mx-aout">
-    <v-card flat color="#FFF7EC" class="d-flex align-center pt-2 pb-2 pl-6" width="20rem"
+    <v-card flat color="#FFF7EC" class="d-flex align-center pt-2 pb-2 pl-6" width="25rem"
     style="border-radius: 5px 5px 0 0; box-shadow: 4px 0px 6px -3px rgba(0, 0, 0, 0.2);">
     <img src="/assets/study.svg" alt="study" style="padding:0 10px 0 0;">
       <label style="font-size: 1.5em; font-weight: bold;">学習記録</label>

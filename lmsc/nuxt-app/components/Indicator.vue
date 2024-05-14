@@ -8,7 +8,7 @@
     <v-progress-linear
       ref="progressBar"
       :location="false"
-      bg-color="#EAEAEA"
+      bg-color="#222222"
       buffer-color="#10BED2"
       buffer-opacity="1"
       buffer-value="20"
@@ -69,7 +69,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .picker {
   position: absolute;
   top: 40%;

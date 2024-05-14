@@ -1,7 +1,7 @@
 
 <template>
   <v-container class="mx-aout">
-    <v-card flat color="#F5F5F5" class="d-flex align-center pt-2 pb-2 pl-6" width="20rem"
+    <v-card flat color="#F5F5F5" class="d-flex align-center pt-2 pb-2 pl-6" width="25rem"
     style="border-radius: 5px 5px 0 0; box-shadow: 4px 0px 6px -3px rgba(0, 0, 0, 0.2);">
       <v-icon color="#10BED2" size="40" class="pr-3">mdi-email-outline</v-icon>
       <label style="font-size: 1.5em; font-weight: bold;">お知らせ</label>

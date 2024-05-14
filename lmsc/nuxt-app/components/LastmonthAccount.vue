@@ -10,11 +10,21 @@
 
     <v-sheet class="mx-auto mt-8 mb-8" width="50rem" color="#F5F5F5">
       <v-card class="d-flex align-center mb-2" style="height: 50px; border-radius: 5px;" >
-        <label class="text-center" style="width: 25rem; line-height:50px; font-weight: bold; color: #FFFFFF; background-color: #292737;">受講生</label>
+        <label class="text-center" style="width: 25rem; line-height:50px; font-weight: bold; color: #FFFFFF; background-color: #292737;">
+          受講生
+        </label>
         <div class="text-center" style="width: 25rem;">{{ studentsCount }}個</div>
       </v-card>
       <v-card class="d-flex align-center mb-4" style="height: 50px; border-radius: 5px;">
-        <label class="text-center" style="width: 25rem; line-height:50px; font-weight: bold; color: #FFFFFF; background-color: #292737;">法人・法人代行</label>
+        <label class="text-center" style="width: 25rem; line-height:50px; font-weight: bold; color: #FFFFFF; background-color: #292737;">
+          メンター
+        </label>
+        <div class="text-center" style="width: 25em;">{{ corporationsCount }}個</div>
+      </v-card>
+      <v-card class="d-flex align-center mb-4" style="height: 50px; border-radius: 5px;">
+        <label class="text-center" style="width: 25rem; line-height:50px; font-weight: bold; color: #FFFFFF; background-color: #292737;">
+          法人・法人代行
+        </label>
         <div class="text-center" style="width: 25em;">{{ corporationsCount }}個</div>
       </v-card>
       <div class="d-flex justify-end">

@@ -8,16 +8,28 @@
     </v-sheet>
     <v-divider class="#CFCFCF" thickness="1"></v-divider>
     <v-card flat class="mt-8 mb-8">
-      <p>受講生用</p>
-      <NewsItem />
-      <StudyItem />
-      <ProgressItem />
-      <CouseItem />
-      <RecommendationItem />
-
-      <p>法人用</p>
-      <ProgressManagement />
-      <AccountManagement />
+      <p>受講生</p>
+        <NewsItem />
+        <StudyItem />
+        <ProgressItem />
+        <CouseItem />
+        <RecommendationItem />
+      <p>法人・法人代行</p>
+        <NewsItem />
+        <ProgressManagement />
+        <AccountManagement />
+      <p>メンター</p>
+        <NewsItem />
+        <ProgressManagement />
+        <QuestionItem />
+        <ReviewItem />
+      <p>管理者</p>
+        <NewsItem />
+        <ProgressManagement />
+        <LastmonthAccount />
+        <BillingsManagement />
+        <MentorAssignment />
+        <CouseItem />
     </v-card>
   </v-container>
 </template>
