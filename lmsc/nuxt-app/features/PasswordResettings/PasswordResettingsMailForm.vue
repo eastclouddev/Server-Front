@@ -1,7 +1,7 @@
 <template>
   <v-container style="margin:10% 0;">
     <v-card flat class="mx-auto" max-width="620">
-      <v-card-title class="pt-2 pb-2 pl-0 sp_title"  style="font-size:1.5em; font-weight: bold;"
+      <v-card-title class="pt-2 pb-2 pl-0 sp_title headline"  style="font-size:1.5em; font-weight: bold;"
         color="#242424">パスワード再設定</v-card-title>
       <v-divider class="#CFCFCF" thickness="1"></v-divider>
       <v-card-text class="sp_text">
@@ -38,6 +38,10 @@ const handleSubmit = () => {
 </script>
 
 <style lang="scss" scoped>
+.headline {
+        text-overflow: inherit;
+        white-space: unset;
+}
 @media screen and (max-width: 768px) {
   .sp {
     &_title {

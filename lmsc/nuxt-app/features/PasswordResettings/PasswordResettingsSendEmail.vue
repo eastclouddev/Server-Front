@@ -1,7 +1,7 @@
 <template>
   <v-container style="margin:10% 0;">
     <v-card flat class="mx-auto" max-width="620">
-      <v-card-title class="text-center"  style="font-size:1.5em; font-weight: bold;"
+      <v-card-title class="text-center headline"  style="font-size:1.5em; font-weight: bold;"
         color="#242424">パスワード再設定のメールが送信されました。</v-card-title>
       <v-divider class="#CFCFCF" thickness="1"></v-divider>
       <div class="text-center py-4">
@@ -18,8 +18,8 @@
               <img src="/assets/send_mail.png" alt="Your Image" style="border-radius: 50%; width: 80%; height: auto;">
               </v-avatar>
             </div>
-            <v-card flat style="text-align: center;">
-              <Button type="button" color="#FF5A36" style="font-size: 1.5em;" buttonText="戻る"></Button>
+            <v-card flat style="text-align: center;" class="py-8">
+              <Button type="button" color="#FF5A36" style="font-size: 1.5em;" buttonText="戻る" variant="outlined"></Button>
             </v-card>
           </v-form>
       </v-card-text>
@@ -40,6 +40,10 @@ const handleSubmit = () => {
 }
 </script>
 <style lang="scss" scoped>
+.headline {
+        text-overflow: inherit;
+        white-space: unset;
+}
 @media screen and (max-width: 768px) {
   .sp {
    &_title {

@@ -8,7 +8,7 @@
           <v-text-field hide-details="auto" :placeholder="placeholder" variant="plain" class="mb-"
             :type="showPassword ? 'text' : 'password'" :value="modelValue" @input="updatePassword" full-width>
             <template #append>
-              <v-icon @click="togglePasswordVisibility">{{ showPassword ? 'mdi-eye-off' : 'mdi-eye' }}</v-icon>
+              <v-icon @click="togglePasswordVisibility">{{ showPassword ? 'mdi-eye' : 'mdi-eye-off' }}</v-icon>
             </template>
           </v-text-field>
         </v-sheet>
@@ -83,7 +83,7 @@ function updatePassword(event) {
 @media screen and (max-width: 768px) {
   .sp {
     &_label {
-      font-size: 2em !important;
+      font-size: 1em !important;
       padding-bottom: 2%;
     }
 
@@ -93,7 +93,7 @@ function updatePassword(event) {
   }
 
   .error_message {
-    font-size: 1.5em;
+    font-size: 1em;
   }
 }
 </style>

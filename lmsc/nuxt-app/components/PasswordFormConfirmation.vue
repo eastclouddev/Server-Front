@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row class="d-flex justify-space-between  mb-3 sp_form">
-      <v-card flat class="d-flex align-center mb-2 sp_labelwrap" width="11rem">
+      <v-card flat class="d-flex align-center sp_labelwrap" width="11rem">
         <label class="sp_label" style="font-weight: bold;">パスワード</label>
         <span class="required-mark">必須</span>
       </v-card>
@@ -60,14 +60,14 @@ const passwordMismatch = computed(() => passwordInput.value !== passwordConfirm.
       width: 100%!important;
     }
     &_label {
-      font-size: 2em !important;
+      font-size: 1em !important;
     }
     &_field {
       width: 100% !important;
     }
   }
   .error_message {
-    font-size: 1.5em;
+    font-size: 1em;
 
     }
 }

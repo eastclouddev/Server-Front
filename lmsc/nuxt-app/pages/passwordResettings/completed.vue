@@ -5,7 +5,10 @@
             <Meta name="description" content="iDemy | パスワード再設定登録完了画面" />
         </Head>
         <v-container class="mx-auto text-center">
-            <Completed titleText="パスワード再設定が完了しました。" icon="mdi-check-circle" />
+            <PasswordResettingsCompleted />
         </v-container>
     </div>
 </template>
+<script setup>
+    import PasswordResettingsCompleted from "~/features/PasswordResettings/PasswordResettingsCompleted.vue";
+</script>
