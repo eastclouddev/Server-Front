@@ -1,14 +1,20 @@
 <script setup lang="ts">
-import NewsHeader from '~/components/NewsHeader.vue'
+import Title from '~/components/TitleHeader.vue'
 import NewsView from '~/components/NewsView.vue'
 import NewsBtn from '~/components/NewsBtn.vue'
 import NewsEditBtn from '~/components/NewsEditBtn.vue'
+import maillIcon from '~/assets/mail_icon.svg'
+
+const Items = {
+  img: maillIcon,
+  title: 'お知らせ',
+}
 </script>
 
 <template>
   <main>
     <div class="main center">
-      <NewsHeader />
+      <Title :item="Items" />
       <div class="link">
         <NuxtLink to="/dashboard" class="NuxtLink"> ダッシュボード </NuxtLink>
         <div class="allow"></div>
