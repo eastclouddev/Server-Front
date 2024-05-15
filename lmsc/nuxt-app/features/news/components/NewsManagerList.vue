@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import AddBtn from '~/components/AddBtns.vue'
+import AddBtn from '~/features/news/components/AddBtns.vue'
 
 import { ref } from 'vue'
 
@@ -16,7 +16,7 @@ const togglePublic = (index: number) => {
     <AddBtn />
     <div class="newsList">
       <!-- 後で、DBと連携 -->
-      <div class="row" v-for="i in 8">
+      <div class="row" v-for="i in 8" :key="i">
         <div
           class="public"
           :class="{ on: isOn[i], off: !isOn[i] }"
@@ -35,14 +35,22 @@ const togglePublic = (index: number) => {
             <p>2024.3.12</p>
           </div>
           <div class="topic">
-            <div class="genre">
-              <p>機能アップデート</p>
+            <div class="sp">
+              <div class="genre">
+                <p>機能アップデート</p>
+              </div>
+              <div class="latest_sp">
+                <p>New!</p>
+              </div>
             </div>
             <div class="title">
               <RouterLink to="/news/manager/detail" class="RouterLink">
                 Pythonの新しい講座が追加されました！
               </RouterLink>
               <!-- <p>Pythonの新しい講座が追加されました！</p> -->
+            </div>
+            <div class="latest_pc" v-if="i == 1">
+              <p>New!</p>
             </div>
           </div>
         </div>
@@ -245,6 +253,7 @@ const togglePublic = (index: number) => {
 
   .topic {
     display: flex;
+    width: 519px;
     margin: 0 20px;
     .genre {
       width: 104px;
@@ -279,6 +288,16 @@ const togglePublic = (index: number) => {
         }
       }
     }
+    .latest_pc {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 19.07px;
+      color: #ff5a36;
+      margin-left: auto;
+    }
+    .latest_sp {
+      display: none;
+    }
   }
 }
 
@@ -289,6 +308,9 @@ const togglePublic = (index: number) => {
   @media screen and (max-width: 860px) {
     .news {
       margin-left: auto;
+      .topic {
+        width: 100%;
+      }
     }
     .public {
       margin-right: auto;
@@ -349,6 +371,7 @@ const togglePublic = (index: number) => {
       .topic {
         flex-direction: column;
         margin: 0;
+        width: 100%;
         gap: 7px;
         .genre {
           width: 157px !important;
@@ -373,6 +396,20 @@ const togglePublic = (index: number) => {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+          }
+        }
+        .latest_pc {
+          display: none;
+        }
+        .sp {
+          display: flex;
+          .latest_sp {
+            display: initial;
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 21.79px;
+            color: #ff5a36;
+            margin-left: 19px;
           }
         }
       }

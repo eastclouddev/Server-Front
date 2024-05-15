@@ -1,3 +1,13 @@
+<script>
+export default {
+  props: {
+    item: {
+      type: Object,
+    },
+  },
+}
+</script>
+
 <template>
   <div class="buttons">
     <div class="moveBtn">
@@ -9,7 +19,7 @@
       </div>
     </div>
     <div class="remove">
-      <NuxtLink to="/news/newsView" class="NuxtLink"> 一覧に戻る </NuxtLink>
+      <NuxtLink :to="item.path" class="NuxtLink">一覧に戻る</NuxtLink>
     </div>
   </div>
 </template>
@@ -100,14 +110,19 @@ $accent_color: #ff5a36;
   height: 48px;
   padding: 11.5px;
   .NuxtLink {
-    font-weight: 700;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 18px;
+    font-weight: 700;
     line-height: 24.52px;
     color: #fff;
     text-decoration: none;
-  }
-  &:hover {
-    cursor: pointer;
+    &:visited {
+      color: #fff;
+    }
   }
 }
 

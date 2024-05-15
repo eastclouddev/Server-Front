@@ -1,22 +1,30 @@
-<template>
-  <div class="whole">
-    <div class="title">
-      <img :src="item.img" alt="" />
-      <h2>{{ item.title }}</h2>
-    </div>
-  </div>
-</template>
-
 <script lang="ts">
 export default {
   props: {
     item: {
       type: Object,
-      default: () => ({ img: '../assets/mail_icon.svg', title: '' }),
+      default: () => ({ img: '', title: '' }),
     },
   },
 }
 </script>
+<!--
+  img: importを用いて、画像パスを指定しないとエラーが起きる or 動作しない
+    例) import Img from '~/assets/img.svg'
+
+        const Items = {
+          img: Img,
+        }
+-->
+
+<template>
+  <div class="whole">
+    <div class="title">
+      <img :src="item.img" alt="" v-if="item.img" />
+      <h2>{{ item.title }}</h2>
+    </div>
+  </div>
+</template>
 
 <style scoped lang="scss">
 .whole {

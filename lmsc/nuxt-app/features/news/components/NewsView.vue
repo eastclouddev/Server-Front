@@ -66,7 +66,7 @@ $accent_color: #ff5a36;
   height: auto;
   font-family: 'Noto Sans';
   color: $main_color;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 .news {
   width: 620px;

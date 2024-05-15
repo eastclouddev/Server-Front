@@ -1,12 +1,23 @@
 <script setup lang="ts">
-import Title from '~/components/TitleHeader.vue'
-import NewsView from '~/components/NewsView.vue'
-import NewsBtn from '~/components/NewsBtn.vue'
+import Title from '~/features/news/components/TitleHeader.vue'
+import NewsView from '~/features/news/components/NewsView.vue'
+import NewsBtn from '~/features/news/components/NewsBtn.vue'
+import Position from '~/features/news/components/PositionInfo.vue'
+
 import maillIcon from '~/assets/mail_icon.svg'
 
 const Items = {
   img: maillIcon,
   title: 'お知らせ',
+}
+
+const Links = {
+  info: '/news/newsView',
+  title: 'Pythonの新しい講座が追加されました！',
+}
+
+const Paths = {
+  path: '/news/newsView',
 }
 </script>
 
@@ -14,8 +25,9 @@ const Items = {
   <main>
     <div class="main center">
       <Title :item="Items" />
+      <Position :item="Links" />
       <NewsView />
-      <NewsBtn />
+      <NewsBtn :item="Paths" />
     </div>
   </main>
   <div class="space"></div>

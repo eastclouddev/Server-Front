@@ -1,10 +1,14 @@
 <template>
   <div class="btns">
     <div class="addCategory">
-      <NuxtLink to="" class="NuxtLink">カテゴリ追加</NuxtLink>
+      <NuxtLink to="/news/manager/edit/addCategory" class="NuxtLink"
+        >カテゴリ追加</NuxtLink
+      >
     </div>
     <div class="addArticle">
-      <NuxtLink to="" class="NuxtLink">新規投稿</NuxtLink>
+      <NuxtLink to="/news/manager/edit/addNews" class="NuxtLink"
+        >新規投稿</NuxtLink
+      >
     </div>
   </div>
 </template>
@@ -18,13 +22,16 @@
   justify-content: right;
 }
 .NuxtLink {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 18px;
   font-weight: 700;
   line-height: 24.52px;
   font-family: 'Noto Sans';
-  &:hover {
-    cursor: pointer;
-  }
+  text-decoration: none;
 }
 .addCategory {
   border: 2px solid #ff5a36;

@@ -10,14 +10,22 @@
             <p>2024.3.12</p>
           </div>
           <div class="topic">
-            <div class="genre">
-              <p>機能アップデート</p>
+            <div class="sp">
+              <div class="genre">
+                <p>機能アップデート</p>
+              </div>
+              <div class="latest_sp">
+                <p>New!</p>
+              </div>
             </div>
             <div class="title">
               <RouterLink to="/news/newsDetail" class="RouterLink">
                 Pythonの新しい講座が追加されました！
               </RouterLink>
               <!-- <p>Pythonの新しい講座が追加されました！</p> -->
+            </div>
+            <div class="latest_pc" v-if="i == 1">
+              <p>New!</p>
             </div>
           </div>
         </div>
@@ -97,6 +105,7 @@
 
   .topic {
     display: flex;
+    width: 594px;
     margin: 0 20px;
     .genre {
       width: 104px;
@@ -130,6 +139,16 @@
           text-decoration: underline;
         }
       }
+    }
+    .latest_pc {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 19.07px;
+      color: #ff5a36;
+      margin-left: auto;
+    }
+    .latest_sp {
+      display: none;
     }
   }
 }
