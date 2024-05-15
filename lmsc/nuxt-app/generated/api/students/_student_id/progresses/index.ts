@@ -1,5 +1,5 @@
 /* eslint-disable */
-import type * as Types from '../@types'
+import type * as Types from '../../../@types'
 
 export type Methods = {
   /**
@@ -26,6 +26,6 @@ export type Methods = {
   get: {
     status: 200
     /** Successful Response */
-    resBody: Types.Schemas__state_progresses__ResponseBody
+    resBody: Types.Schemas__students__ProgressListResponseBody
   }
 }
