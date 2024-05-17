@@ -22,22 +22,22 @@
 </template>
 
 <script setup>
-import { useNuxtApp } from "#app";
+import { useNuxtApp } from '#app'
 
-const { $api } = useNuxtApp();
+const { $api } = useNuxtApp()
 
-const email = ref("");
-const password = ref("");
+const email = ref('')
+const password = ref('')
 
 const handleSubmit = async () => {
   const deviceInfo = {
-    device_type: "PC",
-    device_name: "Web",
-    uuid: "unique_device_identifier",
-  };
-  console.log("email.value:", email.value);
-  console.log("password.value:", password.value);
-  console.log("deviceInfo:", deviceInfo);
+    device_type: 'PC',
+    device_name: 'Web',
+    uuid: 'unique_device_identifier',
+  }
+  console.log('email.value:', email.value)
+  console.log('password.value:', password.value)
+  console.log('deviceInfo:', deviceInfo)
 
   try {
     const response = await $api.login.$post({
@@ -46,10 +46,13 @@ const handleSubmit = async () => {
         password: password.value,
         device_info: deviceInfo,
       },
-    });
+      config: {
+        withCredentials: true,
+      },
+    })
 
     // ログイン成功時の処理
-    console.log("Login successed:", response);
+    console.log('Login successed:', response)
     // ログイン状態をpiniaに保存するなどの処理を行う
     // 例: localStorage.setItem('access_token', response.access_token);
 
@@ -57,8 +60,8 @@ const handleSubmit = async () => {
     // 例: navigateTo('/dashboard');
   } catch (error) {
     // ログイン失敗時の処理
-    console.error("Login failed:", error);
+    console.error('Login failed:', error)
     // エラーメッセージの表示などの処理を行う
   }
-};
+}
 </script>
