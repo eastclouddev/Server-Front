@@ -8,17 +8,28 @@
     <v-card flat class="pt-2 pb-8 pl-6" color="#F5F5F5"
     style="border-radius: 0 5px 5px 5px; box-shadow: 4px 5px 6px -3px rgba(0, 0, 0, 0.2);">
 
-    <v-sheet class="mx-auto mt-8 mb-8" width="50rem" color="#F5F5F5">
+    <v-sheet class="mx-auto mt-8 mb-8" width="90%" color="#F5F5F5">
       <v-card class="d-flex align-center mb-2" style="height: 50px; border-radius: 5px;" >
-        <label class="text-center" style="width: 25rem; line-height:50px; font-weight: bold; color: #FFFFFF; background-color: #292737;">受講生</label>
+        <label class="text-center" style="width: 25rem; line-height:50px; font-weight: bold; color: #FFFFFF; background-color: #292737;">
+          受講生
+        </label>
         <div class="text-center" style="width: 25rem;">{{ studentsCount }}個</div>
       </v-card>
+      <!-- ロールで表示区別 -->
       <v-card class="d-flex align-center mb-4" style="height: 50px; border-radius: 5px;">
-        <label class="text-center" style="width: 25rem; line-height:50px; font-weight: bold; color: #FFFFFF; background-color: #292737;">法人・法人代行</label>
+        <label class="text-center" style="width: 25rem; line-height:50px; font-weight: bold; color: #FFFFFF; background-color: #292737;">
+          メンター
+        </label>
+        <div class="text-center" style="width: 25em;">{{ corporationsCount }}個</div>
+      </v-card>
+      <v-card class="d-flex align-center mb-4" style="height: 50px; border-radius: 5px;">
+        <label class="text-center" style="width: 25rem; line-height:50px; font-weight: bold; color: #FFFFFF; background-color: #292737;">
+          法人・法人代行
+        </label>
         <div class="text-center" style="width: 25em;">{{ corporationsCount }}個</div>
       </v-card>
       <div class="d-flex justify-end">
-        <Button color="#FF5136" style="width:20rem;" buttonText="ユーザー一覧へ"></Button>
+        <Button color="#FF5136" class="sp_button" style="width:20rem;" buttonText="ユーザー一覧へ"></Button>
       </div>
     </v-sheet>
     </v-card>
@@ -38,5 +49,15 @@ export default {
   }
 };
 </script>
-<style>
+<style lang="scss" scoped>
+@media (max-width: 768px) {
+  .sp {
+    &_button {
+    margin-top: 20px;
+    font-size: 1.5em !important;
+    margin: auto;
+  }
+}
+}
+
 </style>

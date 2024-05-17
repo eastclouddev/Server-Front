@@ -1,9 +1,9 @@
 <template>
-    <v-card flat class="pt-2 pb-8 pl-6" color="#F5F5F5"
+    <v-card flat class="pt-2 pb-8" color="#F5F5F5"
     style="border-radius: 0 5px 5px 5px;">
-    <v-sheet class="mx-auto" width="60rem" color="#F5F5F5">
-      <div class="mt-8 mb-8 d-flex justify-space-between">
-        <v-card flat class="pa-7" width="28rem" v-for="(item, index) in items" :key="index">
+    <v-sheet class="mx-auto" width="90%" color="#F5F5F5">
+      <div class="mt-8 mb-8 d-flex justify-space-between sp_item">
+        <v-card flat class="pa-7 sp_itembox" width="28rem" v-for="(item, index) in items" :key="index">
           <div class="d-flex mb-5" style="align-items: flex-start;">
             <img src="/assets/python.svg" :alt="item.title" class="pr-4">
             <div>
@@ -13,7 +13,7 @@
             </div>
           </div>
           <indicator />
-          <Button  color="#FF5A36" style="font-size: 1em;" buttonText="学習する" width="100%" :to="'/details/' + item.id"></Button>
+          <Button class="sp_button" color="#FF5A36" buttonText="学習する" width="100%" :to="'/details/' + item.id"></Button>
         </v-card>
       </div>
       <NuxtLink to="/" style="display: flex; justify-content: flex-end; color:#242424;" >もっとみる</NuxtLink>
@@ -52,3 +52,21 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+@media (max-width: 768px) {
+.sp {
+  &_item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  &_itembox {
+    width: 100% !important;
+    margin-bottom: 40px;
+  }
+  &_button {
+    margin-top: 30px;
+    font-size: 1.5em !important;
+  }
+}
+}
+</style>

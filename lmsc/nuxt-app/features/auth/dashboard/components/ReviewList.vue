@@ -1,14 +1,16 @@
 <template>
-  <v-card flat class="mx-auto pa-7 mb-8" width="60rem">
+  <v-card flat class="mx-auto pa-7 mb-8" width="90%">
     <div class="d-flex">
-      <img src="/assets/question.svg" alt="">
-      <v-card-title style="font-weight:bold;">質問リスト</v-card-title>
+      <img src="/assets/account.svg" alt="">
+      <v-card-title style="font-weight:bold;">レビューリスト</v-card-title>
     </div>
     <v-sheet class="pt-5 pb-5" v-for="(item, index) in items" :key="index">
       <div class="d-flex align-center" style="align-items: flex-start;">
-        <p style="width:10rem;" class="mb-2">{{ item.category }}</p>
-        <NuxtLink to="/" style="color:#242424;">{{ truncateText(item.message, 20) }}</NuxtLink>
-        <div class="d-flex justify-end ml-auto">
+        <div class="d-flex  sp_box">
+          <p style="width:10rem;" class="mb-2 sp_categoly">{{ item.category }}</p>
+          <NuxtLink to="/" style="color:#242424;">{{ truncateText(item.message, 20) }}</NuxtLink>
+        </div>
+        <div class="d-flex justify-end ml-auto sp_status">
           <span :class="getStatusClass(item.status1)">{{ getStatusText(item.status1) }}</span>
           <span :class="getStatusClass(item.status2)">{{ getStatusText(item.status2) }}</span>
         </div>
@@ -66,7 +68,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .unread {
   color: #FFFFFF;
   background-color: #FF5A36;
@@ -99,5 +101,28 @@ export default {
   border-radius: 5px;
   margin-left: 10px;
 }
-
+@media (max-width: 768px) {
+  .sp {
+  &_box{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  &_categoly {
+  align-items: flex-start;
+  }
+   &_status {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+  .unread {
+    margin-bottom: 5px;
+  }
+  .resolved {
+    margin-bottom: 5px;
+  }
+  .unresolved {
+    margin-bottom: 5px;
+  }
+}
 </style>

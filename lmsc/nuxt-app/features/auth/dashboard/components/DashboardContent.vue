@@ -8,33 +8,31 @@
     </v-sheet>
     <v-divider class="#CFCFCF" thickness="1"></v-divider>
     <v-card flat class="mt-8 mb-8">
-      <p>受講生</p>
-        <NewsItem />
-        <StudyItem />
-        <ProgressItem />
-        <CouseItem />
-        <RecommendationItem />
-      <p>法人・法人代行</p>
-        <NewsItem />
-        <ProgressManagement />
-        <AccountManagement />
-      <p>メンター</p>
-        <NewsItem />
-        <ProgressManagement />
-        <QuestionItem />
-        <ReviewItem />
-      <p>管理者</p>
-        <NewsItem />
-        <ProgressManagement />
-        <LastmonthAccount />
-        <BillingsManagement />
-        <MentorAssignment />
-        <CouseItem />
+      受講生
+      <DashboardStudent />
+      法人・法人代行
+      <DashboardCorporation />
+      メンター
+      <DashboardMentor />
+      管理者
+      <DashboardAdmin />
     </v-card>
   </v-container>
 </template>
 <script>
+import DashboardStudent from "~/features/auth/dashboard/components/DashboardStudent.vue";
+import Dashboard from "~/pages/dashboard.vue";
+import DashboardCorporation from "~/features/auth/dashboard/components/DashboardCorporation.vue";
+import DashboardMentor from "~/features/auth/dashboard/components/DashboardMentor.vue";
+import DashboardAdmin from "~/features/auth/dashboard/components/DashboardAdmin.vue";
+
 export default {
+    components: {
+    DashboardStudent,
+    DashboardCorporation,
+    DashboardMentor,
+    DashboardAdmin,
+  },
   data() {
     return {
       welcomeMessage: "さん おかえりなさい",

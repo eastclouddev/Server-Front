@@ -1,5 +1,5 @@
 <template>
-  <v-sheet class="mt-9 mb-3">
+  <v-sheet class="mt-15 mb-9">
       <p>学習進捗</p>
       <div class="ms-4 picker" ref="picker">
         <span ref="percentage">{{ Math.floor((progressValue / 24) * 100) }}</span>
@@ -95,5 +95,12 @@ export default {
   border-top: 15px solid #FF5A36;
   z-index: 0;
   transition: left 0.3s ease;
+}
+@media (max-width: 768px) {
+  .picker {
+  top: 33%;
+  left: 0;
+  transform: translateX(15%);
+}
 }
 </style>

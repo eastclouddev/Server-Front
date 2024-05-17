@@ -1,5 +1,5 @@
 <template>
-  <v-menu flat v-model="menu" style="top:50px;" width="18rem">
+  <v-menu flat v-model="menu" style="top:50px; right:30px;" width="18rem">
     <template v-slot:activator>
       <v-app-bar-nav-icon @click="toggleMenu" style="border-radius: 0;"></v-app-bar-nav-icon>
     </template>
@@ -16,10 +16,14 @@
       </v-list-item>
       <!-- 受講生メニュー -->
       <MenuStudent />
-      <!-- 法人・法人代行メニュー
-      <MenuCorporation /> -->
+      <!-- 法人メニュー -->
+      <MenuCorporation />
+      <!-- 法人代行メニュー -->
+      <MenuActingdirector />
       <!-- メンターメニュー -->
+      <MenuMentor />
       <!-- 管理者メニュー -->
+      <MenuAdmin />
     </v-list>
   </v-menu>
 </template>

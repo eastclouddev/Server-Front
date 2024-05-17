@@ -1,15 +1,16 @@
+
 <template>
-  <v-container class="mx-auto">
-    <v-card flat color="#F5F5F5" class="d-flex align-center pt-2 pb-2 pl-6" width="25rem"
+  <v-container class="mx-aout">
+    <v-card flat color="#F5F5F5" class="d-flex align-center pt-2 pb-2 pl-6" width="20rem"
     style="border-radius: 5px 5px 0 0; box-shadow: 4px 0px 6px -3px rgba(0, 0, 0, 0.2);">
-    <img src="/assets/flag.svg" alt="study" style="padding:0 10px 0 0;">
-      <label style="font-size: 1.5em; font-weight: bold;">必修コース</label>
+    <img src="/assets/flame.svg" alt="study" style="padding:0 10px 0 0;">
+      <label style="font-size: 1.5em; font-weight: bold;">おすすめ</label>
     </v-card>
-    <v-card flat class="pt-2 pb-8 pl-6" color="#F5F5F5"
+    <v-card flat class="pt-2 pb-8" color="#F5F5F5"
     style="border-radius: 0 5px 5px 5px; box-shadow: 4px 5px 6px -3px rgba(0, 0, 0, 0.2);">
-    <v-sheet class="mx-auto" width="60rem" color="#F5F5F5">
-      <div class="mt-8 mb-8 d-flex justify-space-between">
-        <v-card flat class="pa-7" width="28rem" v-for="(item, index) in items" :key="index">
+    <v-sheet class="mx-auto" width="90%" color="#F5F5F5">
+      <div class="mt-8 mb-8 d-flex justify-space-between sp_itembox">
+        <v-card flat class="pa-7 sp_item" width="28rem" v-for="(item, index) in items" :key="index">
           <div class="d-flex mb-5" style="align-items: flex-start;">
             <img src="/assets/python.svg" :alt="item.title" class="pr-4">
             <div>
@@ -18,7 +19,7 @@
               <h4>全{{ item.session }}セッション</h4>
             </div>
           </div>
-          <Button  color="#FF5A36" style="font-size: 1em;" buttonText="学習する" width="100%" :to="'/details/' + item.id"></Button>
+          <Button  color="#FF5A36" class="sp_button" style="font-size: 1em;" buttonText="学習する" width="100%" :to="'/details/' + item.id"></Button>
         </v-card>
       </div>
       <NuxtLink to="/" style="display: flex; justify-content: flex-end; color:#242424;" >もっとみる</NuxtLink>
@@ -26,6 +27,7 @@
     </v-card>
   </v-container>
 </template>
+
 <script>
 export default {
   data() {
@@ -57,3 +59,22 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+@media (max-width: 768px) {
+.sp {
+  &_itembox {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  &_item {
+    width: 100% !important;
+    height: 45ex;
+    margin-bottom: 40px;
+  }
+  &_button {
+    margin-top: 40px;
+    font-size: 1.5em !important;
+  }
+}
+}
+</style>
