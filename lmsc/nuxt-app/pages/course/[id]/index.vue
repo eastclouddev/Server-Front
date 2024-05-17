@@ -11,11 +11,15 @@
 </template>
 
 <script setup lang="ts">
-import { useGetCourse } from "~/features/course/api/getCourse";
-import CourseDetails from "~/features/course/courseDetail/components/CourseDetails.vue";
-import LoadingAndError from "~/components/LoadingAndError.vue";
+import { useGetCourse } from '~/features/course/api/getCourse'
+import CourseDetails from '~/features/course/courseDetail/components/CourseDetails.vue'
+import LoadingAndError from '~/components/LoadingAndError.vue'
 
-const route = useRoute();
-const courseId = Number(route.params.id);
-const { data, error, status } = useGetCourse(courseId);
+const route = useRoute()
+const courseId = Number(route.params.id)
+const { data, error, status } = useGetCourse(courseId)
+
+definePageMeta({
+  layout: 'authenticated',
+})
 </script>

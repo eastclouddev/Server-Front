@@ -53,7 +53,7 @@ import PasswordInput from '~/components/PasswordInput.vue'
 import Button from '~/components/Button.vue'
 import platform from 'platform'
 import { v4 as uuidv4 } from 'uuid'
-import { useUserStore } from '@/stores/user'
+import { useUserStore } from '@/store/user'
 
 const { $api } = useNuxtApp()
 const router = useRouter()
@@ -106,7 +106,11 @@ const handleSubmit = async () => {
     // TODO: ログイン成功時のメッセージ表示処理などを記述する
     console.log('Login succeeded:', response)
 
-    userStore.setUser(response.user)
+    const user = {
+      user: { id: response.user_id, role: response.role },
+      isAuthenticated: true,
+    }
+    userStore.setUser(user)
 
     await router.push('/')
   } catch (error) {

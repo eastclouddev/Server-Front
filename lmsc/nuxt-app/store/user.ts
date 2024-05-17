@@ -2,8 +2,7 @@ import { defineStore } from 'pinia'
 
 export type User = {
   id: string
-  email: string
-  name: string
+  role: string
 }
 
 type UserState = {
@@ -17,9 +16,9 @@ export const useUserStore = defineStore('user', {
     isAuthenticated: false,
   }),
   actions: {
-    setUser(user: User) {
-      this.user = user
-      this.isAuthenticated = true
+    setUser(payload: { user: User; isAuthenticated: boolean }) {
+      this.user = payload.user
+      this.isAuthenticated = payload.isAuthenticated
     },
     clearUser() {
       this.user = null
