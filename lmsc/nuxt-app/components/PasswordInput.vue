@@ -9,7 +9,7 @@
       <v-col class="text-center text-md-right">
         <v-card flat class="d-flex flex-column" width="25rem">
           <v-sheet
-            :class="{ error: errors.password }"
+            :class="{ error: errorMessage }"
             class="my-0 pr-4 pb-4 pl-4"
             color="#EBEBEB"
           >
@@ -19,6 +19,7 @@
               variant="plain"
               :type="showPassword ? 'text' : 'password'"
               v-model="internalPassword"
+              @blur="$emit('blur')"
             >
               <template #append>
                 <v-icon @click="showPassword = !showPassword">{{
@@ -27,7 +28,7 @@
               </template>
             </v-text-field>
           </v-sheet>
-          <p class="error_message">{{ errors.password }}</p>
+          <p class="error_message" v-if="errorMessage">{{ errorMessage }}</p>
         </v-card>
       </v-col>
     </v-row>
@@ -35,35 +36,13 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
-import { useField, useForm } from 'vee-validate'
-import { object, string, setLocale } from 'yup'
+import { ref, computed } from 'vue'
 
 const props = defineProps({
   modelValue: String,
+  errorMessage: String,
 })
-const emit = defineEmits(['update:modelValue'])
-
-setLocale({
-  mixed: {
-    required: 'パスワードを入力してください。',
-  },
-})
-
-const schema = object({
-  password: string()
-    .required()
-    .matches(/^[a-zA-Z0-9]{8,14}$/, 'パスワードは半角英数字のみ使用できます。')
-    .min(8, 'パスワードは少なくとも8文字必要です。')
-    .max(14, 'パスワードは14文字以下である必要があります。')
-    .label('パスワード'),
-})
-
-const { errors } = useForm({
-  validationSchema: schema,
-})
-
-const { value: password } = useField('password')
+const emit = defineEmits(['update:modelValue', 'blur'])
 
 const internalPassword = computed({
   get: () => props.modelValue,
@@ -71,10 +50,6 @@ const internalPassword = computed({
 })
 
 const showPassword = ref(false)
-
-watch(internalPassword, newVal => {
-  password.value = newVal
-})
 </script>
 
 <style lang="scss" scoped>
@@ -89,17 +64,6 @@ watch(internalPassword, newVal => {
   text-align: left;
 }
 @media screen and (max-width: 768px) {
-  .form {
-    display: flex;
-    flex-direction: column;
-    &_label {
-      font-size: 2em;
-      margin-bottom: 20px;
-    }
-    &_input {
-      width: 548px;
-    }
-  }
   .error_message {
     font-size: 1em;
   }

@@ -11,8 +11,16 @@
       <v-card-text>
         <v-form @submit.prevent="handleSubmit" class="content_box">
           <v-card flat style="margin: 10% 0">
-            <EmailForm v-model="email" />
-            <PasswordForm v-model="password" />
+            <EmailInput
+              v-model="email"
+              :error-message="errors.email"
+              @blur="validateField('email')"
+            />
+            <PasswordInput
+              v-model="password"
+              :error-message="errors.password"
+              @blur="validateField('password')"
+            />
           </v-card>
           <v-card flat style="text-align: center">
             <p class="pb-2">
@@ -26,6 +34,7 @@
               height="6ex"
               style="font-size: 1.5em"
               buttonText=" ログイン"
+              :disabled="isSubmitting || !isValid"
             ></Button>
           </v-card>
         </v-form>
@@ -35,18 +44,36 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useNuxtApp } from '#app'
-import EmailForm from '~/components/EmailInput.vue'
-import PasswordForm from '~/components/PasswordInput.vue'
+import { useField, useForm } from 'vee-validate'
+import { schema } from '~/features/auth/login/schema'
+import EmailInput from '~/components/EmailInput.vue'
+import PasswordInput from '~/components/PasswordInput.vue'
 import Button from '~/components/Button.vue'
 
 const { $api } = useNuxtApp()
 
-const email = ref('')
-const password = ref('')
+const showPassword = ref(false)
+const isSubmitting = ref(false)
+
+const { errors, validate, validateField } = useForm({
+  validationSchema: schema,
+})
+
+const { value: email } = useField('email')
+const { value: password } = useField('password')
+
+const isValid = computed(() => Object.keys(errors.value).length === 0)
 
 const handleSubmit = async () => {
+  isSubmitting.value = true
+  const valid = await validate()
+  if (!valid) {
+    isSubmitting.value = false
+    return
+  }
+
   const deviceInfo = {
     device_type: 'PC',
     device_name: 'Web',
@@ -69,7 +96,7 @@ const handleSubmit = async () => {
     })
 
     // ログイン成功時の処理
-    console.log('Login successed:', response)
+    console.log('Login succeeded:', response)
     // ログイン状態をpiniaに保存するなどの処理を行う
     // 例: localStorage.setItem('access_token', response.access_token);
 
@@ -79,23 +106,26 @@ const handleSubmit = async () => {
     // ログイン失敗時の処理
     console.error('Login failed:', error)
     // エラーメッセージの表示などの処理を行う
+  } finally {
+    isSubmitting.value = false
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.error {
+  border: 1px solid red;
+  border-radius: 5px;
+}
+
+.error_message {
+  color: #ff0000;
+  font-size: 0.75em;
+  text-align: left;
+}
 @media screen and (max-width: 768px) {
-  .content {
-    &_title {
-      font-size: 2.5em;
-      padding: 2.5% 0;
-    }
-    &_text {
-      font-size: 1.4em;
-    }
-  }
-  .formwrap {
-    margin: 10% 5%;
+  .error_message {
+    font-size: 1em;
   }
 }
 </style>

@@ -9,7 +9,7 @@
       <v-col class="text-center text-md-right">
         <v-card flat class="d-flex flex-column" width="25rem">
           <v-sheet
-            :class="{ error: errors.email }"
+            :class="{ error: errorMessage }"
             class="my-0 pr-4 pb-4 pl-4"
             color="#EBEBEB"
           >
@@ -19,9 +19,10 @@
               variant="plain"
               type="email"
               v-model="internalEmail"
+              @blur="$emit('blur')"
             ></v-text-field>
           </v-sheet>
-          <p class="error_message">{{ errors.email }}</p>
+          <p class="error_message" v-if="errorMessage">{{ errorMessage }}</p>
         </v-card>
       </v-col>
     </v-row>
@@ -29,41 +30,17 @@
 </template>
 
 <script setup>
-import { computed, watch } from 'vue'
-import { useField, useForm } from 'vee-validate'
-import { object, string, setLocale } from 'yup'
+import { computed } from 'vue'
 
 const props = defineProps({
   modelValue: String,
+  errorMessage: String,
 })
-const emit = defineEmits(['update:modelValue'])
-
-setLocale({
-  mixed: {
-    required: 'メールアドレスを入力してください。',
-  },
-  string: {
-    email: 'メールアドレスの形式が正しくありません。',
-  },
-})
-
-const schema = object({
-  email: string().required().email().label('メールアドレス'),
-})
-
-const { errors } = useForm({
-  validationSchema: schema,
-})
-
-const { value: email } = useField('email')
+const emit = defineEmits(['update:modelValue', 'blur'])
 
 const internalEmail = computed({
   get: () => props.modelValue,
   set: value => emit('update:modelValue', value),
-})
-
-watch(internalEmail, newVal => {
-  email.value = newVal
 })
 </script>
 
@@ -76,6 +53,7 @@ watch(internalEmail, newVal => {
 .error_message {
   color: #ff0000;
   font-size: 0.75em;
+  text-align: left;
 }
 @media screen and (max-width: 768px) {
   .error_message {
