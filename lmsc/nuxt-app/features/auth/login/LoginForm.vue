@@ -1,6 +1,6 @@
 <template>
   <v-container style="margin: 10% 0">
-    <v-card flat class="mx-auto" max-width="620">
+    <v-card flat class="mx-auto" max-width="620" style="padding: 20px">
       <v-card-title
         class="pt-2 pb-2 pl-0"
         style="font-size: 1.6em; font-weight: bold"
@@ -45,7 +45,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
-import { useNuxtApp } from '#app'
+import { useNuxtApp, useRouter } from '#app'
 import { useField, useForm } from 'vee-validate'
 import { schema } from '~/features/auth/login/schema'
 import EmailInput from '~/components/EmailInput.vue'
@@ -53,8 +53,11 @@ import PasswordInput from '~/components/PasswordInput.vue'
 import Button from '~/components/Button.vue'
 import platform from 'platform'
 import { v4 as uuidv4 } from 'uuid'
+import { useUserStore } from '@/stores/user'
 
 const { $api } = useNuxtApp()
+const router = useRouter()
+const userStore = useUserStore()
 
 const isSubmitting = ref(false)
 const deviceInfo = ref({ device_type: '', device_name: '', uuid: '' })
@@ -100,17 +103,15 @@ const handleSubmit = async () => {
       },
     })
 
-    // ログイン成功時の処理
+    // TODO: ログイン成功時のメッセージ表示処理などを記述する
     console.log('Login succeeded:', response)
-    // ログイン状態をpiniaに保存するなどの処理を行う
-    // 例: localStorage.setItem('access_token', response.access_token);
 
-    // ログイン後のリダイレクト処理
-    // 例: navigateTo('/dashboard');
+    userStore.setUser(response.user)
+
+    await router.push('/')
   } catch (error) {
-    // ログイン失敗時の処理
+    // TODO: エラーメッセージの表示などの処理を行う
     console.error('Login failed:', error)
-    // エラーメッセージの表示などの処理を行う
   } finally {
     isSubmitting.value = false
   }
