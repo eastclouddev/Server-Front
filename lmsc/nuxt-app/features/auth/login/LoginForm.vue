@@ -54,7 +54,6 @@ import Button from '~/components/Button.vue'
 
 const { $api } = useNuxtApp()
 
-const showPassword = ref(false)
 const isSubmitting = ref(false)
 
 const { errors, validate, validateField } = useForm({
