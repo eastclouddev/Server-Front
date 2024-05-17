@@ -44,17 +44,28 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useNuxtApp } from '#app'
 import { useField, useForm } from 'vee-validate'
 import { schema } from '~/features/auth/login/schema'
 import EmailInput from '~/components/EmailInput.vue'
 import PasswordInput from '~/components/PasswordInput.vue'
 import Button from '~/components/Button.vue'
+import platform from 'platform'
+import { v4 as uuidv4 } from 'uuid'
 
 const { $api } = useNuxtApp()
 
 const isSubmitting = ref(false)
+const deviceInfo = ref({ device_type: '', device_name: '', uuid: '' })
+
+onMounted(() => {
+  deviceInfo.value = {
+    device_type: platform.os.family || 'Unknown',
+    device_name: platform.name || 'Unknown',
+    uuid: uuidv4(),
+  }
+})
 
 const { errors, validate, validateField } = useForm({
   validationSchema: schema,
@@ -73,21 +84,16 @@ const handleSubmit = async () => {
     return
   }
 
-  const deviceInfo = {
-    device_type: 'PC',
-    device_name: 'Web',
-    uuid: 'unique_device_identifier',
-  }
   console.log('email.value:', email.value)
   console.log('password.value:', password.value)
-  console.log('deviceInfo:', deviceInfo)
+  console.log('deviceInfo:', deviceInfo.value)
 
   try {
     const response = await $api.login.$post({
       body: {
         email: email.value,
         password: password.value,
-        device_info: deviceInfo,
+        device_info: deviceInfo.value,
       },
       config: {
         withCredentials: true,
