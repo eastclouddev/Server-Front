@@ -11,15 +11,11 @@
 <script setup lang="ts">
 import CourseDetails from '~/features/course/courseDetail/components/CourseDetails.vue'
 import type { CourseDetailResponseBody } from '~/generated/api/@types'
-import { useUserStore } from '~/store/user'
 
 definePageMeta({
-  layout: 'authenticated', // ここでレイアウトを設定
-  middleware: 'auth', // ここでミドルウェアを設定
+  layout: 'authenticated',
+  middleware: 'auth',
 })
-
-const userStore = useUserStore()
-console.log('User store state in course page:', userStore.isAuthenticated)
 
 const course = ref<CourseDetailResponseBody>({
   course_id: 1,
