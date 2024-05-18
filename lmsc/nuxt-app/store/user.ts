@@ -25,4 +25,5 @@ export const useUserStore = defineStore('user', {
       this.isAuthenticated = false
     },
   },
+  persist: true,
 })

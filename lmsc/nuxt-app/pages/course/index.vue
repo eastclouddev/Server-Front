@@ -1,4 +1,3 @@
-<!-- Todo:コース一覧ページに書き換える -->
 <template>
   <v-container>
     <v-row>
@@ -12,10 +11,15 @@
 <script setup lang="ts">
 import CourseDetails from '~/features/course/courseDetail/components/CourseDetails.vue'
 import type { CourseDetailResponseBody } from '~/generated/api/@types'
+import { useUserStore } from '~/store/user'
 
 definePageMeta({
-  layout: 'authenticated',
+  layout: 'authenticated', // ここでレイアウトを設定
+  middleware: 'auth', // ここでミドルウェアを設定
 })
+
+const userStore = useUserStore()
+console.log('User store state in course page:', userStore.isAuthenticated)
 
 const course = ref<CourseDetailResponseBody>({
   course_id: 1,

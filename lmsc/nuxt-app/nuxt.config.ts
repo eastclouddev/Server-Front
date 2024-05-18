@@ -41,4 +41,7 @@ export default defineNuxtConfig({
     plugins: [VuetifyPlugin()],
   },
   plugins: ['~/plugins/api'],
+  dir: {
+    middleware: 'middleware',
+  },
 })
