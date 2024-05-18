@@ -46,8 +46,11 @@ import CourseOverview from "@/features/course/courseDetail/components/CourseOver
 import CourseQuestions from "@/features/course/courseDetail/components/CourseQuestions.vue";
 import CourseSubmissions from "@/features/course/courseDetail/components/CourseSubmissions.vue";
 import type { CourseDetailResponseBody } from "~/generated/api/@types";
+import type { CourseDetail } from "../../types";
 
-const props = defineProps<{ course: CourseDetailResponseBody | null }>();
+// CourseDetailResponseBodyが修正されたらコメントアウトしている方を使用する
+// const props = defineProps<{ course: CourseDetailResponseBody | null }>();
+const props = defineProps<{ course: CourseDetail }>();
 
 const { smAndDown, mdAndUp } = useDisplay();
 const tab = ref("overview");
