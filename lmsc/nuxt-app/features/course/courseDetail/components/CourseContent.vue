@@ -26,7 +26,7 @@
             </v-list-item-title>
             <template v-slot:append>
               <v-icon icon="mdi-clock-outline" class="mr-2" color="#FF5A36" />
-              <strong>8分</strong>
+              <strong style="width: max-content;">8分</strong>
               <v-icon
                 :icon="
                   isSectionExpanded(sectionIndex)

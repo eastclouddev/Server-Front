@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12" md="8">
-        <CourseVideo />
+        <CourseVideo :video="props.course?.video || {}"/>
         <v-card flat>
           <client-only>
             <CourseTabs v-model:tab="tab" />

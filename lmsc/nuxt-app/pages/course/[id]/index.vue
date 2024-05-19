@@ -28,6 +28,10 @@ const courseData: CourseDetail = {
   description: courseRowData?.description,
   level: '初級', // 仮データ
   duration: 30.5, // 仮データ
+  video: {
+    video_url: '/_nuxt/assets/81562_1280x720.mp4', // 仮データ
+    thumbnail_url:'https://picsum.photos/id/237/200/300', // 仮データ
+  },
   sections: courseRowData?.sections,
 }
 </script>
