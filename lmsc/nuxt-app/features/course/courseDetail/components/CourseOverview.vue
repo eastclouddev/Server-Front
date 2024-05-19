@@ -15,7 +15,7 @@
         </v-col>
         <v-col cols="12" md="10">
           <div>
-            <div>スキルレベル: 初級</div>
+            <div>スキルレベル: {{ level }}</div>
             <div>学習時間: {{ duration }}時間</div>
           </div>
         </v-col>
@@ -29,10 +29,8 @@
         </v-col>
         <v-col cols="12" md="10">
           <div v-if="!showFullDescription">
-            <div class="mb-4">
-              {{ visibleDescription }}
-            </div>
-            <div v-if="description.length > 100" class="text-right">
+            <div class="description-container mb-4" v-html="formattedDescription"></div>
+            <div v-if="isOverflowing" class="text-right">
               <a
                 href="#"
                 @click.prevent="showFullDescription = true"
@@ -47,29 +45,57 @@
             </div>
           </div>
           <div v-else>
-            <div class="mb-4">
-              {{ description }}
-            </div>
+            <div class="mb-4" v-html="formattedDescription"></div>
           </div>
         </v-col>
       </v-row>
     </v-card-text>
   </v-card>
 </template>
+
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, onMounted, computed } from 'vue';
 
 const props = defineProps<{
   title: string;
+  level: string;
   duration: number;
   description: string;
 }>();
 
 const showFullDescription = ref(false);
+const isOverflowing = ref(false);
 
-const visibleDescription = computed(() => {
-  return showFullDescription.value || props.description.length <= 300
-    ? props.description
-    : props.description.slice(0, 300) + "...";
+const formattedDescription = computed(() => {
+  if (showFullDescription.value) {
+    return props.description.replace(/\n/g, '<br />');
+  }
+  const lines = props.description.split('\n');
+  const truncatedLines = lines.slice(0, 12);
+  return truncatedLines.join('<br />');
+});
+
+onMounted(() => {
+  const container = document.querySelector('.description-container');
+  if (container) {
+    const style = window.getComputedStyle(container);
+    const lineHeight = parseFloat(style.lineHeight);
+    const maxHeight = lineHeight * 12;
+    if (container.scrollHeight > maxHeight) {
+      isOverflowing.value = true;
+    }
+  }
 });
 </script>
+
+<style scoped>
+.description-container {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 12;
+  -webkit-box-orient: vertical;
+  line-clamp: 12; /* Not fully supported in all browsers */
+  max-height: calc(1.5em * 12); /* Adjust '1.5em' based on your line-height */
+  white-space: pre-wrap; /* Preserve whitespace and line breaks */
+}
+</style>

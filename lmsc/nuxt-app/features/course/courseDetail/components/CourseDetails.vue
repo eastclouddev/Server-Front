@@ -13,6 +13,7 @@
               <v-window-item value="overview">
                 <CourseOverview
                   :title="$props.course?.title || ''"
+                  :level="$props.course?.level || ''"
                   :duration="30.5"
                   :description="$props.course?.description || ''"
                 />
