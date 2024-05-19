@@ -1,18 +1,29 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import DropDown from '~/features/news/components/dropDown.vue'
 import Form from '~/features/news/components/TextForm.vue'
 import Btn from '~/features/news/components/FormBtn.vue'
 
-const Path = {
-  path: 'addNews',
-}
+const DD_Items = ref({
+  date: new Date('2024-05-19'),
+  category: 1,
+})
+
+const Contents = ref({
+  title: 'テストタイトル',
+  text: 'これは、テストです。これは、テストです。これは、テストです。\nこれは、テストです。これは、テストです。\n\nこれは、テストです。これは、テストです。',
+})
+
+const Path = ref({
+  path: 'editNews',
+})
 </script>
 
 <template>
   <div class="framework">
     <div class="contents">
-      <DropDown />
-      <Form />
+      <DropDown :item="DD_Items" />
+      <Form :item="Contents" />
       <Btn :item="Path" />
     </div>
   </div>
@@ -37,6 +48,10 @@ const Path = {
     align-items: center;
     gap: 40px;
   }
+}
+
+.center {
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 1000px) and (min-width: 768px) {

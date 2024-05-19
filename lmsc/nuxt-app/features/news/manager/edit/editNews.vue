@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import Title from '~/features/news/components/TitleHeader.vue'
 import Position from '~/features/news/components/PositionInfo.vue'
-import Form from '~/features/news/components/AddNewsForm.vue'
+import Form from '~/features/news/components/EditNewsForm.vue'
 
 const Items = {
-  title: 'ニュース投稿',
+  title: 'ニュース編集',
 }
 
 const Links = {
-  info: '/news/manager/view',
-  title: 'ニュース投稿',
+  info: '/news/manager/detail',
+  news: 'Pythonの新しい講座が追加されました！',
+  title: 'ニュース編集',
 }
 </script>
 

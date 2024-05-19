@@ -1,18 +1,28 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import DropDown from '~/features/news/components/dropDown.vue'
-import Form from '~/features/news/components/TextForm.vue'
+import Form from '~/features/news/components/CheckTextForm.vue'
 import Btn from '~/features/news/components/FormBtn.vue'
 
-const Path = {
-  path: 'addNews',
-}
+const DD_Items = ref({
+  date: new Date('2024-05-19'),
+  category: 1,
+})
+
+const Contents = ref({
+  title: 'テストタイトル',
+})
+
+const Path = ref({
+  path: 'editNews',
+})
 </script>
 
 <template>
   <div class="framework">
     <div class="contents">
-      <DropDown />
-      <Form />
+      <DropDown :item="DD_Items" />
+      <Form :item="Contents" />
       <Btn :item="Path" />
     </div>
   </div>
@@ -50,7 +60,7 @@ const Path = {
     width: 708px;
   }
   .contents {
-    width: 638px !important;
+    width: 591px !important;
   }
 }
 </style>

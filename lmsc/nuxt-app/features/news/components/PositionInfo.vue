@@ -13,7 +13,14 @@ export default {
     <NuxtLink to="/dashboard" class="NuxtLink"> ダッシュボード </NuxtLink>
     <div class="flex" v-if="item.info">
       <div class="allow"></div>
-      <NuxtLink :to="item.info" class="NuxtLink">お知らせ一覧</NuxtLink>
+      <NuxtLink
+        v-if="item.info === '/news/manager/detail' && item.news"
+        :to="item.info"
+        class="NuxtLink"
+      >
+        {{ item.news }}
+      </NuxtLink>
+      <NuxtLink v-else :to="item.info" class="NuxtLink">お知らせ一覧</NuxtLink>
     </div>
     <div class="flex" v-if="item.title">
       <div class="allow"></div>
@@ -69,6 +76,13 @@ export default {
     font-weight: 400;
     line-height: 38.4px;
     white-space: nowrap;
+    .flex {
+      .NuxtLink {
+        max-width: 300px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
     p {
       &:last-of-type {
         width: 300px;
