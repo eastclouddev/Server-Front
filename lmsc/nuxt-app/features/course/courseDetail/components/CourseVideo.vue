@@ -47,7 +47,6 @@ const setVideoAspectRatio = () => {
 
 const loadVideo = () => {
   isVideoLoaded.value = true;
-  // ビデオがロードされたら自動再生
   nextTick(() => {
     if (videoElement.value) {
       videoElement.value.play();

@@ -94,8 +94,8 @@ onMounted(() => {
   display: -webkit-box;
   -webkit-line-clamp: 12;
   -webkit-box-orient: vertical;
-  line-clamp: 12; /* Not fully supported in all browsers */
-  max-height: calc(1.5em * 12); /* Adjust '1.5em' based on your line-height */
-  white-space: pre-wrap; /* Preserve whitespace and line breaks */
+  line-clamp: 12;
+  max-height: calc(1.5em * 12);
+  white-space: pre-wrap;
 }
 </style>
