@@ -1,12 +1,10 @@
 <!-- Todo:コース一覧ページに書き換える -->
 <template>
-  <v-container>
-    <v-row>
-      <v-col>
-        <CourseDetails :course="course" />
-      </v-col>
-    </v-row>
-  </v-container>
+  <v-row>
+    <v-col>
+      <CourseDetails :course="course" />
+    </v-col>
+  </v-row>
 </template>
 
 <script setup lang="ts">

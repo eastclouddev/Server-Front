@@ -1,13 +1,11 @@
 <template>
-  <v-container>
-    <v-row>
-      <v-col>
-        <LoadingAndError :error="error" :status="status">
-          <CourseDetails :course="courseData" />
-        </LoadingAndError>
-      </v-col>
-    </v-row>
-  </v-container>
+  <v-row>
+    <v-col>
+      <LoadingAndError :error="error" :status="status">
+        <CourseDetails :course="courseData" />
+      </LoadingAndError>
+    </v-col>
+  </v-row>
 </template>
 
 <script setup lang="ts">

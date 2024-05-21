@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container style="max-width: 1200px;">
     <v-row>
       <v-col cols="12" md="8">
         <CourseVideo :video="props.course?.video || {}"/>
