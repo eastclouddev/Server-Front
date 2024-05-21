@@ -50,6 +50,49 @@ export type Methods = {
   get: {
     status: 200
     /** Successful Response */
-    resBody: Types.Schemas__questions__DetailResponseBody
+    resBody: Types.QuestionThreadDetailResponseBody
+  }
+
+  /**
+   * 質問編集
+   * 
+   * Parameter
+   * -----------------------
+   * question_id: int
+   *     更新したい質問のID
+   * title: str
+   *     更新された質問のタイトル
+   * content: str
+   *     更新したい質問の内容
+   * media_content: json
+   *     更新したい質問に関連するメディアコンテンツの情報
+   * is_closed: bool
+   *     完了しているかどうかを表すフラグ
+   * 
+   * Returns
+   * -----------------------
+   * dict
+   *     id: int
+   *         更新された質問のID
+   *     curriculum_id: int
+   *         回答が紐づくカリキュラムのID
+   *     user_id: int
+   *         回答を投稿したユーザーのID
+   *     title: str
+   *         更新された質問のタイトル
+   *     content: str
+   *         更新された質問の内容
+   *     media_content: Optional[json]
+   *         更新されたメディアコンテンツの情報
+   *     is_closed: bool
+   *         質問が完了しているかどうかを示すフラグ（boolean）
+   *     updated_at: str
+   *         質問が最後に更新された日時（ISO 8601形式）
+   */
+  patch: {
+    status: 200
+    /** Successful Response */
+    resBody: Types.QuestionUpdateResponseBody
+    reqBody: Types.QuestionUpdateRequestBody
   }
 }
