@@ -27,6 +27,7 @@ const Paths = {
       <Title :item="Items" />
       <Position :item="Links" />
       <NewsView />
+      f
       <NewsBtn :item="Paths" />
     </div>
   </main>
