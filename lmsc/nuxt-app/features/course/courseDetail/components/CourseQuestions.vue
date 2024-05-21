@@ -21,7 +21,7 @@
       </v-row>
       <v-row class="mb-3" v-else>
         <v-col cols="12" class="d-flex align-center" style="height: 70px; margin-bottom: 20px;">
-          <SolidButton color-orange class="button" :fullWidth="true" @click="openQuestionDialog">質問する</SolidButton>
+          <SolidButton color-orange class="button" :fullWidth="true" fontSize="16px" @click="openQuestionDialog">質問する</SolidButton>
         </v-col>
         <v-col cols="5" class="d-flex align-center" style="height: 70px;">
           <v-select variant="outlined" :items="filters" label="フィルター" dense></v-select>
