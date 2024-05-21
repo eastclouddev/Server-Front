@@ -54,7 +54,7 @@ const handleSubmit = async () => {
     // 例: localStorage.setItem('access_token', response.access_token);
 
     // ログイン後のリダイレクト処理
-    // 例: navigateTo('/dashboard');
+    navigateTo('/dashboard');
   } catch (error) {
     // ログイン失敗時の処理
     console.error("Login failed:", error);
