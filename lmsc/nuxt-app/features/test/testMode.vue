@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Title from '~/features/test/components/TitleHeader.vue'
+import Contents from '~/features/test/components/TestContents.vue'
 
 const Items = {
   img: 'mdi-check-circle',
@@ -12,6 +13,7 @@ const Items = {
   <main>
     <div class="main center">
       <Title :item="Items" />
+      <Contents />
     </div>
   </main>
 </template>
