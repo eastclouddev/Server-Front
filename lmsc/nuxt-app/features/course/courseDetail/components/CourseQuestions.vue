@@ -30,30 +30,43 @@
           <v-select variant="outlined" :items="sortOptions" label="質問を絞り込む" dense></v-select>
         </v-col>
       </v-row>
-      <div class="mt-3">このコースに関する質問 ({{ questions.length }})</div>
-      <v-list>
-        <v-list-item v-for="(question, index) in questions" :key="index" class="mt-3">
-          <v-list-item-avatar>
-            <v-icon>mdi-account</v-icon>
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title class="d-flex align-center">
-              {{ question.title }}
-              <v-chip v-if="question.new" class="ml-2" color="red" small>New!</v-chip>
-            </v-list-item-title>
-            <v-list-item-subtitle>
-              {{ question.content }}
-            </v-list-item-subtitle>
-            <v-list-item-subtitle class="d-flex justify-space-between align-center">
-              <span>{{ question.author }} - {{ question.date }}</span>
-              <div class="d-flex align-center">
-                <v-icon>mdi-message</v-icon>
-                <span class="ml-1">{{ question.comments }}</span>
-              </div>
-            </v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
+      <div class="mt-3 mb-2" style="font-weight: bold; font-size: 24px;">このコースに関する質問 ({{ questions.length }})</div>
+      <v-list style="background: none; padding: 10px;">
+        <template v-for="(question, index) in questions" :key="index">
+          <v-list-item class="mt-3 list-item-border">
+            <v-row no-gutters>
+              <v-col cols="auto">
+                <v-list-item-avatar>
+                  <img src="/assets/icons/avatar.svg" alt="Avatar" style="width: 40px; height: 40px;" />
+                </v-list-item-avatar>
+              </v-col>
+              <v-col style="margin-left: 10px;">
+                <v-list-item-content>
+                  <v-list-item-title style="font-weight: bold;" class="mb-2">
+                    {{ question.title }}
+                    <span v-if="question.new" class="ml-2" style="font-weight: bold; color: #FF5A36;">New!</span>
+                  </v-list-item-title>
+                  <v-list-item-subtitle style="margin-bottom: 1rem;">
+                    {{ question.content }}
+                  </v-list-item-subtitle>
+                  <v-list-item-subtitle class="d-flex justify-space-between align-center" style="opacity: 1 !important;">
+                    <span>
+                      <span style="color: #FF5A36; margin-right: 10px;">{{ question.author }}</span>
+                      <span style="color: #B5B5B5;">{{ question.date }}</span>
+                    </span>
+                    <div class="d-flex align-center">
+                      <span style="font-weight: bold;">{{ question.comments }}</span>
+                      <img src="/assets/icons/comment.svg" alt="Comment" class="ml-2 opaque-icon" style="width: 20px; height: 20px;" />
+                    </div>
+                  </v-list-item-subtitle>
+                </v-list-item-content>
+              </v-col>
+            </v-row>
+          </v-list-item>
+        </template>
       </v-list>
+
+
     </v-card-text>
     <v-dialog v-model="questionDialog" max-width="500px">
       <v-card>
@@ -136,6 +149,14 @@ const submitQuestion = () => {
 </script>
 
 <style scoped>
+.list-item-border {
+  border-top: 1px solid #ccc;
+  padding-top: 15px;
+}
+.list-item-border:last-child {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 15px;
+}
 .mt-3 {
   margin-top: 1rem;
 }

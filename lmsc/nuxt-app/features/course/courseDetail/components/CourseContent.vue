@@ -73,7 +73,7 @@
                     marginTop: '10px',
                   }"
                 >
-                  <img src="/assets/video-icon.svg" />
+                  <img src="/assets/icons/video-icon.svg" />
                   <span class="ml-2">5:30</span>
                 </v-list-item-subtitle>
               </v-list-item>

@@ -63,8 +63,8 @@ box-shadow: 3px 3px 5px #d8d8d8;
 border-radius: 5px;
 text-decoration: none;
 font-weight: bold;
-font-size: 18px;
-padding: 1em 1em;
+font-size: 20px;
+padding: 0.8em;
 
 &:hover {
     background-color: #ff8573;
