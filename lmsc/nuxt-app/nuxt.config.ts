@@ -30,6 +30,10 @@ export default defineNuxtConfig({
       path: "~/features/**/components",
       pathPrefix: false,
     },
+    {
+      path: "~/features/**/components/**",
+      pathPrefix: false,
+    },
   ],
   vite: {
     ssr: {

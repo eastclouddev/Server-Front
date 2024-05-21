@@ -44,7 +44,7 @@ import CourseVideo from "./CourseVideo.vue";
 import CourseTabs from "@/features/course/courseDetail/components/CourseTabs.vue";
 import CourseContent from "@/features/course/courseDetail/components/CourseContent.vue";
 import CourseOverview from "@/features/course/courseDetail/components/CourseOverview.vue";
-import CourseQuestions from "@/features/course/courseDetail/components/CourseQuestions.vue";
+import CourseQuestions from "~/features/course/courseDetail/components/questions/CourseQuestions.vue";
 import CourseSubmissions from "@/features/course/courseDetail/components/CourseSubmissions.vue";
 import type { CourseDetailResponseBody } from "~/generated/api/@types";
 import type { CourseDetail } from "../../types";

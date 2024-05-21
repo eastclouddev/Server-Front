@@ -16,12 +16,12 @@
         </v-col>
         <v-spacer></v-spacer>
         <v-col cols="4" class="align-center justify-end">
-          <SolidButton color-orange class="button" :fullWidth="true" @click="openQuestionDialog">質問する</SolidButton>
+          <SolidButton color="#FF5A36" class="button" :fullWidth="true" @click="openQuestionDialog">質問する</SolidButton>
         </v-col>
       </v-row>
       <v-row class="mb-3" v-else>
         <v-col cols="12" class="d-flex align-center" style="height: 70px; margin-bottom: 20px;">
-          <SolidButton color-orange class="button" :fullWidth="true" fontSize="16px" @click="openQuestionDialog">質問する</SolidButton>
+          <SolidButton color="#FF5A36" class="button" :fullWidth="true" fontSize="16px" @click="openQuestionDialog">質問する</SolidButton>
         </v-col>
         <v-col cols="5" class="d-flex align-center" style="height: 70px;">
           <v-select variant="outlined" :items="filters" label="フィルター" dense></v-select>
@@ -65,86 +65,50 @@
           </v-list-item>
         </template>
       </v-list>
-
-
     </v-card-text>
-    <v-dialog v-model="questionDialog" max-width="500px">
-      <v-card>
-        <v-card-title class="text-h5">質問フォーム</v-card-title>
-        <v-card-text>
-          <v-form @submit.prevent="submitQuestion">
-            <v-text-field
-              v-model="newQuestion.title"
-              label="タイトル"
-              required
-            ></v-text-field>
-            <v-textarea
-              v-model="newQuestion.content"
-              label="質問内容"
-              required
-            ></v-textarea>
-            <v-btn type="submit" color="primary">送信</v-btn>
-          </v-form>
-        </v-card-text>
-      </v-card>
-    </v-dialog>
   </v-card>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { useDisplay } from "vuetify";
+import { ref } from 'vue';
+import { useDisplay } from 'vuetify';
 
 const { smAndDown } = useDisplay();
 
 const questions = ref([
   {
-    title: "コードについて。",
-    author: "山田 太郎",
-    date: "3日前",
-    content: "コードが正しく反映されないのですが、どこが...",
+    title: 'コードについて。',
+    author: '山田 太郎',
+    date: '3日前',
+    content: 'コードが正しく反映されないのですが、どこが...',
     comments: 2,
     new: true,
   },
   {
-    title: "コードについて。",
-    author: "山田 太郎",
-    date: "3日前",
-    content: "コードが正しく反映されないのですが、どこが...",
+    title: 'コードについて。',
+    author: '山田 太郎',
+    date: '3日前',
+    content: 'コードが正しく反映されないのですが、どこが...',
     comments: 2,
     new: false,
   },
   {
-    title: "コードについて。",
-    author: "山田 太郎",
-    date: "3日前",
-    content: "コードが正しく反映されないのですが、どこが...",
+    title: 'コードについて。',
+    author: '山田 太郎',
+    date: '3日前',
+    content: 'コードが正しく反映されないのですが、どこが...',
     comments: 2,
     new: false,
   },
 ]);
 
-const filters = ["フィルター1", "フィルター2"];
-const sortOptions = ["オプション1", "オプション2"];
+const filters = ['全カリキュラム', '現在のレクチャー'];
+const sortOptions = ['自分の質問', '未回答の質問'];
 
-const questionDialog = ref(false);
-const newQuestion = ref({
-  title: "",
-  content: "",
-});
+const showPostForm = ref(false);
 
 const openQuestionDialog = () => {
-  questionDialog.value = true;
-};
-
-const submitQuestion = () => {
-  // 質問の送信処理を実装
-  // newQuestion.valueを使用して質問を送信し、questionsに追加する
-  questionDialog.value = false;
-  newQuestion.value = {
-    title: "",
-    content: "",
-  };
+  showPostForm.value = true;
 };
 </script>
 
