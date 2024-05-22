@@ -44,5 +44,5 @@ export default defineNuxtConfig({
     },
     plugins: [VuetifyPlugin()],
   },
-  plugins: ["~/plugins/api"],
+  plugins: ["~/plugins/api", "~/plugins/vuetify"],
 });

@@ -19,7 +19,7 @@ const props = defineProps({
   },
   textColor: {
     type: String,
-    default: "#FFFFFF"
+    default: "#FF5A36"
   },
   fullWidth: {
     type: Boolean,
@@ -44,9 +44,9 @@ const props = defineProps({
 });
 
 const buttonStyle = computed(() => ({
-  backgroundColor: props.color,
+  backgroundColor: "transparent",
   color: props.textColor,
-  border: props.color === "#FFFFFF" ? `2px solid ${props.textColor}` : "none",
+  border: `2px solid ${props.color}`,
   width: props.fullWidth ? "100%" : "auto",
   fontSize: props.fontSize,
   fontWeight: props.fontWeight,
@@ -69,12 +69,12 @@ const handleClick = (event: Event) => {
 .button {
   cursor: pointer;
   text-align: center;
-  box-shadow: 3px 3px 5px #d8d8d8;
   border-radius: 5px;
   text-decoration: none;
+  background-color: transparent;
 
   &:hover {
-    background-color: #ff8573;
+    background-color: rgba(255, 90, 54, 0.1);
   }
 }
 </style>
