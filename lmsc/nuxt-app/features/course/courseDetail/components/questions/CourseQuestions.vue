@@ -33,7 +33,7 @@
       <div class="mt-3 mb-2" style="font-weight: bold; font-size: 24px;">このコースに関する質問 ({{ questions.length }})</div>
       <v-list style="background: none; padding: 10px;">
         <template v-for="(question, index) in questions" :key="index">
-          <v-list-item class="mt-3 list-item-border" @click="$emit('view-detail', question.id)">
+          <v-list-item class="mt-3 list-item-border" @click="$emit('switch-to-detail', question.id)">
             <v-row no-gutters>
               <v-col cols="auto">
                 <v-avatar>

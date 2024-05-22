@@ -6,8 +6,12 @@
         padding: '32px',
       }"
     >
+    <div style="display: flex; align-items: center; font-size: 16px; margin-bottom: 16px;">
+    <p @click="$emit('switch-to-questions')" style="cursor: pointer; color: #FF5A36;">質問一覧</p>
+    <v-icon style="margin: 0 5px;">mdi-chevron-right</v-icon>
+    <p style="color: #FF5A36;">{{ question.title }}</p>
+  </div>
       <v-card-text>
-        <v-breadcrumbs :items="breadcrumbs" />
         <h2>{{ question.title }}</h2>
         <v-list>
           <v-list-item>
@@ -30,8 +34,8 @@
   
   // 質問の詳細データを取得するロジック
   const question = ref({
-    title: '質問のタイトル',
-    content: '質問の内容',
+    title: '質問のタイトル1',
+    content: '質問の内容1',
     // 他の質問詳細情報
   });
   
