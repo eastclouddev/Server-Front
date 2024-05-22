@@ -119,29 +119,4 @@ const sortOptions = ['自分の質問', '未回答の質問'];
   border-bottom: 1px solid #ccc;
   padding-bottom: 15px;
 }
-.mt-3 {
-  margin-top: 1rem;
-}
-.ml-1 {
-  margin-left: 0.25rem;
-}
-.ml-2 {
-  margin-left: 0.5rem;
-}
-.d-flex {
-  display: flex;
-}
-.justify-space-between {
-  justify-content: space-between;
-}
-.align-center {
-  align-items: center;
-  justify-content: center;
-}
-.justify-end {
-  justify-content: flex-end;
-}
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
 </style>

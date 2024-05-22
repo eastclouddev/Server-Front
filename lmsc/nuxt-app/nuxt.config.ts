@@ -17,7 +17,10 @@ export default defineNuxtConfig({
       ],
     },
   },
-  css: ["vuetify/styles"],
+  css: [
+    '~/assets/css/tailwind.css',
+    "vuetify/styles",
+  ],
   build: {
     transpile: ["vuetify"],
   },

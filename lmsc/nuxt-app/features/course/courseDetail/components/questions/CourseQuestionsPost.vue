@@ -6,20 +6,20 @@
       padding: '32px',
     }"
   >
+  <div style="display: flex; align-items: center; font-size: 16px; margin-bottom: 16px;">
+    <p @click="$emit('switch-to-questions')" style="cursor: pointer; color: #FF5A36;">質問一覧</p>
+    <v-icon style="margin: 0 5px;">mdi-chevron-right</v-icon>
+    <p style="color: #FF5A36;">質問を投稿する</p>
+  </div>
     <v-card-text>
-      <div style="display: flex; align-items: center; font-size: 16px; margin-bottom: 16px;">
-        <p @click="$emit('switch-to-questions')" style="cursor: pointer; color: #FF5A36;">質問一覧</p>
-        <v-icon style="margin: 0 5px;">mdi-chevron-right</v-icon>
-        <p style="color: #FF5A36;">質問を投稿する</p>
-      </div>
-      <h2>質問を投稿する</h2>
-      <p>質問をする際の注意事項</p>
-      <ul>
+      <h2 class="my-4">質問をする際の注意事項</h2>
+      <ul class="ml-4">
         <li>テキストが入ります。</li>
         <li>テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。</li>
         <li>テキストが入ります。</li>
         <li>テキストが入ります。テキストが入ります。テキストが入ります。</li>
       </ul>
+      <hr class="border-t border-dashed my-10">
       <v-form @submit.prevent="submitQuestion">
         <v-text-field
           v-model="newQuestion.title"
