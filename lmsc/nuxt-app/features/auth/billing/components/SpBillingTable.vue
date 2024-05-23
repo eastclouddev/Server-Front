@@ -44,12 +44,12 @@ export default defineComponent({
   methods: {
     getStatusClass(status) {
       switch (status) {
-        case '未対応':
-          return 'unprocessed';
-        case '処理中':
-          return 'processing';
-        case '支払い済み':
+        case '未請求':
+          return 'unclaimed';
+        case '請求済':
           return 'paid';
+        case '支払済':
+          return 'billed';
       }
     },
     getStatusText(status) {

@@ -1,6 +1,7 @@
 <template>
   <v-btn class="custom_btn" width="25rem" height="6ex" style="font-weight: bold;">
     {{ buttonText }}
+    <v-icon right v-if="icon" class="ml-2">{{ icon }}</v-icon>
   </v-btn>
 </template>
 <script>
@@ -9,6 +10,10 @@ export default {
     buttonText: {
       type: String,
       required: true
+    },
+    icon: {
+      type: String,
+      required: false
     },
   }
 };

@@ -26,7 +26,8 @@
             </div>
           </td>
           <td class="text-center" style="border-left: 2px solid #F5F5F5; border-right: 2px solid #F5F5F5;">
-            <NuxtLink :to="item.billing_id" style="color:#FF5A36;">{{ item.billingLink }}</NuxtLink>
+            <BillingModal />
+            <!-- <NuxtLink :to="item.billing_id" style="color:#FF5A36;">{{ item.billingLink }}</NuxtLink> -->
           </td>
         </tr>
       </tbody>
@@ -35,8 +36,12 @@
 
 <script>
 import { defineComponent } from 'vue';
+import BillingModal  from './BillingModal.vue';
 
 export default defineComponent({
+  components: {
+    BillingModal
+  },
   props: {
     filteredList: {
       type: Array,
@@ -46,12 +51,12 @@ export default defineComponent({
   methods: {
     getStatusClass(status) {
       switch (status) {
-        case '未対応':
-          return 'unprocessed';
-        case '処理中':
-          return 'processing';
-        case '支払い済み':
+        case '未請求':
+          return 'unclaimed';
+        case '請求済':
           return 'paid';
+        case '支払済':
+          return 'billed';
       }
     },
     getStatusText(status) {

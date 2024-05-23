@@ -6,12 +6,12 @@
       @input="updateSearch"
       variant="plain"
       class="custom-text-field"
-      style="background-color:#FFFFFF; height:28px;">
+      style="background-color:#FFFFFF; height:25px;">
       <template #append>
         <v-icon
           @click="triggerSearch"
-          size="32"
-          style="background-color:#FF5A36; color: #FFFFFF; padding: 6px; position: absolute; top: 8%; right:5%;"
+          size="30"
+          style="background-color:#FF5A36; color: #FFFFFF; height:25px; position: absolute;  right:5%; border-radius: 0 5px 5px 0;"
           class="pa-7"  >
             mdi-magnify
         </v-icon>
@@ -38,3 +38,18 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.v-icon {
+  top: 7%;
+}
+.v-input__append {
+  .v-icon {
+    opacity: 1;
+  }
+}
+@media screen and (max-width: 768px) {
+  .v-icon {
+    top: 38px;
+  }
+}
+</style>
