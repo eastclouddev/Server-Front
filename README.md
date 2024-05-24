@@ -10,7 +10,15 @@ required:
 環境変数の設定
 `cp .env.example .env` を実行し、Firebase のクレデンシャルを [こちら]() から確認して設定をする。
 
-ローカルサーバーの起動
+**下記のどちらかを実行してローカルで開発を行って下さい**
+
+### 1. Docker を使用して起動する
+
+```zsh
+docker-compose up --build
+```
+
+### 2. ローカルサーバーの起動(nuxt-app ディレクトリで実行)
 
 ```zsh
 yarn install
@@ -44,23 +52,3 @@ develop ブランチにマージされるとリリース用の `Release YYYY-mm-
 feature/〇〇 ブランチから develop ブランチに Pull Request を作成 → PR ごとにプレビュー環境を自動デプロイ
 develop ブランチにマージ → develop 環境に自動デプロイ
 main ブランチにマージ → production 環境に自動デプロイ
-
-## Server-Front の環境を単独で起動する方法
-
-1. Server-Front へ移動する
-
-```
-cd Server-Front
-```
-
-2. Docker を build する
-
-```
-docker build -f environment/develop/Dockerfile . -t myapp
-```
-
-3. Docker を起動する
-
-```
-docker run -p 3000:3000 myapp
-```

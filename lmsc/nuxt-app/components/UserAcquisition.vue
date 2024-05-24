@@ -3,27 +3,16 @@
     <v-row class="align-center justify-space-between pb-4" v-for=" item in items" :key="item.id">
       <label class="sp_label" style="font-size: 1em; font-weight: bold;">{{ item.label }}</label>
       <v-card flat class="sp_field d-flex flex-column" width="25rem">
-        <v-sheet class="my-0 pr-4 pb-4 pl-4">
+        <v-sheet class="my-0 pr-4 pb-4 pl-4" color="#EBEBEB">
           <v-text-field hide-details="auto" placeholder="API取得" variant="plain"
-            v-model="password" full-width></v-text-field>
+            v-model="password" full-width disabled></v-text-field>
         </v-sheet>
       </v-card>
-      <v-divider class="#CFCFCF mb-5" thickness="1" dotted></v-divider>
-    </v-row>
-    <v-row class="align-center justify-space-between pb-4">
-      <label class="sp_label" style="font-size: 1em; font-weight: bold;">パスワード</label>
-      <v-card flat class="sp_field d-flex flex-column" width="25rem">
-        <v-sheet class="my-0 pr-4 pb-4 pl-4">
-          <v-text-field hide-details="auto" placeholder="API取得" variant="plain"
-          v-model="password" :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-          :type="showPassword ? 'text' : 'password'" readonly full-width></v-text-field>
-        </v-sheet>
-      </v-card>
-      <v-divider class="#CFCFCF" thickness="1"></v-divider>
     </v-row>
   </v-container>
 </template>
 
+<<<<<<< HEAD
 <script>
 import { ref } from 'vue';
 
@@ -40,20 +29,24 @@ data() {
     }
   }
 }
+=======
+<script setup>
+>>>>>>> develop
 const items = [
   {
     label: "お名前",
-    data:" API取得データ"
+    data: "API取得データ"
   },
   {
     label: "フリガナ",
-    data: " API取得データ"
+    data: "API取得データ"
   },
   {
     label: "メールアドレス",
-    data: " API取得データ"
+    data: "API取得データ"
   },
 ];
+
 </script>
 <style lang="scss" scoped>
 @media screen and (max-width: 768px) {
