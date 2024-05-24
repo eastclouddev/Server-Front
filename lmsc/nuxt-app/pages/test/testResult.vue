@@ -1,5 +1,5 @@
-<script>
-import Result from '~/features/test/result.vue'
+<script setup lang="ts">
+import Result from '~/features/test/testResult.vue'
 </script>
 
 <template>

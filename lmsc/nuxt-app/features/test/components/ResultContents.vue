@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Problem from '~/features/test/components/Problem.vue'
+import Result from '~/features/test/components/Result.vue'
 import Detail from '~/features/test/components/CourseDetail.vue'
 import Section from '~/features/test/components/CourseSection.vue'
 </script>
@@ -8,7 +8,7 @@ import Section from '~/features/test/components/CourseSection.vue'
   <v-container class="whole">
     <v-row>
       <v-col class="left">
-        <Problem />
+        <Result />
         <Detail />
       </v-col>
       <v-col class="right">

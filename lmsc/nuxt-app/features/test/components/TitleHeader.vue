@@ -67,7 +67,6 @@ export default {
 
 @media screen and (max-width: 768px) {
   .whole {
-    width: 702px;
     height: 72px;
     margin-top: 65px;
 
@@ -87,7 +86,7 @@ export default {
     }
 
     &.test {
-      height: 72px;
+      height: 74px;
       .title {
         .img {
           color: #ff5a36;

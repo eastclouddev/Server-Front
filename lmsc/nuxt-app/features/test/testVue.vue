@@ -1,19 +1,13 @@
 <script setup lang="ts">
-import Title from '~/features/test/components/TitleHeader.vue'
-import Contents from '~/features/test/components/TestContents.vue'
-
-const Items = {
-  img: 'mdi-check-circle',
-  to: 'test',
-  title: 'テスト',
-}
+import Test from '~/features/test/components/TestContents.vue'
+import Result from '~/features/test/components/ResultContents.vue'
 </script>
 
 <template>
   <main>
     <div class="main center">
-      <Title :item="Items" />
-      <Contents />
+      <Test />
+      <Result />
     </div>
   </main>
 </template>

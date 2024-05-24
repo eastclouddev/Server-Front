@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Title from '~/features/test/components/TitleHeader.vue'
-import Contents from '~/features/test/components/TestContents.vue'
+import Contents from '~/features/test/components/ResultContents.vue'
 
 const Items = {
   img: 'mdi-check-circle',
