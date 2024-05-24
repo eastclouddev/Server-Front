@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { defineProps } from 'vue'
 import AddBtn from '~/features/news/components/AddBtns.vue'
 
 import { ref } from 'vue'
@@ -9,6 +10,8 @@ const togglePublic = (index: number) => {
   const currentState = isOn.value[index]
   isOn.value[index] = !currentState
 }
+
+const props = defineProps(['title', 'category', 'date'])
 </script>
 
 <template>
@@ -114,6 +117,34 @@ const togglePublic = (index: number) => {
         </div>
       </div>
       <!--  -->
+      <div v-if="props" class="row">
+        <div
+          class="public"
+          :class="{ on: isOn[11], off: !isOn[11] }"
+          @click="togglePublic(11)"
+        >
+          <div class="gray_frame">
+            <div class="is_public">
+              <p v-if="isOn[11]">公開</p>
+              <div class="CheckMark"></div>
+              <p v-if="!isOn[11]">非公開</p>
+            </div>
+          </div>
+        </div>
+        <div class="news">
+          <div class="date">
+            <p>{{ props.date }}</p>
+          </div>
+          <div class="topic">
+            <div class="genre">
+              <p>{{ props.category }}</p>
+            </div>
+            <div class="title">
+              <p>{{ props.title }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

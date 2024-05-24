@@ -28,7 +28,14 @@ export default {
       </NuxtLink>
     </div>
     <div class="check">
-      <NuxtLink to="/news/manager/edit/checkNews" class="NuxtLink">
+      <NuxtLink
+        v-if="item.label === '投稿'"
+        to="/news/manager/edit/"
+        class="NuxtLink"
+      >
+        投稿
+      </NuxtLink>
+      <NuxtLink v-else to="/news/manager/edit/checkNews" class="NuxtLink">
         確認
       </NuxtLink>
     </div>

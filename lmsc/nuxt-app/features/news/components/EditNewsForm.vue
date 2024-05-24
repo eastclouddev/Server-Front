@@ -16,6 +16,7 @@ const Contents = ref({
 
 const Path = ref({
   path: 'editNews',
+  label: '確認',
 })
 </script>
 

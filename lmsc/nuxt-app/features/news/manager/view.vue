@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { defineProps } from 'vue'
 import NewsList from '~/features/news/components/NewsManagerList.vue'
 import Title from '~/features/news/components/TitleHeader.vue'
 import Position from '~/features/news/components/PositionInfo.vue'
@@ -13,6 +14,13 @@ const Items = {
 const Links = {
   title: 'お知らせ',
 }
+
+// const props = defineProps(['title', 'category', 'content'])
+// const Posts = {
+//   title: props.title,
+//   category: props.category,
+//   content: props.content,
+// }
 </script>
 
 <template>

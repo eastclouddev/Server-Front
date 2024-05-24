@@ -5,6 +5,7 @@ import Btn from '~/features/news/components/FormBtn.vue'
 
 const Path = {
   path: 'addNews',
+  label: '確認',
 }
 </script>
 
