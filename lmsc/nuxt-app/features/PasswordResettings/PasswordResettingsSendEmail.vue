@@ -1,10 +1,19 @@
 <template>
   <v-container style="margin:10% 0;">
     <v-card flat class="mx-auto" max-width="620">
-      <v-card-title class="text-center headline"  style="font-size:1.5em; font-weight: bold;"
+      <v-card-title class="text-center headline pc_title"  style="font-size:1.5em; font-weight: bold;"
         color="#242424">パスワード再設定のメールが送信されました。</v-card-title>
+      <v-card-title class="headline sp_title"  style="font-size:1.5em; font-weight: bold;"
+      color="#242424">パスワード再設定のメールが送信されました。</v-card-title>
       <v-divider class="#CFCFCF" thickness="1"></v-divider>
-      <div class="text-center py-4">
+      <div class="text-center py-4 sentence">
+        ご登録のメールアドレスにパスワード再設定のご案内をお送りしました。<br>
+        設定手続きを進めてください。<br>
+        <br>
+        ※しばらく経ってもメールが届かない場合、入力に誤りがある可能性があります。<br>
+        お手数ですが、再度パスワードの設定の手続きを行ってください。
+      </div>
+      <div class="py-4 sp_sentence">
         ご登録のメールアドレスにパスワード再設定のご案内をお送りしました。<br>
         設定手続きを進めてください。<br>
         <br>
@@ -44,13 +53,31 @@ const handleSubmit = () => {
         text-overflow: inherit;
         white-space: unset;
 }
+.sp {
+  &_title{
+    display: none;
+  }
+  &_sentence{
+    display: none;
+  }
+}
 @media screen and (max-width: 768px) {
+  .pc_title{
+    display: none;
+    font-size: 1.5em !important;
+  }
+  .sentence{
+    display: none;
+  }
   .sp {
    &_title {
-    font-size: 2.5em !important;
+    display: block;
   }
   &_text {
     font-size: 1.4em;
+  }
+  &_sentence{
+    display: block;
   }
   }
 }

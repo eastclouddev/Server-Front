@@ -67,7 +67,7 @@ const passwordMismatch = computed(() => passwordInput.value !== passwordConfirm.
     }
   }
   .error_message {
-    font-size: 1em;
+    font-size: 0.75em;
 
     }
 }

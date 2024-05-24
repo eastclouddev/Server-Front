@@ -94,7 +94,7 @@ function updatePassword(event) {
   }
 
   .error_message {
-    font-size: 1.5em;
+    font-size: 0.75em;
   }
 }
 </style>

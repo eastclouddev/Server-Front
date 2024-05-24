@@ -5,11 +5,14 @@
         color="#242424">パスワード再設定</v-card-title>
       <v-divider class="#CFCFCF" thickness="1"></v-divider>
       <v-card-text class="sp_text">
-        再設定用のURLを送信します。<br>
+        <div class="sentence">再設定用のURLを送信します。<br>
         ご登録いただいているメールアドレスを入力し、送信ボタンを押してください。
+        </div>
+        <div class="sp_sentence">再設定用のURLを送信しますので、ご登録いただいているメールアドレス信ボタンを押してください。
+        </div>
         <v-form @submit.prevent="handleSubmit" ref="form" class="content_box">
           <v-card flat style="margin:10% 0;">
-            <EmailForm ref="emailForm" label="メールアドレス" v-model="email" />
+            <EmailForm ref="emailForm" label="メールアドレス" v-model="email" class="sp_mailTitle"/>
           </v-card>
           <v-card flat style="text-align: center;">
             <Button type="submit" color="#FF5A36" style="font-size: 1.5em;" buttonText="送信"></Button>
@@ -42,13 +45,25 @@ const handleSubmit = () => {
         text-overflow: inherit;
         white-space: unset;
 }
+.sp_sentence{
+  display: none;
+}
 @media screen and (max-width: 768px) {
+  .sentence{
+    display: none;
+  }
   .sp {
     &_title {
-      font-size: 2.2em !important;
+      font-size: 2em !important;
     }
     &_text {
-      font-size: 1.4em;
+      font-size: 1em;
+    }
+    &_mailTitle {
+      font-size: 1em !important;
+    }
+    &_sentence{
+      display: block;
     }
   }
 }
