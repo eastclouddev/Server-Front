@@ -20,15 +20,11 @@
 </template>
 
 <script>
-import SelectField from '~/features/auth/billing/components/SelectField.vue';
-import PcBillingTable from "~/features/auth/billing/components/PcBillingTable.vue";
-import SpBillingTable from "~/features/auth/billing/components/SpBillingTable.vue";
+import EmailForm from '~/components/EmailForm.vue';
 
 export default {
   components: {
-    SelectField,
-    PcBillingTable,
-    SpBillingTable,
+    EmailForm,
   },
   data() {
     return {
@@ -40,29 +36,10 @@ export default {
         },
         {
           title: '請求先情報',
-          disabled: true,
-          href: '/billingInformation',
+          disabled: false,
         },
       ],
-      statusOptions: ['未請求', '請求済', '支払済'],
-      paymentOptions: ['2024/01', '2023/12', '2023/11'],
     };
-  },
-  computed: {
-    displayBillingList() {
-      return this.filteredBillingList.length > 0 || this.selectedStatus || this.selectedPayment
-        ? this.filteredBillingList
-        : this.billingList;
-    },
-  },
-  methods: {
-    performFilter() {
-      this.filteredBillingList = this.billingList.filter(item => {
-        const statusMatch = this.selectedStatus ? item.status === this.selectedStatus : true;
-        const paymentMatch = this.selectedPayment ? item.billingDate.includes(this.selectedPayment) : true;
-        return statusMatch && paymentMatch;
-      });
-    },
   },
 };
 </script>

@@ -14,9 +14,9 @@
     </v-breadcrumbs>
     <v-card flat color="#F5F5F5" style="border-radius: 5px 5px 0 0; box-shadow: 4px 0px 6px -3px rgba(0, 0, 0, 0.2);">
       <v-sheet color="#F5F5F5" width="80%" class="mx-auto mb-8 mt-8">
-
-        
         <div class="d-flex justify-space-between">
+
+          <!-- 該当するデータが絞り込める -->
           <v-select
             v-model="selectedMonth"
             :items="months"
@@ -44,18 +44,33 @@
         </template>
       </v-select>
 
-      <Button to="/billingInformation"
-        color="#FF5136" class="sp_button" style="width:10rem; height:40px;" buttonText="請求先情報編集">
-      </Button>
-    </div>
-    
-    <template v-if="filteredList.length > 0">
-      <PcBillingTable :filteredList="filteredList" />
-      <SpBillingTable :filteredList="filteredList" />
-    </template>
-    <template v-else>
-      <p class="message">該当するデータがありません</p>
-    </template>
+          <Button to="/billingInformation"
+            color="#FF5136" class="sp_button" style="width:10rem; height:40px;" buttonText="請求先情報編集">
+          </Button>
+        </div>
+        
+        <!-- コンポーネント化すると絞り込めない -->
+          <FilterSelect
+            v-model="selectedMonth"
+            :filterOptions="months"
+            placeholderText="請求対象月"
+            @filter-change="filterData"
+          />
+        
+          <FilterSelect
+            v-model="selectedStatus"
+            :filterOptions="statuses"
+            placeholderText="ステータス"
+            @filter-change="filterData"
+          />
+
+        <template v-if="filteredList.length > 0">
+          <PcBillingTable :filteredList="filteredList" />
+          <SpBillingTable :filteredList="filteredList" />
+        </template>
+        <template v-else>
+          <p class="message">該当するデータがありません</p>
+        </template>
 
       </v-sheet>
     </v-card>
@@ -65,11 +80,15 @@
 <script>
 import PcBillingTable from '~/features/auth/billing/components/PcBillingTable.vue';
 import SpBillingTable from '~/features/auth/billing/components/SpBillingTable.vue';
+import Select from '~/features/auth/billing/components/Select.vue';
+import FilterSelect from '~/features/auth/billing/components/FilterSelect.vue';
 
 export default {
   components: {
     PcBillingTable,
     SpBillingTable,
+    Select,
+    FilterSelect
   },
   data() {
     return {
@@ -109,12 +128,22 @@ export default {
   },
   methods: {
     filterData() {
+      // This method is intentionally left empty to trigger Vue's reactivity system
     }
   }
 };
 </script>
 
-<style>
+<style scoped>
+.message {
+  text-align: center;
+  font-weight: bold;
+  padding: 50px;
+  margin-top: 50px;
+}
+.v-select .v-field.v-field {
+  background-color: #FFFFFF;
+}
 .unclaimed {
   color: #FFFFFF;
   background-color: #FF5A36;
@@ -144,15 +173,5 @@ export default {
   text-align: center;
   border-radius: 5px;
   margin-left: 10px;
-}
-.message {
-  text-align: center;
-  font-weight: bold;
-  padding: 50px;
-  margin-top: 50px;
-}
-
-.v-select .v-field.v-field {
-  background-color: #FFFFFF;
 }
 </style>

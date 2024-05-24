@@ -4,12 +4,15 @@
       :items="filterOptions"
       v-model="selectedFilter"
       @change="$emit('filter-change', selectedFilter)"
-      :placeholder="placeholder"
       density="compact"
       variant="outlined"
-      class="mr-6"
-      style="width: 15rem;"
-    ></v-select>
+      class="mr-6 custom-select"
+      style="width: 15rem;">
+      <template v-slot:selection="data">
+        <span v-if="!selectedFilter" class="placeholder-text">{{ placeholderText }}</span>
+        <span v-else>{{ data.item.title }}</span>
+      </template>
+    </v-select>
   </div>
 </template>
 
@@ -24,11 +27,10 @@ export default {
       type: String,
       default: '',
     },
-    placeholder: {
+    placeholderText: {
       type: String,
-      default: '',
-      required: true,
-    }
+      default: '選択してください', // デフォルトのプレースホルダーテキスト
+    },
   },
   data() {
     return {
@@ -45,12 +47,13 @@ export default {
   },
 };
 </script>
-<style>
+
+<style scoped>
 .v-field.v-field--appended {
-    --v-field-padding-end: 6px;
-    background-color: #FFFFFF;
+  --v-field-padding-end: 6px;
+  background-color: #FFFFFF !important;
 }
 .v-list-item:hover {
-  background-color: #FFF7EC !important; /* ホバー時の背景色をオレンジに変更 */
+  background-color: #FFF7EC !important;
 }
 </style>

@@ -12,12 +12,14 @@
     <NuxtLink to="/user_services/user_create">ユーザー追加</NuxtLink>
     <NuxtLink to="/user_services/user_delete">ユーザー削除</NuxtLink>
     <NuxtLink to="/user_services/user_update">ユーザー編集</NuxtLink>
+            <sample />
   </div>
 </template>
 
 <script setup>
 import { onMounted, ref } from "vue";
 // import { UserService } from '~/services/UserService.js';
+import sample from '~/features/auth/billing/components/sample.vue';
 
 const users = ref([]);
 
