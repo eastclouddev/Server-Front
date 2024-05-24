@@ -63,6 +63,7 @@ function updatePassword(event) {
 }
 </script>
 
+
 <style lang="scss" scoped>
 .error {
   border: 1px solid red;
@@ -83,7 +84,7 @@ function updatePassword(event) {
 @media screen and (max-width: 768px) {
   .sp {
     &_label {
-      font-size: 1em !important;
+      font-size: 2em !important;
       padding-bottom: 2%;
     }
 
@@ -93,7 +94,7 @@ function updatePassword(event) {
   }
 
   .error_message {
-    font-size: 1em;
+    font-size: 1.5em;
   }
 }
 </style>
