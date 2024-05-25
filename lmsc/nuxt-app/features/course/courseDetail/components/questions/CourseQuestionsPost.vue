@@ -6,11 +6,11 @@
       padding: '32px',
     }"
   >
-  <div style="display: flex; align-items: center; font-size: 16px; margin-bottom: 16px;">
-    <p @click="$emit('switch-to-questions')" style="cursor: pointer; color: #FF5A36;">質問一覧</p>
-    <v-icon style="margin: 0 5px;">mdi-chevron-right</v-icon>
-    <p style="color: #FF5A36;">質問を投稿する</p>
-  </div>
+    <div style="display: flex; align-items: center; font-size: 16px; margin-bottom: 16px;">
+      <p @click="$emit('switch-to-questions')" style="cursor: pointer; color: #FF5A36;">質問一覧</p>
+      <v-icon style="margin: 0 5px;">mdi-chevron-right</v-icon>
+      <p style="color: #FF5A36;">質問を投稿する</p>
+    </div>
     <v-card-text>
       <h2 class="my-4">質問をする際の注意事項</h2>
       <ul class="ml-4">
@@ -21,46 +21,41 @@
       </ul>
       <hr class="border-t border-dashed my-10">
       <v-form @submit.prevent="submitQuestion">
-        <v-text-field
+        <TextInput
           v-model="newQuestion.title"
           label="タイトル"
-          variant="outlined"
-          required
+          placeholder="タイトルを入力してください"
           outlined
-          :rules="[rules.required]"
-        ></v-text-field>
-        <v-textarea
+          required
+        />
+        <TextArea
           v-model="newQuestion.goal"
           label="やりたいこと"
-          variant="outlined"
-          required
+          placeholder="やりたいことを入力してください"
           outlined
-          :rules="[rules.required]"
-        ></v-textarea>
-        <v-textarea
+          required
+        />
+        <TextArea
           v-model="newQuestion.currentState"
           label="現状"
-          variant="outlined"
-          required
+          placeholder="現状を入力してください"
           outlined
-          :rules="[rules.required]"
-        ></v-textarea>
-        <v-textarea
+          required
+        />
+        <TextArea
           v-model="newQuestion.researched"
           label="自分が調べたこと"
-          variant="outlined"
-          required
+          placeholder="自分が調べたことを入力してください"
           outlined
-          :rules="[rules.required]"
-        ></v-textarea>
-        <v-textarea
+          required
+        />
+        <TextArea
           v-model="newQuestion.content"
           label="質問内容"
-          variant="outlined"
-          required
+          placeholder="質問内容を入力してください"
           outlined
-          :rules="[rules.required]"
-        ></v-textarea>
+          required
+        />
         <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding: 10px; border-radius: 5px;">
           <OutlinedButton @click="selectFile" color="#FF5A36" textColor="#FF5A36" fontSize="16px" fontWeight="normal" icon="mdi-paperclip">ファイル選択</OutlinedButton>
           <!-- v-file-inputは非表示 -->
@@ -74,6 +69,8 @@
 
 <script setup>
 import { ref } from 'vue';
+import TextInput from '@/components/TextInput.vue';
+import TextArea from '@/components/TextArea.vue';
 import OutlinedButton from '@/components/OutlinedButton.vue';
 import SolidButton from '@/components/SolidButton.vue';
 
@@ -85,10 +82,6 @@ const newQuestion = ref({
   content: '',
   file: null,
 });
-
-const rules = {
-  required: value => !!value || '必須項目です',
-};
 
 const fileInput = ref(null);
 const selectFile = () => {
