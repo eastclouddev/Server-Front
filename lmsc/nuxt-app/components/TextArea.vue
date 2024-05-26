@@ -8,7 +8,7 @@
         <textarea
           :id="id"
           :value="value"
-          @input="$emit('update:value', $event.target.value)"
+          @input="onInput"
           :class="['outlined', { 'error-border': error }]"
           :placeholder="placeholder"
         ></textarea>
@@ -17,8 +17,10 @@
     </div>
   </template>
   
-  <script>
-  export default {
+  <script lang="ts">
+  import { defineComponent } from 'vue';
+  
+  export default defineComponent({
     name: 'TextArea',
     props: {
       value: {
@@ -46,7 +48,15 @@
         default: false,
       },
     },
-  }
+    methods: {
+      onInput(event: Event) {
+        const target = event.target as HTMLTextAreaElement | null;
+        if (target) {
+          this.$emit('update:value', target.value);
+        }
+      }
+    }
+  });
   </script>
   
   <style scoped>

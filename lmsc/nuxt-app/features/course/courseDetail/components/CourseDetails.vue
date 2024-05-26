@@ -19,7 +19,13 @@
                 />
               </v-window-item>
               <v-window-item value="questions">
-                <component :is="currentQuestionComponent" @switch-to-post="switchToQuestionPost" @switch-to-detail="switchToQuestionDetail" @switch-to-questions="switchToQuestions"  />
+                <component
+                  :is="currentQuestionComponent"
+                  @switch-to-post="switchToQuestionPost"
+                  @switch-to-detail="switchToQuestionDetail"
+                  @switch-to-questions="switchToQuestions"
+                  :questionList="props.questionList"
+                />
               </v-window-item>
               <v-window-item value="submissions">
                 <CourseSubmissions />
@@ -48,12 +54,10 @@ import CourseQuestions from "~/features/course/courseDetail/components/questions
 import CourseQuestionsPost from "~/features/course/courseDetail/components/questions/CourseQuestionsPost.vue";
 import CourseQuestionDetail from "~/features/course/courseDetail/components/questions/CourseQuestionDetail.vue";
 import CourseSubmissions from "@/features/course/courseDetail/components/CourseSubmissions.vue";
-import type { CourseDetailResponseBody } from "~/generated/api/@types";
+import type { CourseDetailResponseBody, QuestionCreateResponseBody, Schemas__curriculums__QuestionListResponseBody } from "~/generated/api/@types";
 import type { CourseDetail } from "../../types";
 
-// CourseDetailResponseBodyが修正されたらコメントアウトしている方を使用する
-// const props = defineProps<{ course: CourseDetailResponseBody | null }>();
-const props = defineProps<{ course: CourseDetail }>();
+const props = defineProps<{ course: CourseDetail, questionList: QuestionCreateResponseBody[] | null }>();
 
 const { smAndDown, mdAndUp } = useDisplay();
 const tab = ref("overview");
@@ -77,7 +81,7 @@ const switchToQuestionPost = () => {
   currentQuestionComponentRef.value = "post";
 };
 
-const switchToQuestionDetail = (questionId:number) => {
+const switchToQuestionDetail = (questionId: number) => {
   currentQuestionComponentRef.value = "detail";
   selectedQuestionId.value = questionId;
 };

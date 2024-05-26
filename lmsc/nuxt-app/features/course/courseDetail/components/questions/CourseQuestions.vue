@@ -30,10 +30,10 @@
           <v-select variant="outlined" :items="sortOptions" label="質問を絞り込む" dense></v-select>
         </v-col>
       </v-row>
-      <div class="mt-3 mb-2" style="font-weight: bold; font-size: 24px;">このコースに関する質問 ({{ questions.length }})</div>
+      <div class="mt-3 mb-2" style="font-weight: bold; font-size: 24px;">このコースに関する質問 ({{ questionList.length }})</div>
       <v-list style="background: none; padding: 10px;">
-        <template v-for="(question, index) in questions" :key="index">
-          <v-list-item class="mt-3 list-item-border" @click="$emit('switch-to-detail', question.id)">
+        <template v-for="(question, index) in questionList" :key="index">
+          <v-list-item class="mt-3 list-item-border" @click="$emit('switch-to-detail', question.question_id)">
             <v-row no-gutters>
               <v-col cols="auto">
                 <v-avatar>
@@ -50,11 +50,11 @@
                 </v-list-item-subtitle>
                 <v-list-item-subtitle class="d-flex justify-space-between align-center" style="opacity: 1 !important;">
                   <span>
-                    <span style="color: #FF5A36; margin-right: 10px;">{{ question.author }}</span>
-                    <span style="color: #B5B5B5;">{{ question.date }}</span>
+                    <span style="color: #FF5A36; margin-right: 10px;">{{ question.user_id }}</span>
+                    <span style="color: #B5B5B5;">{{ question.curriculum_id }}</span>
                   </span>
                   <div class="d-flex align-center">
-                    <span style="font-weight: bold;">{{ question.comments }}</span>
+                    <span style="font-weight: bold;">{{ question.media_content.length }}</span>
                     <img src="/assets/icons/comment.svg" alt="Comment" class="ml-2 opaque-icon" style="width: 20px; height: 20px;" />
                   </div>
                 </v-list-item-subtitle>
@@ -68,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { defineProps } from 'vue';
 import { useDisplay } from 'vuetify';
 
 // 必要な Vuetify コンポーネントをインポート
@@ -76,35 +76,7 @@ import { VAvatar, VListItem, VRow, VCol, VList, VCard, VCardText, VSelect, VSpac
 
 const { smAndDown } = useDisplay();
 
-const questions = ref([
-  {
-    id: 1,
-    title: 'コードについて。',
-    author: '山田 太郎',
-    date: '3日前',
-    content: 'コードが正しく反映されないのですが、どこが...',
-    comments: 2,
-    new: true,
-  },
-  {
-    id: 2,
-    title: 'コードについて。',
-    author: '山田 太郎',
-    date: '3日前',
-    content: 'コードが正しく反映されないのですが、どこが...',
-    comments: 2,
-    new: false,
-  },
-  {
-    id: 3,
-    title: 'コードについて。',
-    author: '山田 太郎',
-    date: '3日前',
-    content: 'コードが正しく反映されないのですが、どこが...',
-    comments: 2,
-    new: false,
-  },
-]);
+const props = defineProps<{ questionList: Array<any> }>();
 
 const filters = ['全カリキュラム', '現在のレクチャー'];
 const sortOptions = ['自分の質問', '未回答の質問'];
