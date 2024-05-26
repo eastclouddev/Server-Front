@@ -116,7 +116,12 @@ const submitQuestion = async () => {
     user_id: 1,
     title: newQuestion.value.title,
     content: questionContent,
-    media_content: newQuestion.value.file ? [{ url: newQuestion.value.file }] : [],
+    // media_content: newQuestion.value.file ? [{ url: newQuestion.value.file }] : [],
+    media_content: [
+    {
+      "url": "string"
+    }
+  ]
   };
   console.log('質問データ: ', questionData);
 
