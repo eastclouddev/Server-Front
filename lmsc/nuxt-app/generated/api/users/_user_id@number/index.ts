@@ -27,7 +27,7 @@ export type Methods = {
    */
   patch: {
     status: 200
-    reqBody: Types.UpdateRequestBody
+    reqBody: Types.UserUpdateRequestBody
   }
 
   /**
@@ -61,6 +61,6 @@ export type Methods = {
   get: {
     status: 200
     /** Successful Response */
-    resBody: Types.Schemas__users__DetailResponseBody
+    resBody: Types.UserDetailResponseBody
   }
 }

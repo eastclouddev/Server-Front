@@ -1,18 +1,41 @@
 <template>
-  <v-container style="margin:10% 0;">
-    <v-card flat class=" mx-auto" max-width="620">
-      <v-card-title class="pt-2 pb-2 pl-0" style="font-size: 1.6em; font-weight: bold;"
-        color="#242424">ログイン</v-card-title>
+  <v-container style="margin: 10% 0">
+    <v-card flat class="mx-auto" max-width="620" style="padding: 20px">
+      <v-card-title
+        class="pt-2 pb-2 pl-0"
+        style="font-size: 1.6em; font-weight: bold"
+        color="#242424"
+        >ログイン</v-card-title
+      >
       <v-divider class="#CFCFCF" thickness="1"></v-divider>
       <v-card-text>
         <v-form @submit.prevent="handleSubmit" class="content_box">
-          <v-card flat style="margin:10% 0;">
-            <EmailForm v-model="email" />
-            <PasswordForm v-model="password" />
+          <v-card flat style="margin: 10% 0">
+            <EmailInput
+              v-model="email"
+              :error-message="errors.email"
+              @blur="validateField('email')"
+            />
+            <PasswordInput
+              v-model="password"
+              :error-message="errors.password"
+              @blur="validateField('password')"
+            />
           </v-card>
-          <v-card flat style="text-align: center;">
-            <p class="pb-2">※パスワードを忘れた方は<a href="" target="_blank" color="#242424">こちら</a></p>
-            <Button type="submit" width="25rem" height="6ex" style="font-size: 1.5em;" buttonText=" ログイン"></Button>
+          <v-card flat style="text-align: center">
+            <p class="pb-2">
+              ※パスワードを忘れた方は<a href="" target="_blank" color="#242424"
+                >こちら</a
+              >
+            </p>
+            <Button
+              type="submit"
+              width="25rem"
+              height="6ex"
+              style="font-size: 1.5em"
+              buttonText=" ログイン"
+              :disabled="isSubmitting || !isValid"
+            ></Button>
           </v-card>
         </v-form>
       </v-card-text>
@@ -21,33 +44,98 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, computed, onMounted } from 'vue'
+import { useNuxtApp, useRouter } from '#app'
+import { useField, useForm } from 'vee-validate'
+import { schema } from '~/features/auth/login/schema'
+import EmailInput from '~/components/EmailInput.vue'
+import PasswordInput from '~/components/PasswordInput.vue'
+import Button from '~/components/Button.vue'
+import platform from 'platform'
+import { v4 as uuidv4 } from 'uuid'
+import { useUserStore } from '@/store/user'
 
-const email = ref('');
-const password = ref('');
-const router = useRouter();
+const { $api } = useNuxtApp()
+const router = useRouter()
+const userStore = useUserStore()
 
-const handleSubmit = () => {
-  console.log('email:', email.value, 'password:', password.value);
-  // ログイン成功
-  router.push('/dashboard');
+const isSubmitting = ref(false)
+const deviceInfo = ref({ device_type: '', device_name: '', uuid: '' })
+
+onMounted(() => {
+  deviceInfo.value = {
+    device_type: platform.os.family || 'Unknown',
+    device_name: platform.name || 'Unknown',
+    uuid: uuidv4(),
+  }
+})
+
+const { errors, validate, validateField } = useForm({
+  validationSchema: schema,
+})
+
+const { value: email } = useField('email')
+const { value: password } = useField('password')
+
+const isValid = computed(() => Object.keys(errors.value).length === 0)
+
+const handleSubmit = async () => {
+  isSubmitting.value = true
+  const valid = await validate()
+  if (!valid) {
+    isSubmitting.value = false
+    return
+  }
+
+  console.log('email.value:', email.value)
+  console.log('password.value:', password.value)
+  console.log('deviceInfo:', deviceInfo.value)
+
+  try {
+    const response = await $api.login.$post({
+      body: {
+        email: email.value,
+        password: password.value,
+        device_info: deviceInfo.value,
+      },
+      config: {
+        withCredentials: true,
+      },
+    })
+
+    // TODO: ログイン成功時のメッセージ表示処理などを記述する
+    console.log('Login succeeded:', response)
+
+    const user = {
+      user: { id: response.user_id, role: response.role },
+      isAuthenticated: true,
+    }
+    userStore.setUser(user)
+
+    await router.push('/')
+  } catch (error) {
+    // TODO: エラーメッセージの表示などの処理を行う
+    console.error('Login failed:', error)
+  } finally {
+    isSubmitting.value = false
+  }
 }
 </script>
-<style lang="scss" scoped>
 
+<style lang="scss" scoped>
+.error {
+  border: 1px solid red;
+  border-radius: 5px;
+}
+
+.error_message {
+  color: #ff0000;
+  font-size: 0.75em;
+  text-align: left;
+}
 @media screen and (max-width: 768px) {
-  .content {
-    &_title {
-      font-size: 2.5em;
-      padding: 2.5% 0;
-    }
-    &_text {
-      font-size: 1.4em;
-    }
-  }
-  .formwrap{
-    margin: 10% 5%;
+  .error_message {
+    font-size: 1em;
   }
 }
 </style>

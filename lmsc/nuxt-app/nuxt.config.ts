@@ -1,5 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import VuetifyPlugin from 'vite-plugin-vuetify';
+import VuetifyPlugin from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
   devtools: {
@@ -19,11 +19,15 @@ export default defineNuxtConfig({
   },
   css: ['vuetify/styles'],
   build: {
-    transpile: ['vuetify'],
+    transpile: ['vuetify', '@types/platform', '@types/uuid'],
   },
   components: [
     {
       path: '@/components/',
+      pathPrefix: false,
+    },
+    {
+      path: '~/features/**/components',
       pathPrefix: false,
     },
   ],
@@ -36,5 +40,8 @@ export default defineNuxtConfig({
     },
     plugins: [VuetifyPlugin()],
   },
-  plugins: ["~/plugins/api"],
-});
+  plugins: ['~/plugins/api'],
+  dir: {
+    middleware: 'middleware',
+  },
+})
