@@ -1,110 +1,97 @@
 <template>
-    <div class="inner">
-      <label class="inner_item mb-2" style="font-weight: bold;" v-if="label">
-        {{ label }}
-        <span v-if="required" class="required-tooltip">必須</span>
-      </label>
-      <div>
-        <textarea
-          :id="id"
-          :value="value"
-          @input="onInput"
-          :class="['outlined', { 'error-border': error }]"
-          :placeholder="placeholder"
-        ></textarea>
-        <p class="errorMessage" v-if="error">{{ error }}</p>
-      </div>
+  <div class="inner">
+    <label class="inner_item mb-2" style="font-weight: bold;" v-if="label">
+      {{ label }}
+      <span v-if="required" class="required-tooltip">必須</span>
+    </label>
+    <div>
+      <v-textarea
+        :model-value="modelValue"
+        @update:modelValue="updateValue"
+        :id="id"
+        :class="['outlined', { 'error-border': error }]"
+        :placeholder="placeholder"
+        :outlined="outlined"
+        :error="!!error"
+        :required="required"
+      />
+      <p class="errorMessage" v-if="error">{{ error }}</p>
     </div>
-  </template>
-  
-  <script lang="ts">
-  import { defineComponent } from 'vue';
-  
-  export default defineComponent({
-    name: 'TextArea',
-    props: {
-      value: {
-        type: String,
-        default: '',
-      },
-      label: {
-        type: String,
-        default: '',
-      },
-      id: {
-        type: String,
-        default: '',
-      },
-      placeholder: {
-        type: String,
-        default: '',
-      },
-      error: {
-        type: String,
-        default: '',
-      },
-      required: {
-        type: Boolean,
-        default: false,
-      },
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+  name: 'TextArea',
+  props: {
+    modelValue: {
+      type: String,
+      default: '',
     },
-    methods: {
-      onInput(event: Event) {
-        const target = event.target as HTMLTextAreaElement | null;
-        if (target) {
-          this.$emit('update:value', target.value);
-        }
-      }
+    label: {
+      type: String,
+      default: '',
+    },
+    id: {
+      type: String,
+      default: '',
+    },
+    placeholder: {
+      type: String,
+      default: '',
+    },
+    error: {
+      type: String,
+      default: '',
+    },
+    required: {
+      type: Boolean,
+      default: false,
+    },
+    outlined: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  methods: {
+    updateValue(value: string) {
+      this.$emit('update:modelValue', value);
     }
-  });
-  </script>
-  
-  <style scoped>
-  .inner {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 16px;
-  
-    &_item {
-      color: #242424;
-      margin-bottom: 8px;
-    }
   }
-  
-  .required-tooltip {
-    display: inline-block;
-    background-color: #FF5A36;
-    color: white;
-    padding: 2px 6px;
-    border-radius: 3px;
-    margin-left: 8px;
-    font-size: 12px;
+});
+</script>
+
+<style scoped>
+.inner {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+
+  &_item {
+    color: #242424;
+    margin-bottom: 8px;
   }
-  
-  textarea {
-    height: 100px;
-    width: 100%;
-    border-radius: 5px;
-    padding: 18px;
-    margin-bottom: 10px;
-    background-color: #FFFFFF;
-    outline: none;
-    border: 1px solid #ccc;
-    resize: vertical;
-  }
-  
-  textarea.outlined {
-    border: 1px solid #ccc;
-  }
-  
-  .error-border {
-    border: 1px solid #FF0000;
-  }
-  
-  .errorMessage {
-    font-size: 12px;
-    color: #FF0000;
-    margin: 0;
-  }
-  </style>
-  
+}
+
+.required-tooltip {
+  display: inline-block;
+  background-color: #FF5A36;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-left: 8px;
+  font-size: 12px;
+}
+
+.error-border {
+  border: 1px solid #FF0000;
+}
+
+.errorMessage {
+  font-size: 12px;
+  color: #FF0000;
+  margin: 0;
+}
+</style>

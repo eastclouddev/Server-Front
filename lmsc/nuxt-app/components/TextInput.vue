@@ -5,13 +5,16 @@
       <span v-if="required" class="required-tooltip">必須</span>
     </label>
     <div>
-      <input
+      <v-text-field
+        :model-value="modelValue"
+        @update:modelValue="updateValue"
         :type="type"
         :id="id"
-        :value="value"
-        @input="$emit('update:value', $event.target.value)"
         :class="['outlined', { 'error-border': error }]"
         :placeholder="placeholder"
+        :outlined="outlined"
+        :error="!!error"
+        :required="required"
       />
       <p class="errorMessage" v-if="error">{{ error }}</p>
     </div>
@@ -22,7 +25,7 @@
 export default {
   name: 'TextInput',
   props: {
-    value: {
+    modelValue: {
       type: String,
       default: '',
     },
@@ -50,7 +53,16 @@ export default {
       type: Boolean,
       default: false,
     },
+    outlined: {
+      type: Boolean,
+      default: true,
+    },
   },
+  methods: {
+    updateValue(value) {
+      this.$emit('update:modelValue', value);
+    }
+  }
 }
 </script>
 
@@ -74,21 +86,6 @@ export default {
   border-radius: 3px;
   margin-left: 8px;
   font-size: 12px;
-}
-
-input {
-  height: 51px;
-  width: 100%;
-  border-radius: 5px;
-  padding: 0 18px;
-  margin-bottom: 10px;
-  background-color: #FFFFFF;
-  outline: none;
-  border: 1px solid #ccc;
-}
-
-input.outlined {
-  border: 1px solid #ccc;
 }
 
 .error-border {

@@ -67,12 +67,14 @@
   </v-card>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 import TextInput from '@/components/TextInput.vue';
 import TextArea from '@/components/TextArea.vue';
 import OutlinedButton from '@/components/OutlinedButton.vue';
 import SolidButton from '@/components/SolidButton.vue';
+import { useCreateQuestion } from '@/features/course/api/createQuestion';
 
 const newQuestion = ref({
   title: '',
@@ -83,15 +85,52 @@ const newQuestion = ref({
   file: null,
 });
 
-const fileInput = ref(null);
-const selectFile = () => {
-  if (fileInput.value) {
-    fileInput.value.$el.querySelector('input').click();
-  }
-}
+const route = useRoute();
+const curriculumId = Number(route.params.curriculumId) || 1;
 
-const submitQuestion = () => {
-  // 質問の送信処理を実装
-  console.log(newQuestion.value);
+const fileInput = ref<HTMLInputElement | null>(null);
+const selectFile = () => {
+  fileInput.value?.click();
+};
+
+const { mutate: createQuestion } = useCreateQuestion();
+
+const submitQuestion = async () => {
+  console.log('フォームのデータ: ', newQuestion.value);
+
+  const questionContent = `
+    【やりたいこと】
+    ${newQuestion.value.goal}
+
+    【現状】
+    ${newQuestion.value.currentState}
+
+    【自分が調べたこと】
+    ${newQuestion.value.researched}
+
+    【質問内容】
+    ${newQuestion.value.content}
+  `;
+
+  const questionData = {
+    user_id: 1,
+    title: newQuestion.value.title,
+    content: questionContent,
+    media_content: newQuestion.value.file ? [{ url: newQuestion.value.file }] : [],
+  };
+  console.log('質問データ: ', questionData);
+
+  createQuestion({ curriculumId, questionData }, {
+    onSuccess: () => {
+      console.log('質問が投稿されました');
+    },
+    onError: (error: any) => {
+      if (error.response) {
+        console.error('エラーが発生しました', error.response.data);
+      } else {
+        console.error('エラーが発生しました', error.message);
+      }
+    }
+  });
 };
 </script>

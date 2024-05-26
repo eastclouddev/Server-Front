@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import VuetifyPlugin from "vite-plugin-vuetify";
+import { VueQueryPlugin } from '@tanstack/vue-query';
 
 export default defineNuxtConfig({
   devtools: {
@@ -47,5 +48,5 @@ export default defineNuxtConfig({
     },
     plugins: [VuetifyPlugin()],
   },
-  plugins: ["~/plugins/api", "~/plugins/vuetify"],
+  plugins: ["~/plugins/api", "~/plugins/vuetify", "~/plugins/vue-query"],
 });
