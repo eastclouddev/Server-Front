@@ -1,5 +1,5 @@
 <template>
-  <v-btn class="custom_btn" color="#FF5A36" style="font-weight: bold;">
+  <v-btn class="custom_btn" width="25rem" height="6ex" style="font-weight: bold;">
     {{ buttonText }}
   </v-btn>
 </template>
@@ -9,7 +9,7 @@ export default {
     buttonText: {
       type: String,
       required: true
-    }
+    },
   }
 };
 </script>
@@ -17,5 +17,10 @@ export default {
 .custom_btn::before {
   background-color: #FF8573;
 }
-
+@media screen and (max-width: 768px) {
+  Button {
+      width: 35rem!important;
+      height: 6ex;
+    }
+}
 </style>

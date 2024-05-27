@@ -1,35 +1,24 @@
 <template>
-  <v-container class="ma-0 d-flex justify-center">
-    <v-card flat class=" d-flex align-center" height="50">
-      <v-checkbox v-model="checkbox">
-        <template v-slot:label>
-          <a class="sp_text" @click="termsModal = true" style="cursor: pointer; text-decoration: underline; color: #242424;">利用規約</a>
-          <p class="sp_text" style="color: #242424;">を確認する。</p>
-        </template>
-      </v-checkbox>
-    </v-card>
-    <v-dialog v-model="termsModal" max-width="760" height="475" @input="checkbox = termsModal">
-      <v-card class="pa-5 ma-5" color="#F5F5F5">
-        <v-card class="pa-5 ma-5" title="利用規約" style="max-height: 300px; overflow-y: auto;">
-          <v-card-text>
-            <v-list class="pa-0">
-              <v-list-item v-for="(item, index) in items" :key="'item-' + index" class="mb-4 pa-0">
-                <v-list-item-title class="mb-1">
-                  <span>{{ item.id }}</span><span>{{ item.heading }}</span>
-                </v-list-item-title>
-                <div>{{ item.body }}</div>
-              </v-list-item>
-            </v-list>
-          </v-card-text>
-        </v-card>
-        <v-card-actions class="mx-auto">
-          <v-spacer></v-spacer>
-          <Button color="#FF5136" style="background-color: #FFFFFF;" variant="outlined" buttonText="閉じる"
-            @click="termsModal = false">
-          </Button>
-        </v-card-actions>
+  <v-container class="sp_content" style="margin:10% auto;" max-width="760">
+    <v-card flat>
+      <v-card-title class="pt-2 pb-2 pl-0" style="font-size: 1.6em; font-weight: bold;" color="#242424">
+        プライバシーポリシー
+      </v-card-title>
+      <v-divider class="#CFCFCF" thickness="1"></v-divider>
+      <v-card flat style="margin:5% 0;" class="mx-auto text-center">
+        <v-list class="pa-0 mb-8 text-left">
+          <v-list-item v-for="(item, index) in items" :key="'item-' + index" class="mb-4 pa-0">
+            <v-list-item-title class="mb-1" style="font-size: 1.6em; font-weight: bold;">
+              <span style="color:#FF5136;">{{ item.id }}</span> <span>{{ item.heading }}</span>
+            </v-list-item-title>
+            <div>{{ item.body }}</div>
+          </v-list-item>
+        </v-list>
+        <Button color="#FF5136" variant="outlined" buttonText="戻る" @click="goBack"></Button>
       </v-card>
-    </v-dialog>
+
+    </v-card>
+
   </v-container>
 </template>
 
@@ -37,9 +26,6 @@
 export default {
   data() {
     return {
-      checkbox: false,
-      termsModal: false,
-
       items: [
         {
           id:'1',
@@ -77,30 +63,22 @@ export default {
           body: '本規約または本サービスの利用に関連して発生した紛争については、当プラットフォームの所在地を管轄する法院の専属的合意管轄とします。'
         },
       ]
-    };
-  }
-};
-</script>
-<style lang="scss" scoped>
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #FF5136;
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-track {
-  background-color: #f5f5f5;
-}
-
-@media screen and (max-width: 768px) {
-  .sp {
-    &_text {
-      font-size: 1.4em;
+    }
+  },
+  methods: {
+    goBack() {
+      this.$router.go(-1);
     }
   }
 }
+</script>
+<style lang="scss" scoped>
+@media screen and (max-width: 768px) {
+  .sp {
+    &_content {
+      width: 620px;
+      margin: 0 auto;
+    }
+}
+}
 </style>
-

@@ -8,5 +8,5 @@
   </v-container>
 </template>
 <script setup>
-import LoginForm from '~/features/auth/login/LoginForm.vue'
+import LoginFormSample from "~/features/auth/login/LoginFormSample.vue";
 </script>

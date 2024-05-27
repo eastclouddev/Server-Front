@@ -42,7 +42,6 @@
     </v-card>
   </v-container>
 </template>
-
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useNuxtApp, useRouter } from '#app'

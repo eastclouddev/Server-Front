@@ -41,6 +41,8 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@aspida/axios": "^1.14.0",
+    "@aspida/fetch": "^1.14.0",
     "@types/cors": "^2.8.17",
     "cors": "^2.8.5",
     "openapi2aspida": "^0.23.2",
