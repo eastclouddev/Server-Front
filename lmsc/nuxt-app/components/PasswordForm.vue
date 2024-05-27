@@ -1,28 +1,24 @@
 <template>
-  <v-container class="d-flex justify-space-between">
-    <v-row class="align-center">
-      <v-col class="text-left text-md-left">
-        <label style="font-size: 1em; font-weight: bold;" color="#242424">パスワード</label>
-      </v-col>
-      <v-col class="text-center text-md-right">
-        <v-card flat class="d-flex flex-column" width="25rem">
-          <v-sheet :class="{ 'error': errors.password }" class="my-0 pr-4 pb-4 pl-4" color="#EBEBEB">
-            <v-text-field hide-details="auto" placeholder="パスワードを入力" variant="plain"
-              :type="showPassword ? 'text' : 'password'" v-model="password">
-              <template #append>
-                <v-icon @click="showPassword = !showPassword">{{ showPassword ? 'mdi-eye-off' : 'mdi-eye' }}</v-icon>
-              </template>
-            </v-text-field>
-          </v-sheet>
-          <p class="error_message">{{ errors.password }}</p>
-        </v-card>
-      </v-col>
+  <v-container>
+    <v-row class="align-center justify-space-between flex-column-sm">
+      <label class="sp_label" style="font-weight: bold;">{{ label }}</label>
+      <v-card flat class="d-flex flex-column sp_field" width="25rem">
+        <v-sheet :class="{ 'error': errors.password }" class="my-0 pr-4 pb-4 pl-4" color="#EBEBEB">
+          <v-text-field hide-details="auto" :placeholder="placeholder" variant="plain" class="mb-"
+            :type="showPassword ? 'text' : 'password'" :value="modelValue" @input="updatePassword" full-width>
+            <template #append>
+              <v-icon @click="togglePasswordVisibility">{{ showPassword ? 'mdi-eye-off' : 'mdi-eye' }}</v-icon>
+            </template>
+          </v-text-field>
+        </v-sheet>
+        <p class="error_message">{{ errors.password }}</p>
+      </v-card>
     </v-row>
   </v-container>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed, defineProps, defineEmits } from 'vue';
 import { useField, useForm } from 'vee-validate';
 import { object, string, setLocale } from 'yup';
 
@@ -32,12 +28,19 @@ setLocale({
   },
 });
 
+const props = defineProps({
+  modelValue: String,
+  label: String,
+  placeholder: String
+});
+const emits = defineEmits(['update:modelValue']);
+
 const schema = object({
   password: string()
     .required()
     .matches(/^[a-zA-Z0-9]{8,14}$/, 'パスワードは半角英数字のみ使用できます。')
-    .min(8, 'パスワードは少なくとも8文字必要です。')
-    .max(14, 'パスワードは14文字以下である必要があります。')
+    .min(8, 'パスワードは8文字以上14文字以内で入力してください。')
+    .max(14, 'パスワードは8文字以上14文字以内で入力してください。')
     .label('パスワード'),
 });
 const { errors } = useForm({
@@ -46,7 +49,17 @@ const { errors } = useForm({
 const { value: password } = useField('password');
 
 const showPassword = ref(false);
+
+function togglePasswordVisibility() {
+  showPassword.value = !showPassword.value;
+}
+
+function updatePassword(event) {
+  password.value = event.target.value;
+  emits('update:modelValue', event.target.value); // 親コンポーネントに入力値を通知
+}
 </script>
+
 <style lang="scss" scoped>
 .error {
   border: 1px solid red;
@@ -57,21 +70,22 @@ const showPassword = ref(false);
   color: #FF0000;
   font-size: 0.75em;
   text-align: left;
+  padding: 1% 0;
 }
 @media screen and (max-width: 768px) {
-  .form {
-    display: flex;
-    flex-direction: column;
-      &_label {
-        font-size: 2em;
-        margin-bottom: 20px;
-        }
-      &_input {
-        width: 548px;
-      }
+  .sp {
+    &_label {
+      font-size: 2em !important;
+      padding-bottom: 2%;
+    }
+
+    &_field {
+      width: 100% !important;
+    }
   }
+
   .error_message {
-    font-size: 1em;
+    font-size: 1.5em;
   }
 }
 </style>
