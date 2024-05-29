@@ -1,21 +1,12 @@
 <template>
   <div>
-    <header class="header">
-      <div class="item"><img src="../assets/idemy_logo.svg" alt="logo"></div>
-    </header>
+    <v-toolbar color="#FFFFFF" elevation="1">
+      <v-btn class="button_icon" to="/login">
+        <img src="../assets/idemy_logo.svg" width="100%">
+      </v-btn>
+      <v-spacer></v-spacer>
+      <NotifiCation />
+      <HamburgerMenu />
+    </v-toolbar>
   </div>
 </template>
-<style lang="scss" scoped>
-.header {
-  height: 46px;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #BFBFBF;
-  padding: 0 100px;
-  &_item {
-    img {
-      width: 50%;
-    }
-  }
-}
-</style>

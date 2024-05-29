@@ -1,17 +1,13 @@
 <template>
-  <div>
-    <footer class="footer">
-      <small>&copy; iDemy All Rights Reserved</small>
-    </footer>
-  </div>
+  <v-footer dark absolute>
+    <div class="footer">
+      &copy;iDemy All Rights Reserved
+    </div>
+  </v-footer>
 </template>
 <style lang="scss" scoped>
 .footer {
-  height: 30px;
-  text-align: center;
-  small {
-    font-size: 12px;
-  }
+  margin: auto;
+  height: auto;
 }
-
 </style>
