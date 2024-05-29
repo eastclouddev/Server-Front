@@ -14,17 +14,25 @@
     </v-breadcrumbs>
 
     <v-card class="pt-8 pb-8" color="#F5F5F5">
-      <FilterComponent
-        :categories="categories"
-        v-model:selectedCategory="selectedCategory"
-        @category-change="onCategoryChange"
-      />
+      <div class="d-flex">
+        <FilterComponent
+          :categories="categories"
+          v-model:selectedCategory="selectedCategory"
+          @category-change="onCategoryChange"
+        />
+        <SortComponent
+          v-model:selectedOrder="selectedOrder"
+          :orderOptions="orderOptions"
+          @order-change="onOrderChange"
+        />
+      </div>
+
       <v-sheet width="90%" class="mx-auto" color="#F5F5F5">
         <div v-if="filteredItems.length === 0">
           <p>該当する質問はありません。</p>
         </div>
-        <div v-else >
-          <v-card flat v-for="(item, index) in filteredItems" :key="index" class="pa-8 mb-7">
+        <div v-else>
+          <v-card flat v-for="(item, index) in sortedItems" :key="index" class="pa-8 mb-7">
             <div class="d-flex justify-space-between">
               <p style="width:10rem; color:#FF5A36;" class="sp_categoly">{{ item.category }}</p>
               <div class="d-flex justify-end ml-auto pb-3 sp_status">
@@ -35,7 +43,7 @@
             <div>
               <p style="width:10rem; font-weight:bold;" class="mb-2 sp_categoly">{{ item.title }}</p>
               <div class="d-flex justify-space-between">
-                <NuxtLink to="/questiondetail" :style="{ color: '#242424', textDecoration: 'none' }">
+                <NuxtLink :to="`/question/${item.id}`" :style="{ color: '#242424', textDecoration: 'none' }">
                   {{ truncateText(item.message, 32) }}
                 </NuxtLink>
                 <div class="d-flex">
@@ -53,13 +61,20 @@
 
 <script>
 import FilterComponent from './FilterComponent.vue';
+import SortComponent from './SortComponent.vue';
 
 export default {
   components: {
-    FilterComponent
+    FilterComponent,
+    SortComponent
   },
   data() {
     return {
+      selectedOrder: 'asc',
+      orderOptions: [
+        { text: '昇順', value: 'asc' },
+        { text: '降順', value: 'desc' },
+      ],
       selectedCategory: null,
       items: [
         {
@@ -101,12 +116,12 @@ export default {
         },
         {
           id: '5',
-          title:'コードについて',
+          title:'コードについてあああああああ',
           message: 'コードが正しく反映されないのですが、どこのコードが正しく反映されないのでしょうか？',
           category: 'Obj-c',
           status1: '解決済',
           post: 2,
-          date: '2024-05-0T10:45:00',
+          date: '2024-05-05T10:45:00',
         },
       ],
       breadcrumbs: [
@@ -128,7 +143,16 @@ export default {
     filteredItems() {
       return this.items.filter(item => {
         const categoryMatch = !this.selectedCategory || item.category === this.selectedCategory;
-        return categoryMatch ;
+        return categoryMatch;
+      });
+    },
+    sortedItems() {
+      return this.filteredItems.slice().sort((a, b) => {
+        if (this.selectedOrder === 'asc') {
+          return new Date(a.date) - new Date(b.date);
+        } else {
+          return new Date(b.date) - new Date(a.date);
+        }
       });
     }
   },
@@ -136,7 +160,9 @@ export default {
     onCategoryChange(category) {
       this.selectedCategory = category;
     },
-
+    onOrderChange(order) {
+      this.selectedOrder = order;
+    },
     truncateText(text, maxLength) {
       if (text.length > maxLength) {
         return text.substring(0, maxLength) + '...';
@@ -160,6 +186,7 @@ export default {
   }
 }
 </script>
+
 
 <style lang="scss" scoped>
 .unread {
@@ -216,7 +243,7 @@ export default {
     margin-bottom: 5px;
   }
   .unresolved {
-     margin-bottom: 5px;
+    margin-bottom: 5px;
   }
 }
 </style>

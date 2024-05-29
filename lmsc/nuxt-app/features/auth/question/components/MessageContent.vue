@@ -16,77 +16,11 @@
           </template>
         </v-breadcrumbs>
 
-        <v-card flat class="pa-7 d-flex align-start mx-auto" width="85%" color="#FFF7EC">
-          <img src="@/assets/accountcircle.svg" alt="" width="50px">
-          <v-list class="pa-0" width="35rem">
-            <v-list-item
-              v-for="(thread, index) in threads"
-              :key="index"
-              class="d-flex flex-column align-start"
-            >
-              <v-list-item-content>
-                <v-list-item-title style="font-weight:bold;">{{ thread.title }}</v-list-item-title>
-                <ul class="pt-8 pb-5">
-                  <li class="pb-5">
-                    <h4>やりたいこと</h4>
-                    <p>{{ thread.objective }}</p>
-                  </li>
-                  <li class="pb-5">
-                    <h4>現状</h4>
-                    <p>{{ thread.current_situation }}</p>
-                  </li>
-                  <li class="pb-5">
-                    <h4>自分が調べたこと</h4>
-                    <p>{{ thread.research }}</p>
-                  </li>
-                  <li class="pb-5">
-                    <h4>質問内容</h4>
-                    <p>{{ thread.content }}</p>
-                  </li>
-                </ul>
-              
-                <div class="d-flex align-center pb-15">
-                  <p class="pr-5" style="color:#FF5A36;">{{ thread.student_id }}</p>
-                  <span style="font-size:0.8em; color:#BFBFBF;">{{ calculateTime(thread.date) }}</span>
-                </div>
-              </v-list-item-content>
-              <v-divider class="#CFCFCF" thickness="1"></v-divider>
-
-              <v-list-item-content>
-                <h4 style="font-weight:bold;" class="pt-5">{{ thread.messages.length }}件の返信</h4>
-                <v-list v-if="thread.messages && thread.messages.length">
-                  <v-list-item
-                    v-for="(message, msgIndex) in thread.messages"
-                    :key="msgIndex"
-                    class="pl-5 d-flex align-start"
-                  >
-                    <v-list-item-content>
-                      <div class="d-flex align-start">
-                        <img src="@/assets/accountcircle.svg" alt="">
-                        <div class="pa-2">
-                          <v-list-item-title style="font-weight:bold;" class="pb-5">{{ message.title }}</v-list-item-title>
-                          <v-list-item-text>
-                              <span v-if="!message.expanded">
-                                {{ truncateText(message.content) }}
-                              </span>
-                              <span v-else>
-                                {{ message.content }}
-                              </span>
-                              <a @click="toggleMore(message)" class="more-link">
-                                {{ message.expanded ? '閉じる' : 'もっと見る' }}
-                              </a>
-                          </v-list-item-text>
-                          <div class="d-flex align-center pb-8 pt-4">
-                            <p class="pr-5" style="color:#FF5A36;">{{ message.author }}</p>
-                            <p style="font-size:0.8em; color:#BFBFBF;">{{ calculateTime(message.date) }}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-list>
-              </v-list-item-content>
-            </v-list-item>
+        <v-card flat class="pa-7 mx-auto" color="#FFF7EC">
+          <v-list class="pa-0">
+            <ThreadItem
+              v-for="(thread, index) in threads" :key="index"
+              :thread="thread"/>
           </v-list>
         </v-card>
       </v-sheet>
@@ -95,7 +29,12 @@
 </template>
 
 <script>
+import ThreadItem from '~/components/ThreadItem.vue';
+
 export default {
+  components: {
+    ThreadItem,
+  },
   data() {
     return {
       breadcrumbs: [
@@ -125,6 +64,7 @@ export default {
           date: '2024-05-20',
           messages: [
             {
+              icon: '/assets/accountcircle.svg',
               author: '山田太郎',
               title: 'コードについて',
               content: 'コードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、どこがどこがコードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、',
@@ -132,6 +72,7 @@ export default {
               expanded: false,
             },
             {
+              icon: '/assets/accountcircle.svg',
               author: '山田太郎',
               title: 'コードについて',
               content: 'コードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、どこがどこがコードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、',
@@ -143,39 +84,6 @@ export default {
       ],
     };
   },
-  methods: {
-    calculateTime(date) {
-      const now = new Date();
-      const postDate = new Date(date);
-      const diff = now - postDate;
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      return `${days}日前`;
-    },
-    isTruncated(content) {
-      return content.length > 60;
-    },
-    truncateText(content) {
-      return content.substring(0, 60) + '...';
-    },
-    toggleMore(message) {
-      message.expanded = !message.expanded;
-    },
-  },
 };
 </script>
 
-<style lang="scss" scoped>
-.v-list-item--density-default:not(.v-list-item--nav).v-list-item--one-line{
-  background-color: #FFF7EC;
-}
-.v-list {
-  background-color: #FFF7EC !important;
-  padding: 15px;
-}
-.more-link{
-  cursor: pointer;
-  text-decoration: underline;
-  display: inline-block;
-  float: right;
-}
-</style>

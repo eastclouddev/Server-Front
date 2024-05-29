@@ -5,10 +5,8 @@
     </Head>
     <v-container>
       <QuestionSummary />
-      <sample />
     </v-container>
 </template>
 <script setup>
 import QuestionSummary from '~/features/auth/question/components/QuestionSummary.vue';
-import sample from '~/features/auth/question/components/sample.vue';
 </script>
