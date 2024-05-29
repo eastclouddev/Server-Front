@@ -1,44 +1,47 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import VuetifyPlugin from "vite-plugin-vuetify";
+import VuetifyPlugin from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
   devtools: {
     enabled: true,
   },
-  modules: ["@pinia/nuxt"],
+  modules: ['@pinia/nuxt'],
   ssr: true,
   app: {
-    baseURL: "/",
-    cdnURL: "",
+    baseURL: '/',
+    cdnURL: '',
     head: {
       meta: [
-        { charset: "utf-8" },
-        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       ],
     },
   },
-  css: ["vuetify/styles"],
+  css: ['vuetify/styles'],
   build: {
-    transpile: ["vuetify"],
+    transpile: ['vuetify', '@types/platform', '@types/uuid'],
   },
   components: [
     {
-      path: "@/components/",
+      path: '@/components/',
       pathPrefix: false,
     },
     {
-      path: "~/features/**/components",
+      path: '~/features/**/components',
       pathPrefix: false,
     },
   ],
   vite: {
     ssr: {
-      noExternal: ["vuetify"],
+      noExternal: ['vuetify'],
     },
     define: {
-      "process.env.DEBUG": false,
+      'process.env.DEBUG': false,
     },
     plugins: [VuetifyPlugin()],
   },
-  plugins: ["~/plugins/api"],
-});
+  plugins: ['~/plugins/api'],
+  dir: {
+    middleware: 'middleware',
+  },
+})

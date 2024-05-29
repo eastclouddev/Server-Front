@@ -1,0 +1,51 @@
+<template>
+  <v-container>
+    <v-row class="align-center justify-space-between pb-4" v-for=" item in items" :key="item.id">
+      <label class="sp_label" style="font-size: 1em; font-weight: bold;">{{ item.label }}</label>
+      <v-card flat class="sp_field d-flex flex-column" width="25rem">
+        <v-sheet class="my-0 pr-4 pb-4 pl-4" color="#EBEBEB">
+          <v-text-field hide-details="auto" placeholder="API取得" variant="plain"
+            v-model="password" full-width disabled></v-text-field>
+        </v-sheet>
+      </v-card>
+    </v-row>
+  </v-container>
+</template>
+
+<script setup>
+const items = [
+  {
+    label: "お名前",
+    data: "API取得データ"
+  },
+  {
+    label: "フリガナ",
+    data: "API取得データ"
+  },
+  {
+    label: "メールアドレス",
+    data: "API取得データ"
+  },
+];
+
+</script>
+<style lang="scss" scoped>
+@media screen and (max-width: 768px) {
+.sp {
+  &_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  &_label {
+    font-size: 2em !important;
+    padding-bottom: 2%;
+  }
+  &_field {
+    width: 100% !important;
+  }
+}
+}
+</style>
+
+
