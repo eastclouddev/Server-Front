@@ -5,8 +5,8 @@
     item-text="text"
     item-value="value"
     label="並び替え"
-    clearable
     class="mr-4"
+    variant="outlined"
     @change="onOrderChange"
   ></v-select>
 </template>
@@ -46,9 +46,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.mr-4 {
-  margin-right: 1rem;
-}
-</style>

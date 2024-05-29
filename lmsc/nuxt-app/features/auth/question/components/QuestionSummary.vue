@@ -14,18 +14,21 @@
     </v-breadcrumbs>
 
     <v-card class="pt-8 pb-8" color="#F5F5F5">
-      <div class="d-flex">
-        <FilterComponent
-          :categories="categories"
-          v-model:selectedCategory="selectedCategory"
-          @category-change="onCategoryChange"
-        />
-        <SortComponent
-          v-model:selectedOrder="selectedOrder"
-          :orderOptions="orderOptions"
-          @order-change="onOrderChange"
-        />
-      </div>
+      <v-sheet max-width="90%" class="mx-auto d-flex" color="#F5F5F5">
+        <FilterSelect
+            v-model="selectedCategorie"
+            :filterOptions="categorie"
+            placeholderText="カテゴリ"
+            @filter-change="filterData"
+          />
+        
+          <FilterSelect
+            v-model="selectedSort"
+            :filterOptions="sort"
+            placeholderText="ソート"
+            @filter-change="filterData"
+          />
+      </v-sheet>
 
       <v-sheet width="90%" class="mx-auto" color="#F5F5F5">
         <div v-if="filteredItems.length === 0">
@@ -43,7 +46,7 @@
             <div>
               <p style="width:10rem; font-weight:bold;" class="mb-2 sp_categoly">{{ item.title }}</p>
               <div class="d-flex justify-space-between">
-                <NuxtLink :to="`/question/detail`" :style="{ color: '#242424', textDecoration: 'none' }">
+                <NuxtLink :to="`/questiondetail`" :style="{ color: '#242424', textDecoration: 'none' }">
                   {{ truncateText(item.message, 32) }}
                 </NuxtLink>
                 <div class="d-flex">
@@ -60,17 +63,16 @@
 </template>
 
 <script>
-import FilterComponent from './FilterComponent.vue';
-import SortComponent from './SortComponent.vue';
+import FilterSelect from '~/components/FilterSerect.vue';
 
 export default {
   components: {
-    FilterComponent,
-    SortComponent
+    FilterSelect
   },
   data() {
     return {
-      selectedOrder: 'asc',
+      categorie: ['Python', 'PHP', 'Obj-c'],
+      sort: ['新しい順', '古い順'],
       orderOptions: [
         { text: '昇順', value: 'asc' },
         { text: '降順', value: 'desc' },

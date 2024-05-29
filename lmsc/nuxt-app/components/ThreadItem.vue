@@ -178,9 +178,9 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .v-list-item--density-default:not(.v-list-item--nav).v-list-item--one-line{
-  background-color: #FFF7EC;
+  background-color: #FFF7EC !important;
 }
 .v-list-item__content {
   width: 100%;

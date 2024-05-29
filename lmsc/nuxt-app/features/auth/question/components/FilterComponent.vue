@@ -5,6 +5,7 @@
       :items="categories"
       label="カテゴリを選択"
       class="mr-4"
+      variant="outlined"
       @change="onCategoryChange"
     ></v-select>
 
@@ -43,8 +44,3 @@ export default {
 }
 </script>
 
-<style scoped>
-.d-flex {
-  display: flex;
-}
-</style>
