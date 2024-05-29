@@ -40,8 +40,14 @@ export default defineNuxtConfig({
     },
     plugins: [VuetifyPlugin()],
   },
-  plugins: ['~/plugins/api'],
-  dir: {
-    middleware: 'middleware',
+  plugins: ["~/plugins/api"],
+  vite: {
+    ssr: {
+      noExternal: ['vuetify'],
+    },
+    define: {
+      'process.env.DEBUG': false,
+    },
+    plugins: [VuetifyPlugin()],
   },
-})
+});

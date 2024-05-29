@@ -12,7 +12,22 @@
   </v-container>
 </template>
 
-<script setup>
+<script>
+import { ref } from 'vue';
+
+export default {
+data() {
+    return {
+      password: '', // パスワードを保持するデータ
+      showPassword: false // パスワードの表示状態を管理するデータ
+    }
+  },
+  methods: {
+    togglePasswordVisibility() {
+      this.showPassword = !this.showPassword; // パスワードの表示状態を反転させる
+    }
+  }
+}
 const items = [
   {
     label: "お名前",
