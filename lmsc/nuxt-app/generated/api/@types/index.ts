@@ -30,6 +30,10 @@ export type AccountInfoDetailResponseBody = {
   account_type: string
 }
 
+export type AccountListResponseBody = {
+  role_counts: Role[]
+}
+
 export type AllResponseList = {
   id: number
   title: string
@@ -169,6 +173,20 @@ export type CourseListResponseBody = {
   courses: Course[]
 }
 
+export type CourseStart = {
+  course_id: number
+  started_at: string
+}
+
+export type CoursesStartRequestBody = {
+  user_id: number
+  course_ids: number[]
+}
+
+export type CoursesStartResponsetBody = {
+  courses: CourseStart[]
+}
+
 export type Curriculum = {
   curriculum_id: number
   title: string
@@ -297,6 +315,9 @@ export type Question = {
 export type QuestionCreateRequestBody = {
   user_id?: number | undefined
   title: string
+  objective: string
+  current_situation: string
+  research: string
   content: string
   media_content: MediaContent[]
 }
@@ -306,6 +327,9 @@ export type QuestionCreateResponseBody = {
   curriculum_id: number
   user_id: number
   title: string
+  objective: string
+  current_situation: string
+  research: string
   content: string
   media_content: MediaContent[]
 }
@@ -521,6 +545,12 @@ export type Rewards = {
   date: string
   amount: number
   to_mentor_id: number
+}
+
+export type Role = {
+  role_id: number
+  role_name: string
+  count: number
 }
 
 export type Section = {

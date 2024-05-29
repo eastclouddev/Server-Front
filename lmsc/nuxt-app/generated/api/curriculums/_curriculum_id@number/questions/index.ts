@@ -14,6 +14,12 @@ export type Methods = {
    *         ユーザーのID
    *     title: str
    *         質問のタイトル
+   *     objective: str
+   *         やりたいこと
+   *     current_situation: str
+   *         現在の状況
+   *     research: str
+   *         調べたこと
    *     content: str 
    *         質問の内容
    *     media_content: str
@@ -32,6 +38,12 @@ export type Methods = {
    *         ユーザーのID
    *     title: str
    *         質問のタイトル
+   *     objective: str
+   *         やりたいこと
+   *     current_situation: str
+   *         現在の状況
+   *     research: str
+   *         調べたこと
    *     content: str 
    *         質問の内容
    *     media_content: str 

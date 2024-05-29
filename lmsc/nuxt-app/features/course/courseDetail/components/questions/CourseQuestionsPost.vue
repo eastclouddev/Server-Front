@@ -29,21 +29,21 @@
           required
         />
         <TextArea
-          v-model="newQuestion.goal"
+          v-model="newQuestion.objective"
           label="やりたいこと"
           placeholder="やりたいことを入力してください"
           outlined
           required
         />
         <TextArea
-          v-model="newQuestion.currentState"
+          v-model="newQuestion.current_situation"
           label="現状"
           placeholder="現状を入力してください"
           outlined
           required
         />
         <TextArea
-          v-model="newQuestion.researched"
+          v-model="newQuestion.research"
           label="自分が調べたこと"
           placeholder="自分が調べたことを入力してください"
           outlined
@@ -78,9 +78,9 @@ import { useCreateQuestion } from '@/features/course/api/createQuestion';
 
 const newQuestion = ref({
   title: '',
-  goal: '',
-  currentState: '',
-  researched: '',
+  objective: '',
+  current_situation: '',
+  research: '',
   content: '',
   file: null,
 });
@@ -98,24 +98,27 @@ const { mutate: createQuestion } = useCreateQuestion();
 const submitQuestion = async () => {
   console.log('フォームのデータ: ', newQuestion.value);
 
-  const questionContent = `
-    【やりたいこと】
-    ${newQuestion.value.goal}
+  // const questionContent = `
+  //   【やりたいこと】
+  //   ${newQuestion.value.objective}
 
-    【現状】
-    ${newQuestion.value.currentState}
+  //   【現状】
+  //   ${newQuestion.value.current_situation}
 
-    【自分が調べたこと】
-    ${newQuestion.value.researched}
+  //   【自分が調べたこと】
+  //   ${newQuestion.value.research}
 
-    【質問内容】
-    ${newQuestion.value.content}
-  `;
+  //   【質問内容】
+  //   ${newQuestion.value.content}
+  // `;
 
   const questionData = {
     user_id: 1,
     title: newQuestion.value.title,
-    content: questionContent,
+    objective: newQuestion.value.objective,
+    current_situation: newQuestion.value.current_situation,
+    research: newQuestion.value.research,
+    content: newQuestion.value.content,
     // media_content: newQuestion.value.file ? [{ url: newQuestion.value.file }] : [],
     media_content: [
     {
