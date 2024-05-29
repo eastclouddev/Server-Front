@@ -1,19 +1,17 @@
 <template>
-    <v-container class="d-flex justify-space-between mb-3">
-      <v-row class="align-center justify-space-between flex-column-sm">
-        <label class="sp_label" style="font-size: 1em; font-weight: bold;">{{ label }}</label>
-        <v-card flat class="sp_field d-flex flex-column" width="25rem">
-            <v-sheet class="my-0 pr-4 pb-4 pl-4" color="#EBEBEB" width="700px">
-            <!-- TODO: 入力フォーム背景色　調整 -->
-            <v-checkbox label="請求先の住所・連絡先は上記内容（会社情報）を使用する。" style="padding-top :20px;"></v-checkbox>
-            </v-sheet>
+    <v-container class="d-flex mb-3">
+      <v-row class="align-center flex-column-sm ">
+        <label class="sp_label" style="font-size: 1em; font-weight: bold;width: 100px;">{{ label }}</label>
+        <v-card flat class="sp_field" width="32rem">
+          <div class="d-flex align-center flex-column-sm">
+            <v-checkbox class="sp_checkbox" style="padding-top :20px;padding-left: 70px;"></v-checkbox>
+            <span class="sp_font" style="font-size: 14.7px;">請求先の住所・連絡先は上記内容（会社情報）を使用する。</span>
+          </div>
         </v-card>
       </v-row>
     </v-container>
   </template>
   <script setup>
-  import { useField, useForm } from 'vee-validate';
-  // import { object, string, setLocale } from 'yup';
   
   const props = defineProps({
     modelValue: String,
@@ -22,15 +20,6 @@
   });
   </script>
   <style lang="scss" scoped>
-  .error {
-    border: 1px solid red;
-    border-radius: 5px;
-  }
-  
-  .error_message {
-    color: #FF0000;
-    font-size: 0.75em;
-  }
   .required-mark {
     color: #FFFF;
     background-color: #FF5A36;
@@ -39,18 +28,26 @@
     padding: 0 1%;
     margin: 0 3%;
   }
+
   @media screen and (max-width: 768px) {
-    .sp {
-      &_label {
-        font-size: 2em !important;
-        padding-bottom: 2;
-      }
-      &_field {
-        width: 100% !important;
-      }
+  .sp {
+    &_label {
+      font-size: 2em !important;
+      padding-bottom: 2%;
     }
-    .error_message {
-        font-size: 1.5em;
-      }
+
+    &_field {
+      width: 100% !important;
+    }
+    &_font {
+      font-size: 20px !important;
+      padding-left: 22px;
+    }
+    &_checkbox{
+      padding-left: 10px !important;
+      font-size: 25px !important;
+    }
   }
+
+}
   </style>

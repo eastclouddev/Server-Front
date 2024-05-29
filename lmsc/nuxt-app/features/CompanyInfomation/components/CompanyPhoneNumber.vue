@@ -1,20 +1,21 @@
 <template>
-    <v-container class="d-flex justify-space-between mb-3">
-      <v-row class="align-center justify-space-between flex-column-sm">
+  <v-container class="d-flex justify-space-between mb-1">
+    <v-row class="align-center justify-space-between flex-column-sm">
+      <div style="width: 200px; display: flex; align-items: center;" >
         <label class="sp_label" style="font-size: 1em; font-weight: bold;">{{ label }}</label>
         <span class="required-mark">必須</span>
+        </div>
         <v-card flat class="sp_field d-flex flex-column" width="25rem">
-          <v-sheet class="my-0 pr-4 pb-4 pl-4" color="#EBEBEB">
-            <!-- TODO: 入力フォーム背景色　調整 -->
+          <v-sheet class="sp_field my-0 pr-4 pb-4 pl-4" color="#EBEBEB" style="width: 200px; border-radius: 5px;">
             <v-text-field  hide-details="auto" :placeholder="placeholder" variant="plain" full-width ></v-text-field>
           </v-sheet>
+          <span>※ハイフン不要</span>
         </v-card>
+        
       </v-row>
     </v-container>
   </template>
   <script setup>
-  import { useField, useForm } from 'vee-validate';
-  // import { object, string, setLocale } from 'yup';
   
   const props = defineProps({
     modelValue: String,
@@ -41,17 +42,16 @@
     margin: 0 3%;
   }
   @media screen and (max-width: 768px) {
-    .sp {
-      &_label {
-        font-size: 2em !important;
-        padding-bottom: 2;
-      }
-      &_field {
-        width: 100% !important;
-      }
+  .sp {
+    &_label {
+      font-size: 2em !important;
+  
     }
-    .error_message {
-        font-size: 1.5em;
-      }
+
+    &_field {
+      width: 100% !important;
+    }
   }
+
+}
   </style>
