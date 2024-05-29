@@ -6,8 +6,8 @@
       @change="$emit('filter-change', selectedFilter)"
       density="compact"
       variant="outlined"
-      class="mr-6 custom-select"
-      style="width: 15rem;">
+      class="mr-5 custom-select"
+      style="width: 18rem;">
       <template v-slot:selection="data">
         <span v-if="!selectedFilter" class="placeholder-text">{{ placeholderText }}</span>
         <span v-else>{{ data.item.title }}</span>

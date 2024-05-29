@@ -17,7 +17,7 @@
 
         
         <div class="d-flex justify-space-between">
-          <v-select
+          <!-- <v-select
             v-model="selectedMonth"
             :items="months"
             variant="outlined"
@@ -43,6 +43,23 @@
           <span v-else>{{ data.item.title }}</span>
         </template>
       </v-select>
+ -->
+ <div class="d-flex">
+ <FilterSelect
+            v-model="selectedMonth"
+            :filterOptions="months"
+            placeholderText="請求対象月"
+            @filter-change="filterData"
+          />
+        
+          <FilterSelect
+            v-model="selectedStatus"
+            :filterOptions="statuses"
+            placeholderText="ステータス"
+            @filter-change="filterData"
+          />
+
+ </div>
 
       <Button to="/billingInformation"
         color="#FF5136" class="sp_button" style="width:10rem; height:40px;" buttonText="請求先情報編集">
@@ -65,11 +82,13 @@
 <script>
 import PcBillingTable from '~/features/auth/billing/components/PcBillingTable.vue';
 import SpBillingTable from '~/features/auth/billing/components/SpBillingTable.vue';
+import FilterSelect from '~/components/FilterSerlect.vue';
 
 export default {
   components: {
     PcBillingTable,
     SpBillingTable,
+    FilterSelect
   },
   data() {
     return {
