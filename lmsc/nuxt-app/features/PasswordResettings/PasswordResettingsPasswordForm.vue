@@ -1,7 +1,11 @@
 <template>
-  <v-container style="margin:10% 0;">
+  <v-container style="margin: 10% 0">
     <v-card flat class="mx-auto" max-width="620">
-      <v-card-title class="pt-2 pb-2 pl-0 sp_title headline" style="font-size: 1.6em; font-weight: bold;" color="#242424">
+      <v-card-title
+        class="pt-2 pb-2 pl-0 sp_title headline"
+        style="font-size: 1.6em; font-weight: bold"
+        color="#242424"
+      >
         パスワード再設定
       </v-card-title>
       <v-divider class="#CFCFCF" thickness="1"></v-divider>
@@ -9,15 +13,20 @@
         パスワード再設定をします。下記情報を入力ください。
       </div>
       <div class="py-5 sp_sentence">
-        パスワード再設定をします。<br>下記情報を入力ください。
+        パスワード再設定をします。<br />下記情報を入力ください。
       </div>
-      <v-card flat class="input_form" style="">
+      <v-card flat class="input_form">
         <!-- データ取得 -->
-        <EmailForm label="メールアドレス" class="sp_mailTitle"/>
+        <EmailForm label="メールアドレス" class="sp_mailTitle" />
         <PasswordFormConfilmation />
       </v-card>
       <v-card flat class="mx-auto text-center input_form_button">
-        <Button type="submit" color="#FF5A36" style="font-size: 1.5em;" buttonText="再設定する"></Button>
+        <Button
+          type="submit"
+          color="#FF5A36"
+          style="font-size: 1.5em"
+          buttonText="再設定する"
+        ></Button>
       </v-card>
     </v-card>
   </v-container>
@@ -25,24 +34,24 @@
 
 <style lang="scss" scoped>
 .headline {
-        text-overflow: inherit;
-        white-space: unset;
+  text-overflow: inherit;
+  white-space: unset;
 }
-.sp_sentence{
+.sp_sentence {
   display: none;
 }
-.input_form{
-  margin:10% 0;
+.input_form {
+  margin: 10% 0;
 }
 @media screen and (max-width: 768px) {
-  .input_form{
-    margin:0;
+  .input_form {
+    margin: 0;
     padding: 5%;
-    &_button{
+    &_button {
       padding: 7%;
     }
   }
-  .sentence{
+  .sentence {
     display: none;
   }
   .sp {
@@ -57,7 +66,7 @@
       font-size: 1.4em;
     }
 
-    &_sentence{
+    &_sentence {
       display: block;
     }
   }
