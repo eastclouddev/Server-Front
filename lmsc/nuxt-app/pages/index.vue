@@ -12,7 +12,11 @@
     <NuxtLink to="/user_services/user_create">ユーザー追加</NuxtLink>
     <NuxtLink to="/user_services/user_delete">ユーザー削除</NuxtLink>
     <NuxtLink to="/user_services/user_update">ユーザー編集</NuxtLink>
+<<<<<<< HEAD
     
+=======
+    <!-- <NuxtLink to="/get_sample">サンプル</NuxtLink> -->
+>>>>>>> origin/develop
   </div>
 </template>
 
