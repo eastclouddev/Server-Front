@@ -34,8 +34,10 @@
       <h4 style="font-weight:bold;" class="pt-5">{{ thread.messages.length }}件の返信</h4>
       <v-list v-if="thread.messages && thread.messages.length">
         <v-list-item
-          v-for="(message, msgIndex) in thread.messages" :key="msgIndex"
-          class="pl-5 d-flex align-start">
+          v-for="(message, msgIndex) in thread.messages"
+          :key="msgIndex"
+          class="pl-5 d-flex align-start"
+        >
           <v-list-item-content>
             <div class="d-flex align-start">
               <img src="@/assets/accountcircle.svg" alt="">
@@ -66,9 +68,11 @@
                   <div v-else>
                     <a :href="message.fileUrl" download :style="{ color: '#FF5A36', textDecoration: 'underline' }">{{ message.fileName }}</a>
                   </div>
-                  <p class="pr-5 mt-2" style="color:#FF5A36;">{{ message.author }}</p>
+                  <div class="d-flex align-center">
+                    <p class="pr-5 mt-2" style="color:#FF5A36;">{{ message.author }}</p>
+                    <p v-if="calculateTime(message.date)" style="font-size:0.8em; color:#BFBFBF;" class="mt-2">{{ calculateTime(message.date) }}</p>
+                  </div>
                 </div>
-                <p v-if="calculateTime(message.date)" style="font-size:0.8em; color:#BFBFBF;">{{ calculateTime(message.date) }}</p>
               </div>
             </div>
           </v-list-item-content>
@@ -80,8 +84,8 @@
         placeholder="返信を入力する"
         variant="plain"
         style="background-color: #FFFFFF; height:130px; border:1px solid #292737; border-radius:5px;"
-        class="mb-5 pl-3">
-      </v-text-field>
+        class="mb-5 pl-3"
+      ></v-text-field>
       <div class="d-flex justify-space-between sp_buttonwrap">
         <Fileinput @file-selected="onFileSelected" ref="fileInputComponent" class="sp_button" />
         <Button @click="sendMessage" color="#FF5A36" width="8rem" buttonText="回答を追加"></Button>

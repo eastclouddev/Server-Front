@@ -43,7 +43,7 @@
             <div>
               <p style="width:10rem; font-weight:bold;" class="mb-2 sp_categoly">{{ item.title }}</p>
               <div class="d-flex justify-space-between">
-                <NuxtLink :to="`/question/${item.id}`" :style="{ color: '#242424', textDecoration: 'none' }">
+                <NuxtLink :to="`/question/detail`" :style="{ color: '#242424', textDecoration: 'none' }">
                   {{ truncateText(item.message, 32) }}
                 </NuxtLink>
                 <div class="d-flex">
