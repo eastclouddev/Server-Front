@@ -19,11 +19,15 @@ export default defineNuxtConfig({
   },
   css: ['vuetify/styles'],
   build: {
-    transpile: ['vuetify'],
+    transpile: ['vuetify', '@types/platform', '@types/uuid'],
   },
   components: [
     {
       path: '@/components/',
+      pathPrefix: false,
+    },
+    {
+      path: '~/features/**/components',
       pathPrefix: false,
     },
   ],

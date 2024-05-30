@@ -119,7 +119,7 @@ export default {
   }
 }
 </script>
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .v-overlay-container {
   .v-overlay {
     left: auto;

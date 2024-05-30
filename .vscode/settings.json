@@ -13,5 +13,5 @@
   },
   "prettier.configPath": "./.prettierrc",
   "prettier.requireConfig": true,
-  "cSpell.words": ["vuetify"]
+  "cSpell.words": ["Nuxt", "vuetify"]
 }

@@ -45,7 +45,8 @@ const newsItems = [
 ]
 </script>
 <style lang="scss" scoped>
-.sp_item {
+.sp{
+  &_item {
   display: flex;
   align-items: center;
   padding: 15px;
@@ -74,6 +75,7 @@ const newsItems = [
     font-size: 1.5em;
     font-weight: bold;
   }
+}
 }
 }
 </style>

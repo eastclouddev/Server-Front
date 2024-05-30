@@ -5,7 +5,7 @@
       <div class="mt-8 mb-8 d-flex justify-space-between sp_item">
         <v-card flat class="pa-7 sp_itembox" width="28rem" v-for="(item, index) in items" :key="index">
           <div class="d-flex mb-5" style="align-items: flex-start;">
-            <img :src="item.icon" :alt="item.title" class="pr-4">
+            <img :src="item.icon" alt="iitem.title" class="pr-4">
             <div>
               <h3>{{ truncateText(item.title,20) }}</h3>
               <p class="mb-2">{{ truncateText(item.summary,15) }}</p>
@@ -23,8 +23,7 @@
 
 <script>
 import PythonIcon from '~/assets/python.svg';
-import JqueryIcon from '~/assets/jquery.svg';
-
+import JquerygIcon from '~/assets/jquery.svg';
 export default {
   data() {
     return {
@@ -37,7 +36,7 @@ export default {
           session:'20'
         },
         {
-          icon: JqueryIcon,
+          icon: JquerygIcon,
           title: 'ECMAScriptとバージョン',
           summary: '最も人気のあるプログラミング言語のひとつ、JavaScriptを知識ゼロから習得できます。jQueryの使い方も同時に学べるビギナー向けのコースです。',
           image: '/assets/jquery.svg',

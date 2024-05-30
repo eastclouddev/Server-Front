@@ -6,7 +6,7 @@
       </v-card-title>
       <v-divider class="#CFCFCF" thickness="1"></v-divider>
       <v-card-text>
-        <UserAcquisition />
+        <UserConfilm />
       </v-card-text>
       <v-card-actions class="mx-auto mt-5 justify-center sp_buttonwrap">
         <Button @click="goBack" color="#FF5136" class="sp_button" style="background-color: #FFFFFF;" width="12rem"

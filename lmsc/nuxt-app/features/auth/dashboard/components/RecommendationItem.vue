@@ -3,7 +3,7 @@
   <v-container class="mx-aout">
     <v-card flat color="#F5F5F5" class="d-flex align-center pt-2 pb-2 pl-6" width="20rem"
     style="border-radius: 5px 5px 0 0; box-shadow: 4px 0px 6px -3px rgba(0, 0, 0, 0.2);">
-    <img src="/assets/flame.svg" alt="study" style="padding:0 10px 0 0;">
+    <img src="/assets/flag.svg" alt="study" style="padding:0 10px 0 0;">
       <label style="font-size: 1.5em; font-weight: bold;">おすすめ</label>
     </v-card>
     <v-card flat class="pt-2 pb-8" color="#F5F5F5"
@@ -12,7 +12,7 @@
       <div class="mt-8 mb-8 d-flex justify-space-between sp_itembox">
         <v-card flat class="pa-7 sp_item" width="28rem" v-for="(item, index) in items" :key="index">
           <div class="d-flex mb-5" style="align-items: flex-start;">
-            <img :src="item.icon" :alt="item.title" class="pr-4">
+            <img :src="item.icon" alt="iitem.title" class="pr-4">
             <div>
               <h3 class="mb-3" style="height: 8ex;">{{ truncateText(item.title,50) }}</h3>
               <p class="mb-3">{{ truncateText(item.summary,50) }}</p>
@@ -30,7 +30,7 @@
 
 <script>
 import PythonIcon from '~/assets/python.svg';
-import JqueryIcon from '~/assets/jquery.svg';
+import JquerygIcon from '~/assets/jquery.svg';
 export default {
   data() {
     return {
@@ -43,7 +43,7 @@ export default {
           session:'20'
         },
         {
-          icon: JqueryIcon,
+          icon: JquerygIcon,
           title: 'JavaScript & jQuery基礎講座',
           summary: '最も人気のあるプログラミング言語のひとつ、JavaScriptを知識ゼロから習得できます。jQueryの使い方も同時に学べるビギナー向けのコースです。',
           image: '/assets/jquery.svg',

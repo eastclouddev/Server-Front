@@ -25,19 +25,19 @@ export default {
     return {
       settingsSections: [
         {
-          title: '進捗管理',
           icon: StudyIcon,
+          title: '進捗管理',
           links: [
             { text: '進捗管理一覧', url: '/' },
-            { text: '管理会社情報', url: '/' },
+            { text: '契約会社情報', url: '/' },
             { text: 'コース一覧', url: '/' },
             { text: 'ユーザー一覧', url: '/' },
             { text: 'コース作成', url: '/' },
           ]
         },
         {
-          title: '設定',
           icon: SettingIcon,
+          title: '設定',
           links: [
             { text: 'パスワード変更', url: '/' },
             { text: 'メールアドレス変更', url: '/' },

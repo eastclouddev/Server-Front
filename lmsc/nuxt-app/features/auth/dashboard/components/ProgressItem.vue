@@ -1,4 +1,3 @@
-
 <template>
   <v-container class="mx-aout">
     <v-card flat color="#F5F5F5" class="d-flex align-center pt-2 pb-2 pl-6" width="20rem"
@@ -19,4 +18,6 @@
 import ProgressCouse from "~/features/auth/dashboard/components/ProgressCouse.vue";
 import QuestionList from "~/features/auth/dashboard/components/QuestionList.vue";
 import ReviewList from "~/features/auth/dashboard/components/ReviewList.vue";
+
 </script>
+
