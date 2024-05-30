@@ -2,8 +2,8 @@
     <v-list>
       <v-sheet v-for="(section, index) in settingsSections" :key="index" class="pa-3">
         <v-list-item v-if="section.icon && section.title" class="pb-5">
-          <div class="d-flex">
-            <img :src="section.icon" alt="icon" class="pr-3">
+          <div class="d-flex align-center">
+            <img :src="section.icon" alt="icon" class="pr-3" style="width:40px;">
             <v-list-item-title style="font-weight:bold;">{{ section.title }}</v-list-item-title>
           </div>
           <NuxtLink v-for="(link, linkIndex) in section.links" :to="link.url" class="d-flex align-start pt-3" :key="linkIndex" style="text-decoration: none; color:#242424;">
@@ -17,12 +17,14 @@
     </v-list>
 </template>
 <script>
+import StudyIcon from '~/assets/study.svg';
+import SettingIcon from '~/assets/setting.svg';
 export default {
   data() {
     return {
       settingsSections: [
         {
-          icon:'/assets/progress.svg',
+          icon: StudyIcon,
           title: '学習進捗状況',
           links: [
             { text: 'コース一覧', url: '/' },
@@ -31,7 +33,7 @@ export default {
           ]
         },
         {
-          icon: '/assets/setting.svg',
+          icon: SettingIcon,
           title: '設定',
           links: [
             { text: 'パスワード変更', url: '/' },

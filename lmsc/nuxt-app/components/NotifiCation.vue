@@ -1,5 +1,5 @@
 <template>
-  <v-menu flat v-model="menu" style="top:50px; right: 30px;" width="18rem">
+  <v-menu flat v-model="menu" style="top:50px;" width="18rem">
     <template v-slot:activator>
       <v-btn @click="toggleMenu">
         <v-icon color="#242424" size="23">mdi-bell</v-icon>
@@ -119,3 +119,11 @@ export default {
   }
 }
 </script>
+<style scoped lang="scss">
+.v-overlay-container {
+  .v-overlay {
+    left: auto;
+    right: 350px;
+  }
+}
+</style>

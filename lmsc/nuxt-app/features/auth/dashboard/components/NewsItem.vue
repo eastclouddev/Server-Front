@@ -11,8 +11,8 @@
     	<v-sheet class="mx-auto mt-8 mb-8" width="90%" color="#F5F5F5">
         <template v-for="(newsItem,index) in newsItems" :key="index">
           <div class="sp_item pa-4">
-            <p class="pr-4" style="font-weight:400; width:12rem;">{{ newsItem.date }}</p>
-            <p class="category">{{ newsItem.category }}</p>
+            <p class="pr-5" style="font-weight:400; ">{{ newsItem.date }}</p>
+            <p class="category mr-5">{{ newsItem.category }}</p>
             <NuxtLink :to="`/news/${newsItem.id}`" style="color:#242424;" class="sp_title">{{ newsItem.title }}</NuxtLink>
           </div>
         </template>
@@ -27,20 +27,20 @@ const newsItems = [
   {
     id: '1',
     date: '2024.04.30',
-    title: 'ニュースタイトル',
-    category: 'カテゴリA'
+    title: 'Pythonの新しい講座が追加されました',
+    category: '機能アップデート'
   },
   {
     id: '2',
     date: '2024.05.01',
-    title: 'ニュースタイトル',
-    category: 'カテゴリB'
+    title: 'サーバーメンテナンスのお知らせ',
+    category: 'メディア掲載'
   },
   {
     id: '3',
     date: '2024.05.02',
-    title: 'ニュースタイトル',
-    category: 'カテゴリC'
+    title: 'メンタースレッドが新しくなりました！',
+    category: 'イベント情報'
   },
 ]
 </script>
@@ -52,7 +52,16 @@ const newsItems = [
   margin-bottom: 15px;
   background-color: #FFFFFF;
   .category {
-    display: none;
+    display: block;
+    margin: 8px 0;
+    text-align: center;
+    font-size: 0.9em;
+    font-weight: bold;
+    padding: 3px;
+    color: #FFFFFF;
+    background-color: #FF5A36;
+    border-radius: 5px;
+    width: 10rem;
   }
 }
 @media (max-width: 768px) {
@@ -60,16 +69,6 @@ const newsItems = [
     &_item {
     flex-direction: column;
     align-items: flex-start;
-    .category {
-      display: block;
-      margin: 8px 0;
-      font-size: 0.9em;
-      font-weight: bold;
-      padding: 5px 10px;
-      color: #FFFFFF;
-      background-color: #FF5A36;
-      border-radius: 5px;
-    }
   }
   &_title {
     font-size: 1.5em;
