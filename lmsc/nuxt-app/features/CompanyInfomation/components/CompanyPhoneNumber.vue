@@ -3,7 +3,7 @@
     <v-row class="align-center justify-space-between flex-column-sm">
       <div style="width: 200px; display: flex; align-items: center;" >
         <label class="sp_label" style="font-size: 1em; font-weight: bold;">{{ label }}</label>
-        <span class="required-mark">必須</span>
+        <span v-if="showSpan" class="required-mark">必須</span>
         </div>
         <v-card flat class="sp_field d-flex flex-column" width="25rem">
           <v-sheet class="sp_field my-0 pr-4 pb-4 pl-4" color="#EBEBEB" style="width: 200px; border-radius: 5px;">
@@ -18,10 +18,14 @@
   <script setup>
   
   const props = defineProps({
-    modelValue: String,
-    label: String,
-    placeholder: String
-  });
+  modelValue: String,
+  label: String,
+  placeholder: String,
+  showSpan: {
+    type: Boolean,
+    default: true
+  }
+});
   </script>
   <style lang="scss" scoped>
   .error {
