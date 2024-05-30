@@ -40,7 +40,6 @@ export default defineNuxtConfig({
     },
     plugins: [VuetifyPlugin()],
   },
-<<<<<<< HEAD
   plugins: ["~/plugins/api"],
   vite: {
     ssr: {
@@ -52,10 +51,3 @@ export default defineNuxtConfig({
     plugins: [VuetifyPlugin()],
   },
 });
-=======
-  plugins: ['~/plugins/api'],
-  dir: {
-    middleware: 'middleware',
-  },
-})
->>>>>>> origin/develop
