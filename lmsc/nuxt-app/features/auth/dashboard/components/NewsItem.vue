@@ -1,4 +1,3 @@
-
 <template>
   <v-container class="mx-aout">
     <v-card flat color="#F5F5F5" class="d-flex align-center pt-2 pb-2 pl-6" width="20rem"
@@ -9,10 +8,10 @@
     <v-card flat class="pt-2 pb-2" color="#F5F5F5"
     style="border-radius: 0 5px 5px 5px; box-shadow: 4px 5px 6px -3px rgba(0, 0, 0, 0.2);">
     	<v-sheet class="mx-auto mt-8 mb-8" width="90%" color="#F5F5F5">
-        <template v-for="(newsItem,index) in newsItems" :key="index">
-          <div class="sp_item pa-4">
-            <p class="pr-5" style="font-weight:400; ">{{ newsItem.date }}</p>
-            <p class="category mr-5">{{ newsItem.category }}</p>
+        <template >
+          <div class="sp_item pa-4" v-for="(newsItem,index) in newsItems" :key="index">
+            <p class="pr-2" style="font-weight:400; width:7rem;">{{ newsItem.date }}</p>
+            <p class="mr-5 category">{{ newsItem.category }}</p>
             <NuxtLink :to="`/news/${newsItem.id}`" style="color:#242424;" class="sp_title">{{ newsItem.title }}</NuxtLink>
           </div>
         </template>
@@ -27,20 +26,20 @@ const newsItems = [
   {
     id: '1',
     date: '2024.04.30',
-    title: 'Pythonの新しい講座が追加されました',
-    category: '機能アップデート'
+    title: 'ニュースタイトル',
+    category: 'カテゴリA'
   },
   {
     id: '2',
     date: '2024.05.01',
-    title: 'サーバーメンテナンスのお知らせ',
-    category: 'メディア掲載'
+    title: 'ニュースタイトル',
+    category: 'カテゴリB'
   },
   {
     id: '3',
     date: '2024.05.02',
-    title: 'メンタースレッドが新しくなりました！',
-    category: 'イベント情報'
+    title: 'ニュースタイトル',
+    category: 'カテゴリC'
   },
 ]
 </script>
@@ -52,19 +51,18 @@ const newsItems = [
   padding: 15px;
   margin-bottom: 15px;
   background-color: #FFFFFF;
-  .category {
-    display: block;
-    margin: 8px 0;
-    text-align: center;
-    font-size: 0.9em;
-    font-weight: bold;
-    padding: 3px;
-    color: #FFFFFF;
-    background-color: #FF5A36;
-    border-radius: 5px;
-    width: 10rem;
   }
 }
+.category {
+      display: block;
+      margin: 8px 0;
+      font-size: 0.9em;
+      font-weight: bold;
+      padding: 5px 10px;
+      color: #FFFFFF;
+      background-color: #FF5A36;
+      border-radius: 5px;
+    }
 @media (max-width: 768px) {
   .sp{
     &_item {
@@ -75,7 +73,6 @@ const newsItems = [
     font-size: 1.5em;
     font-weight: bold;
   }
-}
 }
 }
 </style>
