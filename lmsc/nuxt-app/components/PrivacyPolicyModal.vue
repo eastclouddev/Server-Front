@@ -7,7 +7,6 @@
           </span>
         </v-card>
       </template>
-
       <template v-slot:default="{ isActive }">
         <v-card class="pa-5 ma-5" color="#F5F5F5">
           <v-card class="pa-5 ma-5" title="iDemy プライバシーポリシー" style="max-height: 300px; overflow-y: auto;">
