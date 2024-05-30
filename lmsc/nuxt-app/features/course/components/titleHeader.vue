@@ -64,16 +64,17 @@ export default {
 
     .title {
       margin-left: 17px;
+      padding-top: 0;
       img {
-        width: 51px;
-        height: 38px;
         margin-right: 24px;
+        margin-top: 10px;
       }
       h2 {
         height: 57px;
         font-size: 42px;
         font-family: 'Noto Sans';
         line-height: 57.2px;
+        padding-top: 0;
       }
     }
   }
