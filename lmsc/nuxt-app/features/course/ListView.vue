@@ -4,8 +4,8 @@ import Title from '~/features/course/components/titleHeader.vue'
 import Options from '~/features/course/components/courseOptions.vue'
 import Contents from '~/features/course/components/courseContents.vue'
 import FlagIcon from '~/assets/flag.svg'
-import PythonIcon from '~/assets/python_icon.svg'
-import JQueryIcon from '~/assets/jQuery_icon.svg'
+import PythonIcon from '~/assets/python.svg'
+import JQueryIcon from '~/assets/jQuery.svg'
 
 const title = {
   img: FlagIcon,

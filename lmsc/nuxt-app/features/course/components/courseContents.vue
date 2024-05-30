@@ -1,6 +1,6 @@
 <!-- コースタイトル、概要、画像 -->
 <script setup lang="ts">
-import { ref, computed, watch, defineProps } from 'vue'
+import { ref, computed, defineProps } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
 import IMG from '~/assets/no_img.png'
 

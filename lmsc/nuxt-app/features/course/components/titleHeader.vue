@@ -28,7 +28,7 @@ export default {
 
 <style scoped lang="scss">
 .whole {
-  height: 50px;
+  height: 72px;
   width: 1000px;
   margin-top: 80px;
   align-items: flex-start;
@@ -36,11 +36,13 @@ export default {
 
   .title {
     display: flex;
-    align-items: center;
-
+    align-items: start;
+    height: 72px;
+    padding-top: 20px;
+    padding-left: 10px;
     img {
-      width: 35px;
-      height: 26px;
+      width: 48px;
+      height: 62px;
       margin-right: 15px;
     }
 
@@ -49,6 +51,7 @@ export default {
       font-weight: 700;
       font-family: 'Inter';
       line-height: 30.26px;
+      padding-top: 5px;
     }
   }
 }
