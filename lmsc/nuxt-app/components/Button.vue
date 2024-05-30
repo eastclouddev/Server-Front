@@ -11,7 +11,7 @@ export default {
   props: {
     buttonText: {
       type: String,
-      required: true,
+      required: true
     },
     icon: {
       type: String,
@@ -36,7 +36,7 @@ export default {
 
 <style lang="scss" scoped>
 .custom_btn::before {
-  background-color: #ff8573;
+  background-color: #FF8573;
 }
 @media screen and (max-width: 768px) {
   .custom_btn {
