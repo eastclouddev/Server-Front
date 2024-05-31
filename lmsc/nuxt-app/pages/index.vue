@@ -16,6 +16,7 @@
 =======
     <!-- <NuxtLink to="/get_sample">サンプル</NuxtLink> -->
 >>>>>>> develop
+    
   </div>
 </template>
 

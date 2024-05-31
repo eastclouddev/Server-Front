@@ -11,8 +11,8 @@
     	<v-sheet class="mx-auto mt-8 mb-8" width="90%" color="#F5F5F5">
         <template v-for="(newsItem,index) in newsItems" :key="index">
           <div class="sp_item pa-4">
-            <p class="pr-4" style="font-weight:400; width:12rem;">{{ newsItem.date }}</p>
-            <p class="category">{{ newsItem.category }}</p>
+            <p class="pr-2" style="font-weight:400; width:7rem;">{{ newsItem.date }}</p>
+            <p class="mr-5 category">{{ newsItem.category }}</p>
             <NuxtLink :to="`/news/${newsItem.id}`" style="color:#242424;" class="sp_title">{{ newsItem.title }}</NuxtLink>
           </div>
         </template>
@@ -45,22 +45,16 @@ const newsItems = [
 ]
 </script>
 <style lang="scss" scoped>
-.sp_item {
+.sp{
+  &_item {
   display: flex;
   align-items: center;
   padding: 15px;
   margin-bottom: 15px;
   background-color: #FFFFFF;
-  .category {
-    display: none;
   }
 }
-@media (max-width: 768px) {
-  .sp{
-    &_item {
-    flex-direction: column;
-    align-items: flex-start;
-    .category {
+.category {
       display: block;
       margin: 8px 0;
       font-size: 0.9em;
@@ -70,6 +64,11 @@ const newsItems = [
       background-color: #FF5A36;
       border-radius: 5px;
     }
+@media (max-width: 768px) {
+  .sp{
+    &_item {
+    flex-direction: column;
+    align-items: flex-start;
   }
   &_title {
     font-size: 1.5em;
