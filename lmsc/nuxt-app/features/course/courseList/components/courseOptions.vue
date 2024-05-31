@@ -1,7 +1,7 @@
 <!-- ドロップダウンメニュー、検索欄 -->
 <script setup lang="ts">
 import { reactive } from 'vue'
-import Dropdown from '~/features/course/components/dropDown.vue'
+import Dropdown from '~/features/course/courseList/components/dropDown.vue'
 
 const category = reactive({
   label: 'カテゴリ',

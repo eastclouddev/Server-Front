@@ -1,6 +1,6 @@
 <!-- ドロップダウンメニューのみ -->
 <script setup lang="ts">
-import { ref, watch, onMounted } from 'vue'
+import { ref } from 'vue'
 
 const post = defineProps<{
   items: string[]

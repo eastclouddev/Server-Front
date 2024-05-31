@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import History from '~/features/course/History.vue'
+import History from '~/features/course/courseList/History.vue'
 </script>
 
 <template>

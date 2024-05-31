@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
-import Title from '~/features/course/components/titleHeader.vue'
-import Contents from '~/features/course/components/courseContents.vue'
-import FlagIcon from '~/assets/flag.svg'
-import PythonIcon from '~/assets/python_icon.svg'
-import JQueryIcon from '~/assets/jQuery_icon.svg'
+import Title from '~/features/course/courseList/components/titleHeader.vue'
+import Contents from '~/features/course/courseList/components/courseContents.vue'
+import ProgressIcon from '~/assets/progress.svg'
+import PythonIcon from '~/assets/python.svg'
+import JQueryIcon from '~/assets/jQuery.svg'
 
 const title = {
-  img: FlagIcon,
-  title: 'コース一覧',
+  img: ProgressIcon,
+  title: '受講履歴',
 }
 
 const contents = reactive([
@@ -16,9 +16,10 @@ const contents = reactive([
     title:
       'Python入門 基礎文法徹底解説:チュートリアル網羅で初心者でもプログラミングできるようになる',
     img: PythonIcon,
-    text: '現役エンジニアによる基礎文法徹底解説&ハンズオン。未経験者には意味不明な Python チュートリアルをしっかりと解説。',
+    text: '現役エンジニアによる基礎文法徹底解説&ハンズオン。未経験者には意味不明な Python チュートリアルをしっ現役エンジニアによる基礎文法徹底解説&ハンズオン。未経験者には意味不明な Python チュートリアルをしっ現役エンジニアによる基礎文法徹底解説&ハンズオン。',
     time: 80,
     num: 24,
+    completed: 18,
   },
   {
     title: 'JavaScript & jQuery基礎講座',
@@ -26,15 +27,19 @@ const contents = reactive([
     text: '最も人気のあるプログラミング言語のひとつ、JavaScriptを知識ゼロから習得できます。jQueryの使い方も同時に学べるビギナー向けのコースです。',
     time: 100,
     num: 30,
+    completed: 1,
   },
 ])
+
+const mode: string = 'History'
+const len: number = 65
 </script>
 
 <template>
   <main>
     <div class="main center">
       <Title :item="title" />
-      <Contents :items="contents" />
+      <Contents :items="contents" :type="mode" :len="len" />
     </div>
   </main>
 </template>
@@ -43,6 +48,7 @@ const contents = reactive([
 main {
   width: 100%;
   height: auto;
+  font-family: 'Noto Sans';
 }
 .main {
   display: flex;

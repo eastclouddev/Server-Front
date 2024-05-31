@@ -20,7 +20,12 @@ export default {
 <template>
   <div class="whole">
     <div class="title">
-      <img :src="item.img" alt="" v-if="item.img" />
+      <img
+        :src="item.img"
+        alt=""
+        v-if="item.img"
+        :class="{ history: item.title == '受講履歴' }"
+      />
       <h2>{{ item.title }}</h2>
     </div>
   </div>
@@ -44,6 +49,10 @@ export default {
       width: 48px;
       height: 62px;
       margin-right: 15px;
+      &.history {
+        width: 39px;
+        height: 39px;
+      }
     }
 
     h2 {
