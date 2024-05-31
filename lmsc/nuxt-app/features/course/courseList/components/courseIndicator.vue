@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, defineProps, watch, onMounted } from 'vue'
 import type { ComponentPublicInstance } from 'vue'
+import { useMediaQuery } from '@vueuse/core'
 
 const props = defineProps<{
   length: number
@@ -14,17 +15,21 @@ const bufferValue = ref(15)
 const status = ref('')
 const statusIcon = ref('')
 
+const opposite = ref(false)
 const progressBar = ref<ComponentPublicInstance | null>(null)
 const picker = ref<HTMLElement | null>(null)
 const updatePickerPosition = (value: number) => {
   if (progressBar.value && picker.value) {
     const progressBarElement = progressBar.value.$el as HTMLElement
     const progressBarWidth = progressBarElement.offsetWidth
-    console.log(progressBarWidth)
     if (progressBarWidth !== undefined) {
       const leftPosition = (value / sectionLength.value) * progressBarWidth
-      console.log(leftPosition)
       if (picker.value) {
+        if (leftPosition > 200) {
+          opposite.value = true
+        } else {
+          opposite.value = false
+        }
         picker.value.style.left = `${leftPosition}px`
       }
     }
@@ -45,20 +50,6 @@ const updateStatus = (value: number) => {
   }
 }
 
-const increaseProgressValue = () => {
-  if (progressValue.value !== sectionLength.value) {
-    progressValue.value += 1
-  }
-  console.log('progressValue: ' + progressValue.value)
-}
-
-const decreaseProgressValue = () => {
-  if (progressValue.value !== 0) {
-    progressValue.value -= 1
-  }
-  console.log('progressValue: ' + progressValue.value)
-}
-
 watch(progressValue, newValue => {
   percentage.value = Math.floor((newValue / sectionLength.value) * 100)
   updatePickerPosition(newValue)
@@ -72,11 +63,14 @@ onMounted(() => {
   updatePickerPosition(progressValue.value)
   updateStatus(progressValue.value)
 })
+
+const isSP = useMediaQuery('(max-width: 768px)')
 </script>
 
 <template>
   <v-sheet>
     <div class="picker-pos">
+      <p :class="{ opposite: opposite == false }">学習進捗</p>
       <div class="picker" ref="picker">
         <span>
           {{ percentage }}
@@ -84,7 +78,24 @@ onMounted(() => {
         <span style="font-size: 0.7em">%</span>
       </div>
     </div>
+
     <v-progress-linear
+      v-if="isSP"
+      class="mt-16"
+      ref="progressBar"
+      bg-color="#222222"
+      buffer-color="#10BED2"
+      buffer-opacity="1"
+      :buffer-value="bufferValue"
+      color="#242424"
+      height="36"
+      :max="sectionLength"
+      min="0"
+      v-model="progressValue"
+      style="border-radius: 5px; position: relative"
+    />
+    <v-progress-linear
+      v-else
       class="mt-1"
       ref="progressBar"
       bg-color="#222222"
@@ -98,7 +109,7 @@ onMounted(() => {
       v-model="progressValue"
       style="border-radius: 5px; position: relative"
     />
-    <div class="d-flex align-center justify-end">
+    <div class="status d-flex align-center justify-end">
       <v-icon
         class="status-icon"
         :color="status === '完了' ? '#10BED2' : '#FF0000'"
@@ -115,6 +126,12 @@ onMounted(() => {
   position: relative;
   width: 100%;
   height: 43px;
+  p {
+    position: absolute;
+    font-size: 145px;
+    line-height: 19.07px;
+    transform: translateY(15px);
+  }
 }
 
 .picker {
@@ -142,10 +159,34 @@ onMounted(() => {
   transition: left 0.3s ease;
 }
 @media (max-width: 768px) {
+  .v-col {
+    padding-top: 30px;
+  }
+
+  .picker-pos {
+    p {
+      font-size: 24px;
+      line-height: 32.69px;
+      transform: translateY(70px);
+      &.opposite {
+        transform: translateX(440px) translateY(70px);
+      }
+    }
+  }
   .picker {
-    top: 33%;
+    transform: translateX(-45px) translateY(10px);
+    width: 88px;
+    height: 88px;
     left: 0;
-    transform: translateX(15%);
+    font-size: 40px;
+    line-height: 88px;
+    &::before {
+      bottom: -20px;
+    }
+  }
+
+  .status {
+    font-size: 20px;
   }
 }
 </style>

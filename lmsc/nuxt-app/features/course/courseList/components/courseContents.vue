@@ -108,12 +108,16 @@ const readText = (text: string, max_len: number) => {
           </v-col>
           <v-col class="text" v-if="type == 'History'">
             <v-card-title>{{ item.title }}</v-card-title>
-            <v-card-text>
+            <v-card-text v-if="isSP" class="sp">
+              {{ item.text }}
+            </v-card-text>
+            <v-card-text v-else>
               {{ readText(item.text, max_len) }}
             </v-card-text>
             <v-card-text class="sec">
               <v-icon>mdi-book-open-blank-variant-outline</v-icon>
-              {{ item.completed }} / {{ item.num }}セッション
+              {{ item.completed }} / {{ item.num }}
+              <span>セッション</span>
             </v-card-text>
           </v-col>
         </v-row>
@@ -125,9 +129,10 @@ const readText = (text: string, max_len: number) => {
             />
           </v-col>
         </v-row>
-        <v-row class="btn">
+        <v-row class="btn" :class="{ history: type == 'History' }">
           <v-col>
-            <v-btn>学習する</v-btn>
+            <v-btn v-if="type == 'List'">学習する</v-btn>
+            <v-btn v-if="type == 'History'">学習を再開する</v-btn>
           </v-col>
         </v-row>
       </v-col>
@@ -292,6 +297,23 @@ const readText = (text: string, max_len: number) => {
         .content {
           height: 100%;
           gap: 20px;
+          &.history {
+            height: 127px;
+            margin-bottom: 40px;
+            .text {
+              padding: 0;
+              gap: 0;
+              .v-card-text {
+                padding: 0;
+                margin: 0;
+                &.sp {
+                  white-space: nowrap;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                }
+              }
+            }
+          }
           .icon {
             width: 98px;
             .v-img {
@@ -319,10 +341,32 @@ const readText = (text: string, max_len: number) => {
                 margin: 0;
               }
             }
+            .sec {
+              gap: 0;
+              padding: 0;
+              .v-icon {
+                margin-right: 10px;
+                width: 44px;
+                height: 44px;
+                &::before {
+                  font-size: 44px;
+                }
+              }
+              span {
+                font-size: 20px;
+                line-height: 27.24px;
+              }
+            }
           }
+        }
+        .indicator {
+          height: 175px;
         }
         .btn {
           height: 95px;
+          &.history {
+            margin-top: 40px;
+          }
           .v-col {
             height: 95px;
             .v-btn {
