@@ -2,7 +2,9 @@ import { defineStore } from 'pinia'
 
 export type User = {
   id: string
-  role: string
+  role_id: number
+  first_name: string
+  last_name: string
 }
 
 type UserState = {
@@ -24,6 +26,13 @@ export const useUserStore = defineStore('user', {
       this.user = null
       this.isAuthenticated = false
     },
+  },
+  getters: {
+    userRole: state => (state.user ? state.user.role_id : null),
+    userName: state =>
+      state.user
+        ? `${state.user.first_name} ${state.user.last_name}`
+        : 'ゲスト',
   },
   persist: true,
 })

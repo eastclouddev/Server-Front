@@ -5,8 +5,7 @@
         class="pt-2 pb-2 pl-0"
         style="font-size: 1.6em; font-weight: bold"
         color="#242424"
-        >ログイン</v-card-title
-      >
+        >ログイン</v-card-title>
       <v-divider class="#CFCFCF" thickness="1"></v-divider>
       <v-card-text>
         <v-form @submit.prevent="handleSubmit" class="content_box">
@@ -25,8 +24,7 @@
           <v-card flat style="text-align: center">
             <p class="pb-2">
               ※パスワードを忘れた方は<a href="" target="_blank" color="#242424"
-                >こちら</a
-              >
+                >こちら</a>
             </p>
             <Button
               type="submit"
@@ -43,6 +41,7 @@
     </v-card>
   </v-container>
 </template>
+
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import { useNuxtApp, useRouter } from '#app'
@@ -53,7 +52,7 @@ import PasswordInput from '~/components/PasswordInput.vue'
 import Button from '~/components/Button.vue'
 import platform from 'platform'
 import { v4 as uuidv4 } from 'uuid'
-import { useUserStore } from '@/store/user'
+import { useUserStore } from '~/store/user'
 
 const { $api } = useNuxtApp()
 const router = useRouter()
@@ -87,10 +86,6 @@ const handleSubmit = async () => {
     return
   }
 
-  console.log('email.value:', email.value)
-  console.log('password.value:', password.value)
-  console.log('deviceInfo:', deviceInfo.value)
-
   try {
     const response = await $api.login.$post({
       body: {
@@ -103,18 +98,23 @@ const handleSubmit = async () => {
       },
     })
 
-    // TODO: ログイン成功時のメッセージ表示処理などを記述する
     console.log('Login succeeded:', response)
 
     const user = {
-      user: { id: response.user_id, role: response.role },
+      user: {
+        id: response.user_id,
+        role_id: response.role_id,
+        first_name: response.first_name,
+        last_name: response.last_name,
+      },
       isAuthenticated: true,
     }
     userStore.setUser(user)
 
-    await router.push('/')
+    console.log('User store after login:', userStore.$state)
+
+    await router.push('/dashboard')
   } catch (error) {
-    // TODO: エラーメッセージの表示などの処理を行う
     console.error('Login failed:', error)
   } finally {
     isSubmitting.value = false
