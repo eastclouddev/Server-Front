@@ -35,16 +35,16 @@ import BillingColumn from "~/features/CompanyInfomation/components/BillingColumn
 import BillingPrivacyCheckButton from "~/features/CompanyInfomation/components/BillingPrivacyCheckButton.vue";
 </script>
   
-  <style lang="scss" scoped>
-  @media screen and (max-width: 768px) {
-    .sp {
-      &_title {
-        font-size: 2.5em !important;
-      }
-  
-      &_text {
-        font-size: 1.4em;
-      }
+<style lang="scss" scoped>
+@media screen and (max-width: 768px) {
+  .sp {
+    &_title {
+      font-size: 2.5em !important;
+    }
+
+    &_text {
+      font-size: 1.4em;
     }
   }
-  </style>
+}
+</style>
