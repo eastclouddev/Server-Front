@@ -8,5 +8,5 @@
   </v-container>
 </template>
 <script setup>
-import UserInvitationForm from '~/features/auth/userInvitation/UserInvitationForm.vue'
+import UserInvitationForm from '~/features/auth/userInvitation/UserInvitationForm.vue';
 </script>

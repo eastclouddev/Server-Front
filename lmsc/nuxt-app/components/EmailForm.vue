@@ -1,13 +1,13 @@
 <template>
   <v-container class="d-flex justify-space-between mb-3">
-    <v-row class="align-center justify-space-between flex-column-sm">
-      <label class="sp_label" style="font-size: 1em; font-weight: bold;">{{ label }}</label>
+    <v-row class="align-center justify-space-between flex-column-sm" style="">
+      <label class="sp_label" style="font-size: 1em; font-weight: bold;margin-bottom: 6px;">{{ label }}</label>
       <v-card flat class="sp_field d-flex flex-column" width="25rem">
         <v-sheet :class="{ 'error': errors.email }" class="my-0 pr-4 pb-4 pl-4" color="#EBEBEB">
           <v-text-field hide-details="auto" placeholder="XXXXXXX@example.com" variant="plain" type="email"
             v-model="email" full-width></v-text-field>
         </v-sheet>
-        <p class="error_message">{{ errors.email }}</p>
+        <p class="error_message mt-2">{{ errors.email }}</p>
       </v-card>
     </v-row>
   </v-container>
@@ -62,7 +62,7 @@ const { value: email } = useField('email');
     }
   }
   .error_message {
-      font-size: 1.5em;
+      font-size: 0.75em;
     }
 }
 </style>

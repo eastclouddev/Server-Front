@@ -32,6 +32,7 @@
               type="submit"
               width="25rem"
               height="6ex"
+              color="#FF5A36"
               style="font-size: 1.5em"
               buttonText=" ログイン"
               :disabled="isSubmitting || !isValid"

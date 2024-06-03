@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12" md="8">
-        <CourseVideo />
+        <CourseVideo :video="props.course?.video || {}"/>
         <v-card flat>
           <client-only>
             <CourseTabs v-model:tab="tab" />
@@ -13,6 +13,7 @@
               <v-window-item value="overview">
                 <CourseOverview
                   :title="$props.course?.title || ''"
+                  :level="$props.course?.level || ''"
                   :duration="30.5"
                   :description="$props.course?.description || ''"
                 />
@@ -46,8 +47,11 @@ import CourseOverview from "@/features/course/courseDetail/components/CourseOver
 import CourseQuestions from "@/features/course/courseDetail/components/CourseQuestions.vue";
 import CourseSubmissions from "@/features/course/courseDetail/components/CourseSubmissions.vue";
 import type { CourseDetailResponseBody } from "~/generated/api/@types";
+import type { CourseDetail } from "../../types";
 
-const props = defineProps<{ course: CourseDetailResponseBody | null }>();
+// CourseDetailResponseBodyが修正されたらコメントアウトしている方を使用する
+// const props = defineProps<{ course: CourseDetailResponseBody | null }>();
+const props = defineProps<{ course: CourseDetail }>();
 
 const { smAndDown, mdAndUp } = useDisplay();
 const tab = ref("overview");
