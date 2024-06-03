@@ -58,14 +58,7 @@ export type Methods = {
    * Returns
    * -----------------------
    * dict
-   *     id: int
-   *         作成されたニュースのID
-   *     title: str
-   *         作成されたニュースのタイトル
-   *     content: str
-   *         作成されたニュースの内容
-   *     is_published: bool
-   *         ニュースの公開フラグ
+   *     
    *     published_at: str
    *         ニュースの公開日（ISO 8601形式）
    *     created_at: str

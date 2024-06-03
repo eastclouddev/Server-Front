@@ -28,13 +28,13 @@
 </template>
 
 <script>
-import { defineAsyncComponent } from 'vue'
-import { useUserStore } from '~/store/user.ts'
+import { defineAsyncComponent } from 'vue';
+import { useUserStore } from '~/store/user.ts';
 
-const DashboardStudent = defineAsyncComponent(() => import("~/features/auth/dashboard/components/DashboardStudent.vue"))
-const DashboardCorporation = defineAsyncComponent(() => import("~/features/auth/dashboard/components/DashboardCorporation.vue"))
-const DashboardMentor = defineAsyncComponent(() => import("~/features/auth/dashboard/components/DashboardMentor.vue"))
-const DashboardAdmin = defineAsyncComponent(() => import("~/features/auth/dashboard/components/DashboardAdmin.vue"))
+const DashboardStudent = defineAsyncComponent(() => import("~/features/auth/dashboard/components/DashboardStudent.vue"));
+const DashboardCorporation = defineAsyncComponent(() => import("~/features/auth/dashboard/components/DashboardCorporation.vue"));
+const DashboardMentor = defineAsyncComponent(() => import("~/features/auth/dashboard/components/DashboardMentor.vue"));
+const DashboardAdmin = defineAsyncComponent(() => import("~/features/auth/dashboard/components/DashboardAdmin.vue"));
 
 export default {
   components: {
@@ -45,21 +45,16 @@ export default {
   },
   computed: {
     userRole() {
-      const userStore = useUserStore()
-      return userStore.userRole
+      const userStore = useUserStore();
+      return userStore.userRole;
     },
     loggedInUsername() {
-      const userStore = useUserStore()
-      return userStore.userName
+      const userStore = useUserStore();
+      return userStore.userName;
     },
     welcomeMessage() {
-      return `${this.loggedInUsername}  さんおかえりなさい`
+      return `${this.loggedInUsername} さんおかえりなさい`;
     }
-  },
-  mounted() {
-    const userStore = useUserStore()
-    // 仮のユーザー情報をセット
-    userStore.setUser({ user: { id: '1', role_id: 2, first_name: '次郎', last_name: 'あどみん' }, isAuthenticated: true })
-  },
+  }
 };
 </script>

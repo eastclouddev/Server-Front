@@ -1,33 +1,8 @@
 /* eslint-disable */
-export type AccountInfoCreateRequestBody = {
-  bank_name: string
-  branch_name: string
-  bank_code: string
-  branch_code: string
-  account_type: string
-  account_number: string
-  account_name: string
-}
-
-export type AccountInfoCreateResponseBody = {
-  account_id: number
-  mentor_id: number
-  bank_name: string
-  branch_name: string
-  bank_code: string
-  branch_code: string
-  account_type: string
-  account_number: string
-  account_name: string
-}
-
-export type AccountInfoDetailResponseBody = {
-  mentor_id: number
-  account_name: string
-  bank_name: string
-  branch_name: string
-  account_number: string
-  account_type: string
+export type Account = {
+  role_id: number
+  role_name: string
+  count: number
 }
 
 export type AllResponseList = {
@@ -169,6 +144,20 @@ export type CourseListResponseBody = {
   courses: Course[]
 }
 
+export type CourseStart = {
+  course_id: number
+  started_at: string
+}
+
+export type CoursesStartRequestBody = {
+  user_id: number
+  course_ids: number[]
+}
+
+export type CoursesStartResponsetBody = {
+  courses: CourseStart[]
+}
+
 export type Curriculum = {
   curriculum_id: number
   title: string
@@ -205,10 +194,49 @@ export type MediaContent = {
   url: string
 }
 
+export type MentorsCountList = {
+  mentor_id: number
+  mentor_name: string
+  student_count: number
+}
+
+export type MentorsCountListResponseBody = {
+  mentors: MentorsCountList[]
+}
+
 export type News = {
   id: number
   title: string
   published_at: string
+}
+
+export type NewsCategory = {
+  id: number
+  name: string
+  created_at: string
+  updated_at: string
+}
+
+export type NewsCategoryListResponseBody = {
+  categories: NewsCategory[]
+}
+
+export type NewsCategoryRequestBody = {
+  name: string
+}
+
+export type NewsCategoryResponseBody = {
+  message: string
+  category: NewsCategory
+}
+
+export type NewsCategoryUpdateRequestBody = {
+  name: string
+}
+
+export type NewsCategoryUpdateResponseBody = {
+  message: string
+  category: NewsCategory
 }
 
 export type NewsCreateRequestBody = {
@@ -256,6 +284,33 @@ export type NewsUpdateResponseBody = {
   is_published: boolean
   published_at: string
   updated_at: string
+}
+
+export type Notification = {
+  id: number
+  from_user_id: number
+  from_user_name: string
+  content: string
+
+  related_question_id: number | null
+
+  related_answer_id: number | null
+
+  related_review_request_id: number | null
+
+  related_review_response_id: number | null
+
+  is_read: boolean
+  created_at: string
+}
+
+export type NotificationListResponseBody = {
+  notifications: Notification[]
+}
+
+export type NotificationUpdateResponseBody = {
+  message: string
+  notification_id: number
 }
 
 export type Payment = {
@@ -346,20 +401,6 @@ export type Questions = {
   created_at: string
   is_read: boolean
   is_closed: boolean
-}
-
-export type QuizDetailResponseBody = {
-  curriculum_id: number
-  tests: Quizzes[]
-}
-
-export type Quizzes = {
-  test_id: number
-  question: string
-  options: string[]
-  correct_answer: string
-  explanation: string
-  media_content_url: string[]
 }
 
 export type ReceiptDetailResponseBody = {
@@ -512,15 +553,10 @@ export type ReviewThreadDetailResponseBody = {
   responses: ReviewResponseBody[]
 }
 
-export type RewardListResponseBody = {
-  rewards: Rewards[]
-}
-
-export type Rewards = {
-  reward_id: number
-  date: string
-  amount: number
-  to_mentor_id: number
+export type Role = {
+  role_id: number
+  role_name: string
+  count: number
 }
 
 export type Section = {
@@ -587,6 +623,11 @@ export type ValidationError = {
   type: string
 }
 
+export type Schemas__companies__AccountListResponseBody = {
+  company_id: number
+  role_counts: Account[]
+}
+
 export type Schemas__companies__ProgressListResponseBody = {
   progresses: ProgressesResponseList[]
 }
@@ -625,4 +666,8 @@ export type Schemas__students__QuestionListResponseBody = {
 
 export type Schemas__students__ReviewRequestListResponseBody = {
   reviews: ReviewResponse[]
+}
+
+export type Schemas__users__AccountListResponseBody = {
+  role_counts: Role[]
 }
