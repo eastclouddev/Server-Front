@@ -25,6 +25,6 @@ export type Methods = {
   get: {
     status: 200
     /** Successful Response */
-    resBody: Types.RewardListResponseBody
+    resBody: Types.RewardsResponseBody
   }
 }

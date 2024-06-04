@@ -128,9 +128,12 @@ const isSP = useMediaQuery('(max-width: 768px)')
   height: 43px;
   p {
     position: absolute;
-    font-size: 145px;
+    font-size: 14px;
     line-height: 19.07px;
-    transform: translateY(15px);
+    transform: translateY(25px);
+    &.opposite {
+      transform: translateX(430px) translateY(25px);
+    }
   }
 }
 

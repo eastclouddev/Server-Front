@@ -38,7 +38,7 @@ export type Methods = {
 
     status: 200
     /** Successful Response */
-    resBody: Types.NewsListResponseBody
+    resBody: Types.Schemas__news__AllResponseBody
   }
 
   /**
@@ -74,7 +74,7 @@ export type Methods = {
   post: {
     status: 201
     /** Successful Response */
-    resBody: Types.NewsCreateResponseBody
-    reqBody: Types.NewsCreateRequestBody
+    resBody: Types.Schemas__news__CreateResponseBody
+    reqBody: Types.Schemas__news__CreateRequestBody
   }
 }

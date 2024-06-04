@@ -5,10 +5,12 @@ import { useMediaQuery } from '@vueuse/core'
 import Indicator from '~/features/course/courseList/components/courseIndicator.vue'
 import IMG from '~/assets/no_img.png'
 
+import { getCourse, useGetCourse } from '~/features/course/api/getCourse'
+
 type Post = {
   title: string
   img: string
-  text: string
+  desc: string
   time: number
   num: number
   completed: number
@@ -19,6 +21,43 @@ const props = defineProps<{
   type: string
   len: number
 }>()
+
+const Courses = ref<Post[]>([])
+
+const updateCourses = (id: number) => {
+  Courses.value[id].img = props.items[id].img
+  Courses.value[id].time = props.items[id].time
+  Courses.value[id].num = props.items[id].num
+  Courses.value[id].completed = props.items[id].completed
+}
+
+onMounted(async () => {
+  let id = 0
+  let End_id = 10
+  while (id == End_id) {
+    try {
+      const { data, error, status } = useGetCourse(id)
+      await data.value
+      if (!error.value && status.value !== 'error' && data.value) {
+        Courses.value[id].title = data.value?.title
+        Courses.value[id].desc = data.value?.description
+        updateCourses(id)
+      } else {
+        console.error(
+          `Failed to fetch course information for course ID: ${id}`,
+          error.value
+        )
+      }
+    } catch (err) {
+      console.error(
+        `Failed to fetch course information for course ID: ${id}`,
+        err
+      )
+    }
+    id++
+  }
+  console.log(Courses)
+})
 
 // dev
 const repeatedItems = computed(() => {
@@ -89,10 +128,10 @@ const readText = (text: string, max_len: number) => {
             <v-card-title>{{ item.title }}</v-card-title>
             <v-card-text>
               <template v-if="isSP">
-                {{ readText(item.text, max_len) }}
+                {{ readText(item.desc, max_len) }}
               </template>
               <template v-else>
-                {{ item.text }}
+                {{ item.desc }}
               </template>
             </v-card-text>
             <div class="flex">
@@ -109,10 +148,10 @@ const readText = (text: string, max_len: number) => {
           <v-col class="text" v-if="type == 'History'">
             <v-card-title>{{ item.title }}</v-card-title>
             <v-card-text v-if="isSP" class="sp">
-              {{ item.text }}
+              {{ item.desc }}
             </v-card-text>
             <v-card-text v-else>
-              {{ readText(item.text, max_len) }}
+              {{ readText(item.desc, max_len) }}
             </v-card-text>
             <v-card-text class="sec">
               <v-icon>mdi-book-open-blank-variant-outline</v-icon>
