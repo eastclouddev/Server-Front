@@ -17,7 +17,7 @@
         <v-row class="align-center justify-space-between flex-column-sm">
           <BillingPrivacyCheckButton />     
           <v-card flat class="mx-auto text-center">
-            <Button type="submit" color="#FF5A36" style="font-size: 1.5em; border-radius:5px; margin-bottom: 15px; height: 4ex;" buttonText="入力情報を確認する"></Button>
+            <Button flat type="submit" color="#FF5A36" style="font-size: 1.5em; border-radius:5px; margin-bottom: 15px; height: 4ex;" buttonText="入力情報を確認する"></Button>
           </v-card>
         </v-row>
       </v-card>

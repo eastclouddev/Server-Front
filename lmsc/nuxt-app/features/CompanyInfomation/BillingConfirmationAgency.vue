@@ -30,7 +30,7 @@
       </v-card>
         <v-row class="align-center justify-space-between flex-column-sm">     
           <v-card flat class="mx-auto text-center">
-            <Button class="return-mark" @click="returnLink" type="submit" style="font-size: 1.5em; border-radius:5px; margin-bottom: 15px; height: 4ex;" buttonText="戻る"></Button>
+            <Button flat class="return-mark" @click="returnLink" type="submit" style="font-size: 1.5em; border-radius:5px; margin-bottom: 15px; height: 4ex;" buttonText="戻る"></Button>
           </v-card>
         </v-row>
       </v-card>

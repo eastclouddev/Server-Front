@@ -18,7 +18,7 @@
         
         </v-card>
         <v-card flat class="mx-auto text-center">
-          <Button type="submit" color="#FF5A36" style="font-size: 1.5em; border-radius:5px; height: 4ex; margin-bottom: 4px;" buttonText="次へ"></Button>
+          <Button flat type="submit" color="#FF5A36" style="font-size: 1.5em; border-radius:5px; height: 4ex; margin-bottom: 4px;" buttonText="次へ"></Button>
         </v-card>
       </v-card>
     </v-container>
