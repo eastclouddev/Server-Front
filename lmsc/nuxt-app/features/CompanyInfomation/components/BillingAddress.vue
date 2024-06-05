@@ -3,7 +3,10 @@
     <v-row class="align-center justify-space-between flex-column-sm mb-4">
       <div style="width: 200px; display: flex; align-items: center;" >
         <label class="sp_label" style="font-size: 1em; font-weight: bold;">郵便番号</label>
+
         <span v-if="showRequiredMark" class="required-mark">必須</span>
+
+
       </div>
       <v-card flat class="sp_field d-flex d-flex" width="25rem">
         <div class="d-flex">
@@ -22,7 +25,9 @@
     <v-row class="align-center justify-space-between flex-column-sm mb-4">
       <div style="width: 200px; display: flex; align-items: center;" >
         <label class="sp_label" style="font-size: 1em; font-weight: bold;">都道府県</label>
+
         <span v-if="showRequiredMark" class="required-mark">必須</span>
+
       </div>
       <v-card flat class="sp_field d-flex flex-column" width="25rem" >
           <v-select flat class="sp_field" variant="solo-filled" bg-color="#EBEBEB"
@@ -35,7 +40,9 @@
     <v-row class="align-center justify-space-between flex-column-sm mb-4">
       <div style="width: 200px; display: flex; align-items: center;" >
         <label class="sp_label" style="font-size: 1em; font-weight: bold;">市区町村</label>
+
         <span v-if="showRequiredMark" class="required-mark">必須</span>
+
       </div>
       <v-card flat class="sp_label sp_field d-flex flex-column" width="25rem">
         <v-sheet class="sp_field my-0 pr-4 pb-4 pl-4" color="#EBEBEB" style="width: 15rem; border-radius: 5px;">
@@ -48,7 +55,9 @@
     <v-row class="align-center justify-space-between flex-column-sm mb-0">
       <div style="width: 200px; display: flex; align-items: center;" >
         <label class="sp_label" style="font-size: 1em; font-weight: bold;">番地</label>
+
         <span v-if="showRequiredMark" class="required-mark">必須</span>
+
       </div>
       <v-card flat class="sp_field d-flex flex-column" width="25rem">
         <v-sheet class="sp_field my-0 pr-4 pb-4 pl-4" color="#EBEBEB" style="width: 15rem; border-radius: 5px;">
@@ -77,8 +86,10 @@ const props = defineProps({
   modelValue: String,
   label: String,
   placeholder: String,
-  placeholderFirst: String,
-  placeholderSecond: String,
+  showSpan: {
+    type: Boolean,
+    default: true
+  }
 });
 
 const selected = ref()
