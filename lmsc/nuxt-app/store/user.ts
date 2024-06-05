@@ -1,27 +1,40 @@
-import { defineStore } from 'pinia';
+import { defineStore } from 'pinia'
 
 export const useUserStore = defineStore('user', {
   state: () => ({
-    user: null,
+    user: {
+      id: null,
+      role_id: null,
+      first_name: '',
+      last_name: '',
+      email: '',
+    },
     isAuthenticated: false,
   }),
   actions: {
     setUser(payload) {
-      this.user = payload.user;
-      this.isAuthenticated = payload.isAuthenticated;
+      this.user = payload.user
+      this.isAuthenticated = payload.isAuthenticated
     },
     clearUser() {
-      this.user = null;
-      this.isAuthenticated = false;
+      this.user = {
+        id: null,
+        role_id: null,
+        first_name: '',
+        last_name: '',
+        email: '',
+      }
+      this.isAuthenticated = false
     },
   },
   getters: {
-    userName: (state) => {
+    userName: state => {
       if (state.user) {
-        return `${state.user.first_name} ${state.user.last_name}`;
+        return `${state.user.first_name} ${state.user.last_name}`
       }
-      return '';
+      return ''
     },
-    userRole: (state) => state.user ? state.user.role_id : null,
+    userRole: state => (state.user ? state.user.role_id : null),
+    userEmail: state => (state.user ? state.user.email : ''),
   },
-});
+})

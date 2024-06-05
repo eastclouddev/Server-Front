@@ -96,18 +96,25 @@ const handleSubmit = async () => {
 
     console.log('Login succeeded:', response);
 
+    console.log('API Response:', response);
+    console.log('First Name:', response.first_name);
+    console.log('Last Name:', response.last_name);
+    console.log('Email:', response.email);
+
+
     const user = {
       user: {
         id: response.user_id,
         role_id: roleMap[response.role], // ロールを数値に変換
-        first_name: response.first_name, // 正しいデータを設定
-        last_name: response.last_name,   // 正しいデータを設定
+        first_name: response.first_name,
+        last_name: response.last_name,
+        email: response.email,
       },
       isAuthenticated: true,
     };
     userStore.setUser(user);
 
-    console.log('User store after login:', userStore.$state);
+    console.log('User store after login:', userStore.$state);// ストアの状態をログに出力
 
     await router.push('/dashboard');
   } catch (error) {
