@@ -25,7 +25,7 @@
       "
     >
       <v-sheet color="#F5F5F5" width="80%" class="mx-auto mb-8 mt-8">
-        <div class="d-flex justify-space-between">
+        <div class="d-flex justify-space-between sp_select">
           <!-- <v-select
             v-model="selectedMonth"
             :items="months"
@@ -53,12 +53,13 @@
         </template>
       </v-select>
  -->
-          <div class="d-flex">
+          <div class="d-flex sp_selectbox" >
             <FilterSelect
               v-model="selectedMonth"
               :filterOptions="months"
               placeholderText="請求対象月"
               @filter-change="filterData"
+              class="mr-5"
             />
 
             <FilterSelect
@@ -73,7 +74,7 @@
             to="/billingInformation"
             color="#FF5136"
             class="sp_button"
-            style="width: 10rem; height: 40px"
+            style="width:10rem; height: 40px"
             buttonText="請求先情報編集"
           >
           </Button>
@@ -214,5 +215,24 @@ export default {
 
 .v-select .v-field.v-field {
   background-color: #ffffff;
+}
+
+
+@media screen and (max-width: 768px) {
+  .sp_select {
+    flex-direction:  column-reverse;
+  }
+  .sp_selectbox {
+    justify-content: center;
+    padding: 20px;
+  }
+  .v-input__control {
+    width: 12rem;
+  }
+
+  .custom_btn {
+    width: 10rem !important;
+    margin: auto;
+  }
 }
 </style>

@@ -18,7 +18,7 @@
           {{ item.paymentDate }}
         </td>
         <td style="border-left: 2px solid #F5F5F5; border-right: 2px solid #F5F5F5; width:140px;" class="text-center">
-          {{ item.payment }}
+          ¥{{ item.payment }}
         </td>
         <td style="border-left: 2px solid #F5F5F5; border-right: 2px solid #F5F5F5; height:50px;" class="d-flex align-center justify-center pl-3 pr-3">
           <div class="d-flex align-center justify-end">

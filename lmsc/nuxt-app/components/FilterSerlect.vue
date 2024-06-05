@@ -7,7 +7,7 @@
       density="compact"
       variant="outlined"
       class="mr-5 custom-select"
-      style="width: 18rem;">
+      style="width: 100%;">
       <template v-slot:selection="data">
         <span v-if="!selectedFilter" class="placeholder-text">{{ placeholderText }}</span>
         <span v-else>{{ data.item.title }}</span>
