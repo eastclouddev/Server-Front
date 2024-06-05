@@ -8,5 +8,5 @@
   </v-container>
 </template>
 <script setup>
-import DashboardContent from '~/features/auth/dashboard/dashboardContent.vue';
+import DashboardContent from '~/features/auth/dashboard/components/DashboardContent.vue';
 </script>

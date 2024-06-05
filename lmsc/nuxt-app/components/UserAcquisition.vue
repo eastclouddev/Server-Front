@@ -1,34 +1,47 @@
 <template>
   <v-container>
-    <v-row class="align-center justify-space-between pb-4" v-for=" item in items" :key="item.id">
+    <v-row class="align-center justify-space-between pb-4" v-for="item in items" :key="item.label">
       <label class="sp_label" style="font-size: 1em; font-weight: bold;">{{ item.label }}</label>
       <v-card flat class="sp_field d-flex flex-column" width="25rem">
         <v-sheet class="my-0 pr-4 pb-4 pl-4" color="#EBEBEB">
           <v-text-field hide-details="auto" placeholder="API取得" variant="plain"
-            v-model="password" full-width disabled></v-text-field>
+            v-model="item.data" full-width disabled></v-text-field>
         </v-sheet>
       </v-card>
     </v-row>
   </v-container>
 </template>
 
-<script setup>
-const items = [
-  {
-    label: "お名前",
-    data: "API取得データ"
+<script>
+export default {
+  data() {
+    return {
+      password: '', // パスワードを保持するデータ
+      showPassword: false, // パスワードの表示状態を管理するデータ
+      items: [
+        {
+          label: "お名前",
+          data: "田中 太郎"
+        },
+        {
+          label: "フリガナ",
+          data: "タナカ タロウ"
+        },
+        {
+          label: "メールアドレス",
+          data: "taro@example.com"
+        }
+      ]
+    }
   },
-  {
-    label: "フリガナ",
-    data: "API取得データ"
-  },
-  {
-    label: "メールアドレス",
-    data: "API取得データ"
-  },
-];
-
+  methods: {
+    togglePasswordVisibility() {
+      this.showPassword = !this.showPassword; // パスワードの表示状態を反転させる
+    }
+  }
+}
 </script>
+
 <style lang="scss" scoped>
 @media screen and (max-width: 768px) {
 .sp {
@@ -47,5 +60,3 @@ const items = [
 }
 }
 </style>
-
-

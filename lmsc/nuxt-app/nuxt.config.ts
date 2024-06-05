@@ -19,11 +19,15 @@ export default defineNuxtConfig({
   },
   css: ['vuetify/styles'],
   build: {
-    transpile: ['vuetify'],
+    transpile: ['vuetify', '@types/platform', '@types/uuid'],
   },
   components: [
     {
       path: '@/components/',
+      pathPrefix: false,
+    },
+    {
+      path: '~/features/**/components',
       pathPrefix: false,
     },
   ],
@@ -37,4 +41,13 @@ export default defineNuxtConfig({
     plugins: [VuetifyPlugin()],
   },
   plugins: ["~/plugins/api"],
+  vite: {
+    ssr: {
+      noExternal: ['vuetify'],
+    },
+    define: {
+      'process.env.DEBUG': false,
+    },
+    plugins: [VuetifyPlugin()],
+  },
 });
