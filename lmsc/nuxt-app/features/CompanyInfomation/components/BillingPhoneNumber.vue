@@ -3,21 +3,36 @@
     <v-row class="align-center justify-space-between flex-column-sm">
       <div style="width: 200px; display: flex; align-items: center;" >
         <label class="sp_label" style="font-size: 1em; font-weight: bold;">{{ label }}</label>
-        <span v-if="showSpan" class="required-mark">必須</span>
-        </div>
-        <v-card flat class="sp_field d-flex flex-column" width="25rem">
-          <v-sheet class="sp_field my-0 pr-4 pb-4 pl-4" color="#EBEBEB" style="width: 200px; border-radius: 5px;">
-            <v-text-field  hide-details="auto" :placeholder="placeholder" variant="plain" full-width ></v-text-field>
-          </v-sheet>
-          <span>※ハイフン不要</span>
-        </v-card>
-        
-      </v-row>
-    </v-container>
-  </template>
-  <script setup>
-  
-  const props = defineProps({
+
+        <span v-if="showRequiredMark" class="required-mark">必須</span>
+      </div>
+      <v-card flat class="sp_field d-flex flex-column" width="25rem">
+        <v-sheet class="sp_field my-0 pr-4 pb-4 pl-4" color="#EBEBEB" style="width: 15rem; border-radius: 5px;">
+          <v-text-field  hide-details="auto" :placeholder="placeholder" variant="plain" full-width ></v-text-field>
+        </v-sheet>
+        <span>※ハイフン不要</span>
+      </v-card>
+      
+    </v-row>
+  </v-container>
+</template>
+<script setup>
+import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+const showRequiredMark = ref(true);
+
+onMounted(() => {
+  // 特定のページでは必須マークを表示しない
+  if (route.name === 'billingInformation') {
+    showRequiredMark.value = false;
+  }
+});
+
+
+const props = defineProps({
+
   modelValue: String,
   label: String,
   placeholder: String,
