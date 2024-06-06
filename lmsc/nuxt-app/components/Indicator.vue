@@ -22,32 +22,6 @@
     <div class="d-flex align-center justify-end">
   <v-icon class="status-icon" :color="status === '完了' ? '#10BED2' : '#FF0000'">{{ statusIcon }}</v-icon>
     <span class="status">{{ status }}</span>
-=======
-  <v-sheet class="mt-5 mb-5">
-    <p>学習進捗</p>
-    <div class="indicator" @mousemove="updateTooltip($event)" >
-      <v-progress-linear
-        :location="false"
-        bg-color="#EAEAEA"
-        buffer-color="#10BED2"
-        buffer-opacity="1"
-        buffer-value="15"
-        color="#242424"
-        height="18"
-        :max="max"
-        min="0"
-        :model-value="progressValue"
-        style="border-radius: 5px; position: relative;"
-        class="mb-3"
-      >
-      </v-progress-linear>
-      <div class="indicator_label" :style="{ left: tooltipLeft }">{{ tooltipValue }}%</div>
-    </div>
-    <!-- ステータス -->
-    <div class="ms-4 text-h6 d-flex align-center justify-end">
-      <v-icon color="#FF0000">{{ status.icon }}</v-icon>
-      <p style="font-size:0.8em;">{{ status.text }} : 残り時間表示</p>
->>>>>>> develop
     </div>
   </v-sheet>
 </template>
@@ -56,7 +30,6 @@
 export default {
   data() {
     return {
-<<<<<<< HEAD
       progressValue: 9,
       status: '',
       statusIcon: ''
