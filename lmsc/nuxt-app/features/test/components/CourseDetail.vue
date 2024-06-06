@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import PythonIcon from '~/assets/python_icon.svg'
+import HWIcon from '~/assets/hw_account_icon.svg'
 import Section from '~/features/test/components/CourseSection.vue'
 
 const sampleInfo = `スキルレベル：初級
@@ -49,6 +50,99 @@ const contents = ref({
   title: 'Python 3 入門 + 応用 &#9312;',
   info: sampleInfo,
   comment: sampleComment,
+})
+
+const hw_items = ref([
+  {
+    name: '山田 太郎',
+    title: '文字列の配列について。',
+    desc: `文字列の配列でカンマを付け忘れているため、文字列の配列でカンマを付け忘れているため、文字列の配列でカンマを付け忘れているため、
+            文字列の配列でカンマを付け忘れているため、文字列の配列でカンマを付け忘れているため、文字列の配列でカンマを付け忘れているため、`,
+    day_ago: 3,
+    comment: [
+      {
+        name: '山田 太郎',
+        text: `メンターの返信を表示。
+                テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。
+                テキストが入ります。テキストが入ります。
+                テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。
+                テキストが入ります。テキストが入ります。`,
+        day_ago: 5,
+      },
+      {
+        name: '山田 太郎',
+        text: `テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。
+                テキストが入ります。テキストが入ります。
+                テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。
+                テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。`,
+        day_ago: 3,
+      },
+    ],
+  },
+  {
+    name: '山田 太郎',
+    title: '組み込み関数について。',
+    desc: `組み込み関数/組み込み型と同じ名前の変数を、組み込み関数/組み込み型と同じ名前の変数を、組み込み関数/組み込み型と同じ名前の変数を、`,
+    day_ago: 3,
+    comment: [
+      {
+        name: '山田 太郎',
+        text: `メンターの返信を表示。
+                テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。
+                テキストが入ります。テキストが入ります。
+                テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。
+                テキストが入ります。テキストが入ります。`,
+        day_ago: 5,
+      },
+      {
+        name: '山田 太郎',
+        text: `テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。
+                テキストが入ります。テキストが入ります。
+                テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。
+                テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。`,
+        day_ago: 3,
+      },
+      {
+        name: '山田 太郎',
+        text: `テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。
+                テキストが入ります。テキストが入ります。
+                テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。
+                テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。`,
+        day_ago: 3,
+      },
+    ],
+  },
+  {
+    name: '山田 太郎',
+    title: 'モジュール名について。',
+    desc: `モジュール名と同名のクラスや関数でインポモジュール名と同名のクラスや関数でインポモジュール名と同名のクラスや関数でインポモジュール名と`,
+    day_ago: 3,
+    comment: [
+      {
+        name: '山田 太郎',
+        text: `メンターの返信を表示。
+                テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。
+                テキストが入ります。テキストが入ります。
+                テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。
+                テキストが入ります。テキストが入ります。`,
+        day_ago: 3,
+      },
+    ],
+  },
+])
+
+const commentNum = ref(0)
+
+const commentCount = () => {
+  let num = 0
+  for (const item of hw_items.value) {
+    num += item.comment.length
+  }
+  commentNum.value = num
+  console.log(commentNum.value)
+}
+onMounted(() => {
+  commentCount()
 })
 
 const formatText = (val: string) => {
@@ -153,8 +247,8 @@ const ModeChange = (num: number) => {
           <v-card-text @click="ViewMore">もっとみる</v-card-text>
         </v-col>
       </v-row>
-      <v-row v-if="isMode === '課題提出'">
-        <v-col class="title">
+      <v-row class="hw" v-if="isMode === '課題提出'">
+        <!-- <v-col class="title">
           <v-img :src="PythonIcon"></v-img>
           <v-card-title v-html="contents.title + '  課題提出'" />
         </v-col>
@@ -172,6 +266,34 @@ const ModeChange = (num: number) => {
         </v-col>
         <v-col v-if="isOverflow === true" class="viewMore">
           <v-card-text @click="ViewMore">もっとみる</v-card-text>
+        </v-col> -->
+        <v-col class="hw_info">
+          <NuxtLink>質問一覧</NuxtLink>
+          <v-icon>mdi-chevron-right</v-icon>
+          <p>コードについて</p>
+        </v-col>
+        <v-col class="hw_header">
+          <h2>このコースに関する課題提出 ({{ commentNum }})</h2>
+          <v-btn>課題提出依頼</v-btn>
+        </v-col>
+        <v-col class="hw_item" v-for="item in hw_items">
+          <v-row class="icon">
+            <v-img :src="HWIcon"></v-img>
+          </v-row>
+          <v-row>
+            <v-col class="hw_title"> {{ item.title }} </v-col>
+            <v-col class="hw_desc">{{ item.desc }}</v-col>
+            <v-col class="hw_explanation">
+              <div>
+                <p class="hw_name">{{ item.name }}</p>
+                <p class="hw_day">{{ item.day_ago }}日前</p>
+              </div>
+              <div class="hw_comments">
+                <p class="hw_comment">{{ item.comment.length }}</p>
+                <v-icon>mdi-comment-text</v-icon>
+              </div>
+            </v-col>
+          </v-row>
         </v-col>
       </v-row>
     </v-col>
@@ -306,6 +428,115 @@ const ModeChange = (num: number) => {
       }
     }
   }
+  .hw {
+    margin: 0 27px 40px;
+    .hw_info {
+      display: flex;
+      align-items: center;
+      color: #ff5a36;
+      font-size: 16px;
+      gap: 16px;
+      margin-bottom: 24px;
+      .v-icon {
+        color: #242424;
+        &::before {
+          font-size: 16px;
+        }
+      }
+      .hw_day {
+        color: #242424;
+      }
+    }
+    .hw_header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 30px;
+      h2 {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 27.24px;
+      }
+      .v-btn {
+        height: 45px;
+        padding: 0 24px;
+        color: #fff;
+        background-color: #ff5a36;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 21.79px;
+      }
+    }
+    .hw_item {
+      display: flex;
+      align-items: start;
+      margin-bottom: 24px;
+      border-bottom: 0.5px dotted #242424;
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .icon {
+        width: 50px;
+        .v-img {
+          width: 50px;
+          .v-img__img--contain {
+            height: 50px;
+          }
+        }
+      }
+      .hw_title {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 21.79px;
+        margin-bottom: 8px;
+      }
+      .hw_desc {
+        width: 604px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 19.07px;
+        text-wrap: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        min-height: 20px;
+        margin-bottom: 16px;
+      }
+      .hw_explanation {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+        .hw_name {
+          font-size: 12px;
+          color: #ff5a36;
+        }
+        .hw_day {
+          font-size: 12px;
+          color: #b5b5b5;
+          margin-left: 8px;
+        }
+        .hw_comments {
+          p {
+            font-size: 16px;
+            font-weight: 700;
+            margin-right: 4px;
+          }
+          .v-icon {
+            color: #ff5a36;
+          }
+        }
+        div {
+          display: flex;
+          align-items: center;
+          p {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -325,6 +556,65 @@ const ModeChange = (num: number) => {
       .v-row {
         &.sp {
           display: initial;
+        }
+      }
+    }
+    .hw {
+      .hw_header {
+        flex-direction: column;
+        justify-content: left;
+        align-items: start;
+        h2 {
+          font-size: 32px;
+          line-height: 43.58px;
+        }
+        .v-btn {
+          width: 100%;
+          height: 95px;
+          font-size: 35px;
+          line-height: 47.67px;
+          margin-top: 40px;
+        }
+      }
+      .hw_item {
+        .icon {
+          width: 80px;
+          margin-right: 24px;
+          .v-img {
+            width: 80px;
+            .v-img__img--contain {
+              height: 80px;
+            }
+          }
+        }
+        .hw_title {
+          font-size: 28px;
+          line-height: 38.14px;
+        }
+        .hw_desc {
+          width: 500px;
+          font-size: 24px;
+          line-height: 32.69px;
+          min-height: 34px;
+        }
+        .hw_explanation {
+          .hw_name,
+          .hw_day {
+            font-size: 24px;
+            line-height: 32.69px;
+          }
+          .hw_comments {
+            p {
+              font-size: 32px;
+              line-height: 43.58px;
+              margin-right: 20px;
+            }
+            .v-icon {
+              &::before {
+                font-size: 44px;
+              }
+            }
+          }
         }
       }
     }
