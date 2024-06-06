@@ -11,7 +11,9 @@
           <PcBillingTable :filteredList="filteredList" />
           <SpBillingTable :filteredList="filteredList" />
           
-          <!-- NuxtLink -->
+        <div class="right-aligned-link">
+        <NuxtLink to="/billing" class="link-style">もっとみる</NuxtLink>
+        </div>
 
         </template>
         <template v-else>
@@ -118,5 +120,14 @@ export default {
   border-radius: 5px;
   padding: 0 1%;
   width: 260px !important;
+}
+
+.right-aligned-link {
+  text-align: right;
+}
+
+.link-style {
+  color: black;
+  text-decoration: underline;
 }
 </style>

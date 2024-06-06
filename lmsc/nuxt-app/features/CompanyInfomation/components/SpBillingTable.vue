@@ -103,4 +103,43 @@ td {
     display: none;
   }
 }
+
+
+.unclaimed {
+    color: #ffffff;
+    background-color: #ff5a36;
+    font-weight: bold;
+    padding: 3px;
+    width: 6rem;
+    text-align: center;
+    border-radius: 5px;
+    margin-left: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.paid {
+    color: #ffffff;
+    background-color: #8a4e41;
+    font-weight: bold;
+    padding: 3px;
+    width: 6rem;
+    text-align: center;
+    border-radius: 5px;
+    margin-left: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.billed {
+    color: #ffffff;
+    background-color: #292737;
+    font-weight: bold;
+    padding: 3px;
+    width: 6rem;
+    text-align: center;
+    border-radius: 5px;
+    margin-left: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
 </style>
