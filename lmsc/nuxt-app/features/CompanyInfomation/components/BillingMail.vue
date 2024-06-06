@@ -4,7 +4,7 @@
       <div class="sp_width" style="width: 200px; display: flex; align-items: center;" >
         <label class="sp_label" style="font-size: 1em; font-weight: bold;">{{ label }}</label>
 
-        <span  v-if="showRequiredMark" class="required-mark">必須</span>
+        <span  v-if="showSpan" class="required-mark">必須</span>
 
       </div>
       <v-card flat class="sp_field d-flex flex-column" width="25rem">

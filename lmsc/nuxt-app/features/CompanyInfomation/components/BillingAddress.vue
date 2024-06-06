@@ -4,7 +4,7 @@
       <div style="width: 200px; display: flex; align-items: center;" >
         <label class="sp_label" style="font-size: 1em; font-weight: bold;">郵便番号</label>
 
-        <span v-if="showRequiredMark" class="required-mark">必須</span>
+        <span v-if="showSpan" class="required-mark">必須</span>
 
 
       </div>
@@ -26,7 +26,7 @@
       <div style="width: 200px; display: flex; align-items: center;" >
         <label class="sp_label" style="font-size: 1em; font-weight: bold;">都道府県</label>
 
-        <span v-if="showRequiredMark" class="required-mark">必須</span>
+        <span v-if="showSpan" class="required-mark">必須</span>
 
       </div>
       <v-card flat class="sp_field d-flex flex-column" width="25rem" >
@@ -41,7 +41,7 @@
       <div style="width: 200px; display: flex; align-items: center;" >
         <label class="sp_label" style="font-size: 1em; font-weight: bold;">市区町村</label>
 
-        <span v-if="showRequiredMark" class="required-mark">必須</span>
+        <span v-if="showSpan" class="required-mark">必須</span>
 
       </div>
       <v-card flat class="sp_label sp_field d-flex flex-column" width="25rem">
@@ -56,7 +56,7 @@
       <div style="width: 200px; display: flex; align-items: center;" >
         <label class="sp_label" style="font-size: 1em; font-weight: bold;">番地</label>
 
-        <span v-if="showRequiredMark" class="required-mark">必須</span>
+        <span v-if="showSpan" class="required-mark">必須</span>
 
       </div>
       <v-card flat class="sp_field d-flex flex-column" width="25rem">
@@ -73,12 +73,12 @@ import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
-const showRequiredMark = ref(true);
+const showSpan = ref(true);
 
 onMounted(() => {
   // 特定のページでは必須マークを表示しない
   if (route.name === 'billingInformation') {
-    showRequiredMark.value = false;
+    showSpan.value = false;
   }
 });
 
