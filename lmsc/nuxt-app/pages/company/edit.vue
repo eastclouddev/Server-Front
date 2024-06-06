@@ -11,4 +11,4 @@
   </template>
   <script setup>
   import CompanyInfomationConfirmation from '~/features/CompanyInfomation/CompanyInfomationConfirmation.vue'
-  </script>
+  </script> 
