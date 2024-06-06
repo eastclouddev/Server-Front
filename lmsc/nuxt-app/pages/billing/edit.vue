@@ -11,4 +11,4 @@
   </template>
   <script setup>
   import BillingInfomationConfirmation from '~/features/CompanyInfomation/BillingInfomationConfirmation.vue'
-  </script>
+  </script> 

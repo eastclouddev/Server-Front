@@ -11,4 +11,4 @@
   </template>
   <script setup>
   import BillingInfomationForm from '~/features/CompanyInfomation/BillingInfomationForm.vue'
-  </script> 
+  </script>  
