@@ -1,4 +1,3 @@
-
 <template>
   <v-container>
     <v-row class="align-center justify-space-between flex-column-sm">
@@ -6,7 +5,7 @@
       <v-card flat class="d-flex flex-column sp_field" width="25rem">
         <v-sheet :class="{ 'error': errors.password }" class="my-0 pr-4 pb-4 pl-4" color="#EBEBEB">
           <v-text-field hide-details="auto" :placeholder="placeholder" variant="plain" class="mb-"
-            :type="showPassword ? 'text' : 'password'" :value="modelValue" @input="updatePassword" full-width>
+            :type="showPassword ? 'text' : 'password'" :value="password" @input="updatePassword" full-width>
             <template #append>
               <v-icon @click="togglePasswordVisibility">{{ showPassword ? 'mdi-eye' : 'mdi-eye-off' }}</v-icon>
             </template>
@@ -20,7 +19,7 @@
 </template>
 
 <script setup>
-import { ref, computed, defineProps, defineEmits } from 'vue';
+import { ref, defineProps, defineEmits } from 'vue';
 import { useField, useForm } from 'vee-validate';
 import { object, string, setLocale } from 'yup';
 
@@ -49,7 +48,7 @@ const schema = object({
 const { errors } = useForm({
   validationSchema: schema,
 });
-const { value: password } = useField('password');
+const { value: password } = useField('password', props.modelValue);
 
 const showPassword = ref(false);
 
@@ -62,7 +61,6 @@ function updatePassword(event) {
   emits('update:modelValue', event.target.value); // 親コンポーネントに入力値を通知
 }
 </script>
-
 
 <style lang="scss" scoped>
 .error {
