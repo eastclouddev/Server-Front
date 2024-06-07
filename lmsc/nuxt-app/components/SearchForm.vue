@@ -11,7 +11,7 @@
         <v-icon
           @click="triggerSearch"
           size="40"
-          style="background-color:#FF5A36; color: #FFFFFF; height:25px; position: absolute;  right:0%; top: 36px; border-radius: 0 5px 5px 0;"
+          style="background-color:#FF5A36; color: #FFFFFF; height:25px; left:4%; top: -21px; border-radius: 0 5px 5px 0;"
           class="pa-7"  >
             mdi-magnify
         </v-icon>
