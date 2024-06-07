@@ -5,63 +5,39 @@ import { useMediaQuery } from '@vueuse/core'
 import Indicator from '~/features/course/courseList/components/courseIndicator.vue'
 import IMG from '~/assets/no_img.png'
 
-import { getCourse, useGetCourse } from '~/features/course/api/getCourse'
+type Data = {
+  course_id: number // コースのID
+  title: string // コースのタイトル
+  description: string // コースの説明
+  created_user: number // コースを作成したユーザーのID
+  thumbnail_url: string // コースのサムネイル画像のURL
+  created_at: string // コースの作成日時 (ISO 8601形式)
+}
 
-type Post = {
+type Option = {
+  type: string
+  len: number
+}
+
+// テストデータ用の型
+type TestData = {
   title: string
   img: string
-  desc: string
+  description: string
   time: number
   num: number
   completed: number
 }
 
 const props = defineProps<{
-  items: Post[]
-  type: string
-  len: number
+  courses: Data[]
+  items: TestData[]
+  options: Option
 }>()
-
-const Courses = ref<Post[]>([])
-
-const updateCourses = (id: number) => {
-  Courses.value[id].img = props.items[id].img
-  Courses.value[id].time = props.items[id].time
-  Courses.value[id].num = props.items[id].num
-  Courses.value[id].completed = props.items[id].completed
-}
-
-onMounted(async () => {
-  let id = 0
-  let End_id = 10
-  while (id == End_id) {
-    try {
-      const { data, error, status } = useGetCourse(id)
-      await data.value
-      if (!error.value && status.value !== 'error' && data.value) {
-        Courses.value[id].title = data.value?.title
-        Courses.value[id].desc = data.value?.description
-        updateCourses(id)
-      } else {
-        console.error(
-          `Failed to fetch course information for course ID: ${id}`,
-          error.value
-        )
-      }
-    } catch (err) {
-      console.error(
-        `Failed to fetch course information for course ID: ${id}`,
-        err
-      )
-    }
-    id++
-  }
-  console.log(Courses)
-})
 
 // dev
 const repeatedItems = computed(() => {
-  let resultItem: Post[] = []
+  let resultItem: TestData[] = []
   for (let i = 0; i < 3; i++) {
     resultItem = resultItem.concat(props.items)
   }
@@ -70,8 +46,8 @@ const repeatedItems = computed(() => {
 
 const items = ref(repeatedItems.value)
 // const items = ref(props.items)
-const type = ref(props.type)
-const max_len = ref(props.len)
+const type = ref(props.options.type)
+const max_len = ref(props.options.len)
 
 const posts = reactive({
   len: items.value.map(item => item.num),
@@ -128,10 +104,10 @@ const readText = (text: string, max_len: number) => {
             <v-card-title>{{ item.title }}</v-card-title>
             <v-card-text>
               <template v-if="isSP">
-                {{ readText(item.desc, max_len) }}
+                {{ readText(item.description, max_len) }}
               </template>
               <template v-else>
-                {{ item.desc }}
+                {{ item.description }}
               </template>
             </v-card-text>
             <div class="flex">
@@ -148,10 +124,10 @@ const readText = (text: string, max_len: number) => {
           <v-col class="text" v-if="type == 'History'">
             <v-card-title>{{ item.title }}</v-card-title>
             <v-card-text v-if="isSP" class="sp">
-              {{ item.desc }}
+              {{ item.description }}
             </v-card-text>
             <v-card-text v-else>
-              {{ readText(item.desc, max_len) }}
+              {{ readText(item.description, max_len) }}
             </v-card-text>
             <v-card-text class="sec">
               <v-icon>mdi-book-open-blank-variant-outline</v-icon>
