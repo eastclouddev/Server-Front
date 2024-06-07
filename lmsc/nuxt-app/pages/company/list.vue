@@ -7,12 +7,6 @@
         <v-container>
         <CompanyList />
         </v-container>
-
-
-
-        <v-container>
-        </v-container>
-
     </div>
 
   </template>
