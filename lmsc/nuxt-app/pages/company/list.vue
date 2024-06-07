@@ -5,18 +5,17 @@
         <Meta name="description" content="iDemy | 管理会社情報詳細画面" />
         </Head>
         <v-container>
-        <DetailCompany />
+        <CompanyList />
         </v-container>
 
 
 
         <v-container>
-        <DetailCompany />
         </v-container>
 
     </div>
 
   </template>
   <script setup>
-  import DetailCompany from '~/features/CompanyInfomation/DetailCompany.vue'
+  import CompanyList from '~/features/CompanyInfomation/CompanyList.vue'
   </script>
