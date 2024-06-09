@@ -1,17 +1,20 @@
 <template>
-  <v-container class="justify-space-between">
-    <v-row class="align-center justify-space-between flex-column-sm mb-4">
+  <v-container class="justify-space-between" style="max-width: 100%">
+    <v-row
+      class="align-center justify-space-between flex-column-sm mb-4"
+      style="width: 100%"
+    >
       <div style="width: 200px; display: flex; align-items: center">
         <label class="sp_label" style="font-size: 1em; font-weight: bold"
           >郵便番号</label
         >
         <span v-if="showSpan" class="required-mark">必須</span>
       </div>
-      <v-card flat class="sp_field d-flex d-flex" width="25rem">
+      <v-card flat class="sp_field d-flex" style="width: 100%">
         <v-sheet
           class="sp_post_left my-0 pb-4 pl-4 d-flex"
           color="#EBEBEB"
-          style="padding-right: 15px; border-radius: 5px"
+          style="flex: 1; padding-right: 15px; border-radius: 5px"
         >
           <v-text-field
             hide-details="auto"
@@ -25,7 +28,7 @@
         <v-sheet
           class="sp_post_right my-0 pb-4 pl-4 d-flex"
           color="#EBEBEB"
-          style="padding-right: 15px; border-radius: 5px"
+          style="flex: 1.5; padding-right: 15px; border-radius: 5px"
         >
           <v-text-field
             hide-details="auto"
@@ -45,20 +48,23 @@
       </v-card>
     </v-row>
 
-    <v-row class="align-center justify-space-between flex-column-sm mb-4">
+    <v-row
+      class="align-center justify-space-between flex-column-sm mb-4"
+      style="width: 100%"
+    >
       <div style="width: 200px; display: flex; align-items: center">
         <label class="sp_label" style="font-size: 1em; font-weight: bold"
           >都道府県</label
         >
         <span v-if="showSpan" class="required-mark">必須</span>
       </div>
-      <v-card flat class="sp_field d-flex flex-column" width="25rem">
+      <v-card flat class="sp_field d-flex flex-column" style="width: 100%">
         <v-select
           flat
           class="sp_field"
           variant="solo-filled"
           bg-color="#EBEBEB"
-          style="height: 64px; width: 200px; border-radius: 5px"
+          style="height: 64px; width: 100%; border-radius: 5px"
           v-model="selected"
           :items="prefectures"
           item-title="label"
@@ -70,18 +76,25 @@
         ></v-select>
       </v-card>
     </v-row>
-    <v-row class="align-center justify-space-between flex-column-sm mb-4">
+    <v-row
+      class="align-center justify-space-between flex-column-sm mb-4"
+      style="width: 100%"
+    >
       <div style="width: 200px; display: flex; align-items: center">
         <label class="sp_label" style="font-size: 1em; font-weight: bold"
           >市区町村</label
         >
         <span v-if="showSpan" class="required-mark">必須</span>
       </div>
-      <v-card flat class="sp_label sp_field d-flex flex-column" width="25rem">
+      <v-card
+        flat
+        class="sp_label sp_field d-flex flex-column"
+        style="width: 100%"
+      >
         <v-sheet
           class="sp_field my-0 pr-4 pb-4 pl-4"
           color="#EBEBEB"
-          style="width: 200px; border-radius: 5px"
+          style="width: 100%; border-radius: 5px"
         >
           <v-text-field
             hide-details="auto"
@@ -137,7 +150,7 @@ const searchAddress = async () => {
 .search-mark {
   color: #ff5136;
   background-color: #ffff;
-  border: 1px solid#FF5136;
+  border: 1px solid #ff5136;
   border-radius: 5px;
   padding: 0 1%;
   margin: 0 3%;
