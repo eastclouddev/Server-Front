@@ -11,4 +11,4 @@
   </template>
   <script setup>
   import CompanyInfomationForm from '~/features/CompanyInfomation/CompanyInfomationForm.vue'
-  </script>
+  </script> 

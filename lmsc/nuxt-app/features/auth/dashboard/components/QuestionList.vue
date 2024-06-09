@@ -34,7 +34,8 @@ export default {
         {
           message: 'コードが正しく反映されないのですが、どこが間違えていますか？',
           category: 'PHP',
-          status1: '未読', status2: '未解決' },
+          status1: '未読', status2: '未解決'
+        },
         {
           message: 'コードが正しく反映されないのですが、どこが間違えていますか？',
           category: 'Obj-c',
