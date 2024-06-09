@@ -1,5 +1,18 @@
 import { defineStore } from 'pinia'
 
+interface User {
+  id: number | null
+  role_id: number | null
+  first_name: string
+  last_name: string
+  email: string
+}
+
+interface Payload {
+  user: User
+  isAuthenticated: boolean
+}
+
 export const useUserStore = defineStore('user', {
   state: () => ({
     user: {
@@ -8,11 +21,11 @@ export const useUserStore = defineStore('user', {
       first_name: '',
       last_name: '',
       email: '',
-    },
+    } as User,
     isAuthenticated: false,
   }),
   actions: {
-    setUser(payload) {
+    setUser(payload: Payload) {
       this.user = payload.user
       this.isAuthenticated = payload.isAuthenticated
     },
@@ -37,4 +50,5 @@ export const useUserStore = defineStore('user', {
     userRole: state => (state.user ? state.user.role_id : null),
     userEmail: state => (state.user ? state.user.email : ''),
   },
+  persist: true,
 })
