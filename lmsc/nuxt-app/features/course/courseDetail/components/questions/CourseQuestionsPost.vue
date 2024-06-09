@@ -87,6 +87,8 @@ const newQuestion = ref({
 
 const route = useRoute();
 const curriculumId = Number(route.params.curriculumId) || 1;
+// Todo:course_idの取得
+const courseId = 1;
 
 const fileInput = ref<HTMLInputElement | null>(null);
 const selectFile = () => {
@@ -112,7 +114,9 @@ const submitQuestion = async () => {
   //   ${newQuestion.value.content}
   // `;
 
+  // Todo:curriculum_idの取得、user_idの取得
   const questionData = {
+    curriculum_id: curriculumId,
     user_id: 1,
     title: newQuestion.value.title,
     objective: newQuestion.value.objective,
@@ -128,7 +132,7 @@ const submitQuestion = async () => {
   };
   console.log('質問データ: ', questionData);
 
-  createQuestion({ curriculumId, questionData }, {
+  createQuestion({ courseId, questionData }, {
     onSuccess: () => {
       console.log('質問が投稿されました');
     },

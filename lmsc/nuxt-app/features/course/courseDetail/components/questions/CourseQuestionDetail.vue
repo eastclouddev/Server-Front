@@ -1,4 +1,5 @@
 <template>
+  <Child :key="renderKey" />
   <v-card
     flat
     :style="{
@@ -67,34 +68,48 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, toRaw, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 import { VAvatar, VListItem, VRow, VCol, VList, VCard, VCardText, VListItemTitle, VListItemSubtitle, VFileInput } from 'vuetify/components';
 import TextArea from '@/components/TextArea.vue';
 import OutlinedButton from '@/components/OutlinedButton.vue';
 import SolidButton from '@/components/SolidButton.vue';
+import { useCreateAnswer } from '~/features/course/api/createAnswer';
+import { useGetQuestionThread } from '~/features/course/api/getQuestionThread';
 
 const route = useRoute();
-const questionId = route.params.questionId;
+const questionId = route.params.questionId ? route.params.questionId : 1; // Todo
 
 // 質問の詳細データを取得するロジック
-const question = ref({
-  title: '質問のタイトル1',
-  content: '質問の内容1',
-});
+let question = {
+    title: "",
+    content: ""
+};
+let replies = new Array();
+const {
+  data: questionThreadData,
+  error: questionThreadError,
+  status: questionThreadStatus,
+} = useGetQuestionThread(questionId)
+const renderKey = ref(0);
 
-const replies = ref([
-  {
-    author: '回答者1',
-    date: '1日前',
-    content: 'これは回答の内容です。',
-  },
-  {
-    author: '回答者2',
-    date: '2日前',
-    content: '別の回答の内容です。',
-  },
-]);
+watchEffect(() => {
+  if (questionThreadData.value !== null) {
+    const rawQuestionData = toRaw(questionThreadData.value.question);
+    question.title = rawQuestionData.title;
+    question.content = rawQuestionData.content;
+    
+    const rawAnswersData = toRaw(questionThreadData.value.answer);
+    for (let i = 0; i < rawAnswersData.length; i++) {
+        replies.push({
+            author: rawAnswersData[i].user.name,
+            date: rawAnswersData[i].created_at, // Todo:日付を変換
+            content: rawAnswersData[i].content
+        });
+    }
+    renderKey.value = renderKey.value + 1
+  }
+});
 
 const newReply = ref({
   content: '',
@@ -112,9 +127,37 @@ const selectFile = () => {
   }
 };
 
-const submitReply = () => {
+const { mutate: createAnswer } = useCreateAnswer();
+
+const submitReply = async () => {
   // 返信の送信処理を実装
   console.log(newReply.value);
+
+  const questionId = 1;
+  const replyData = {
+    user_id: 1,
+    parent_answer_id: null,
+    content: newReply.value.content,
+    media_content: [ // Todo:media_contentはどこから取得?
+      {
+        "url": "string"
+      }
+    ]
+  };
+  console.log('質問データ: ', replyData);
+
+  createAnswer({ questionId, replyData }, {
+    onSuccess: () => {
+      console.log('返信が投稿されました');
+    },
+    onError: (error: any) => {
+      if (error.response) {
+        console.error('エラーが発生しました', error.response.data);
+      } else {
+        console.error('エラーが発生しました', error.message);
+      }
+    }
+  });
 };
 </script>
 

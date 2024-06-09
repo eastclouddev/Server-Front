@@ -50,7 +50,6 @@ const course: CourseDetail = {
   video: {
     video_url: '/_nuxt/assets/81562_1280x720.mp4', // 仮データ
     thumbnail_url: 'https://picsum.photos/id/237/200/300', // 仮データ
-    thumbnail_url: 'https://picsum.photos/id/237/200/300', // 仮データ
   },
   sections: courseRowData?.sections,
 }

@@ -3,10 +3,10 @@ import { apiClient } from "@/libs/axios";
 import { AxiosError } from "axios";
 import { service } from "@/constants/service";
 
-export async function createQuestion(courseId: number, questionData: any) {
+export async function createAnswer(questionId: number, replyData: any) {
   try {
-    const response = await apiClient.curriculums._course_id(courseId).questions.$post({
-      body: questionData,
+    const response = await apiClient.questions._question_id(questionId).answers.$post({
+      body: replyData,
     });
     return response;
   } catch (err) {
@@ -18,8 +18,8 @@ export async function createQuestion(courseId: number, questionData: any) {
   }
 }
 
-export function useCreateQuestion() {
+export function useCreateAnswer() {
   return useMutation({
-    mutationFn: (params: { courseId: number, questionData: any }) => createQuestion(params.courseId, params.questionData),
+    mutationFn: (params: { questionId: number, replyData: any }) => createAnswer(params.questionId, params.replyData),
   });
 }
