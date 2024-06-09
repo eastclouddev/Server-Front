@@ -11,4 +11,4 @@
   </template>
   <script setup>
   import CompanyConfirmationAdmin from '~/features/CompanyInfomation/CompanyConfirmationAdmin.vue'
-  </script>
+  </script> 
