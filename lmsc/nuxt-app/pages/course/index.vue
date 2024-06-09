@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ListView from '~/features/course/courseList/ListView.vue'
-import { useGetCourses } from '~/features/course/api/getCourses'
+import { useGetCourseList } from '~/features/course/api/getCourseList'
+import CourseList from '~/features/course/courseList/CourseList.vue'
 
 type Data = {
   course_id: number // コースのID
@@ -11,8 +11,10 @@ type Data = {
   created_at: string // コースの作成日時 (ISO 8601形式)
 }
 
-const { data, error, status } = useGetCourses()
-console.log('コース一覧の情報', typeof data.value, data.value)
+const { data, error, status } = useGetCourseList()
+console.log('コース一覧の情報', typeof data.value, data.value?.courses)
+console.log('エラー', error)
+console.log('ステータス', status)
 
 const courses = computed<Data[]>(() =>
   Array.isArray(data.value) ? data.value : []
@@ -20,5 +22,5 @@ const courses = computed<Data[]>(() =>
 </script>
 
 <template>
-  <ListView :courses="courses" />
+  <CourseList :courses="courses" />
 </template>

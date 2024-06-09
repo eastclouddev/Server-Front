@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import History from '~/features/course/courseList/History.vue'
+import CourseHistory from '~/features/course/courseList/CourseHistory.vue'
 </script>
 
 <template>
-  <History />
+  <CourseHistory />
 </template>

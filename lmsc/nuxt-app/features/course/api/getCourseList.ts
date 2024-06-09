@@ -1,10 +1,9 @@
-/* eslint-disable no-underscore-dangle */
 import { useAsyncData } from '#app'
 import { apiClient } from '@/libs/axios'
 import { AxiosError } from 'axios'
 import { service } from '@/constants/service'
 
-export async function getCourses() {
+export async function getCourseList() {
   try {
     const response = await apiClient.courses.$get()
     return response
@@ -17,8 +16,8 @@ export async function getCourses() {
   }
 }
 
-export function useGetCourses() {
-  const { data, error, status } = useAsyncData(`courses`, () => getCourses(), {
+export function useGetCourseList() {
+  const { data, error, status } = useAsyncData('courses', getCourseList, {
     server: true,
   })
 
