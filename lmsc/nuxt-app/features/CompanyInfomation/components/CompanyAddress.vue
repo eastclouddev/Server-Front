@@ -3,7 +3,7 @@
     <v-row class="align-center justify-space-between flex-column-sm mb-4">
       <div style="width: 200px; display: flex; align-items: center;" >
         <label class="sp_label" style="font-size: 1em; font-weight: bold;">郵便番号</label>
-        <span class="required-mark">必須</span>
+        <span v-if="showSpan" class="required-mark">必須</span>
       </div>
       <v-card flat class="sp_field d-flex d-flex" width="25rem">
         <v-sheet class="sp_post_left my-0 pb-4 pl-4 d-flex" color="#EBEBEB" style="padding-right: 15px; border-radius: 5px;">
@@ -20,7 +20,7 @@
     <v-row class="align-center justify-space-between flex-column-sm mb-4">
       <div style="width: 200px; display: flex; align-items: center;" >
         <label class="sp_label" style="font-size: 1em; font-weight: bold;">都道府県</label>
-        <span class="required-mark">必須</span>
+        <span v-if="showSpan" class="required-mark">必須</span>
       </div>
       <v-card flat class="sp_field d-flex flex-column" width="25rem" >
           <v-select flat class="sp_field" variant="solo-filled" bg-color="#EBEBEB" style="height: 64px; width: 200px; border-radius: 5px;" v-model="selected" :items="prefectures" item-title="label" item-value="value" placeholder="選択してください"  return-object hide-details="false" :menu-props="{ maxHeight: '500px' }" ></v-select>
@@ -30,7 +30,7 @@
     <v-row class="align-center justify-space-between flex-column-sm mb-4">
       <div style="width: 200px; display: flex; align-items: center;" >
         <label class="sp_label" style="font-size: 1em; font-weight: bold;">市区町村</label>
-        <span class="required-mark">必須</span>
+        <span v-if="showSpan" class="required-mark">必須</span>
       </div>
       <v-card flat class="sp_label sp_field d-flex flex-column" width="25rem">
         <v-sheet class="sp_field my-0 pr-4 pb-4 pl-4" color="#EBEBEB" style="width: 200px; border-radius: 5px;">
@@ -43,7 +43,7 @@
     <v-row class="align-center justify-space-between flex-column-sm mb-0">
       <div style="width: 200px; display: flex; align-items: center;" >
         <label class="sp_label" style="font-size: 1em; font-weight: bold;">番地</label>
-        <span class="required-mark">必須</span>
+        <span v-if="showSpan" class="required-mark">必須</span>
       </div>
       <v-card flat class="sp_field d-flex flex-column" width="25rem">
         <v-sheet class="sp_field my-0 pr-4 pb-4 pl-4" color="#EBEBEB" style="width: 200px; border-radius: 5px;">
@@ -64,8 +64,10 @@ const props = defineProps({
   modelValue: String,
   label: String,
   placeholder: String,
-  placeholderFirst: String,
-  placeholderSecond: String,
+  showSpan: {
+    type: Boolean,
+    default: true
+  }
 });
 
 const selected = ref()
