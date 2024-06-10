@@ -2,7 +2,7 @@
   <v-container class="d-flex justify-space-between">
     <v-row class="align-center">
       <v-col class="text-left text-md-left">
-        <label style="font-size: 1em; font-weight: bold" color="#242424"
+        <label style="font-size: 0.9em; font-weight: bold" color="#242424"
           >メールアドレス</label
         >
       </v-col>

@@ -8,7 +8,7 @@
             <img :src="item.icon" alt="iitem.title" class="pr-4">
             <div>
               <h3>{{ truncateText(item.title,20) }}</h3>
-              <p class="mb-2">{{ truncateText(item.summary,15) }}</p>
+              <p class="mb-2">{{ truncateText(item.summary,40) }}</p>
               <h4>全{{ item.session }}セッション</h4>
             </div>
           </div>
@@ -57,7 +57,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@media (max-width: 768px) {
+@media (max-width: 1279px) {
 .sp {
   &_item {
     flex-direction: column;

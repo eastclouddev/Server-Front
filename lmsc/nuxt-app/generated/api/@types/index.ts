@@ -409,6 +409,28 @@ export type NewsUpdateResponseBody = {
   updated_at: string
 }
 
+export type Notification = {
+  id: number
+  from_user_id: number
+  from_user_name: string
+  content: string
+
+  related_question_id: number | null
+
+  related_answer_id: number | null
+
+  related_review_request_id: number | null
+
+  related_review_response_id: number | null
+
+  is_read: boolean
+  created_at: string
+}
+
+export type NotificationListResponseBody = {
+  notifications: Notification[]
+}
+
 export type NotificationUpdateResponseBody = {
   message: string
   notification_id: number
@@ -916,21 +938,6 @@ export type Schemas__students__ReviewRequestListResponseBody = {
   reviews: ReviewResponse[]
 }
 
-export type Schemas__students__User = {
-  id: number
-  name: string
-}
-
 export type Schemas__users__AccountListResponseBody = {
   role_counts: Role[]
-}
-
-export type Schemas__users__User = {
-  user_id: number
-  name: string
-  company_name: string
-  email: string
-  role: string
-  is_enable: boolean
-  last_login: string
 }

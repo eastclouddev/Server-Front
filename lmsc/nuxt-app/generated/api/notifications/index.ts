@@ -10,34 +10,30 @@ export type Methods = {
    * なし
    * 
    * -----------------------
-   * dict: array
-   *     id: int
-   *         通知のID
-   *     from_user: dict
-   *         id: int
-   *             ユーザーのID
-   *         name: str
-   *             ユーザーの名前
-   *     question_id: int
-   *         質問のID
-   *     answer_id: int
-   *         回答のID
-   *     related_review_request_id: int
-   *         レビューリクエストのID
-   *     related_review_response_id: int
-   *         レビューレスポンスのID
-   *     title: str
-   *         通知のタイトル
-   *     content: str
-   *         通知の内容
-   *     is_read: bool
-   *         通知が既読かどうか
-   *     created_at: str
-   *         通知が生成された日時（ISO 8601形式）
+   * id: int
+   *     通知のID
+   * from_user_id: int
+   *     ユーザーのID
+   * from_user_name: str
+   *     ユーザーの名前
+   * content: str
+   *     通知の内容
+   * related_question_id: int
+   *     質問のID
+   * related_answer_id: int
+   *     回答のID
+   * related_review_request_id: int
+   *     レビューリクエストのID
+   * related_review_response_id: int
+   *     レビューレスポンスのID
+   * is_read: bool
+   *     通知が既読かどうか
+   * created_at: str
+   *     作成日時
    */
   get: {
     status: 200
     /** Successful Response */
-    resBody: Types.Schemas__notifications__NotificationListResponseBody
+    resBody: Types.NotificationListResponseBody
   }
 }
