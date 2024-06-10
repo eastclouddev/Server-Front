@@ -1,18 +1,18 @@
 /* eslint-disable */
-import type * as Types from '../../../@types'
+import type * as Types from '../../../../@types'
 
 export type Methods = {
   /**
-   * 自分のレビュー一覧取得
+   * 受講生のレビュー一覧取得
    * 
-   * Parameters
+   * Parameter
    * -----------------------
-   * user_id:int
-   *     ユーザーのID
+   * mentor_id: int
+   *     取得するメンターのユーザーID
    * 
    * Returns
    * -----------------------
-   * reviews: dict
+   * reviews: array
    *     id: int
    *         レビューのID
    *     title: str
@@ -20,11 +20,9 @@ export type Methods = {
    *     content: str
    *         レビューの内容
    *     curriculum_id: int
-   *         紐づいたカリキュラムのID
-   *     tech_category: str
-   *         カリキュラムのコースに紐づいた技術カテゴリ
-   *     created_at: str
-   *         レビュー作成日
+   *         レビューに紐づくカリキュラムのID
+   *     created_at:str
+   *         レビューの作成日（ISO 8601形式）
    *     is_read: bool
    *         未読コメントの有無
    *     is_closed: bool
@@ -33,6 +31,6 @@ export type Methods = {
   get: {
     status: 200
     /** Successful Response */
-    resBody: Types.Schemas__students__ReviewRequestListResponseBody
+    resBody: Types.Schemas__reviews__AllResponseBody
   }
 }

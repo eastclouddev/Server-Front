@@ -1,11 +1,10 @@
-<!-- コースタイトル、概要、画像 -->
 <script setup lang="ts">
-import { ref, computed, defineProps } from 'vue'
+import { ref, computed, defineProps, reactive } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
-import type { CourseData } from '~/features/course/courseList/TypeData.vue'
 import Indicator from '~/features/course/courseList/components/courseIndicator.vue'
 import IMG from '~/assets/no_img.png'
 
+// readText用
 type Option = {
   type: string
   len: number
@@ -22,7 +21,7 @@ type TestData = {
 }
 
 const props = defineProps<{
-  courses: CourseData[]
+  courses: any[]
   items: TestData[]
   options: Option
 }>()
@@ -80,6 +79,21 @@ const readText = (text: string, max_len: number) => {
 
   return text
 }
+
+const option = ref('')
+const sertedCourses = computed(() => {
+  const courses = [...props.courses]
+  switch (option.value) {
+    case 'popular':
+      return
+    case 'duration_short':
+      return courses.sort((a, b) => a.expected_end_hours - b.expected_end_hours)
+    case 'duration_long':
+      return courses.sort((a, b) => b.expected_end_hours - a.expected_end_hours)
+    default:
+      return courses
+  }
+})
 </script>
 
 <template>

@@ -2,21 +2,15 @@
 import { useGetCourseList } from '~/features/course/api/getCourseList'
 import { useGetCourse } from '~/features/course/api/getCourse'
 import CoursesList from '~/features/course/courseList/CourseList.vue'
-import type {
-  CourseList,
-  CourseData,
-} from '~/features/course/courseList/TypeData.vue'
 
 const { data, error, status } = useGetCourseList()
 console.log('コース一覧の情報', typeof data.value, data.value?.courses)
 console.log('エラー', error)
 console.log('ステータス', status)
 
-const courses = computed<CourseList[]>(() =>
-  Array.isArray(data.value) ? data.value : []
-)
+const courses = computed(() => (Array.isArray(data.value) ? data.value : []))
 
-const courseDetails = ref<CourseData[]>([])
+const courseDetails = ref<any[]>([])
 watchEffect(() => {
   courseDetails.value = []
   courses.value.forEach(async course => {
