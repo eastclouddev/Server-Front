@@ -1,66 +1,70 @@
 <template>
-  <v-container class="justify-space-between ml-3" style="max-width: 100%">
-    <v-row class="align-center mb-4" style="width: 100%">
+  <v-container
+    class="justify-space-between"
+    style="max-width: 100%; padding-bottom: 0px"
+  >
+    <v-row class="align-center mb-5" style="width: 100%">
       <div
-        style="width: 200px; display: flex; align-items: center; flex-shrink: 0"
+        class="label-container"
+        :class="{ 'label-mobile': isMobile }"
+        style="width: 200px"
       >
         <label
           class="sp_label"
           style="font-size: 1em; font-weight: bold; margin-right: 10px"
           >郵便番号</label
         >
-        <span v-if="showSpan" class="required-mark">必須</span>
+        <span v-if="showSpan" class="required-mark" style="padding: 3px"
+          >必須</span
+        >
       </div>
-      <v-card
-        flat
-        class="d-flex"
-        style="flex: 1; display: flex; align-items: center"
-      >
-        <v-sheet
-          class="my-0 pb-4 pl-4 d-flex"
-          color="#EBEBEB"
-          style="
-            flex: 1;
-            padding-right: 15px;
-            border-radius: 5px;
-            max-width: 80px;
-          "
-        >
-          <v-text-field
-            hide-details="auto"
-            placeholder="000"
-            v-model="postalCodePart1"
-            variant="plain"
-            full-width
-          ></v-text-field>
-        </v-sheet>
-        <span class="post-number-hypen">ー</span>
-        <v-sheet
-          class="my-0 pb-4 pl-4 d-flex"
-          color="#EBEBEB"
-          style="
-            flex: 1;
-            padding-right: 15px;
-            border-radius: 5px;
-            max-width: 100px;
-          "
-        >
-          <v-text-field
-            hide-details="auto"
-            placeholder="0000"
-            v-model="postalCodePart2"
-            variant="plain"
-            full-width
-          ></v-text-field>
-        </v-sheet>
-        <v-btn
+      <div class="postal-container" style="flex: 1">
+        <v-card
           flat
-          class="search-mark"
-          @click="searchAddress"
-          style="margin-left: 15px"
-          >住所検索</v-btn
+          class="d-flex postal-card ml-3"
+          style="display: flex; align-items: center; width: 100%"
         >
-      </v-card>
+          <v-sheet
+            class="my-0 pb-4 pl-4 d-flex postal-code-part"
+            color="#EBEBEB"
+            style="
+              padding-right: 15px;
+              border-radius: 5px;
+              flex: 1;
+              width: 150px;
+            "
+          >
+            <v-text-field
+              hide-details="auto"
+              placeholder="000"
+              v-model="postalCodePart1"
+              variant="plain"
+              full-width
+            ></v-text-field>
+          </v-sheet>
+          <span class="post-number-hypen">ー</span>
+          <v-sheet
+            class="my-0 pb-4 pl-4 d-flex postal-code-part"
+            color="#EBEBEB"
+            style="padding-right: 15px; border-radius: 5px; flex: 1"
+          >
+            <v-text-field
+              hide-details="auto"
+              placeholder="0000"
+              v-model="postalCodePart2"
+              variant="plain"
+              full-width
+            ></v-text-field>
+          </v-sheet>
+          <v-btn
+            flat
+            class="search-mark"
+            @click="searchAddress"
+            style="margin-left: 15px"
+            >住所検索</v-btn
+          >
+        </v-card>
+      </div>
     </v-row>
 
     <v-row class="align-center mb-4">
@@ -72,7 +76,7 @@
         >
         <span v-if="showSpan" class="required-mark">必須</span>
       </div>
-      <v-card flat class="d-flex flex-column" width="25rem">
+      <v-card flat class="d-flex flex-column ml-3" width="25rem">
         <v-select
           flat
           class="sp_field"
@@ -99,7 +103,11 @@
         >
         <span v-if="showSpan" class="required-mark">必須</span>
       </div>
-      <v-card flat class="sp_label sp_field d-flex flex-column" width="25rem">
+      <v-card
+        flat
+        class="sp_label sp_field d-flex flex-column ml-3"
+        width="25rem"
+      >
         <v-sheet
           class="sp_field my-0 pr-4 pb-4 pl-4"
           color="#EBEBEB"
@@ -119,7 +127,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps } from 'vue'
+import { ref, defineProps, computed } from 'vue'
+import { useWindowSize } from '@vueuse/core'
 import { getAddressByPostalCode } from '~/libs/useZipCloud'
 import type { ZipCloudAddress } from '~/libs/useZipCloud'
 import { prefectures } from '~/constants/service'
@@ -135,6 +144,9 @@ const postalCodePart1 = ref('')
 const postalCodePart2 = ref('')
 const selected = ref<{ label: string; value: string } | null>(null)
 const city = ref('')
+
+const { width } = useWindowSize()
+const isMobile = computed(() => width.value < 768)
 
 const searchAddress = async () => {
   const postalCode = `${postalCodePart1.value}${postalCodePart2.value}`
@@ -169,7 +181,40 @@ const searchAddress = async () => {
   margin-right: 15px;
   margin-left: 15px;
 }
+.label-mobile {
+  width: 100%;
+  margin-bottom: 10px;
+}
 @media screen and (max-width: 768px) {
+  .label-container {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .postal-container {
+    width: 100%;
+  }
+
+  .postal-card {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+  }
+
+  .postal-code-part {
+    max-width: 100%;
+  }
+
+  .search-mark {
+    margin-left: 15px;
+    width: auto;
+    margin-top: 0;
+  }
+
+  .post-number-hypen {
+    display: block;
+  }
+
   .sp {
     &_label {
       font-size: 2em !important;
