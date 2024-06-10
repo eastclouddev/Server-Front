@@ -9,7 +9,7 @@
   </div>
 </template>
 <script>
-import NewsItem from "~/features/auth/dashboard/components/newsnews.vue";
+import NewsItem from "~/features/auth/dashboard/components/NewsItem.vue";
 import StudyItem  from "~/features/auth/dashboard/components/StudyItem.vue";
 import ProgressItem  from "~/features/auth/dashboard/components/ProgressItem.vue";
 import CourseItem  from "~/features/auth/dashboard/components/CourseItem.vue";
