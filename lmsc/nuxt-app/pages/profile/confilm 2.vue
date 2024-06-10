@@ -5,10 +5,10 @@
       <Meta name="description" content="iDemy | ユーザー情報確認画面" />
     </Head>
   <v-container>
-    <InvitationConfilm />
+    <userInvitationConfilmForm />
   </v-container>
   </div>
 </template>
 <script setup>
-import InvitationConfilm from '~/features/plofile/components/InvitationConfilm.vue'
+import userInvitationConfilmForm from '~/features/auth/userInvitation/userInvitationConfilmForm.vue'
 </script>

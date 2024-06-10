@@ -5,9 +5,9 @@
       <v-card flat class="d-flex flex-column sp_field" width="25rem">
         <v-sheet :class="{ 'error': errors.password }" class="my-0 pr-4 pb-4 pl-4" color="#EBEBEB">
           <v-text-field hide-details="auto" :placeholder="placeholder" variant="plain" class="mb-"
-            :type="showPassword ? 'text' : 'password'" :value="password" @input="updatePassword" full-width>
+            :type="showPassword ? 'text' : 'password'" v-model="internalPassword" full-width>
             <template #append>
-              <v-icon @click="togglePasswordVisibility">{{ showPassword ? 'mdi-eye' : 'mdi-eye-off' }}</v-icon>
+              <v-icon @click="togglePasswordVisibility">{{ showPassword ? 'mdi-eye-off' : 'mdi-eye' }}</v-icon>
             </template>
           </v-text-field>
         </v-sheet>
@@ -19,23 +19,24 @@
 </template>
 
 <script setup>
-import { ref, defineProps, defineEmits } from 'vue';
-import { useField, useForm } from 'vee-validate';
-import { object, string, setLocale } from 'yup';
+import { ref, computed, defineProps, defineEmits } from 'vue'
+import { useField, useForm } from 'vee-validate'
+import { object, string, setLocale } from 'yup'
 
 setLocale({
   mixed: {
     required: 'パスワードを入力してください。',
   },
-});
+})
 
 const props = defineProps({
   modelValue: String,
   label: String,
   placeholder: String,
-  passwordConditions: String // パスワードの条件を受け取るprops
-});
-const emits = defineEmits(['update:modelValue']);
+  passwordConditions: String, // パスワードの条件を受け取るprops
+  errorMessage: String,
+})
+const emits = defineEmits(['update:modelValue', 'blur'])
 
 const schema = object({
   password: string()
@@ -44,23 +45,25 @@ const schema = object({
     .min(8, 'パスワードは8文字以上14文字以内で入力してください。')
     .max(14, 'パスワードは8文字以上14文字以内で入力してください。')
     .label('パスワード'),
-});
+})
+
 const { errors } = useForm({
   validationSchema: schema,
-});
-const { value: password } = useField('password', props.modelValue);
+})
+const { value: password } = useField('password', props.modelValue)
 
-const showPassword = ref(false);
+const showPassword = ref(false)
+
+const internalPassword = computed({
+  get: () => props.modelValue,
+  set: value => emits('update:modelValue', value),
+})
 
 function togglePasswordVisibility() {
-  showPassword.value = !showPassword.value;
-}
-
-function updatePassword(event) {
-  password.value = event.target.value;
-  emits('update:modelValue', event.target.value); // 親コンポーネントに入力値を通知
+  showPassword.value = !showPassword.value
 }
 </script>
+
 
 <style lang="scss" scoped>
 .error {

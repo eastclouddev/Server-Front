@@ -38,6 +38,15 @@ export default {
         items.value[2].data = user.email
       }
     })
+    const getUserKana = () => {
+  const kanaItem = items.value.find(item => item.label === "フリガナ")
+  if (kanaItem) {
+    const [last_name_kana, first_name_kana] = kanaItem.data.split(' ')
+    return { first_name_kana, last_name_kana }
+  }
+  return { first_name_kana: '', last_name_kana: '' }
+}
+
 
     return { items, error, status }
   }
