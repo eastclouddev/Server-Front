@@ -11,56 +11,58 @@
         >
         <span v-if="showSpan" class="required-mark">必須</span>
       </div>
-      <v-card
-        flat
-        class="d-flex"
-        style="flex: 1; display: flex; align-items: center"
-      >
-        <v-sheet
-          class="my-0 pb-4 pl-4 d-flex"
-          color="#EBEBEB"
-          style="
-            flex: 1;
-            padding-right: 15px;
-            border-radius: 5px;
-            max-width: 80px;
-          "
-        >
-          <v-text-field
-            hide-details="auto"
-            placeholder="000"
-            v-model="postalCodePart1"
-            variant="plain"
-            full-width
-          ></v-text-field>
-        </v-sheet>
-        <span class="post-number-hypen">ー</span>
-        <v-sheet
-          class="my-0 pb-4 pl-4 d-flex"
-          color="#EBEBEB"
-          style="
-            flex: 1;
-            padding-right: 15px;
-            border-radius: 5px;
-            max-width: 100px;
-          "
-        >
-          <v-text-field
-            hide-details="auto"
-            placeholder="0000"
-            v-model="postalCodePart2"
-            variant="plain"
-            full-width
-          ></v-text-field>
-        </v-sheet>
-        <v-btn
+      <div>
+        <v-card
           flat
-          class="search-mark"
-          @click="searchAddress"
-          style="margin-left: 15px"
-          >住所検索</v-btn
+          class="d-flex"
+          style="flex: 1; display: flex; align-items: center"
         >
-      </v-card>
+          <v-sheet
+            class="my-0 pb-4 pl-4 d-flex"
+            color="#EBEBEB"
+            style="
+              flex: 1;
+              padding-right: 15px;
+              border-radius: 5px;
+              max-width: 80px;
+            "
+          >
+            <v-text-field
+              hide-details="auto"
+              placeholder="000"
+              v-model="postalCodePart1"
+              variant="plain"
+              full-width
+            ></v-text-field>
+          </v-sheet>
+          <span class="post-number-hypen">ー</span>
+          <v-sheet
+            class="my-0 pb-4 pl-4 d-flex"
+            color="#EBEBEB"
+            style="
+              flex: 1;
+              padding-right: 15px;
+              border-radius: 5px;
+              max-width: 100px;
+            "
+          >
+            <v-text-field
+              hide-details="auto"
+              placeholder="0000"
+              v-model="postalCodePart2"
+              variant="plain"
+              full-width
+            ></v-text-field>
+          </v-sheet>
+          <v-btn
+            flat
+            class="search-mark"
+            @click="searchAddress"
+            style="margin-left: 15px"
+            >住所検索</v-btn
+          >
+        </v-card>
+      </div>
     </v-row>
 
     <v-row class="align-center mb-4">
