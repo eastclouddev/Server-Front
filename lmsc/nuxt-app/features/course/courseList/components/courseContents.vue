@@ -2,17 +2,9 @@
 <script setup lang="ts">
 import { ref, computed, defineProps } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
+import type { CourseData } from '~/features/course/courseList/TypeData.vue'
 import Indicator from '~/features/course/courseList/components/courseIndicator.vue'
 import IMG from '~/assets/no_img.png'
-
-type Data = {
-  course_id: number // コースのID
-  title: string // コースのタイトル
-  description: string // コースの説明
-  created_user: number // コースを作成したユーザーのID
-  thumbnail_url: string // コースのサムネイル画像のURL
-  created_at: string // コースの作成日時 (ISO 8601形式)
-}
 
 type Option = {
   type: string
@@ -30,7 +22,7 @@ type TestData = {
 }
 
 const props = defineProps<{
-  courses: Data[]
+  courses: CourseData[]
   items: TestData[]
   options: Option
 }>()
@@ -45,7 +37,8 @@ const repeatedItems = computed(() => {
 })
 
 const items = ref(repeatedItems.value)
-// const items = ref(props.items)
+
+const courses = ref(props.courses)
 const type = ref(props.options.type)
 const max_len = ref(props.options.len)
 

@@ -3,6 +3,7 @@ import { reactive, defineProps } from 'vue'
 import Title from '~/features/course/courseList/components/titleHeader.vue'
 import Options from '~/features/course/courseList/components/courseOptions.vue'
 import Contents from '~/features/course/courseList/components/courseContents.vue'
+import type { CourseData } from '~/features/course/courseList/TypeData.vue'
 import FlagIcon from '~/assets/flag.svg'
 import PythonIcon from '~/assets/python.svg'
 import JQueryIcon from '~/assets/jQuery.svg'
@@ -12,17 +13,8 @@ const title = {
   title: 'コース一覧',
 }
 
-type Data = {
-  course_id: number // コースのID
-  title: string // コースのタイトル
-  description: string // コースの説明
-  created_user: number // コースを作成したユーザーのID
-  thumbnail_url: string // コースのサムネイル画像のURL
-  created_at: string // コースの作成日時 (ISO 8601形式)
-}
-
 const props = defineProps<{
-  courses: Data[]
+  courses: CourseData[]
 }>()
 
 // 仮データ

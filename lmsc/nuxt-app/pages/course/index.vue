@@ -1,26 +1,40 @@
 <script setup lang="ts">
 import { useGetCourseList } from '~/features/course/api/getCourseList'
-import CourseList from '~/features/course/courseList/CourseList.vue'
-
-type Data = {
-  course_id: number // コースのID
-  title: string // コースのタイトル
-  description: string // コースの説明
-  created_user: number // コースを作成したユーザーのID
-  thumbnail_url: string // コースのサムネイル画像のURL
-  created_at: string // コースの作成日時 (ISO 8601形式)
-}
+import { useGetCourse } from '~/features/course/api/getCourse'
+import CoursesList from '~/features/course/courseList/CourseList.vue'
+import type {
+  CourseList,
+  CourseData,
+} from '~/features/course/courseList/TypeData.vue'
 
 const { data, error, status } = useGetCourseList()
 console.log('コース一覧の情報', typeof data.value, data.value?.courses)
 console.log('エラー', error)
 console.log('ステータス', status)
 
-const courses = computed<Data[]>(() =>
+const courses = computed<CourseList[]>(() =>
   Array.isArray(data.value) ? data.value : []
 )
+
+const courseDetails = ref<CourseData[]>([])
+watchEffect(() => {
+  courseDetails.value = []
+  courses.value.forEach(async course => {
+    const { data, error, status } = useGetCourse(course.course_id)
+    if (data.value) {
+      courseDetails.value.push(data.value)
+    }
+    console.log(
+      `コース${data.value?.course_id}の情報`,
+      typeof data.value,
+      data.value
+    )
+    console.log('エラー', error)
+    console.log('ステータス', status)
+  })
+})
 </script>
 
 <template>
-  <CourseList :courses="courses" />
+  <CoursesList :courses="courseDetails" />
 </template>
