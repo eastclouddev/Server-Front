@@ -5,7 +5,7 @@
       <Meta name="description" content="iDemy | ログイン画面" />
     </Head>
     <v-container>
-      <LoginFormSample />
+      <LoginForm />
     </v-container>
   </div>
 </template>

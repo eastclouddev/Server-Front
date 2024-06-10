@@ -46,10 +46,6 @@ export default {
       ]
     }
   },
-   methods: {
-    getIconPath(icon) {
-      return require(`@/${icon}`);
-    }
-  },
+
 }
 </script>

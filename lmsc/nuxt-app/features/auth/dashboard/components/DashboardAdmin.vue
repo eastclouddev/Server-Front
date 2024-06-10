@@ -5,7 +5,7 @@
     <AccountManagement />
     <BillingsManagement />
     <MentorAssignment />
-    <CouseItem />
+    <CourseItem />
   </div>
 </template>
 <script>
@@ -14,7 +14,7 @@ import ProgressManagement  from "~/features/auth/dashboard/components/ProgressMa
 import AccountManagement  from "~/features/auth/dashboard/components/AccountManagement.vue";
 import BillingsManagement  from "~/features/auth/dashboard/components/BillingsManagement.vue";
 import MentorAssignment  from "~/features/auth/dashboard/components/MentorAssignment.vue";
-import CouseItem  from "~/features/auth/dashboard/components/CouseItem.vue";
+import CourseItem  from "~/features/auth/dashboard/components/CourseItem.vue";
 
 export default {
   components: {
@@ -23,7 +23,7 @@ export default {
     AccountManagement,
     BillingsManagement,
     MentorAssignment,
-    CouseItem
+    CourseItem
   },
 }
 </script>

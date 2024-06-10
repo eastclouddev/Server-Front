@@ -15,12 +15,12 @@
         </label>
         <div class="text-center" style="width: 25rem;">{{ studentsCount }}個</div>
       </v-card>
-      <!-- ロールで表示区別 -->
-      <v-card class="d-flex align-center mb-4" style="height: 50px; border-radius: 5px;">
+      <!-- 管理者のみ表示 -->
+      <v-card v-if="isAdmin" class="d-flex align-center mb-4" style="height: 50px; border-radius: 5px;">
         <label class="text-center" style="width: 25rem; line-height:50px; font-weight: bold; color: #FFFFFF; background-color: #292737;">
           メンター
         </label>
-        <div class="text-center" style="width: 25em;">{{ corporationsCount }}個</div>
+        <div class="text-center" style="width: 25em;">{{ mentorsCount }}個</div>
       </v-card>
       <v-card class="d-flex align-center mb-4" style="height: 50px; border-radius: 5px;">
         <label class="text-center" style="width: 25rem; line-height:50px; font-weight: bold; color: #FFFFFF; background-color: #292737;">
@@ -37,18 +37,31 @@
 </template>
 
 <script>
+import { useUserStore } from '~/store/user.ts';
+
 export default {
   data() {
     return {
       studentsCount: 0,
-      corporationsCount: 0
+      mentorsCount: 0,
+      corporationsCount: 0,
     };
   },
+  computed: {
+    isAdmin() {
+      const userStore = useUserStore();
+      return userStore.userRole === 1;
+    }
+  },
   created() {
-    // データベースから受講生と法人・法人代行のアカウント数を取得する
+    // データベースから受講生と法人・法人代行のアカウント数を取得
+    this.studentsCount = 50;
+    this.mentorsCount = 10;
+    this.corporationsCount = 5;
   }
 };
 </script>
+
 <style lang="scss" scoped>
 @media (max-width: 768px) {
   .sp {
