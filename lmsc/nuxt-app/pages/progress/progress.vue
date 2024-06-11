@@ -5,11 +5,11 @@
       <Meta name="description" content="iDemy | 進捗管理画面" />
     </Head>
     <v-container>
-      <ProgressManagement />
+      <StudyProgress />
     </v-container>
     </div>
   </template>
   <script setup>
-  import ProgressManagement  from "~/features/auth/dashboard/components/ProgressManagement.vue";
+  import StudyProgress from "~/features/progress/StudyProgress.vue";
   </script>
 

@@ -2,7 +2,7 @@
   <v-table density="compact" class="mb-5 table_wrap">
     <thead style="color: #FFFFFF; background-color: #292737;">
       <tr>
-        <th class="text-center pa-0" style="font-size:0.8rem; font-weight: bold; border: 2px solid #F5F5F5; border-radius: 5px;">名前</th>
+        <!-- <th class="text-center pa-0" style="font-size:0.8rem; font-weight: bold; border: 2px solid #F5F5F5; border-radius: 5px;">名前</th> -->
         <th class="text-center pa-0" style="font-weight: bold; border: 2px solid #F5F5F5; border-radius: 5px;">コース</th>
         <th class="text-center pa-0" style="font-weight: bold; border: 2px solid #F5F5F5; border-radius: 5px;">受講数</th>
         <th class="text-center pa-0" style="font-weight: bold; border: 2px solid #F5F5F5; border-radius: 5px;">進捗状況</th>
@@ -13,7 +13,7 @@
     </thead>
     <tbody>
       <tr v-for="(item, index) in progress" :key="item.id" :style="{ backgroundColor: index % 2 === 0 ? '#FFFFFF' : '#FFF7EC', height: '50px' }">
-        <td style="border-left: 2px solid #F5F5F5; border-right: 2px solid #F5F5F5; width:100px;">{{ item.name }}</td>
+        <!-- <td style="border-left: 2px solid #F5F5F5; border-right: 2px solid #F5F5F5; width:100px;">{{ item.name }}</td> -->
         <td style="border-left: 2px solid #F5F5F5; border-right: 2px solid #F5F5F5; width:220px;">
           <NuxtLink :to="item.course_id" style="color:#242424;">{{ item.course }}</NuxtLink>
         </td>

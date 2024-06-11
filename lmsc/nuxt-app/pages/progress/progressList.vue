@@ -5,11 +5,11 @@
       <Meta name="description" content="iDemy | 進捗管理画面一覧" />
     </Head>
     <v-container>
-      <StudyProgress />
+      <StudyProgressList />
     </v-container>
     </div>
   </template>
   <script setup>
-  import StudyProgress from "~/features/progress/StudyProgress.vue";
+  import StudyProgressList from "~/features/progress/StudyProgressList.vue";
   </script>
 
