@@ -71,7 +71,13 @@ const handleSubmit = () => {
     return
   }
 
-  const { first_name_kana, last_name_kana } = userAcquisitionRef.value.items.find(i => i.label === 'フリガナ')
+  const kanaItem = userAcquisitionRef.value.items.find(i => i.label === 'フリガナ')
+  if (!kanaItem) {
+    console.error('Kana item not found in UserAcquisition component.')
+    return
+  }
+
+  const [last_name_kana, first_name_kana] = kanaItem.data.split(' ')
 
   if (!user || !password || passwordInput.value !== passwordConfirm.value) {
     console.error('User information or password is missing or passwords do not match')
@@ -82,7 +88,7 @@ const handleSubmit = () => {
     path: '/profile/confilm',
     query: {
       name: `${user.last_name} ${user.first_name}`,
-      name_kana: `${user.last_name_kana} ${user.first_name_kana}`,
+      name_kana: `${last_name_kana} ${first_name_kana}`,
       email: user.email,
       password: password,
     }

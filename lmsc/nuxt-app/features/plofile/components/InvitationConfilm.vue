@@ -4,11 +4,19 @@
       <v-card-title class="pt-2 pb-2 pl-0 sp_title" style="font-weight: bold;" color="#242424">
         ユーザー情報確認
       </v-card-title>
-      <v-divider class="divider-color" thick="1"></v-divider>
-      <v-card-text>
-        <div v-for="(item, index) in userInfo" :key="index" class="info-item">
-          <span class="label">{{ item.label }} </span>
-          <span class="value">{{ item.value }}</span>
+      <v-divider class="divider_color" thick="1"></v-divider>
+      <v-card-text class="mb-9 mt-9">
+        <div v-for="(item, index) in userInfo" :key="index">
+          <div class="mb-6 mt-6 d-flex justify-space-between align-center">
+            <span class="label">{{ item.label }}</span>
+            <span v-if="item.label !== 'パスワード'" class="value" style="width:23rem;">{{ item.value }}</span>
+            <div v-if="item.label === 'パスワード'" class="d-flex justify-space-between align-center pr-5" style="width: 23rem;">
+              <span :class="{ 'value': true, 'pr-3': true }" v-show="showPassword">{{ item.value }}</span>
+              <span :class="{ 'value': true, 'pr-3': true }" v-show="!showPassword">{{ '•'.repeat(item.value.length) }}</span>
+              <v-icon @click="togglePasswordVisibility">{{ showPassword ? 'mdi-eye-off' : 'mdi-eye' }}</v-icon>
+            </div>
+          </div>
+          <v-divider class="dotted"></v-divider>
         </div>
       </v-card-text>
       <v-card-actions class="mx-auto mt-5 justify-center sp_buttonwrap">
@@ -20,7 +28,9 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
+import { updateUserPassword } from '~/features/plofile/api/postProfile.ts'
 
 const router = useRouter()
 const route = useRoute()
@@ -29,6 +39,12 @@ const name = route.query.name
 const nameKana = route.query.name_kana
 const email = route.query.email
 const password = route.query.password
+
+const showPassword = ref(false)
+
+const togglePasswordVisibility = () => {
+  showPassword.value = !showPassword.value
+}
 
 const userInfo = [
   { label: 'お名前', value: name },
@@ -41,20 +57,25 @@ const goBack = () => {
   router.push('/profile/edit')
 }
 
-const submit = () => {
-  console.log('Submit data', { name, nameKana, email, password })
-  // Add submission logic here
+const submit = async () => {
+  try {
+    const response = await updateUserPassword(password)
+    console.log('Password updated successfully:', response)
+  } catch (error) {
+    console.error('Failed to update password:', error)
+  }
 }
 </script>
 
 <style scoped lang="scss">
-.divider-color {
+.divider_color {
   background-color: #CFCFCF;
 }
 
-.info-item {
-  display: flex;
-  margin-bottom: 10px;
+.dotted {
+  border-top: 1px dotted #000;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .label {
