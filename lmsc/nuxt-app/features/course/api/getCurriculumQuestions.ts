@@ -4,9 +4,9 @@ import { apiClient } from "@/libs/axios";
 import { AxiosError } from "axios";
 import { service } from "@/constants/service";
 
-export async function getCurriculumQuestions(curriculumId: number) {
+export async function getCurriculumQuestions(courseId: number) {
   try {
-    const response = await apiClient.curriculums._curriculum_id(curriculumId).questions.$get();
+    const response = await apiClient.courses._course_id(courseId).questions.$get();
     return response;
   } catch (err) {
     const axiosError = err as AxiosError;
@@ -17,10 +17,10 @@ export async function getCurriculumQuestions(curriculumId: number) {
   }
 }
 
-export function useGetCurriculumQuestions(curriculumId: number) {
+export function useGetCurriculumQuestions(courseId: number) {
   const { data, error, status } = useAsyncData(
-    `curriculum-questions-${curriculumId}`,
-    () => getCurriculumQuestions(curriculumId),
+    `curriculum-questions-${courseId}`,
+    () => getCurriculumQuestions(courseId),
     { server: true }
   );
 

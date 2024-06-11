@@ -5,7 +5,7 @@ import { service } from "@/constants/service";
 
 export async function createQuestion(courseId: number, questionData: any) {
   try {
-    const response = await apiClient.curriculums._course_id(courseId).questions.$post({
+    const response = await apiClient.courses._course_id(courseId).questions.$post({
       body: questionData,
     });
     return response;

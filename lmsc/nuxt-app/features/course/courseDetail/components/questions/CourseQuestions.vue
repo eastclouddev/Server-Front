@@ -50,11 +50,11 @@
                 </v-list-item-subtitle>
                 <v-list-item-subtitle class="d-flex justify-space-between align-center" style="opacity: 1 !important;">
                   <span>
-                    <span style="color: #FF5A36; margin-right: 10px;">{{ question.user_id }}</span>
-                    <span style="color: #B5B5B5;">{{ question.curriculum_id }}</span>
+                    <span style="color: #FF5A36; margin-right: 10px;">{{ question.user.name }}</span>
+                    <span style="color: #B5B5B5;">{{ question.created_at }}</span>
                   </span>
                   <div class="d-flex align-center">
-                    <span style="font-weight: bold;">{{ question.media_content.length }}</span>
+                    <span style="font-weight: bold;">{{ question.reply_counts }}</span>
                     <img src="/assets/icons/comment.svg" alt="Comment" class="ml-2 opaque-icon" style="width: 20px; height: 20px;" />
                   </div>
                 </v-list-item-subtitle>

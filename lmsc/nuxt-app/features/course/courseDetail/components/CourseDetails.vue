@@ -54,10 +54,10 @@ import CourseQuestions from "~/features/course/courseDetail/components/questions
 import CourseQuestionsPost from "~/features/course/courseDetail/components/questions/CourseQuestionsPost.vue";
 import CourseQuestionDetail from "~/features/course/courseDetail/components/questions/CourseQuestionDetail.vue";
 import CourseSubmissions from "@/features/course/courseDetail/components/CourseSubmissions.vue";
-import type { CourseDetailResponseBody, QuestionCreateResponseBody, Schemas__curriculums__QuestionListResponseBody } from "~/generated/api/@types";
+import type { CourseDetailResponseBody, QuestionList } from "~/generated/api/@types";
 import type { CourseDetail } from "../../types";
 
-const props = defineProps<{ course: CourseDetail, questionList: QuestionCreateResponseBody[] | null }>();
+const props = defineProps<{ course: CourseDetail, questionList: QuestionList[] | null }>();
 
 const { smAndDown, mdAndUp } = useDisplay();
 const tab = ref("overview");

@@ -1,5 +1,4 @@
 <template>
-  <Child :key="renderKey" />
   <v-card
     flat
     :style="{
@@ -7,7 +6,7 @@
       padding: '32px',
     }"
   >
-    <v-card-text>
+    <v-card-text :key="renderKey">
       <div style="display: flex; align-items: center; font-size: 16px; margin-bottom: 16px;">
         <p @click="$emit('switch-to-questions')" style="cursor: pointer; color: #FF5A36;">質問一覧</p>
         <v-icon style="margin: 0 5px;">mdi-chevron-right</v-icon>

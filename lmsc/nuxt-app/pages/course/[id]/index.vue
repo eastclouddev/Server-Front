@@ -32,7 +32,7 @@ const {
   data: questionsData,
   error: questionsError,
   status: questionsStatus,
-} = useGetCurriculumQuestions(curriculumId)
+} = useGetCurriculumQuestions(courseId)
 
 const rawQuestionsData = questionsData.value
   ? toRaw(questionsData.value.questions)
