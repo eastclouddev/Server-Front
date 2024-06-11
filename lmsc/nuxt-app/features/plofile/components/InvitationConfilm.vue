@@ -7,7 +7,7 @@
       <v-divider class="divider_color" thick="1"></v-divider>
       <v-card-text class="mb-9 mt-9">
         <div v-for="(item, index) in userInfo" :key="index">
-          <div class="mb-6 mt-6 d-flex justify-space-between align-center">
+          <div class="mb-6 mt-6 d-flex justify-space-between sp_content">
             <span class="label">{{ item.label }}</span>
             <span v-if="item.label !== 'パスワード'" class="value" style="width:23rem;">{{ item.value }}</span>
             <div v-if="item.label === 'パスワード'" class="d-flex justify-space-between align-center pr-5" style="width: 23rem;">
@@ -61,6 +61,8 @@ const submit = async () => {
   try {
     const response = await updateUserPassword(password)
     console.log('Password updated successfully:', response)
+    // Redirect to registration complete page
+    router.push('/registration-complete')
   } catch (error) {
     console.error('Failed to update password:', error)
   }
@@ -100,6 +102,15 @@ const submit = async () => {
       margin-bottom: 40px !important;
       font-size: 1.6em !important;
     }
+    &_content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+  }
+  .label {
+    justify-content: flex-start;
+    margin-bottom: 30px;
   }
 }
 </style>
