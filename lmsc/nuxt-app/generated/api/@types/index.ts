@@ -409,28 +409,6 @@ export type NewsUpdateResponseBody = {
   updated_at: string
 }
 
-export type Notification = {
-  id: number
-  from_user_id: number
-  from_user_name: string
-  content: string
-
-  related_question_id: number | null
-
-  related_answer_id: number | null
-
-  related_review_request_id: number | null
-
-  related_review_response_id: number | null
-
-  is_read: boolean
-  created_at: string
-}
-
-export type NotificationListResponseBody = {
-  notifications: Notification[]
-}
-
 export type NotificationUpdateResponseBody = {
   message: string
   notification_id: number
@@ -478,7 +456,7 @@ export type Question = {
 
 export type QuestionCreateRequestBody = {
   curriculum_id: number
-  user_id?: number | undefined
+  user_id: number
   title: string
   objective: string
   current_situation: string
@@ -490,10 +468,29 @@ export type QuestionCreateRequestBody = {
 export type QuestionCreateResponseBody = {
   question_id: number
   curriculum_id: number
-  user_id: number
+  user: Schemas__courses__User
   title: string
+  objective: string
+  current_situation: string
+  research: string
   content: string
   media_content: MediaContent[]
+  created_at: string
+  is_read: boolean
+  is_closed: boolean
+  reply_counts: number
+}
+
+export type QuestionList = {
+  question_id: number
+  user: Schemas__courses__User
+  title: string
+  content: string
+  curriculum_id: number
+  created_at: string
+  is_read: boolean
+  is_closed: boolean
+  reply_counts: number
 }
 
 export type QuestionThreadDetailResponseBody = {
@@ -593,15 +590,16 @@ export type ResponseQuestion = {
   created_at: string
 }
 
-export type Review = {
+export type ReviewRequest = {
   id: number
-  curriculum_id: number
-  user_id: number
+  user: Schemas__courses__User
   title: string
   content: string
-  is_closed: boolean
+  curriculum_id: number
   created_at: string
-  updated_at: string
+  is_read: boolean
+  is_closed: boolean
+  reply_counts: number
 }
 
 export type ReviewRequestBody = {
@@ -618,20 +616,24 @@ export type ReviewRequestBody = {
 }
 
 export type ReviewRequestCreateRequestBody = {
+  curriculum_id: number
   user_id: number
   title: string
   content: string
-  is_closed: boolean
+  media_content: MediaContent[]
 }
 
 export type ReviewRequestCreateResponseBody = {
   id: number
   curriculum_id: number
-  user_id: number
+  user: Schemas__courses__User
   title: string
   content: string
-  is_closed: boolean
+  media_content: MediaContent[]
   created_at: string
+  is_read: boolean
+  is_closed: boolean
+  reply_counts: number
 }
 
 export type ReviewRequestUpdateRequestBody = {
@@ -816,12 +818,17 @@ export type Schemas__companies__ProgressListResponseBody = {
   progresses: ProgressesResponseList[]
 }
 
-export type Schemas__curriculums__QuestionListResponseBody = {
-  questions: QuestionCreateResponseBody[]
+export type Schemas__courses__QuestionListResponseBody = {
+  questions: QuestionList[]
 }
 
-export type Schemas__curriculums__ReviewRequestListResponseBody = {
-  reviews: Review[]
+export type Schemas__courses__ReviewRequestListResponseBody = {
+  reviews: ReviewRequest[]
+}
+
+export type Schemas__courses__User = {
+  user_id: number
+  name: string
 }
 
 export type Schemas__mentors__Notification = {
@@ -938,6 +945,21 @@ export type Schemas__students__ReviewRequestListResponseBody = {
   reviews: ReviewResponse[]
 }
 
+export type Schemas__students__User = {
+  id: number
+  name: string
+}
+
 export type Schemas__users__AccountListResponseBody = {
   role_counts: Role[]
+}
+
+export type Schemas__users__User = {
+  user_id: number
+  name: string
+  company_name: string
+  email: string
+  role: string
+  is_enable: boolean
+  last_login: string
 }
