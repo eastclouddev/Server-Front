@@ -18,18 +18,27 @@
       </v-row>
         <v-divider class="#CFCFCF" thickness="1" style="padding-bottom: 50px; margin-top: 10px;"></v-divider>
         <Position :item="Links" style="margin-bottom: 30px !important;"/>
-        <DetailStudyProgress />
+        <!-- デフォルト -->
+        <DetailStudyProgress /> 
+        <!-- 名前なし　Ver -->
+        <DetailNoNameStudyProgress />
+        <!-- 会社名ありVer -->
+        <DetailCompanyStudyProgress /> 
       </v-card>
     </v-container>
   </template>
 
 <script >
 import DetailStudyProgress from '~/features/progress/components/DetailStudyProgress.vue';
+import DetailNoNameStudyProgress from '~/features/progress/components/DetailNoNameStudyProgress.vue';
+import DetailCompanyStudyProgress from '~/features/progress/components/DetailCompanyStudyProgress.vue';
 import Position from '~/features/progress/components/Position.vue';
 
 export default {
   components: {
     DetailStudyProgress,
+    DetailNoNameStudyProgress,
+    DetailCompanyStudyProgress,
     Position,
   },
   data() {

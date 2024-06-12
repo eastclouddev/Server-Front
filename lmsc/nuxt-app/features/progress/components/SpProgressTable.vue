@@ -1,10 +1,16 @@
 <template>
   <div>
   <table class="table_wrap" v-for="item in progress" :key="item.id">
-  <tr class="d-flex flex-column">
+  <div class="d-flex" style="width:100%;">
+  <tr class="d-flex flex-column" style="width:100%;">
     <th >名前</th>
     <td >{{ item.name }}</td>
   </tr>
+  <tr v-if="showCompanyName" class="d-flex flex-column" style="width:100%;">
+    <th >会社名</th>
+    <td >{{ item.company }}</td>
+  </tr>
+  </div>
   <div class="d-flex" style="width:100%;">
     <tr class="d-flex flex-column" style="width:100%;">
       <th >コース</th>
@@ -63,6 +69,12 @@
 
 <script>
 export default {
+  props: {
+    showCompanyName: {
+      type: Boolean,
+      default: false
+    }
+  },
   data () {
     return {
       users:[],
@@ -71,6 +83,7 @@ export default {
       progress: [
         {
           name: '〇〇太郎',
+          company:'ABC社',
           course_id: '',
           course: 'コースタイトル',
           attend: '12/25',
@@ -81,6 +94,7 @@ export default {
         },
         {
           name: '〇〇太郎',
+          company:'ABC社',
           course_id: '',
           course: 'コースタイトル',
           attend: '12/25',
@@ -91,6 +105,7 @@ export default {
         },
         {
           name: '〇〇太郎',
+          company:'ABC社',
           course_id: '',
           course: 'コースタイトル',
           attend: '12/25',
