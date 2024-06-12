@@ -4,7 +4,7 @@
     <!-- イニシャルでの実装なし -->
     <!-- <StudyItem /> -->
     <ProgressItem />
-    <CouseItem />
+    <CourseItem />
     <RecommendationItem />
   </div>
 </template>
@@ -12,7 +12,7 @@
 import NewsItem from "~/features/auth/dashboard/components/NewsItem.vue";
 import StudyItem  from "~/features/auth/dashboard/components/StudyItem.vue";
 import ProgressItem  from "~/features/auth/dashboard/components/ProgressItem.vue";
-import CouseItem  from "~/features/auth/dashboard/components/CouseItem.vue";
+import CourseItem  from "~/features/auth/dashboard/components/CourseItem.vue";
 import RecommendationItem from "~/features/auth/dashboard/components/RecommendationItem.vue";
 
 export default {
@@ -20,7 +20,7 @@ export default {
     NewsItem,
     StudyItem,
     ProgressItem,
-    CouseItem,
+    CourseItem,
     RecommendationItem
   },
 }
