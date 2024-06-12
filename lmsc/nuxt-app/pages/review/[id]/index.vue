@@ -1,4 +1,5 @@
 <template>
+  <div>
     <Head>
       <Title>レビュー詳細 | iDemy</Title>
       <Meta name="description" content="iDemy | レビュー詳細画面" />
@@ -6,8 +7,9 @@
     <v-container>
       <MessageContent />
     </v-container>
+  </div>
 </template>
 <script setup>
-import MessageContent from '~/features/auth/review/components/MessageContent.vue';
+import MessageContent from '~/features/review/components/MessageContent.vue';
 
 </script>
