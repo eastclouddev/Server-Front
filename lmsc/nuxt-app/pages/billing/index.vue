@@ -8,5 +8,5 @@
   </v-container>
 </template>
 <script setup>
-import BillingList from '~/features/auth/billing/components/BillingList.vue';
+import BillingList from '~/features/billing/components/BillingList.vue'
 </script>

@@ -91,7 +91,7 @@
         <Button @click="sendMessage" color="#FF5A36" width="8rem" buttonText="回答を追加"></Button>
       </div>
       <div class="d-flex justify-center mt-8">
-        <Button color="#FF5A36" width="30rem" buttonText="解決"></Button>
+        <Button v-if="userRole === 2" color="#FF5A36" width="30rem" buttonText="解決"></Button>
       </div>
 
       <v-dialog v-model="dialog" max-width="1200px">
@@ -104,7 +104,8 @@
 </template>
 
 <script>
-import Fileinput from '~/features/auth/question/components/Fileinput.vue';
+import Fileinput from '~/features/question/components/Fileinput.vue';
+import { useUserStore } from '~/store/user.ts';
 
 export default {
   props: {
@@ -126,6 +127,12 @@ export default {
       dialog: false,
       dialogImage: null,
     };
+  },
+  computed: {
+    userRole() {
+      const userStore = useUserStore();
+      return userStore.user.role_id; // userRoleではなく user.role_id を使用
+    }
   },
   methods: {
     calculateTime(date) {

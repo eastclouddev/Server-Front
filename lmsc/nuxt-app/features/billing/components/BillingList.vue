@@ -92,8 +92,8 @@
 </template>
 
 <script>
-import PcBillingTable from '~/features/auth/billing/components/PcBillingTable.vue'
-import SpBillingTable from '~/features/auth/billing/components/SpBillingTable.vue'
+import PcBillingTable from '~/features/billing/components/PcBillingTable.vue'
+import SpBillingTable from '~/features/billing/components/SpBillingTable.vue'
 import FilterSelect from '~/components/FilterSerlect.vue'
 
 export default {
