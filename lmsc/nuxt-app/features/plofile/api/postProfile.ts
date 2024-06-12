@@ -2,10 +2,10 @@ import axios from 'axios'
 import { AxiosError } from 'axios'
 import { service } from '@/constants/service'
 
-export async function updateUserPassword(password) {
+export async function updateUserPassword(new_password) {
   try {
     const response = await axios.post('/password_reset/confirm', {
-      password,
+      new_password,
     })
     return response.data
   } catch (err) {
