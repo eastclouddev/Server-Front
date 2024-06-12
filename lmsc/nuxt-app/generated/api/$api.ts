@@ -43,9 +43,9 @@ import type { Methods as Methods_2cu3ed } from './reviews/_review_request_id@num
 import type { Methods as Methods_1ccq37s } from './reviews/responses/_response_id@number';
 import type { Methods as Methods_wq2jhe } from './rewards';
 import type { Methods as Methods_1o5yr5y } from './samplechat';
-import type { Methods as Methods_1liddtx } from './students/_student_id/progresses';
 import type { Methods as Methods_9ucswa } from './students/_student_id@number/assign_mentor';
 import type { Methods as Methods_97y4kl } from './students/_student_id@number/notifications';
+import type { Methods as Methods_16cgbqo } from './students/_student_id@number/progresses';
 import type { Methods as Methods_1qnirv8 } from './students/_student_id@number/questions';
 import type { Methods as Methods_1qnfpc0 } from './students/_student_id@number/reviews';
 import type { Methods as Methods_1xhiioa } from './users';
@@ -1832,6 +1832,10 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              *         通知が既読かどうか
              *     created_at: str
              *         通知が生成された日時（ISO 8601形式）
+             *
+             * explanation
+             * -----------------------
+             * メンターが受け取る通知は受講生の質問・回答・レビュー依頼・レビュー回答
              * @returns Successful Response
              */
             get: (option?: { config?: T | undefined } | undefined) =>
@@ -1869,6 +1873,10 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              *         通知が既読かどうか
              *     created_at: str
              *         通知が生成された日時（ISO 8601形式）
+             *
+             * explanation
+             * -----------------------
+             * メンターが受け取る通知は受講生の質問・回答・レビュー依頼・レビュー回答
              * @returns Successful Response
              */
             $get: (option?: { config?: T | undefined } | undefined) =>
@@ -2549,6 +2557,10 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        *         通知が既読かどうか
        *     created_at: str
        *         通知が生成された日時（ISO 8601形式）
+       *
+       * explanation
+       * -----------------------
+       * メンターは全ての通知を取得
        * @returns Successful Response
        */
       get: (option?: { config?: T | undefined } | undefined) =>
@@ -2585,6 +2597,10 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        *         通知が既読かどうか
        *     created_at: str
        *         通知が生成された日時（ISO 8601形式）
+       *
+       * explanation
+       * -----------------------
+       * メンターは全ての通知を取得
        * @returns Successful Response
        */
       $get: (option?: { config?: T | undefined } | undefined) =>
@@ -3487,64 +3503,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       $path: () => `${prefix}${PATH31}`,
     },
     students: {
-      _student_id: (val1: number | string) => {
-        const prefix1 = `${PATH32}${val1}`;
-
-        return {
-          progresses: {
-            /**
-             * 現在の学習進捗
-             * Parameters
-             * -----------------------
-             * request: Request
-             *     headersから情報を取得する
-             *
-             * Returns
-             * -----------------------
-             * progresses: array
-             *     course_id: int
-             *         コースのID
-             *     course_title: str
-             *         コースのタイトル
-             *     progress_percentage: int
-             *         コースの進捗率
-             *     status: str
-             *         コースのステータス
-             *     last_accessed_at: str
-             *         最終アクセス日（ISO 8601形式）
-             * @returns Successful Response
-             */
-            get: (option?: { config?: T | undefined } | undefined) =>
-              fetch<Methods_1liddtx['get']['resBody'], BasicHeaders, Methods_1liddtx['get']['status']>(prefix, `${prefix1}${PATH4}`, GET, option).json(),
-            /**
-             * 現在の学習進捗
-             * Parameters
-             * -----------------------
-             * request: Request
-             *     headersから情報を取得する
-             *
-             * Returns
-             * -----------------------
-             * progresses: array
-             *     course_id: int
-             *         コースのID
-             *     course_title: str
-             *         コースのタイトル
-             *     progress_percentage: int
-             *         コースの進捗率
-             *     status: str
-             *         コースのステータス
-             *     last_accessed_at: str
-             *         最終アクセス日（ISO 8601形式）
-             * @returns Successful Response
-             */
-            $get: (option?: { config?: T | undefined } | undefined) =>
-              fetch<Methods_1liddtx['get']['resBody'], BasicHeaders, Methods_1liddtx['get']['status']>(prefix, `${prefix1}${PATH4}`, GET, option).json().then(r => r.body),
-            $path: () => `${prefix}${prefix1}${PATH4}`,
-          },
-        };
-      },
-      _student_id_number: (val1: number) => {
+      _student_id: (val1: number) => {
         const prefix1 = `${PATH32}${val1}`;
 
         return {
@@ -3614,6 +3573,11 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              *         通知が既読かどうか
              *     created_at: str
              *         通知が生成された日時（ISO 8601形式）
+             *
+             * explanation
+             * -----------------------
+             * 受講生が受け取る通知はメンターの回答・レビュー回答のみ
+             * (質問・レビュー依頼は受講生が行う)
              * @returns Successful Response
              */
             get: (option?: { config?: T | undefined } | undefined) =>
@@ -3652,11 +3616,67 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              *         通知が既読かどうか
              *     created_at: str
              *         通知が生成された日時（ISO 8601形式）
+             *
+             * explanation
+             * -----------------------
+             * 受講生が受け取る通知はメンターの回答・レビュー回答のみ
+             * (質問・レビュー依頼は受講生が行う)
              * @returns Successful Response
              */
             $get: (option?: { config?: T | undefined } | undefined) =>
               fetch<Methods_97y4kl['get']['resBody'], BasicHeaders, Methods_97y4kl['get']['status']>(prefix, `${prefix1}${PATH16}`, GET, option).json().then(r => r.body),
             $path: () => `${prefix}${prefix1}${PATH16}`,
+          },
+          progresses: {
+            /**
+             * 現在の学習進捗
+             * Parameters
+             * -----------------------
+             * request: Request
+             *     headersから情報を取得する
+             *
+             * Returns
+             * -----------------------
+             * progresses: array
+             *     course_id: int
+             *         コースのID
+             *     course_title: str
+             *         コースのタイトル
+             *     progress_percentage: int
+             *         コースの進捗率
+             *     status: str
+             *         コースのステータス
+             *     last_accessed_at: str
+             *         最終アクセス日（ISO 8601形式）
+             * @returns Successful Response
+             */
+            get: (option?: { config?: T | undefined } | undefined) =>
+              fetch<Methods_16cgbqo['get']['resBody'], BasicHeaders, Methods_16cgbqo['get']['status']>(prefix, `${prefix1}${PATH4}`, GET, option).json(),
+            /**
+             * 現在の学習進捗
+             * Parameters
+             * -----------------------
+             * request: Request
+             *     headersから情報を取得する
+             *
+             * Returns
+             * -----------------------
+             * progresses: array
+             *     course_id: int
+             *         コースのID
+             *     course_title: str
+             *         コースのタイトル
+             *     progress_percentage: int
+             *         コースの進捗率
+             *     status: str
+             *         コースのステータス
+             *     last_accessed_at: str
+             *         最終アクセス日（ISO 8601形式）
+             * @returns Successful Response
+             */
+            $get: (option?: { config?: T | undefined } | undefined) =>
+              fetch<Methods_16cgbqo['get']['resBody'], BasicHeaders, Methods_16cgbqo['get']['status']>(prefix, `${prefix1}${PATH4}`, GET, option).json().then(r => r.body),
+            $path: () => `${prefix}${prefix1}${PATH4}`,
           },
           questions: {
             /**

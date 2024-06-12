@@ -6,7 +6,7 @@
       padding: '32px',
     }"
   >
-    <v-card-text :key="renderKey">
+    <v-card-text>
       <div style="display: flex; align-items: center; font-size: 16px; margin-bottom: 16px;">
         <p @click="$emit('switch-to-questions')" style="cursor: pointer; color: #FF5A36;">質問一覧</p>
         <v-icon style="margin: 0 5px;">mdi-chevron-right</v-icon>
@@ -32,14 +32,14 @@
                 </v-col>
                 <v-col style="margin-left: 10px;">
                   <v-list-item-title style="font-weight: bold;" class="mb-2">
-                    {{ reply.author }}
+                    {{ reply.user.name }}
                   </v-list-item-title>
                   <v-list-item-subtitle style="margin-bottom: 1rem;">
                     {{ reply.content }}
                   </v-list-item-subtitle>
                   <v-list-item-subtitle class="d-flex justify-space-between align-center" style="opacity: 1 !important;">
                     <span>
-                      <span style="color: #B5B5B5;">{{ reply.date }}</span>
+                      <span style="color: #B5B5B5;">{{ reply.created_at }}</span>
                     </span>
                   </v-list-item-subtitle>
                 </v-col>
@@ -77,36 +77,32 @@ import { useCreateAnswer } from '~/features/course/api/createAnswer';
 import { useGetQuestionThread } from '~/features/course/api/getQuestionThread';
 
 const route = useRoute();
-const questionId = route.params.questionId ? route.params.questionId : 1; // Todo
+
+const props = defineProps<{ selectedId: Number }>();
+const questionId = props.selectedId;
+// const questionId = route.params.questionId ? route.params.questionId : 1; // Todo
 
 // 質問の詳細データを取得するロジック
-let question = {
-    title: "",
-    content: ""
-};
-let replies = new Array();
+const question = ref({
+  title: '',
+  content: '',
+});
+let replies = ref(new Array());
+
 const {
   data: questionThreadData,
   error: questionThreadError,
   status: questionThreadStatus,
 } = useGetQuestionThread(questionId)
-const renderKey = ref(0);
 
-watchEffect(() => {
-  if (questionThreadData.value !== null) {
-    const rawQuestionData = toRaw(questionThreadData.value.question);
-    question.title = rawQuestionData.title;
-    question.content = rawQuestionData.content;
-    
-    const rawAnswersData = toRaw(questionThreadData.value.answer);
-    for (let i = 0; i < rawAnswersData.length; i++) {
-        replies.push({
-            author: rawAnswersData[i].user.name,
-            date: rawAnswersData[i].created_at, // Todo:日付を変換
-            content: rawAnswersData[i].content
-        });
-    }
-    renderKey.value = renderKey.value + 1
+let rawData = null;
+
+watch(questionThreadData, () => {
+  if (questionThreadData.value) {
+    rawData = toRaw(questionThreadData.value);
+    question.value.title = rawData.question.title;
+    question.value.content = rawData.question.content;
+    replies = rawData.answer;
   }
 });
 

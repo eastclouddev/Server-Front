@@ -25,6 +25,7 @@
                   @switch-to-detail="switchToQuestionDetail"
                   @switch-to-questions="switchToQuestions"
                   :questionList="props.questionList"
+                  :selectedId="selectedQuestionId"
                 />
               </v-window-item>
               <v-window-item value="submissions">
