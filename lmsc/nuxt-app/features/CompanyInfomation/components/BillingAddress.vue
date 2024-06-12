@@ -5,7 +5,7 @@
   >
     <v-row class="align-center mb-5" style="width: 100%">
       <div
-        class="label-container"
+        class="label-container mb-3"
         :class="{ 'label-mobile': isMobile }"
         style="width: 200px"
       >
@@ -69,6 +69,7 @@
 
     <v-row class="align-center mb-4">
       <div
+        class="mb-3"
         style="width: 200px; display: flex; align-items: center; flex-shrink: 0"
       >
         <label class="sp_label" style="font-size: 1em; font-weight: bold"
@@ -96,6 +97,7 @@
     </v-row>
     <v-row class="align-center mb-4">
       <div
+        class="mb-3"
         style="width: 200px; display: flex; align-items: center; flex-shrink: 0"
       >
         <label class="sp_label" style="font-size: 1em; font-weight: bold"
