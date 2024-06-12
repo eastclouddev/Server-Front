@@ -1,11 +1,14 @@
 <!-- ドロップダウンメニューのみ -->
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, defineProps, defineEmits } from 'vue'
 
 const post = defineProps<{
   items: string[]
   label: string
+  modelValue: string
 }>()
+
+const emit = defineEmits(['update:modelValue'])
 
 const items = ref(post.items) // 選択リスト
 const item = ref(post.label) // 選択アイテム
@@ -17,6 +20,7 @@ const updateItem = (val: string) => {
   item.value = val
   setItem.value = item.value
   isItemMenuOpened.value = false
+  emit('update:modelValue', val)
 }
 
 const resetItem = () => {
@@ -50,11 +54,12 @@ const selectMode = () => {
 
       <v-list>
         <v-list-item
-          v-for="(item, index) in items"
+          v-for="(listItem, index) in items"
           :key="index"
-          @click="updateItem(item)"
+          @click="updateItem(listItem)"
+          :class="{ 'selected-item': listItem === setItem }"
         >
-          <v-list-item-title>{{ item }}</v-list-item-title>
+          <v-list-item-title>{{ listItem }}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>
@@ -70,6 +75,10 @@ const selectMode = () => {
 
 .v-list-item-title {
   font-size: 18px;
+}
+
+.selected-item {
+  background-color: #fff7ec;
 }
 
 .option {

@@ -3,7 +3,6 @@ import { reactive, defineProps } from 'vue'
 import Title from '~/features/course/courseList/components/titleHeader.vue'
 import Options from '~/features/course/courseList/components/courseOptions.vue'
 import Contents from '~/features/course/courseList/components/courseContents.vue'
-import type { CourseData } from '~/features/course/courseList/TypeData.vue'
 import FlagIcon from '~/assets/flag.svg'
 import PythonIcon from '~/assets/python.svg'
 import JQueryIcon from '~/assets/jQuery.svg'
@@ -14,10 +13,20 @@ const title = {
 }
 
 const props = defineProps<{
-  courses: CourseData[]
+  courses: any[]
 }>()
 
 // 仮データ
+
+type TestData = {
+  title: string
+  img: string
+  description: string
+  time: number
+  num: number
+  completed: number
+}
+
 const contents = reactive([
   {
     title:
@@ -28,6 +37,7 @@ const contents = reactive([
     time: 80,
     num: 24,
     completed: 18,
+    category: 'Python',
   },
   {
     title: 'JavaScript & jQuery基礎講座',
@@ -37,21 +47,54 @@ const contents = reactive([
     time: 100,
     num: 30,
     completed: 1,
+    category: 'jQuery',
   },
 ])
 
-const options = {
+const repeatedItems = computed(() => {
+  let resultItem: TestData[] = []
+  for (let i = 0; i < 3; i++) {
+    resultItem = resultItem.concat(contents)
+  }
+  return resultItem
+})
+
+const items = ref(repeatedItems.value)
+
+const sortOption = ref('')
+const setSort = (newVal: string) => {
+  sortOption.value = newVal
+}
+
+const categoryOption = ref('')
+const setCategory = (newVal: string) => {
+  categoryOption.value = newVal
+}
+
+const keywordOption = ref('')
+const setKeyword = (newVal: string) => {
+  keywordOption.value = newVal
+}
+
+const options = computed(() => ({
   type: 'List', // Contentsの表示切替用変数
   len: 70, // Contents readText()の最大文字数
-}
+  sort: sortOption.value,
+  category: categoryOption.value,
+  keyword: keywordOption.value,
+}))
 </script>
 
 <template>
   <main>
     <div class="main center">
-      <Options />
+      <Options
+        @updateSort="setSort"
+        @updateCategory="setCategory"
+        @updateKeyword="setKeyword"
+      />
       <Title :item="title" />
-      <Contents :items="contents" :courses="props.courses" :options="options" />
+      <Contents :items="items" :courses="courses" :options="options" />
     </div>
   </main>
 </template>

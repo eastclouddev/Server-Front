@@ -8,38 +8,44 @@ import IMG from '~/assets/no_img.png'
 type Option = {
   type: string
   len: number
-}
-
-// テストデータ用の型
-type TestData = {
-  title: string
-  img: string
-  description: string
-  time: number
-  num: number
-  completed: number
+  sort: string
+  category: string
+  keyword: string
 }
 
 const props = defineProps<{
   courses: any[]
-  items: TestData[]
+  items: any[]
   options: Option
 }>()
 
-// dev
-const repeatedItems = computed(() => {
-  let resultItem: TestData[] = []
-  for (let i = 0; i < 3; i++) {
-    resultItem = resultItem.concat(props.items)
-  }
-  return resultItem
-})
-
-const items = ref(repeatedItems.value)
-
-const courses = ref(props.courses)
+const items = ref(props.items)
 const type = ref(props.options.type)
 const max_len = ref(props.options.len)
+const sortOption = ref(props.options.sort)
+const categoryOption = ref(props.options.category)
+const keywordOption = ref(props.options.keyword)
+
+watch(
+  () => props.options.sort,
+  newSort => {
+    sortOption.value = newSort
+  }
+)
+
+watch(
+  () => props.options.category,
+  newCategory => {
+    categoryOption.value = newCategory
+  }
+)
+
+watch(
+  () => props.options.keyword,
+  newKeyword => {
+    keywordOption.value = newKeyword
+  }
+)
 
 const posts = reactive({
   len: items.value.map(item => item.num),
@@ -80,25 +86,48 @@ const readText = (text: string, max_len: number) => {
   return text
 }
 
-const option = ref('')
-const sertedCourses = computed(() => {
-  const courses = [...props.courses]
-  switch (option.value) {
-    case 'popular':
-      return
-    case 'duration_short':
-      return courses.sort((a, b) => a.expected_end_hours - b.expected_end_hours)
-    case 'duration_long':
-      return courses.sort((a, b) => b.expected_end_hours - a.expected_end_hours)
+const filteredCourses = computed(() => {
+  console.log('Category option updated: ', categoryOption.value)
+  console.log('Keyword option updated: ', keywordOption.value)
+  const list = ref([...items.value])
+  if (categoryOption.value !== '') {
+    console.log(list)
+    list.value = list.value.filter(
+      item => item.category === categoryOption.value
+    )
+  }
+  if (keywordOption.value !== '') {
+    list.value = list.value.filter(item =>
+      item.title.includes(keywordOption.value)
+    )
+  }
+  return list.value
+})
+
+const sortedCourses = computed(() => {
+  console.log('Sort option updated: ', sortOption.value)
+  const course = [...filteredCourses.value]
+  // const course = [...props.courses]
+  switch (sortOption.value) {
+    // case 'よく受講されている':
+    //   return course.sort((a, b) => b.enrollmentCount - a.enrollmentCount)
+    case '受講時間: 短':
+      console.log('Sorted: ', sortOption.value)
+      return course.sort((a, b) => a.time - b.time)
+    // return courses.sort((a, b) => a.expected_end_hours - b.expected_end_hours)
+    case '受講時間: 長':
+      console.log('Sorted: ', sortOption.value)
+      return course.sort((a, b) => b.time - a.time)
+    // return courses.sort((a, b) => b.expected_end_hours - a.expected_end_hours)
     default:
-      return courses
+      return course
   }
 })
 </script>
 
 <template>
   <v-container class="frame">
-    <v-row class="item" v-for="(item, ind) in items" :key="ind">
+    <v-row class="item" v-for="(item, ind) in sortedCourses" :key="ind">
       <v-col class="left">
         <v-img class="img" :src="IMG" />
       </v-col>
@@ -153,8 +182,16 @@ const sertedCourses = computed(() => {
         </v-row>
         <v-row class="btn" :class="{ history: type == 'History' }">
           <v-col>
-            <v-btn v-if="type == 'List'">学習する</v-btn>
-            <v-btn v-if="type == 'History'">学習を再開する</v-btn>
+            <v-btn v-if="type == 'List'">
+              <NuxtLink :to="`/course/${item.course_id}`" class="NuxtLink">
+                学習する
+              </NuxtLink>
+            </v-btn>
+            <v-btn v-if="type == 'History'">
+              <NuxtLink :to="`/course/${item.course_id}`" class="NuxtLink">
+                学習を再開する
+              </NuxtLink>
+            </v-btn>
           </v-col>
         </v-row>
       </v-col>
@@ -292,10 +329,16 @@ const sertedCourses = computed(() => {
             width: 100%;
             height: 100%;
             background-color: #ff5a36;
-            color: #fff;
-            font-size: 18px;
-            font-weight: 700;
-            line-height: 24.52px;
+            .NuxtLink {
+              color: #fff;
+              font-size: 18px;
+              font-weight: 700;
+              line-height: 24.52px;
+              text-decoration: none;
+              &:visited {
+                color: #fff;
+              }
+            }
           }
         }
       }

@@ -1,6 +1,6 @@
 <!-- ドロップダウンメニュー、検索欄 -->
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, ref, defineEmits, watch } from 'vue'
 import Dropdown from '~/features/course/courseList/components/dropDown.vue'
 
 const category = reactive({
@@ -13,17 +13,29 @@ const sort = reactive({
   items: ['よく受講されている', '受講時間: 短', '受講時間: 長'],
 })
 
+const selectedSort = ref('')
+const selectedCategory = ref('')
+
 const inputText = ref('')
-const dev_text = () => {
-  console.log(inputText.value)
+const setText = () => {
+  emit('updateKeyword', inputText.value)
 }
+
+const emit = defineEmits(['updateSort', 'updateCategory', 'updateKeyword'])
+watch(selectedSort, newVal => {
+  emit('updateSort', newVal)
+})
+
+watch(selectedCategory, newVal => {
+  emit('updateCategory', newVal)
+})
 </script>
 
 <template>
   <v-container class="menu">
     <div class="dd">
-      <Dropdown v-bind="category" />
-      <Dropdown v-bind="sort" />
+      <Dropdown v-bind="category" v-model="selectedCategory" />
+      <Dropdown v-bind="sort" v-model="selectedSort" />
     </div>
     <v-card class="search" flat>
       <v-text-field
@@ -32,7 +44,7 @@ const dev_text = () => {
         hide-details
         density="compact"
       />
-      <v-btn @click="dev_text">
+      <v-btn @click="setText">
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
     </v-card>
@@ -40,7 +52,7 @@ const dev_text = () => {
 </template>
 
 <style lang="scss">
-.v-input--density-compac {
+.v-input--density-compact {
   .v-field--variant-plain {
     --v-input-control-height: 18px;
   }
