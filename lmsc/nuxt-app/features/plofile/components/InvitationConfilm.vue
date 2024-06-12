@@ -61,8 +61,7 @@ const submit = async () => {
   try {
     const response = await updateUserPassword(password)
     console.log('Password updated successfully:', response)
-    // Redirect to registration complete page
-    router.push('/registration-complete')
+    router.push('/profile/complete')
   } catch (error) {
     console.error('Failed to update password:', error)
   }
