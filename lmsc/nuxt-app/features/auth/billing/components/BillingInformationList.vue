@@ -1,11 +1,11 @@
 <template>
-  <!-- <v-container> -->
+  <v-container >
   <v-breadcrumbs :items="items" color="#FF5A36">
     <template v-slot:divider>
       <v-icon icon="mdi-chevron-right"></v-icon>
     </template>
   </v-breadcrumbs>
-  <v-card flat>
+  <v-card flat class="mx-auto" max-width="820">
     <v-sheet width="80%" class="mx-auto mb-8 mt-8">
       <v-card-title
         class="pt-2 pb-2 pl-0 sp_title"
@@ -28,20 +28,22 @@
         <BillingTaxNumber label="税金番号" placeholder="0-00-000" />
         <BillingColumn label="備考欄" placeholder="テキスト入力" />
         <div class="d-flex justify-center mt-10 mb-10">
-          <Button
-            to="/billing"
-            color="#FFFFFF"
-            style="background-color: #ff5136"
-            width="30em"
-            class="mt-5"
-            variant="outlined"
-            buttonText="更新する"
-          ></Button>
+        <Button
+          flat
+          type="submit"
+          color="#FF5A36"
+          style="
+            font-size: 1.5em;
+            border-radius: 5px;
+            height: 4ex;
+            margin-bottom: 4px;"
+          buttonText="更新する"
+        ></Button>
         </div>
       </v-card>
     </v-sheet>
   </v-card>
-  <!-- </v-container> -->
+  </v-container>
 </template>
 
 <script>
