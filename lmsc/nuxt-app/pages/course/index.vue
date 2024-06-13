@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useGetCourseHistory } from '~/features/course/api/getCourseHistory'
 import { useGetCourseList } from '~/features/course/api/getCourseList'
 import { useStartCourse } from '~/features/course/api/startCourse'
 
@@ -6,11 +7,19 @@ import CoursesList from '~/features/course/courseList/CourseList.vue'
 
 const { mutate: startCourse } = useStartCourse()
 
-const testStartCourse = async () => {
+const emitFlag = ref()
+const setFlag = (course_id: number) => {
+  console.log('get id: ', course_id)
+  emitFlag.value = course_id
+}
+
+const sampleFunc = async (course_id: number) => {
+  console.log('get id: ', course_id)
   const postData = {
     user_id: 1,
     course_ids: [1, 2],
   }
+  console.log('postData:', postData)
   try {
     await startCourse(
       { postData },
@@ -19,20 +28,24 @@ const testStartCourse = async () => {
           console.log('コースの開始に成功しました')
         },
         onError: (error: any) => {
-          console.error('エラーが発生しました:', error.message)
-          throw error
+          if (error.response) {
+            console.error('エラーが発生しました', error.response.data)
+          } else {
+            console.error('エラーが発生しました', error.message)
+          }
         },
       }
     )
   } catch (error) {
-    console.error('エラーの処理:', error)
+    console.error('startCourseの実行中にエラーが発生しました', error)
   }
 }
 
 const { data, error, status } = useGetCourseList()
+
 const courses = computed(() => data.value?.courses ?? [])
 </script>
 
 <template>
-  <CoursesList :courses="courses" />
+  <CoursesList :courses="courses" @startCourse="sampleFunc" />
 </template>

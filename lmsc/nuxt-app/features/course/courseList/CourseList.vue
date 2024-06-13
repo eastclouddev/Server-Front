@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { reactive, defineProps } from 'vue'
+import { ref, defineProps } from 'vue'
 import Title from '~/features/course/courseList/components/titleHeader.vue'
 import Options from '~/features/course/courseList/components/courseOptions.vue'
 import Contents from '~/features/course/courseList/components/courseContents.vue'
 import FlagIcon from '~/assets/flag.svg'
-import PythonIcon from '~/assets/python.svg'
-import JQueryIcon from '~/assets/jQuery.svg'
 
 const title = {
   img: FlagIcon,
@@ -18,6 +16,12 @@ const props = defineProps<{
 
 const courses = ref(props.courses)
 const category = ref([...new Set(courses.value.map(item => item.category))])
+
+const emit = defineEmits(['startCourse'])
+const setStartCourse = (course_id: number) => {
+  console.log('From List to set id: ', course_id)
+  emit('startCourse', course_id)
+}
 
 const sortOption = ref('')
 const setSort = (newVal: string) => {
@@ -53,7 +57,11 @@ const options = computed(() => ({
         :category="category"
       />
       <Title :item="title" />
-      <Contents :courses="courses" :options="options" />
+      <Contents
+        :courses="courses"
+        :options="options"
+        @startCourse="setStartCourse"
+      />
     </div>
   </main>
 </template>

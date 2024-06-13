@@ -117,6 +117,13 @@ const sortedCourses = computed(() => {
       return course
   }
 })
+
+const emit = defineEmits(['startCourse'])
+const setStartCourse = (course_id: number) => {
+  console.log('From Contents to set id: ', course_id)
+  emit('startCourse', course_id)
+}
+// :to="`/course/${item.course_id}`"
 </script>
 
 <template>
@@ -143,7 +150,7 @@ const sortedCourses = computed(() => {
             <div class="flex">
               <v-card-text>
                 <v-icon>mdi-clock-outline</v-icon>
-                終了想定時間 : {{ item.time }}時間
+                終了想定時間 : {{ item.expected_end_hours }}時間
               </v-card-text>
               <v-card-text>
                 <v-icon>mdi-book-open-blank-variant-outline</v-icon>
@@ -176,10 +183,11 @@ const sortedCourses = computed(() => {
         </v-row>
         <v-row class="btn" :class="{ history: type == 'History' }">
           <v-col>
-            <v-btn v-if="type == 'List'">
-              <NuxtLink :to="`/course/${item.course_id}`" class="NuxtLink">
-                学習する
-              </NuxtLink>
+            <v-btn
+              v-if="type == 'List'"
+              @click="setStartCourse(item.course_id)"
+            >
+              <NuxtLink class="NuxtLink"> 学習する </NuxtLink>
             </v-btn>
             <v-btn v-if="type == 'History'">
               <NuxtLink :to="`/course/${item.course_id}`" class="NuxtLink">
