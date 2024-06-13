@@ -248,25 +248,6 @@ const ModeChange = (num: number) => {
         </v-col>
       </v-row>
       <v-row class="hw" v-if="isMode === '課題提出'">
-        <!-- <v-col class="title">
-          <v-img :src="PythonIcon"></v-img>
-          <v-card-title v-html="contents.title + '  課題提出'" />
-        </v-col>
-        <v-col class="info">
-          <v-card-text>基本情報</v-card-text>
-          <v-card-text v-html="formatText(contents.info)" />
-        </v-col>
-        <v-col class="comment">
-          <v-card-text>解説</v-card-text>
-          <v-card-text
-            ref="commentText"
-            v-html="formatText(contents.comment)"
-            :class="{ overflow: isOverflow }"
-          />
-        </v-col>
-        <v-col v-if="isOverflow === true" class="viewMore">
-          <v-card-text @click="ViewMore">もっとみる</v-card-text>
-        </v-col> -->
         <v-col class="hw_info">
           <NuxtLink>質問一覧</NuxtLink>
           <v-icon>mdi-chevron-right</v-icon>
