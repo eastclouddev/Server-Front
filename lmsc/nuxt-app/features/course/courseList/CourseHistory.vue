@@ -65,16 +65,20 @@ const contents = reactive([
 //     }
 //   }
 // })
-
-const mode: string = 'History'
-const len: number = 65
+const options = computed(() => ({
+  type: 'History', // Contentsの表示切替用変数
+  len: 65, // Contents readText()の最大文字数
+  sort: '',
+  category: '',
+  keyword: '',
+}))
 </script>
 
 <template>
   <main>
     <div class="main center">
       <Title :item="title" />
-      <Contents :items="contents" :type="mode" :len="len" />
+      <Contents :courses="contents" :options="options" />
     </div>
   </main>
 </template>

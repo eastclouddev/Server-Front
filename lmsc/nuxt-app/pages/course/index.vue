@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useGetCourseHistory } from '~/features/course/api/getCourseHistory'
 import { useGetCourseList } from '~/features/course/api/getCourseList'
 import { useStartCourse } from '~/features/course/api/startCourse'
 
