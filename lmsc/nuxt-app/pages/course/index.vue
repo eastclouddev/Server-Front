@@ -31,7 +31,6 @@ const testStartCourse = async () => {
 
 const { data, error, status } = useGetCourseList()
 const courses = computed(() => data.value?.courses ?? [])
-testStartCourse()
 </script>
 
 <template>
