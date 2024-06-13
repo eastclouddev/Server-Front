@@ -7,19 +7,6 @@
       </div>
       <ul class="pt-8 pb-5">
         <li class="pb-5">
-          <h4>やりたいこと</h4>
-          <p>{{ thread.objective }}</p>
-        </li>
-        <li class="pb-5">
-          <h4>現状</h4>
-          <p>{{ thread.current_situation }}</p>
-        </li>
-        <li class="pb-5">
-          <h4>自分が調べたこと</h4>
-          <p>{{ thread.research }}</p>
-        </li>
-        <li class="pb-5">
-          <h4>質問内容</h4>
           <p>{{ thread.content }}</p>
         </li>
       </ul>
@@ -131,7 +118,7 @@ export default {
   computed: {
     userRole() {
       const userStore = useUserStore();
-      return userStore.user.role_id; // userRoleではなく user.role_id を使用
+      return userStore.user.role_id;
     }
   },
   methods: {
