@@ -4,62 +4,82 @@ import type { Methods as Methods_by08hd } from '.';
 import type { Methods as Methods_vbrzjm } from './billings/_billing_id@number';
 import type { Methods as Methods_xi4crh } from './companies';
 import type { Methods as Methods_7dyior } from './companies/_company_id@number';
+import type { Methods as Methods_18uwb4v } from './companies/_company_id@number/progresses';
 import type { Methods as Methods_hxcrb8 } from './companies/_company_id@number/users';
+import type { Methods as Methods_1rhnnoh } from './companies/_company_id@number/users/counts';
 import type { Methods as Methods_13yxxb0 } from './courses';
 import type { Methods as Methods_poio86 } from './courses/_course_id@number';
+import type { Methods as Methods_1jtgkuj } from './courses/start';
 import type { Methods as Methods_1tl4w1u } from './curriculums/_curriculum_id@number';
 import type { Methods as Methods_9wwipc } from './curriculums/_curriculum_id@number/questions';
 import type { Methods as Methods_ivecxg } from './curriculums/_curriculum_id@number/reviews';
+import type { Methods as Methods_1n8it4t } from './hogechat';
 import type { Methods as Methods_idk8rz } from './login';
 import type { Methods as Methods_1rpsris } from './logout';
-import type { Methods as Methods_19zj46v } from './mentors/_mentor_id@number/accounts';
-import type { Methods as Methods_79gsgt } from './mentors/_mentor_id@number/rewards';
+import type { Methods as Methods_w2iay8 } from './mentors/_mentor_id@number/progresses';
 import type { Methods as Methods_7zqsp5 } from './mentors/_mentor_id@number/students/questions';
+import type { Methods as Methods_1fsn4zt } from './mentors/_mentor_id@number/students/reviews';
+import type { Methods as Methods_1osy0o9 } from './mentors/counts';
 import type { Methods as Methods_t9xdat } from './news';
 import type { Methods as Methods_ah5d5l } from './news/_news_id@number';
+import type { Methods as Methods_1uxbl4e } from './news/categories';
+import type { Methods as Methods_ovggmd } from './news/categories/_category_id@number';
+import type { Methods as Methods_sr2fny } from './notifications';
+import type { Methods as Methods_wemohn } from './notifications/_notification_id@number/mark_read';
 import type { Methods as Methods_oji007 } from './password_reset';
 import type { Methods as Methods_vesziw } from './password_reset/confirm';
 import type { Methods as Methods_1h2e7pl } from './progresses';
 import type { Methods as Methods_csvpx4 } from './questions/_question_id@number';
 import type { Methods as Methods_tnd0ic } from './questions/_question_id@number/answers';
+import type { Methods as Methods_s3ej2m } from './questions/answers/_answer_id@number';
 import type { Methods as Methods_if5q52 } from './receipts/_receipt_id@number';
-import type { Methods as Methods_1bxksbk } from './reviews/_mentor_id@number/students/reviews';
 import type { Methods as Methods_1w7qnl8 } from './reviews/_review_id@number';
 import type { Methods as Methods_458k6a } from './reviews/_review_request_id@number';
 import type { Methods as Methods_1ccq37s } from './reviews/responses/_response_id@number';
 import type { Methods as Methods_wq2jhe } from './rewards';
-import type { Methods as Methods_4q3e6b } from './state_progresses';
+import type { Methods as Methods_1o5yr5y } from './samplechat';
+import type { Methods as Methods_1liddtx } from './students/_student_id/progresses';
+import type { Methods as Methods_9ucswa } from './students/_student_id@number/assign_mentor';
 import type { Methods as Methods_1qnirv8 } from './students/_student_id@number/questions';
+import type { Methods as Methods_1qnfpc0 } from './students/_student_id@number/reviews';
+import type { Methods as Methods_1xhiioa } from './users';
 import type { Methods as Methods_8ls8pm } from './users/_user_id@number';
-import type { Methods as Methods_1l20ihb } from './users/_user_id@number/email/confirm_change';
+import type { Methods as Methods_1s8f1kf } from './users/counts';
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const prefix = (baseURL === undefined ? '' : baseURL).replace(/\/$/, '');
   const PATH0 = '/';
   const PATH1 = '/billings/';
   const PATH2 = '/companies/';
-  const PATH3 = '/users/';
-  const PATH4 = '/courses/';
-  const PATH5 = '/curriculums/';
-  const PATH6 = '/questions/';
-  const PATH7 = '/reviews/';
-  const PATH8 = '/login/';
-  const PATH9 = '/logout/';
-  const PATH10 = '/mentors/';
-  const PATH11 = '/accounts/';
-  const PATH12 = '/rewards/';
-  const PATH13 = '/students/questions/';
-  const PATH14 = '/news/';
-  const PATH15 = '/password_reset/';
-  const PATH16 = '/password_reset/confirm/';
-  const PATH17 = '/progresses/';
-  const PATH18 = '/answers/';
-  const PATH19 = '/receipts/';
-  const PATH20 = '/students/reviews/';
-  const PATH21 = '/reviews/responses/';
-  const PATH22 = '/state_progresses/';
-  const PATH23 = '/students/';
-  const PATH24 = '/email/confirm_change/';
+  const PATH3 = '/progresses/';
+  const PATH4 = '/users/';
+  const PATH5 = '/users/counts/';
+  const PATH6 = '/courses/';
+  const PATH7 = '/courses/start/';
+  const PATH8 = '/curriculums/';
+  const PATH9 = '/questions/';
+  const PATH10 = '/reviews/';
+  const PATH11 = '/hogechat/';
+  const PATH12 = '/login/';
+  const PATH13 = '/logout/';
+  const PATH14 = '/mentors/';
+  const PATH15 = '/students/questions/';
+  const PATH16 = '/students/reviews/';
+  const PATH17 = '/mentors/counts/';
+  const PATH18 = '/news/';
+  const PATH19 = '/news/categories/';
+  const PATH20 = '/notifications/';
+  const PATH21 = '/mark_read/';
+  const PATH22 = '/password_reset/';
+  const PATH23 = '/password_reset/confirm/';
+  const PATH24 = '/answers/';
+  const PATH25 = '/questions/answers/';
+  const PATH26 = '/receipts/';
+  const PATH27 = '/reviews/responses/';
+  const PATH28 = '/rewards/';
+  const PATH29 = '/samplechat/';
+  const PATH30 = '/students/';
+  const PATH31 = '/assign_mentor/';
   const GET = 'GET';
   const POST = 'POST';
   const PATCH = 'PATCH';
@@ -141,51 +161,173 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
         const prefix1 = `${PATH2}${val1}`;
 
         return {
+          progresses: {
+            /**
+             * 進捗管理一覧
+             *
+             * Parameters
+             * -----------------------
+             * なし
+             *
+             * Returns
+             * -----------------------
+             * progresses: array
+             *     progress_id: int
+             *         進捗のID
+             *     user_id: int
+             *         ユーザーのID
+             *     course_id: int
+             *         コースのID
+             *     section_id: int
+             *         セクションのID
+             *     curriculum_id: int
+             *         カリキュラムのID
+             *     progress_percentage: int
+             *         進捗のパーセンテージ
+             *     status: str
+             *         ステータス
+             * @returns Successful Response
+             */
+            get: (option?: { config?: T | undefined } | undefined) =>
+              fetch<Methods_18uwb4v['get']['resBody'], BasicHeaders, Methods_18uwb4v['get']['status']>(prefix, `${prefix1}${PATH3}`, GET, option).json(),
+            /**
+             * 進捗管理一覧
+             *
+             * Parameters
+             * -----------------------
+             * なし
+             *
+             * Returns
+             * -----------------------
+             * progresses: array
+             *     progress_id: int
+             *         進捗のID
+             *     user_id: int
+             *         ユーザーのID
+             *     course_id: int
+             *         コースのID
+             *     section_id: int
+             *         セクションのID
+             *     curriculum_id: int
+             *         カリキュラムのID
+             *     progress_percentage: int
+             *         進捗のパーセンテージ
+             *     status: str
+             *         ステータス
+             * @returns Successful Response
+             */
+            $get: (option?: { config?: T | undefined } | undefined) =>
+              fetch<Methods_18uwb4v['get']['resBody'], BasicHeaders, Methods_18uwb4v['get']['status']>(prefix, `${prefix1}${PATH3}`, GET, option).json().then(r => r.body),
+            $path: () => `${prefix}${prefix1}${PATH3}`,
+          },
           users: {
+            counts: {
+              /**
+               * 有効アカウント数取得(法人、法人代行)
+               * Parameters
+               * -----------------------
+               * company_id: int
+               *     会社のID
+               * Return
+               * -----------------------
+               * company_id: 会社のID
+               * role_counts: array
+               *     role_id: int
+               *         ロールのID
+               *     role_name: str
+               *         ロールの名称
+               *     count: int
+               *         そのロールを持つ有効なユーザーの数
+               * @returns Successful Response
+               */
+              get: (option?: { config?: T | undefined } | undefined) =>
+                fetch<Methods_1rhnnoh['get']['resBody'], BasicHeaders, Methods_1rhnnoh['get']['status']>(prefix, `${prefix1}${PATH5}`, GET, option).json(),
+              /**
+               * 有効アカウント数取得(法人、法人代行)
+               * Parameters
+               * -----------------------
+               * company_id: int
+               *     会社のID
+               * Return
+               * -----------------------
+               * company_id: 会社のID
+               * role_counts: array
+               *     role_id: int
+               *         ロールのID
+               *     role_name: str
+               *         ロールの名称
+               *     count: int
+               *         そのロールを持つ有効なユーザーの数
+               * @returns Successful Response
+               */
+              $get: (option?: { config?: T | undefined } | undefined) =>
+                fetch<Methods_1rhnnoh['get']['resBody'], BasicHeaders, Methods_1rhnnoh['get']['status']>(prefix, `${prefix1}${PATH5}`, GET, option).json().then(r => r.body),
+              $path: () => `${prefix}${prefix1}${PATH5}`,
+            },
             /**
              * 受講生一覧（法人、法人代行)
              *
              * Parameters
-             * ----------
-             * role: str, 
+             * -----------------------
+             * role: str
              *     ユーザーの役割
-             * page: int,
+             * page: int
              *     取得するページ番号
              * limit: int
              *     1ページ当たりの記事数
              *
-             *
              * Returns
-             * -------
-             * {"users": users_list} : dic{}
-             *                 受け取ったroleと一致するユーザー全員の情報
+             * -----------------------
+             * users: array
+             *     user_id: int
+             *         ユーザーのID
+             *     first_name: str
+             *         ユーザーの名
+             *     last_name: str
+             *         ユーザーの姓
+             *     email: str
+             *         ユーザーのメールアドレス
+             *     role: str
+             *         ユーザーのロール
+             *     last_login: str
+             *         最終ログイン日（ISO 8601形式）
              * @returns Successful Response
              */
             get: (option: { query: Methods_hxcrb8['get']['query'], config?: T | undefined }) =>
-              fetch<Methods_hxcrb8['get']['resBody'], BasicHeaders, Methods_hxcrb8['get']['status']>(prefix, `${prefix1}${PATH3}`, GET, option).json(),
+              fetch<Methods_hxcrb8['get']['resBody'], BasicHeaders, Methods_hxcrb8['get']['status']>(prefix, `${prefix1}${PATH4}`, GET, option).json(),
             /**
              * 受講生一覧（法人、法人代行)
              *
              * Parameters
-             * ----------
-             * role: str, 
+             * -----------------------
+             * role: str
              *     ユーザーの役割
-             * page: int,
+             * page: int
              *     取得するページ番号
              * limit: int
              *     1ページ当たりの記事数
              *
-             *
              * Returns
-             * -------
-             * {"users": users_list} : dic{}
-             *                 受け取ったroleと一致するユーザー全員の情報
+             * -----------------------
+             * users: array
+             *     user_id: int
+             *         ユーザーのID
+             *     first_name: str
+             *         ユーザーの名
+             *     last_name: str
+             *         ユーザーの姓
+             *     email: str
+             *         ユーザーのメールアドレス
+             *     role: str
+             *         ユーザーのロール
+             *     last_login: str
+             *         最終ログイン日（ISO 8601形式）
              * @returns Successful Response
              */
             $get: (option: { query: Methods_hxcrb8['get']['query'], config?: T | undefined }) =>
-              fetch<Methods_hxcrb8['get']['resBody'], BasicHeaders, Methods_hxcrb8['get']['status']>(prefix, `${prefix1}${PATH3}`, GET, option).json().then(r => r.body),
+              fetch<Methods_hxcrb8['get']['resBody'], BasicHeaders, Methods_hxcrb8['get']['status']>(prefix, `${prefix1}${PATH4}`, GET, option).json().then(r => r.body),
             $path: (option?: { method?: 'get' | undefined; query: Methods_hxcrb8['get']['query'] } | undefined) =>
-              `${prefix}${prefix1}${PATH3}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`,
+              `${prefix}${prefix1}${PATH4}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`,
           },
           /**
            * 会社詳細取得
@@ -432,7 +574,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
     },
     courses: {
       _course_id: (val1: number) => {
-        const prefix1 = `${PATH4}${val1}`;
+        const prefix1 = `${PATH6}${val1}`;
 
         return {
           /**
@@ -520,6 +662,51 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
           $path: () => `${prefix}${prefix1}${PATH0}`,
         };
       },
+      start: {
+        /**
+         * コース開始
+         *
+         * Parameter
+         * -----------------------
+         * user_id: int
+         *     コースを開始するユーザーのID
+         * course_ids: array[int]
+         *     開始するコースのIDリスト
+         *
+         * Returns
+         * -----------------------
+         * courses: array
+         *     course_id: int
+         *         開始したコースのID
+         *     started_at: str
+         *         コースの開始日（ISO 8601形式）
+         * @returns Successful Response
+         */
+        post: (option: { body: Methods_1jtgkuj['post']['reqBody'], config?: T | undefined }) =>
+          fetch<Methods_1jtgkuj['post']['resBody'], BasicHeaders, Methods_1jtgkuj['post']['status']>(prefix, PATH7, POST, option).json(),
+        /**
+         * コース開始
+         *
+         * Parameter
+         * -----------------------
+         * user_id: int
+         *     コースを開始するユーザーのID
+         * course_ids: array[int]
+         *     開始するコースのIDリスト
+         *
+         * Returns
+         * -----------------------
+         * courses: array
+         *     course_id: int
+         *         開始したコースのID
+         *     started_at: str
+         *         コースの開始日（ISO 8601形式）
+         * @returns Successful Response
+         */
+        $post: (option: { body: Methods_1jtgkuj['post']['reqBody'], config?: T | undefined }) =>
+          fetch<Methods_1jtgkuj['post']['resBody'], BasicHeaders, Methods_1jtgkuj['post']['status']>(prefix, PATH7, POST, option).json().then(r => r.body),
+        $path: () => `${prefix}${PATH7}`,
+      },
       /**
        * コース一覧取得
        *
@@ -545,7 +732,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        * @returns Successful Response
        */
       get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<Methods_13yxxb0['get']['resBody'], BasicHeaders, Methods_13yxxb0['get']['status']>(prefix, PATH4, GET, option).json(),
+        fetch<Methods_13yxxb0['get']['resBody'], BasicHeaders, Methods_13yxxb0['get']['status']>(prefix, PATH6, GET, option).json(),
       /**
        * コース一覧取得
        *
@@ -571,12 +758,12 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        * @returns Successful Response
        */
       $get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<Methods_13yxxb0['get']['resBody'], BasicHeaders, Methods_13yxxb0['get']['status']>(prefix, PATH4, GET, option).json().then(r => r.body),
-      $path: () => `${prefix}${PATH4}`,
+        fetch<Methods_13yxxb0['get']['resBody'], BasicHeaders, Methods_13yxxb0['get']['status']>(prefix, PATH6, GET, option).json().then(r => r.body),
+      $path: () => `${prefix}${PATH6}`,
     },
     curriculums: {
       _curriculum_id: (val1: number) => {
-        const prefix1 = `${PATH5}${val1}`;
+        const prefix1 = `${PATH8}${val1}`;
 
         return {
           questions: {
@@ -617,7 +804,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * @returns Successful Response
              */
             post: (option: { body: Methods_9wwipc['post']['reqBody'], config?: T | undefined }) =>
-              fetch<Methods_9wwipc['post']['resBody'], BasicHeaders, Methods_9wwipc['post']['status']>(prefix, `${prefix1}${PATH6}`, POST, option).json(),
+              fetch<Methods_9wwipc['post']['resBody'], BasicHeaders, Methods_9wwipc['post']['status']>(prefix, `${prefix1}${PATH9}`, POST, option).json(),
             /**
              * 質問投稿作成取得
              *
@@ -655,8 +842,66 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * @returns Successful Response
              */
             $post: (option: { body: Methods_9wwipc['post']['reqBody'], config?: T | undefined }) =>
-              fetch<Methods_9wwipc['post']['resBody'], BasicHeaders, Methods_9wwipc['post']['status']>(prefix, `${prefix1}${PATH6}`, POST, option).json().then(r => r.body),
-            $path: () => `${prefix}${prefix1}${PATH6}`,
+              fetch<Methods_9wwipc['post']['resBody'], BasicHeaders, Methods_9wwipc['post']['status']>(prefix, `${prefix1}${PATH9}`, POST, option).json().then(r => r.body),
+            /**
+             * カリキュラムの質問一覧
+             *
+             * Parameter
+             * -----------------------
+             * curriculum_id: int
+             *     質問一覧を取得したいカリキュラムのID
+             *
+             * Returns
+             * -----------------------
+             * dict
+             *     question_id: int
+             *         質問のID
+             *     curriculum_id: int
+             *         カリキュラムのID
+             *     user_id: int
+             *         ユーザーのID
+             *     title: str
+             *         質問のタイトル
+             *     content: str
+             *         質問の内容
+             *     media_content: str
+             *         関連するメディアコンテンツの情報
+             *         url: str
+             *             メディアコンテンツのURL
+             * @returns Successful Response
+             */
+            get: (option?: { config?: T | undefined } | undefined) =>
+              fetch<Methods_9wwipc['get']['resBody'], BasicHeaders, Methods_9wwipc['get']['status']>(prefix, `${prefix1}${PATH9}`, GET, option).json(),
+            /**
+             * カリキュラムの質問一覧
+             *
+             * Parameter
+             * -----------------------
+             * curriculum_id: int
+             *     質問一覧を取得したいカリキュラムのID
+             *
+             * Returns
+             * -----------------------
+             * dict
+             *     question_id: int
+             *         質問のID
+             *     curriculum_id: int
+             *         カリキュラムのID
+             *     user_id: int
+             *         ユーザーのID
+             *     title: str
+             *         質問のタイトル
+             *     content: str
+             *         質問の内容
+             *     media_content: str
+             *         関連するメディアコンテンツの情報
+             *         url: str
+             *             メディアコンテンツのURL
+             * @returns Successful Response
+             */
+            $get: (option?: { config?: T | undefined } | undefined) =>
+              fetch<Methods_9wwipc['get']['resBody'], BasicHeaders, Methods_9wwipc['get']['status']>(prefix, `${prefix1}${PATH9}`, GET, option).json().then(r => r.body),
+            $path: () => `${prefix}${prefix1}${PATH9}`,
           },
           reviews: {
             /**
@@ -689,7 +934,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * @returns Successful Response
              */
             get: (option?: { config?: T | undefined } | undefined) =>
-              fetch<Methods_ivecxg['get']['resBody'], BasicHeaders, Methods_ivecxg['get']['status']>(prefix, `${prefix1}${PATH7}`, GET, option).json(),
+              fetch<Methods_ivecxg['get']['resBody'], BasicHeaders, Methods_ivecxg['get']['status']>(prefix, `${prefix1}${PATH10}`, GET, option).json(),
             /**
              * カリキュラムのレビュー一覧
              *
@@ -720,8 +965,82 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * @returns Successful Response
              */
             $get: (option?: { config?: T | undefined } | undefined) =>
-              fetch<Methods_ivecxg['get']['resBody'], BasicHeaders, Methods_ivecxg['get']['status']>(prefix, `${prefix1}${PATH7}`, GET, option).json().then(r => r.body),
-            $path: () => `${prefix}${prefix1}${PATH7}`,
+              fetch<Methods_ivecxg['get']['resBody'], BasicHeaders, Methods_ivecxg['get']['status']>(prefix, `${prefix1}${PATH10}`, GET, option).json().then(r => r.body),
+            /**
+             * レビュー作成
+             *
+             * Parameter
+             * -----------------------
+             * curriculum_id: int
+             *     詳細を取得したいカリキュラムのID
+             * dict
+             *     user_id: int
+             *         ユーザーのID
+             *     title: str
+             *         レビューリクエストのタイトル
+             *     content: str
+             *         レビューリクエストの内容
+             *     is_closed: boolean
+             *         レビューリクエストの初期状態（通常はfalseで未クローズ状態）
+             *  Returns
+             * -----------------------
+             * dict
+             *     id: int
+             *         レビューリクエストのID
+             *     curriculum_id: int
+             *         カリキュラムのID
+             *     user_id: int
+             *         ユーザーのID
+             *     title: str
+             *         レビューリクエストのタイトル
+             *     content: str
+             *         レビューリクエストの内容
+             *     is_closed: boolean
+             *         レビューリクエストがクローズされているかどうか（boolean）
+             *     created_at: str
+             *         作成された日時
+             * @returns Successful Response
+             */
+            post: (option: { body: Methods_ivecxg['post']['reqBody'], config?: T | undefined }) =>
+              fetch<Methods_ivecxg['post']['resBody'], BasicHeaders, Methods_ivecxg['post']['status']>(prefix, `${prefix1}${PATH10}`, POST, option).json(),
+            /**
+             * レビュー作成
+             *
+             * Parameter
+             * -----------------------
+             * curriculum_id: int
+             *     詳細を取得したいカリキュラムのID
+             * dict
+             *     user_id: int
+             *         ユーザーのID
+             *     title: str
+             *         レビューリクエストのタイトル
+             *     content: str
+             *         レビューリクエストの内容
+             *     is_closed: boolean
+             *         レビューリクエストの初期状態（通常はfalseで未クローズ状態）
+             *  Returns
+             * -----------------------
+             * dict
+             *     id: int
+             *         レビューリクエストのID
+             *     curriculum_id: int
+             *         カリキュラムのID
+             *     user_id: int
+             *         ユーザーのID
+             *     title: str
+             *         レビューリクエストのタイトル
+             *     content: str
+             *         レビューリクエストの内容
+             *     is_closed: boolean
+             *         レビューリクエストがクローズされているかどうか（boolean）
+             *     created_at: str
+             *         作成された日時
+             * @returns Successful Response
+             */
+            $post: (option: { body: Methods_ivecxg['post']['reqBody'], config?: T | undefined }) =>
+              fetch<Methods_ivecxg['post']['resBody'], BasicHeaders, Methods_ivecxg['post']['status']>(prefix, `${prefix1}${PATH10}`, POST, option).json().then(r => r.body),
+            $path: () => `${prefix}${prefix1}${PATH10}`,
           },
           /**
            * カリキュラム詳細取得
@@ -785,6 +1104,13 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
         };
       },
     },
+    hogechat: {
+      get: (option?: { config?: T | undefined } | undefined) =>
+        fetch<void, BasicHeaders, Methods_1n8it4t['get']['status']>(prefix, PATH11, GET, option).send(),
+      $get: (option?: { config?: T | undefined } | undefined) =>
+        fetch<void, BasicHeaders, Methods_1n8it4t['get']['status']>(prefix, PATH11, GET, option).send().then(r => r.body),
+      $path: () => `${prefix}${PATH11}`,
+    },
     login: {
       /**
        * ログイン認証
@@ -814,7 +1140,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        * @returns Successful Response
        */
       post: (option: { body: Methods_idk8rz['post']['reqBody'], config?: T | undefined }) =>
-        fetch<Methods_idk8rz['post']['resBody'], BasicHeaders, Methods_idk8rz['post']['status']>(prefix, PATH8, POST, option).json(),
+        fetch<Methods_idk8rz['post']['resBody'], BasicHeaders, Methods_idk8rz['post']['status']>(prefix, PATH12, POST, option).json(),
       /**
        * ログイン認証
        *
@@ -843,8 +1169,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        * @returns Successful Response
        */
       $post: (option: { body: Methods_idk8rz['post']['reqBody'], config?: T | undefined }) =>
-        fetch<Methods_idk8rz['post']['resBody'], BasicHeaders, Methods_idk8rz['post']['status']>(prefix, PATH8, POST, option).json().then(r => r.body),
-      $path: () => `${prefix}${PATH8}`,
+        fetch<Methods_idk8rz['post']['resBody'], BasicHeaders, Methods_idk8rz['post']['status']>(prefix, PATH12, POST, option).json().then(r => r.body),
+      $path: () => `${prefix}${PATH12}`,
     },
     logout: {
       /**
@@ -860,7 +1186,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        * なし
        */
       post: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods_1rpsris['post']['status']>(prefix, PATH9, POST, option).send(),
+        fetch<void, BasicHeaders, Methods_1rpsris['post']['status']>(prefix, PATH13, POST, option).send(),
       /**
        * ログアウト機能
        *
@@ -874,213 +1200,72 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        * なし
        */
       $post: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods_1rpsris['post']['status']>(prefix, PATH9, POST, option).send().then(r => r.body),
-      $path: () => `${prefix}${PATH9}`,
+        fetch<void, BasicHeaders, Methods_1rpsris['post']['status']>(prefix, PATH13, POST, option).send().then(r => r.body),
+      $path: () => `${prefix}${PATH13}`,
     },
     mentors: {
       _mentor_id: (val1: number) => {
-        const prefix1 = `${PATH10}${val1}`;
+        const prefix1 = `${PATH14}${val1}`;
 
         return {
-          accounts: {
+          progresses: {
             /**
-             * 送金先の情報詳細を取得
+             * 進捗管理一覧
              *
-             * Parameter
+             * Parameters
              * -----------------------
-             * mentor_id: int
-             *     口座情報を取得したいメンターのID
+             * なし
              *
              * Returns
              * -----------------------
-             * dict
-             *     mentor_id: int
-             *         メンターのID
-             *     account_name: str
-             *         口座名義
-             *     bank_name: str
-             *         銀行名
-             *     branch_name: str
-             *         支店名
-             *     account_number: str
-             *         口座番号
-             *     account_type: str
-             *         口座の種類（例: "普通", "当座", "貯蓄"）
+             * progresses: array
+             *     progress_id: int
+             *         進捗のID
+             *     user_id: int
+             *         ユーザーのID
+             *     course_id: int
+             *         コースのID
+             *     section_id: int
+             *         セクションのID
+             *     curriculum_id: int
+             *         カリキュラムのID
+             *     progress_percentage: int
+             *         進捗のパーセンテージ
+             *     status: str
+             *         ステータス
              * @returns Successful Response
              */
             get: (option?: { config?: T | undefined } | undefined) =>
-              fetch<Methods_19zj46v['get']['resBody'], BasicHeaders, Methods_19zj46v['get']['status']>(prefix, `${prefix1}${PATH11}`, GET, option).json(),
+              fetch<Methods_w2iay8['get']['resBody'], BasicHeaders, Methods_w2iay8['get']['status']>(prefix, `${prefix1}${PATH3}`, GET, option).json(),
             /**
-             * 送金先の情報詳細を取得
+             * 進捗管理一覧
              *
-             * Parameter
+             * Parameters
              * -----------------------
-             * mentor_id: int
-             *     口座情報を取得したいメンターのID
+             * なし
              *
              * Returns
              * -----------------------
-             * dict
-             *     mentor_id: int
-             *         メンターのID
-             *     account_name: str
-             *         口座名義
-             *     bank_name: str
-             *         銀行名
-             *     branch_name: str
-             *         支店名
-             *     account_number: str
-             *         口座番号
-             *     account_type: str
-             *         口座の種類（例: "普通", "当座", "貯蓄"）
+             * progresses: array
+             *     progress_id: int
+             *         進捗のID
+             *     user_id: int
+             *         ユーザーのID
+             *     course_id: int
+             *         コースのID
+             *     section_id: int
+             *         セクションのID
+             *     curriculum_id: int
+             *         カリキュラムのID
+             *     progress_percentage: int
+             *         進捗のパーセンテージ
+             *     status: str
+             *         ステータス
              * @returns Successful Response
              */
             $get: (option?: { config?: T | undefined } | undefined) =>
-              fetch<Methods_19zj46v['get']['resBody'], BasicHeaders, Methods_19zj46v['get']['status']>(prefix, `${prefix1}${PATH11}`, GET, option).json().then(r => r.body),
-            /**
-             * 送金先の作成
-             *
-             * Parameter
-             * -----------------------
-             * mentor_id: int
-             *     送金先情報を作成したいメンターのユーザーID
-             * bank_name: str
-             *     銀行名
-             * branch_name: str
-             *     支店名
-             * bank_code: str
-             *     銀行コード
-             * branch_code: str
-             *     支店コード
-             * account_type: str
-             *     口座種別  ordinary (普通), current (当座), savings (貯蓄)
-             * account_number: str
-             *     口座番号
-             * account_name: str
-             *     口座名義
-             *
-             * Returns
-             * -----------------------
-             * dict
-             *     account_id: int
-             *         新しく作成された送金先情報のID
-             *     mentor_id: int
-             *         送金先情報を作成したいメンターのユーザーID
-             *     bank_name: str
-             *         銀行名
-             *     branch_name: str
-             *         支店名
-             *     bank_code: str
-             *         銀行コード
-             *     branch_code: str
-             *         支店コード
-             *     account_type: str
-             *         口座種別  ordinary (普通), current (当座), savings (貯蓄)
-             *     account_number: str
-             *         口座番号
-             *     account_name: str
-             *         口座名義
-             * @returns Successful Response
-             */
-            post: (option: { body: Methods_19zj46v['post']['reqBody'], config?: T | undefined }) =>
-              fetch<Methods_19zj46v['post']['resBody'], BasicHeaders, Methods_19zj46v['post']['status']>(prefix, `${prefix1}${PATH11}`, POST, option).json(),
-            /**
-             * 送金先の作成
-             *
-             * Parameter
-             * -----------------------
-             * mentor_id: int
-             *     送金先情報を作成したいメンターのユーザーID
-             * bank_name: str
-             *     銀行名
-             * branch_name: str
-             *     支店名
-             * bank_code: str
-             *     銀行コード
-             * branch_code: str
-             *     支店コード
-             * account_type: str
-             *     口座種別  ordinary (普通), current (当座), savings (貯蓄)
-             * account_number: str
-             *     口座番号
-             * account_name: str
-             *     口座名義
-             *
-             * Returns
-             * -----------------------
-             * dict
-             *     account_id: int
-             *         新しく作成された送金先情報のID
-             *     mentor_id: int
-             *         送金先情報を作成したいメンターのユーザーID
-             *     bank_name: str
-             *         銀行名
-             *     branch_name: str
-             *         支店名
-             *     bank_code: str
-             *         銀行コード
-             *     branch_code: str
-             *         支店コード
-             *     account_type: str
-             *         口座種別  ordinary (普通), current (当座), savings (貯蓄)
-             *     account_number: str
-             *         口座番号
-             *     account_name: str
-             *         口座名義
-             * @returns Successful Response
-             */
-            $post: (option: { body: Methods_19zj46v['post']['reqBody'], config?: T | undefined }) =>
-              fetch<Methods_19zj46v['post']['resBody'], BasicHeaders, Methods_19zj46v['post']['status']>(prefix, `${prefix1}${PATH11}`, POST, option).json().then(r => r.body),
-            $path: () => `${prefix}${prefix1}${PATH11}`,
-          },
-          rewards: {
-            /**
-             * 送金履歴一覧
-             *
-             * Parameter
-             * -----------------------
-             * mentor_id: int
-             *     送金先履歴を取得したいメンターのID
-             *
-             * Returns
-             * -----------------------
-             * rewards: array
-             *     reward_id: int
-             *         送金履歴のID
-             *     date: str
-             *         送金日(YYYY-MM-DD形式)
-             *     amount: float
-             *         送金額
-             *     to_mentor_id: int
-             *         送金先のメンターID
-             * @returns Successful Response
-             */
-            get: (option?: { config?: T | undefined } | undefined) =>
-              fetch<Methods_79gsgt['get']['resBody'], BasicHeaders, Methods_79gsgt['get']['status']>(prefix, `${prefix1}${PATH12}`, GET, option).json(),
-            /**
-             * 送金履歴一覧
-             *
-             * Parameter
-             * -----------------------
-             * mentor_id: int
-             *     送金先履歴を取得したいメンターのID
-             *
-             * Returns
-             * -----------------------
-             * rewards: array
-             *     reward_id: int
-             *         送金履歴のID
-             *     date: str
-             *         送金日(YYYY-MM-DD形式)
-             *     amount: float
-             *         送金額
-             *     to_mentor_id: int
-             *         送金先のメンターID
-             * @returns Successful Response
-             */
-            $get: (option?: { config?: T | undefined } | undefined) =>
-              fetch<Methods_79gsgt['get']['resBody'], BasicHeaders, Methods_79gsgt['get']['status']>(prefix, `${prefix1}${PATH12}`, GET, option).json().then(r => r.body),
-            $path: () => `${prefix}${prefix1}${PATH12}`,
+              fetch<Methods_w2iay8['get']['resBody'], BasicHeaders, Methods_w2iay8['get']['status']>(prefix, `${prefix1}${PATH3}`, GET, option).json().then(r => r.body),
+            $path: () => `${prefix}${prefix1}${PATH3}`,
           },
           students: {
             questions: {
@@ -1112,7 +1297,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
                * @returns Successful Response
                */
               get: (option?: { config?: T | undefined } | undefined) =>
-                fetch<Methods_7zqsp5['get']['resBody'], BasicHeaders, Methods_7zqsp5['get']['status']>(prefix, `${prefix1}${PATH13}`, GET, option).json(),
+                fetch<Methods_7zqsp5['get']['resBody'], BasicHeaders, Methods_7zqsp5['get']['status']>(prefix, `${prefix1}${PATH15}`, GET, option).json(),
               /**
                * 受講生からの質問一覧取得
                *
@@ -1141,16 +1326,120 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
                * @returns Successful Response
                */
               $get: (option?: { config?: T | undefined } | undefined) =>
-                fetch<Methods_7zqsp5['get']['resBody'], BasicHeaders, Methods_7zqsp5['get']['status']>(prefix, `${prefix1}${PATH13}`, GET, option).json().then(r => r.body),
-              $path: () => `${prefix}${prefix1}${PATH13}`,
+                fetch<Methods_7zqsp5['get']['resBody'], BasicHeaders, Methods_7zqsp5['get']['status']>(prefix, `${prefix1}${PATH15}`, GET, option).json().then(r => r.body),
+              $path: () => `${prefix}${prefix1}${PATH15}`,
+            },
+            reviews: {
+              /**
+               * 受講生のレビュー一覧取得
+               *
+               * Parameter
+               * -----------------------
+               * mentor_id: int
+               *     取得するメンターのユーザーID
+               *
+               * Returns
+               * -----------------------
+               * reviews: array
+               *     id: int
+               *         レビューのID
+               *     title: str
+               *         レビューのタイトル
+               *     content: str
+               *         レビューの内容
+               *     curriculum_id: int
+               *         レビューに紐づくカリキュラムのID
+               *     created_at:str
+               *         レビューの作成日（ISO 8601形式）
+               *     is_read: bool
+               *         未読コメントの有無
+               *     is_closed: bool
+               *         完了しているかどうか
+               * @returns Successful Response
+               */
+              get: (option?: { config?: T | undefined } | undefined) =>
+                fetch<Methods_1fsn4zt['get']['resBody'], BasicHeaders, Methods_1fsn4zt['get']['status']>(prefix, `${prefix1}${PATH16}`, GET, option).json(),
+              /**
+               * 受講生のレビュー一覧取得
+               *
+               * Parameter
+               * -----------------------
+               * mentor_id: int
+               *     取得するメンターのユーザーID
+               *
+               * Returns
+               * -----------------------
+               * reviews: array
+               *     id: int
+               *         レビューのID
+               *     title: str
+               *         レビューのタイトル
+               *     content: str
+               *         レビューの内容
+               *     curriculum_id: int
+               *         レビューに紐づくカリキュラムのID
+               *     created_at:str
+               *         レビューの作成日（ISO 8601形式）
+               *     is_read: bool
+               *         未読コメントの有無
+               *     is_closed: bool
+               *         完了しているかどうか
+               * @returns Successful Response
+               */
+              $get: (option?: { config?: T | undefined } | undefined) =>
+                fetch<Methods_1fsn4zt['get']['resBody'], BasicHeaders, Methods_1fsn4zt['get']['status']>(prefix, `${prefix1}${PATH16}`, GET, option).json().then(r => r.body),
+              $path: () => `${prefix}${prefix1}${PATH16}`,
             },
           },
         };
       },
+      counts: {
+        /**
+         * メンター担当受講生数取得
+         *
+         * Parameter
+         * -----------------------
+         * なし
+         *
+         * Returns
+         * -----------------------
+         * mentors: array
+         *     mentor_id: int
+         *         メンターの一意識別子
+         *     mentor_name: str
+         *         メンターの名前
+         *     student_content: str
+         *         そのメンターが担当する受講生の数
+         * @returns Successful Response
+         */
+        get: (option?: { config?: T | undefined } | undefined) =>
+          fetch<Methods_1osy0o9['get']['resBody'], BasicHeaders, Methods_1osy0o9['get']['status']>(prefix, PATH17, GET, option).json(),
+        /**
+         * メンター担当受講生数取得
+         *
+         * Parameter
+         * -----------------------
+         * なし
+         *
+         * Returns
+         * -----------------------
+         * mentors: array
+         *     mentor_id: int
+         *         メンターの一意識別子
+         *     mentor_name: str
+         *         メンターの名前
+         *     student_content: str
+         *         そのメンターが担当する受講生の数
+         * @returns Successful Response
+         */
+        $get: (option?: { config?: T | undefined } | undefined) =>
+          fetch<Methods_1osy0o9['get']['resBody'], BasicHeaders, Methods_1osy0o9['get']['status']>(prefix, PATH17, GET, option).json().then(r => r.body),
+        $path: () => `${prefix}${PATH17}`,
+      },
     },
     news: {
       _news_id: (val1: number) => {
-        const prefix1 = `${PATH14}${val1}`;
+        const prefix1 = `${PATH18}${val1}`;
 
         return {
           /**
@@ -1274,6 +1563,112 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
           $path: () => `${prefix}${prefix1}${PATH0}`,
         };
       },
+      categories: {
+        _category_id: (val2: number) => {
+          const prefix2 = `${PATH19}${val2}`;
+
+          return {
+            /**
+             * ニュースカテゴリー更新
+             * Parameters
+             * -----------------------
+             * category_id: int
+             *     更新するカテゴリのID
+             * dict
+             *     name: str
+             *         更新後のカテゴリ名
+             * Returns
+             * -----------------------
+             * message: str
+             *     メッセージ
+             * category: array
+             *     id: int
+             *         カテゴリの一意識別子
+             *     name: str
+             *         カテゴリの名前
+             *     created_at: str
+             *         カテゴリの作成日
+             *     updated_at: str
+             *         カテゴリの更新日
+             * @returns Successful Response
+             */
+            patch: (option: { body: Methods_ovggmd['patch']['reqBody'], config?: T | undefined }) =>
+              fetch<Methods_ovggmd['patch']['resBody'], BasicHeaders, Methods_ovggmd['patch']['status']>(prefix, `${prefix2}${PATH0}`, PATCH, option).json(),
+            /**
+             * ニュースカテゴリー更新
+             * Parameters
+             * -----------------------
+             * category_id: int
+             *     更新するカテゴリのID
+             * dict
+             *     name: str
+             *         更新後のカテゴリ名
+             * Returns
+             * -----------------------
+             * message: str
+             *     メッセージ
+             * category: array
+             *     id: int
+             *         カテゴリの一意識別子
+             *     name: str
+             *         カテゴリの名前
+             *     created_at: str
+             *         カテゴリの作成日
+             *     updated_at: str
+             *         カテゴリの更新日
+             * @returns Successful Response
+             */
+            $patch: (option: { body: Methods_ovggmd['patch']['reqBody'], config?: T | undefined }) =>
+              fetch<Methods_ovggmd['patch']['resBody'], BasicHeaders, Methods_ovggmd['patch']['status']>(prefix, `${prefix2}${PATH0}`, PATCH, option).json().then(r => r.body),
+            $path: () => `${prefix}${prefix2}${PATH0}`,
+          };
+        },
+        /**
+         * ニュースカテゴリ一覧取得
+         *
+         * Parameters
+         * -----------------------
+         * なし
+         *
+         * Returns
+         * -----------------------
+         * categories: array
+         *     id: int
+         *         カテゴリの一意識別子
+         *     name: str
+         *         カテゴリの名前
+         *     created_at: str
+         *         カテゴリが作成された日時（ISO 8601形式）
+         *     updated_at: str
+         *         カテゴリが最後に更新された日時（ISO 8601形式）
+         * @returns Successful Response
+         */
+        get: (option?: { config?: T | undefined } | undefined) =>
+          fetch<Methods_1uxbl4e['get']['resBody'], BasicHeaders, Methods_1uxbl4e['get']['status']>(prefix, PATH19, GET, option).json(),
+        /**
+         * ニュースカテゴリ一覧取得
+         *
+         * Parameters
+         * -----------------------
+         * なし
+         *
+         * Returns
+         * -----------------------
+         * categories: array
+         *     id: int
+         *         カテゴリの一意識別子
+         *     name: str
+         *         カテゴリの名前
+         *     created_at: str
+         *         カテゴリが作成された日時（ISO 8601形式）
+         *     updated_at: str
+         *         カテゴリが最後に更新された日時（ISO 8601形式）
+         * @returns Successful Response
+         */
+        $get: (option?: { config?: T | undefined } | undefined) =>
+          fetch<Methods_1uxbl4e['get']['resBody'], BasicHeaders, Methods_1uxbl4e['get']['status']>(prefix, PATH19, GET, option).json().then(r => r.body),
+        $path: () => `${prefix}${PATH19}`,
+      },
       /**
        * ニュース一覧取得
        *
@@ -1304,7 +1699,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        * @returns Successful Response
        */
       get: (option: { query: Methods_t9xdat['get']['query'], config?: T | undefined }) =>
-        fetch<Methods_t9xdat['get']['resBody'], BasicHeaders, Methods_t9xdat['get']['status']>(prefix, PATH14, GET, option).json(),
+        fetch<Methods_t9xdat['get']['resBody'], BasicHeaders, Methods_t9xdat['get']['status']>(prefix, PATH18, GET, option).json(),
       /**
        * ニュース一覧取得
        *
@@ -1335,7 +1730,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        * @returns Successful Response
        */
       $get: (option: { query: Methods_t9xdat['get']['query'], config?: T | undefined }) =>
-        fetch<Methods_t9xdat['get']['resBody'], BasicHeaders, Methods_t9xdat['get']['status']>(prefix, PATH14, GET, option).json().then(r => r.body),
+        fetch<Methods_t9xdat['get']['resBody'], BasicHeaders, Methods_t9xdat['get']['status']>(prefix, PATH18, GET, option).json().then(r => r.body),
       /**
        * ニュース作成
        * Parameters
@@ -1353,14 +1748,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        * Returns
        * -----------------------
        * dict
-       *     id: int
-       *         作成されたニュースのID
-       *     title: str
-       *         作成されたニュースのタイトル
-       *     content: str
-       *         作成されたニュースの内容
-       *     is_published: bool
-       *         ニュースの公開フラグ
+       *    
        *     published_at: str
        *         ニュースの公開日（ISO 8601形式）
        *     created_at: str
@@ -1368,7 +1756,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        * @returns Successful Response
        */
       post: (option: { body: Methods_t9xdat['post']['reqBody'], config?: T | undefined }) =>
-        fetch<Methods_t9xdat['post']['resBody'], BasicHeaders, Methods_t9xdat['post']['status']>(prefix, PATH14, POST, option).json(),
+        fetch<Methods_t9xdat['post']['resBody'], BasicHeaders, Methods_t9xdat['post']['status']>(prefix, PATH18, POST, option).json(),
       /**
        * ニュース作成
        * Parameters
@@ -1386,14 +1774,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        * Returns
        * -----------------------
        * dict
-       *     id: int
-       *         作成されたニュースのID
-       *     title: str
-       *         作成されたニュースのタイトル
-       *     content: str
-       *         作成されたニュースの内容
-       *     is_published: bool
-       *         ニュースの公開フラグ
+       *    
        *     published_at: str
        *         ニュースの公開日（ISO 8601形式）
        *     created_at: str
@@ -1401,58 +1782,196 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        * @returns Successful Response
        */
       $post: (option: { body: Methods_t9xdat['post']['reqBody'], config?: T | undefined }) =>
-        fetch<Methods_t9xdat['post']['resBody'], BasicHeaders, Methods_t9xdat['post']['status']>(prefix, PATH14, POST, option).json().then(r => r.body),
+        fetch<Methods_t9xdat['post']['resBody'], BasicHeaders, Methods_t9xdat['post']['status']>(prefix, PATH18, POST, option).json().then(r => r.body),
       $path: (option?: { method?: 'get' | undefined; query: Methods_t9xdat['get']['query'] } | undefined) =>
-        `${prefix}${PATH14}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`,
+        `${prefix}${PATH18}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`,
+    },
+    notifications: {
+      _notification_id: (val1: number) => {
+        const prefix1 = `${PATH20}${val1}`;
+
+        return {
+          mark_read: {
+            /**
+             * 通知内容を既読に更新
+             *
+             * Parameters
+             * -----------------------
+             * notification_id: int
+             *     既読にする通知のID
+             *
+             * -----------------------
+             * mesasge: str
+             *     操作成功のメッセージ(固定値:Notification marked as read successfully.)
+             * notification_id: int
+             *     既読にした通知のID
+             * @returns Successful Response
+             */
+            patch: (option?: { config?: T | undefined } | undefined) =>
+              fetch<Methods_wemohn['patch']['resBody'], BasicHeaders, Methods_wemohn['patch']['status']>(prefix, `${prefix1}${PATH21}`, PATCH, option).json(),
+            /**
+             * 通知内容を既読に更新
+             *
+             * Parameters
+             * -----------------------
+             * notification_id: int
+             *     既読にする通知のID
+             *
+             * -----------------------
+             * mesasge: str
+             *     操作成功のメッセージ(固定値:Notification marked as read successfully.)
+             * notification_id: int
+             *     既読にした通知のID
+             * @returns Successful Response
+             */
+            $patch: (option?: { config?: T | undefined } | undefined) =>
+              fetch<Methods_wemohn['patch']['resBody'], BasicHeaders, Methods_wemohn['patch']['status']>(prefix, `${prefix1}${PATH21}`, PATCH, option).json().then(r => r.body),
+            $path: () => `${prefix}${prefix1}${PATH21}`,
+          },
+        };
+      },
+      /**
+       * 通知一覧(管理者)
+       *
+       * Parameters
+       * -----------------------
+       * なし
+       *
+       * -----------------------
+       * id: int
+       *     通知のID
+       * from_user_id: int
+       *     ユーザーのID
+       * from_user_name: str
+       *     ユーザーの名前
+       * content: str
+       *     通知の内容
+       * related_question_id: int
+       *     質問のID
+       * related_answer_id: int
+       *     回答のID
+       * related_review_request_id: int
+       *     レビューリクエストのID
+       * related_review_response_id: int
+       *     レビューレスポンスのID
+       * is_read: bool
+       *     通知が既読かどうか
+       * created_at: str
+       *     作成日時
+       * @returns Successful Response
+       */
+      get: (option?: { config?: T | undefined } | undefined) =>
+        fetch<Methods_sr2fny['get']['resBody'], BasicHeaders, Methods_sr2fny['get']['status']>(prefix, PATH20, GET, option).json(),
+      /**
+       * 通知一覧(管理者)
+       *
+       * Parameters
+       * -----------------------
+       * なし
+       *
+       * -----------------------
+       * id: int
+       *     通知のID
+       * from_user_id: int
+       *     ユーザーのID
+       * from_user_name: str
+       *     ユーザーの名前
+       * content: str
+       *     通知の内容
+       * related_question_id: int
+       *     質問のID
+       * related_answer_id: int
+       *     回答のID
+       * related_review_request_id: int
+       *     レビューリクエストのID
+       * related_review_response_id: int
+       *     レビューレスポンスのID
+       * is_read: bool
+       *     通知が既読かどうか
+       * created_at: str
+       *     作成日時
+       * @returns Successful Response
+       */
+      $get: (option?: { config?: T | undefined } | undefined) =>
+        fetch<Methods_sr2fny['get']['resBody'], BasicHeaders, Methods_sr2fny['get']['status']>(prefix, PATH20, GET, option).json().then(r => r.body),
+      $path: () => `${prefix}${PATH20}`,
     },
     password_reset: {
       confirm: {
         post: (option?: { config?: T | undefined } | undefined) =>
-          fetch<void, BasicHeaders, Methods_vesziw['post']['status']>(prefix, PATH16, POST, option).send(),
+          fetch<void, BasicHeaders, Methods_vesziw['post']['status']>(prefix, PATH23, POST, option).send(),
         $post: (option?: { config?: T | undefined } | undefined) =>
-          fetch<void, BasicHeaders, Methods_vesziw['post']['status']>(prefix, PATH16, POST, option).send().then(r => r.body),
-        $path: () => `${prefix}${PATH16}`,
+          fetch<void, BasicHeaders, Methods_vesziw['post']['status']>(prefix, PATH23, POST, option).send().then(r => r.body),
+        $path: () => `${prefix}${PATH23}`,
       },
       post: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods_oji007['post']['status']>(prefix, PATH15, POST, option).send(),
+        fetch<void, BasicHeaders, Methods_oji007['post']['status']>(prefix, PATH22, POST, option).send(),
       $post: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods_oji007['post']['status']>(prefix, PATH15, POST, option).send().then(r => r.body),
-      $path: () => `${prefix}${PATH15}`,
+        fetch<void, BasicHeaders, Methods_oji007['post']['status']>(prefix, PATH22, POST, option).send().then(r => r.body),
+      $path: () => `${prefix}${PATH22}`,
     },
     progresses: {
       /**
        * 進捗管理一覧
        *
        * Parameters
-       * ----------
+       * -----------------------
+       * なし
        *
        * Returns
-       * -------
-       * {"progresses": progresses_list} : dic{}
-       *                 進捗一覧
+       * -----------------------
+       * progresses: array
+       *     progress_id: int
+       *         進捗のID
+       *     user_id: int
+       *         ユーザーのID
+       *     course_id: int
+       *         コースのID
+       *     section_id: int
+       *         セクションのID
+       *     curriculum_id: int
+       *         カリキュラムのID
+       *     progress_percentage: int
+       *         進捗のパーセンテージ
+       *     status: str
+       *         ステータス
        * @returns Successful Response
        */
       get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<Methods_1h2e7pl['get']['resBody'], BasicHeaders, Methods_1h2e7pl['get']['status']>(prefix, PATH17, GET, option).json(),
+        fetch<Methods_1h2e7pl['get']['resBody'], BasicHeaders, Methods_1h2e7pl['get']['status']>(prefix, PATH3, GET, option).json(),
       /**
        * 進捗管理一覧
        *
        * Parameters
-       * ----------
+       * -----------------------
+       * なし
        *
        * Returns
-       * -------
-       * {"progresses": progresses_list} : dic{}
-       *                 進捗一覧
+       * -----------------------
+       * progresses: array
+       *     progress_id: int
+       *         進捗のID
+       *     user_id: int
+       *         ユーザーのID
+       *     course_id: int
+       *         コースのID
+       *     section_id: int
+       *         セクションのID
+       *     curriculum_id: int
+       *         カリキュラムのID
+       *     progress_percentage: int
+       *         進捗のパーセンテージ
+       *     status: str
+       *         ステータス
        * @returns Successful Response
        */
       $get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<Methods_1h2e7pl['get']['resBody'], BasicHeaders, Methods_1h2e7pl['get']['status']>(prefix, PATH17, GET, option).json().then(r => r.body),
-      $path: () => `${prefix}${PATH17}`,
+        fetch<Methods_1h2e7pl['get']['resBody'], BasicHeaders, Methods_1h2e7pl['get']['status']>(prefix, PATH3, GET, option).json().then(r => r.body),
+      $path: () => `${prefix}${PATH3}`,
     },
     questions: {
       _question_id: (val1: number) => {
-        const prefix1 = `${PATH6}${val1}`;
+        const prefix1 = `${PATH9}${val1}`;
 
         return {
           answers: {
@@ -1480,7 +1999,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * @returns Successful Response
              */
             post: (option: { body: Methods_tnd0ic['post']['reqBody'], config?: T | undefined }) =>
-              fetch<Methods_tnd0ic['post']['resBody'], BasicHeaders, Methods_tnd0ic['post']['status']>(prefix, `${prefix1}${PATH18}`, POST, option).json(),
+              fetch<Methods_tnd0ic['post']['resBody'], BasicHeaders, Methods_tnd0ic['post']['status']>(prefix, `${prefix1}${PATH24}`, POST, option).json(),
             /**
              * 質問回答投稿作成
              * Parameters
@@ -1505,8 +2024,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * @returns Successful Response
              */
             $post: (option: { body: Methods_tnd0ic['post']['reqBody'], config?: T | undefined }) =>
-              fetch<Methods_tnd0ic['post']['resBody'], BasicHeaders, Methods_tnd0ic['post']['status']>(prefix, `${prefix1}${PATH18}`, POST, option).json().then(r => r.body),
-            $path: () => `${prefix}${prefix1}${PATH18}`,
+              fetch<Methods_tnd0ic['post']['resBody'], BasicHeaders, Methods_tnd0ic['post']['status']>(prefix, `${prefix1}${PATH24}`, POST, option).json().then(r => r.body),
+            $path: () => `${prefix}${prefix1}${PATH24}`,
           },
           /**
            * 質問スレッド詳細取得
@@ -1604,13 +2123,174 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            */
           $get: (option?: { config?: T | undefined } | undefined) =>
             fetch<Methods_csvpx4['get']['resBody'], BasicHeaders, Methods_csvpx4['get']['status']>(prefix, `${prefix1}${PATH0}`, GET, option).json().then(r => r.body),
+          /**
+           * 質問編集
+           *
+           * Parameter
+           * -----------------------
+           * question_id: int
+           *     更新したい質問のID
+           * title: str
+           *     更新された質問のタイトル
+           * content: str
+           *     更新したい質問の内容
+           * media_content: json
+           *     更新したい質問に関連するメディアコンテンツの情報
+           * is_closed: bool
+           *     完了しているかどうかを表すフラグ
+           *
+           * Returns
+           * -----------------------
+           * dict
+           *     id: int
+           *         更新された質問のID
+           *     curriculum_id: int
+           *         回答が紐づくカリキュラムのID
+           *     user_id: int
+           *         回答を投稿したユーザーのID
+           *     title: str
+           *         更新された質問のタイトル
+           *     content: str
+           *         更新された質問の内容
+           *     media_content: Optional[json]
+           *         更新されたメディアコンテンツの情報
+           *     is_closed: bool
+           *         質問が完了しているかどうかを示すフラグ（boolean）
+           *     updated_at: str
+           *         質問が最後に更新された日時（ISO 8601形式）
+           * @returns Successful Response
+           */
+          patch: (option: { body: Methods_csvpx4['patch']['reqBody'], config?: T | undefined }) =>
+            fetch<Methods_csvpx4['patch']['resBody'], BasicHeaders, Methods_csvpx4['patch']['status']>(prefix, `${prefix1}${PATH0}`, PATCH, option).json(),
+          /**
+           * 質問編集
+           *
+           * Parameter
+           * -----------------------
+           * question_id: int
+           *     更新したい質問のID
+           * title: str
+           *     更新された質問のタイトル
+           * content: str
+           *     更新したい質問の内容
+           * media_content: json
+           *     更新したい質問に関連するメディアコンテンツの情報
+           * is_closed: bool
+           *     完了しているかどうかを表すフラグ
+           *
+           * Returns
+           * -----------------------
+           * dict
+           *     id: int
+           *         更新された質問のID
+           *     curriculum_id: int
+           *         回答が紐づくカリキュラムのID
+           *     user_id: int
+           *         回答を投稿したユーザーのID
+           *     title: str
+           *         更新された質問のタイトル
+           *     content: str
+           *         更新された質問の内容
+           *     media_content: Optional[json]
+           *         更新されたメディアコンテンツの情報
+           *     is_closed: bool
+           *         質問が完了しているかどうかを示すフラグ（boolean）
+           *     updated_at: str
+           *         質問が最後に更新された日時（ISO 8601形式）
+           * @returns Successful Response
+           */
+          $patch: (option: { body: Methods_csvpx4['patch']['reqBody'], config?: T | undefined }) =>
+            fetch<Methods_csvpx4['patch']['resBody'], BasicHeaders, Methods_csvpx4['patch']['status']>(prefix, `${prefix1}${PATH0}`, PATCH, option).json().then(r => r.body),
           $path: () => `${prefix}${prefix1}${PATH0}`,
         };
+      },
+      answers: {
+        _answer_id: (val2: number) => {
+          const prefix2 = `${PATH25}${val2}`;
+
+          return {
+            /**
+             * 質問回答更新（受講生、メンター）
+             *
+             * Parameter
+             * -----------------------
+             * answer_id: int
+             *     更新したい回答のID
+             * content: str
+             *     更新したい回答の内容
+             * media_content: json
+             *     更新したい回答に関連するメディアコンテンツの情報
+             * is_read: bool
+             *     回答か既読かを表すフラグ
+             *
+             * Returns
+             * -----------------------
+             * dict
+             *     id: int
+             *         更新された回答のID
+             *     question_id: int
+             *         回答が紐づく質問のID
+             *     user_id: int
+             *         回答を投稿したユーザーのID
+             *     parent_answer_id: Optional[int]
+             *         返信先の回答ID
+             *     content: str
+             *         更新された回答の内容
+             *     media_content: Optional[json]
+             *         更新されたメディアコンテンツの情報
+             *     is_read: bool
+             *         回答が既読かどうかを示すフラグ（boolean）
+             *     updated_at: str
+             *         回答が最後に更新された日時（ISO 8601形式）
+             * @returns Successful Response
+             */
+            patch: (option: { body: Methods_s3ej2m['patch']['reqBody'], config?: T | undefined }) =>
+              fetch<Methods_s3ej2m['patch']['resBody'], BasicHeaders, Methods_s3ej2m['patch']['status']>(prefix, `${prefix2}${PATH0}`, PATCH, option).json(),
+            /**
+             * 質問回答更新（受講生、メンター）
+             *
+             * Parameter
+             * -----------------------
+             * answer_id: int
+             *     更新したい回答のID
+             * content: str
+             *     更新したい回答の内容
+             * media_content: json
+             *     更新したい回答に関連するメディアコンテンツの情報
+             * is_read: bool
+             *     回答か既読かを表すフラグ
+             *
+             * Returns
+             * -----------------------
+             * dict
+             *     id: int
+             *         更新された回答のID
+             *     question_id: int
+             *         回答が紐づく質問のID
+             *     user_id: int
+             *         回答を投稿したユーザーのID
+             *     parent_answer_id: Optional[int]
+             *         返信先の回答ID
+             *     content: str
+             *         更新された回答の内容
+             *     media_content: Optional[json]
+             *         更新されたメディアコンテンツの情報
+             *     is_read: bool
+             *         回答が既読かどうかを示すフラグ（boolean）
+             *     updated_at: str
+             *         回答が最後に更新された日時（ISO 8601形式）
+             * @returns Successful Response
+             */
+            $patch: (option: { body: Methods_s3ej2m['patch']['reqBody'], config?: T | undefined }) =>
+              fetch<Methods_s3ej2m['patch']['resBody'], BasicHeaders, Methods_s3ej2m['patch']['status']>(prefix, `${prefix2}${PATH0}`, PATCH, option).json().then(r => r.body),
+            $path: () => `${prefix}${prefix2}${PATH0}`,
+          };
+        },
       },
     },
     receipts: {
       _receipt_id: (val1: number) => {
-        const prefix1 = `${PATH19}${val1}`;
+        const prefix1 = `${PATH26}${val1}`;
 
         return {
           /**
@@ -1676,77 +2356,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       },
     },
     reviews: {
-      _mentor_id: (val1: number) => {
-        const prefix1 = `${PATH7}${val1}`;
-
-        return {
-          students: {
-            reviews: {
-              /**
-               * 受講生のレビュー一覧取得
-               *
-               * Parameter
-               * -----------------------
-               * mentor_id: int
-               *     取得するメンターのユーザーID
-               *
-               * Returns
-               * -----------------------
-               * reviews: array
-               *     id: int
-               *         レビューのID
-               *     title: str
-               *         レビューのタイトル
-               *     content: str
-               *         レビューの内容
-               *     curriculum_id: int
-               *         レビューに紐づくカリキュラムのID
-               *     created_at:str
-               *         レビューの作成日（ISO 8601形式）
-               *     is_read: bool
-               *         未読コメントの有無
-               *     is_closed: bool
-               *         完了しているかどうか
-               * @returns Successful Response
-               */
-              get: (option?: { config?: T | undefined } | undefined) =>
-                fetch<Methods_1bxksbk['get']['resBody'], BasicHeaders, Methods_1bxksbk['get']['status']>(prefix, `${prefix1}${PATH20}`, GET, option).json(),
-              /**
-               * 受講生のレビュー一覧取得
-               *
-               * Parameter
-               * -----------------------
-               * mentor_id: int
-               *     取得するメンターのユーザーID
-               *
-               * Returns
-               * -----------------------
-               * reviews: array
-               *     id: int
-               *         レビューのID
-               *     title: str
-               *         レビューのタイトル
-               *     content: str
-               *         レビューの内容
-               *     curriculum_id: int
-               *         レビューに紐づくカリキュラムのID
-               *     created_at:str
-               *         レビューの作成日（ISO 8601形式）
-               *     is_read: bool
-               *         未読コメントの有無
-               *     is_closed: bool
-               *         完了しているかどうか
-               * @returns Successful Response
-               */
-              $get: (option?: { config?: T | undefined } | undefined) =>
-                fetch<Methods_1bxksbk['get']['resBody'], BasicHeaders, Methods_1bxksbk['get']['status']>(prefix, `${prefix1}${PATH20}`, GET, option).json().then(r => r.body),
-              $path: () => `${prefix}${prefix1}${PATH20}`,
-            },
-          },
-        };
-      },
       _review_id: (val1: number) => {
-        const prefix1 = `${PATH7}${val1}`;
+        const prefix1 = `${PATH10}${val1}`;
 
         return {
           /**
@@ -1817,7 +2428,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
         };
       },
       _review_request_id: (val1: number) => {
-        const prefix1 = `${PATH7}${val1}`;
+        const prefix1 = `${PATH10}${val1}`;
 
         return {
           /**
@@ -1917,7 +2528,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       },
       responses: {
         _response_id: (val2: number) => {
-          const prefix2 = `${PATH21}${val2}`;
+          const prefix2 = `${PATH27}${val2}`;
 
           return {
             /**
@@ -1995,67 +2606,111 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
     },
     rewards: {
       get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods_wq2jhe['get']['status']>(prefix, PATH12, GET, option).send(),
+        fetch<void, BasicHeaders, Methods_wq2jhe['get']['status']>(prefix, PATH28, GET, option).send(),
       $get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods_wq2jhe['get']['status']>(prefix, PATH12, GET, option).send().then(r => r.body),
-      $path: () => `${prefix}${PATH12}`,
+        fetch<void, BasicHeaders, Methods_wq2jhe['get']['status']>(prefix, PATH28, GET, option).send().then(r => r.body),
+      $path: () => `${prefix}${PATH28}`,
     },
-    state_progresses: {
-      /**
-       * 現在の学習進捗
-       * Parameters
-       * -----------------------
-       * request: Request
-       *     headersから情報を取得する
-       *
-       * Returns
-       * -----------------------
-       * progresses: array
-       *     course_id: int
-       *         コースのID
-       *     course_title: str
-       *         コースのタイトル
-       *     progress_percentage: int
-       *         コースの進捗率
-       *     status: str
-       *         コースのステータス
-       *     last_accessed_at: str
-       *         最終アクセス日（ISO 8601形式）
-       * @returns Successful Response
-       */
+    samplechat: {
       get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<Methods_4q3e6b['get']['resBody'], BasicHeaders, Methods_4q3e6b['get']['status']>(prefix, PATH22, GET, option).json(),
-      /**
-       * 現在の学習進捗
-       * Parameters
-       * -----------------------
-       * request: Request
-       *     headersから情報を取得する
-       *
-       * Returns
-       * -----------------------
-       * progresses: array
-       *     course_id: int
-       *         コースのID
-       *     course_title: str
-       *         コースのタイトル
-       *     progress_percentage: int
-       *         コースの進捗率
-       *     status: str
-       *         コースのステータス
-       *     last_accessed_at: str
-       *         最終アクセス日（ISO 8601形式）
-       * @returns Successful Response
-       */
+        fetch<void, BasicHeaders, Methods_1o5yr5y['get']['status']>(prefix, PATH29, GET, option).send(),
       $get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<Methods_4q3e6b['get']['resBody'], BasicHeaders, Methods_4q3e6b['get']['status']>(prefix, PATH22, GET, option).json().then(r => r.body),
-      $path: () => `${prefix}${PATH22}`,
+        fetch<void, BasicHeaders, Methods_1o5yr5y['get']['status']>(prefix, PATH29, GET, option).send().then(r => r.body),
+      $path: () => `${prefix}${PATH29}`,
     },
     students: {
-      _student_id: (val1: number) => {
-        const prefix1 = `${PATH23}${val1}`;
+      _student_id: (val1: number | string) => {
+        const prefix1 = `${PATH30}${val1}`;
 
         return {
+          progresses: {
+            /**
+             * 現在の学習進捗
+             * Parameters
+             * -----------------------
+             * request: Request
+             *     headersから情報を取得する
+             *
+             * Returns
+             * -----------------------
+             * progresses: array
+             *     course_id: int
+             *         コースのID
+             *     course_title: str
+             *         コースのタイトル
+             *     progress_percentage: int
+             *         コースの進捗率
+             *     status: str
+             *         コースのステータス
+             *     last_accessed_at: str
+             *         最終アクセス日（ISO 8601形式）
+             * @returns Successful Response
+             */
+            get: (option?: { config?: T | undefined } | undefined) =>
+              fetch<Methods_1liddtx['get']['resBody'], BasicHeaders, Methods_1liddtx['get']['status']>(prefix, `${prefix1}${PATH3}`, GET, option).json(),
+            /**
+             * 現在の学習進捗
+             * Parameters
+             * -----------------------
+             * request: Request
+             *     headersから情報を取得する
+             *
+             * Returns
+             * -----------------------
+             * progresses: array
+             *     course_id: int
+             *         コースのID
+             *     course_title: str
+             *         コースのタイトル
+             *     progress_percentage: int
+             *         コースの進捗率
+             *     status: str
+             *         コースのステータス
+             *     last_accessed_at: str
+             *         最終アクセス日（ISO 8601形式）
+             * @returns Successful Response
+             */
+            $get: (option?: { config?: T | undefined } | undefined) =>
+              fetch<Methods_1liddtx['get']['resBody'], BasicHeaders, Methods_1liddtx['get']['status']>(prefix, `${prefix1}${PATH3}`, GET, option).json().then(r => r.body),
+            $path: () => `${prefix}${prefix1}${PATH3}`,
+          },
+        };
+      },
+      _student_id_number: (val1: number) => {
+        const prefix1 = `${PATH30}${val1}`;
+
+        return {
+          assign_mentor: {
+            /**
+             * 受講生と担当メンターの関連付け
+             *
+             * Parameters
+             * -----------------------
+             * student_id: int
+             *     メンターを割り当てる受講生のID
+             *
+             * Returns
+             * -----------------------
+             * なし
+             */
+            post: (option?: { config?: T | undefined } | undefined) =>
+              fetch<void, BasicHeaders, Methods_9ucswa['post']['status']>(prefix, `${prefix1}${PATH31}`, POST, option).send(),
+            /**
+             * 受講生と担当メンターの関連付け
+             *
+             * Parameters
+             * -----------------------
+             * student_id: int
+             *     メンターを割り当てる受講生のID
+             *
+             * Returns
+             * -----------------------
+             * なし
+             */
+            $post: (option?: { config?: T | undefined } | undefined) =>
+              fetch<void, BasicHeaders, Methods_9ucswa['post']['status']>(prefix, `${prefix1}${PATH31}`, POST, option).send().then(r => r.body),
+            $path: () => `${prefix}${prefix1}${PATH31}`,
+          },
           questions: {
             /**
              * 自分の質問を取得する
@@ -2085,7 +2740,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * @returns Successful Response
              */
             get: (option?: { config?: T | undefined } | undefined) =>
-              fetch<Methods_1qnirv8['get']['resBody'], BasicHeaders, Methods_1qnirv8['get']['status']>(prefix, `${prefix1}${PATH6}`, GET, option).json(),
+              fetch<Methods_1qnirv8['get']['resBody'], BasicHeaders, Methods_1qnirv8['get']['status']>(prefix, `${prefix1}${PATH9}`, GET, option).json(),
             /**
              * 自分の質問を取得する
              *
@@ -2114,56 +2769,76 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * @returns Successful Response
              */
             $get: (option?: { config?: T | undefined } | undefined) =>
-              fetch<Methods_1qnirv8['get']['resBody'], BasicHeaders, Methods_1qnirv8['get']['status']>(prefix, `${prefix1}${PATH6}`, GET, option).json().then(r => r.body),
-            $path: () => `${prefix}${prefix1}${PATH6}`,
+              fetch<Methods_1qnirv8['get']['resBody'], BasicHeaders, Methods_1qnirv8['get']['status']>(prefix, `${prefix1}${PATH9}`, GET, option).json().then(r => r.body),
+            $path: () => `${prefix}${prefix1}${PATH9}`,
+          },
+          reviews: {
+            /**
+             * 自分のレビュー一覧取得
+             *
+             * Parameters
+             * -----------------------
+             * user_id:int
+             *     ユーザーのID
+             *
+             * Returns
+             * -----------------------
+             * id: int
+             *     レビューのID
+             * title: str
+             *     レビューのタイトル
+             * content: str
+             *     レビューの内容
+             * curriculum_id: int
+             *     紐づいたカリキュラムのID
+             * created_at: str
+             *     レビュー作成日
+             * is_read: bool
+             *     未読コメントの有無
+             * is_closed: bool
+             *     完了しているかどうか
+             * @returns Successful Response
+             */
+            get: (option?: { config?: T | undefined } | undefined) =>
+              fetch<Methods_1qnfpc0['get']['resBody'], BasicHeaders, Methods_1qnfpc0['get']['status']>(prefix, `${prefix1}${PATH10}`, GET, option).json(),
+            /**
+             * 自分のレビュー一覧取得
+             *
+             * Parameters
+             * -----------------------
+             * user_id:int
+             *     ユーザーのID
+             *
+             * Returns
+             * -----------------------
+             * id: int
+             *     レビューのID
+             * title: str
+             *     レビューのタイトル
+             * content: str
+             *     レビューの内容
+             * curriculum_id: int
+             *     紐づいたカリキュラムのID
+             * created_at: str
+             *     レビュー作成日
+             * is_read: bool
+             *     未読コメントの有無
+             * is_closed: bool
+             *     完了しているかどうか
+             * @returns Successful Response
+             */
+            $get: (option?: { config?: T | undefined } | undefined) =>
+              fetch<Methods_1qnfpc0['get']['resBody'], BasicHeaders, Methods_1qnfpc0['get']['status']>(prefix, `${prefix1}${PATH10}`, GET, option).json().then(r => r.body),
+            $path: () => `${prefix}${prefix1}${PATH10}`,
           },
         };
       },
     },
     users: {
       _user_id: (val1: number) => {
-        const prefix1 = `${PATH3}${val1}`;
+        const prefix1 = `${PATH4}${val1}`;
 
         return {
-          email: {
-            confirm_change: {
-              /**
-               * メールアドレス認証と更新
-               *
-               * Parameters
-               * -----------------------
-               * user_id: int
-               *     メールアドレスを変更しようとしているユーザーのID
-               * token: str
-               *     メールアドレス変更を認証するための一意のトークン
-               *
-               * Return
-               * -----------------------
-               * message: str
-               *     "Your email address has been successfully updated."}
-               */
-              get: (option?: { config?: T | undefined } | undefined) =>
-                fetch<void, BasicHeaders, Methods_1l20ihb['get']['status']>(prefix, `${prefix1}${PATH24}`, GET, option).send(),
-              /**
-               * メールアドレス認証と更新
-               *
-               * Parameters
-               * -----------------------
-               * user_id: int
-               *     メールアドレスを変更しようとしているユーザーのID
-               * token: str
-               *     メールアドレス変更を認証するための一意のトークン
-               *
-               * Return
-               * -----------------------
-               * message: str
-               *     "Your email address has been successfully updated."}
-               */
-              $get: (option?: { config?: T | undefined } | undefined) =>
-                fetch<void, BasicHeaders, Methods_1l20ihb['get']['status']>(prefix, `${prefix1}${PATH24}`, GET, option).send().then(r => r.body),
-              $path: () => `${prefix}${prefix1}${PATH24}`,
-            },
-          },
           /**
            * アカウント更新
            *
@@ -2279,6 +2954,113 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
           $path: () => `${prefix}${prefix1}${PATH0}`,
         };
       },
+      counts: {
+        /**
+         * 有効アカウント数取得
+         *
+         * Parameters
+         * -----------------------
+         * なし
+         *
+         * Return
+         * -----------------------
+         * role_counts: array
+         *     role_id: int
+         *         ロールのID
+         *     role_name: str
+         *         ロールの名称
+         *     count: int
+         *         そのロールを持つ有効なユーザーの総数
+         * @returns Successful Response
+         */
+        get: (option?: { config?: T | undefined } | undefined) =>
+          fetch<Methods_1s8f1kf['get']['resBody'], BasicHeaders, Methods_1s8f1kf['get']['status']>(prefix, PATH5, GET, option).json(),
+        /**
+         * 有効アカウント数取得
+         *
+         * Parameters
+         * -----------------------
+         * なし
+         *
+         * Return
+         * -----------------------
+         * role_counts: array
+         *     role_id: int
+         *         ロールのID
+         *     role_name: str
+         *         ロールの名称
+         *     count: int
+         *         そのロールを持つ有効なユーザーの総数
+         * @returns Successful Response
+         */
+        $get: (option?: { config?: T | undefined } | undefined) =>
+          fetch<Methods_1s8f1kf['get']['resBody'], BasicHeaders, Methods_1s8f1kf['get']['status']>(prefix, PATH5, GET, option).json().then(r => r.body),
+        $path: () => `${prefix}${PATH5}`,
+      },
+      /**
+       * 受講生一覧(管理者)
+       *
+       * Parameters
+       * -----------------------
+       * role: str
+       *     ユーザーの役割
+       * page: int
+       *     取得するページ番号
+       * limit: int
+       *     1ページ当たりの記事数
+       *
+       * Return
+       * -----------------------
+       * users: array
+       *     user_id: int
+       *         ユーザーのID
+       *     first_name: str
+       *         名前
+       *     last_name: str
+       *         姓
+       *     email: str
+       *         メールアドレス
+       *     role: str
+       *         ユーザーの役割
+       *     last_login: str
+       *         最終ログイン日時（ISO 8601形式）
+       * @returns Successful Response
+       */
+      get: (option: { query: Methods_1xhiioa['get']['query'], config?: T | undefined }) =>
+        fetch<Methods_1xhiioa['get']['resBody'], BasicHeaders, Methods_1xhiioa['get']['status']>(prefix, PATH4, GET, option).json(),
+      /**
+       * 受講生一覧(管理者)
+       *
+       * Parameters
+       * -----------------------
+       * role: str
+       *     ユーザーの役割
+       * page: int
+       *     取得するページ番号
+       * limit: int
+       *     1ページ当たりの記事数
+       *
+       * Return
+       * -----------------------
+       * users: array
+       *     user_id: int
+       *         ユーザーのID
+       *     first_name: str
+       *         名前
+       *     last_name: str
+       *         姓
+       *     email: str
+       *         メールアドレス
+       *     role: str
+       *         ユーザーの役割
+       *     last_login: str
+       *         最終ログイン日時（ISO 8601形式）
+       * @returns Successful Response
+       */
+      $get: (option: { query: Methods_1xhiioa['get']['query'], config?: T | undefined }) =>
+        fetch<Methods_1xhiioa['get']['resBody'], BasicHeaders, Methods_1xhiioa['get']['status']>(prefix, PATH4, GET, option).json().then(r => r.body),
+      $path: (option?: { method?: 'get' | undefined; query: Methods_1xhiioa['get']['query'] } | undefined) =>
+        `${prefix}${PATH4}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`,
     },
     get: (option?: { config?: T | undefined } | undefined) =>
       fetch<void, BasicHeaders, Methods_by08hd['get']['status']>(prefix, PATH0, GET, option).send(),

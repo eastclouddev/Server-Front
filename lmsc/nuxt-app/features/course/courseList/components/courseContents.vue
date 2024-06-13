@@ -15,11 +15,10 @@ type Option = {
 
 const props = defineProps<{
   courses: any[]
-  items: any[]
   options: Option
 }>()
 
-const items = ref(props.items)
+const courses = ref(props.courses)
 const type = ref(props.options.type)
 const max_len = ref(props.options.len)
 const sortOption = ref(props.options.sort)
@@ -48,8 +47,8 @@ watch(
 )
 
 const posts = reactive({
-  len: items.value.map(item => item.num),
-  completed: items.value.map(item => item.completed),
+  len: courses.value.map(item => item.num),
+  completed: courses.value.map(item => item.completed),
 })
 
 const isSP = useMediaQuery('(max-width: 768px)')
@@ -87,9 +86,7 @@ const readText = (text: string, max_len: number) => {
 }
 
 const filteredCourses = computed(() => {
-  console.log('Category option updated: ', categoryOption.value)
-  console.log('Keyword option updated: ', keywordOption.value)
-  const list = ref([...items.value])
+  const list = ref([...courses.value])
   if (categoryOption.value !== '') {
     console.log(list)
     list.value = list.value.filter(
@@ -105,7 +102,6 @@ const filteredCourses = computed(() => {
 })
 
 const sortedCourses = computed(() => {
-  console.log('Sort option updated: ', sortOption.value)
   const course = [...filteredCourses.value]
   // const course = [...props.courses]
   switch (sortOption.value) {
@@ -113,12 +109,10 @@ const sortedCourses = computed(() => {
     //   return course.sort((a, b) => b.enrollmentCount - a.enrollmentCount)
     case '受講時間: 短':
       console.log('Sorted: ', sortOption.value)
-      return course.sort((a, b) => a.time - b.time)
-    // return courses.sort((a, b) => a.expected_end_hours - b.expected_end_hours)
+      return course.sort((a, b) => a.expected_end_hours - b.expected_end_hours)
     case '受講時間: 長':
       console.log('Sorted: ', sortOption.value)
-      return course.sort((a, b) => b.time - a.time)
-    // return courses.sort((a, b) => b.expected_end_hours - a.expected_end_hours)
+      return course.sort((a, b) => b.expected_end_hours - a.expected_end_hours)
     default:
       return course
   }

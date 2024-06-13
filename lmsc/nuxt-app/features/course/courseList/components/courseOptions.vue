@@ -3,9 +3,13 @@
 import { reactive, ref, defineEmits, watch } from 'vue'
 import Dropdown from '~/features/course/courseList/components/dropDown.vue'
 
+const props = defineProps<{
+  category: string[]
+}>()
+
 const category = reactive({
   label: 'カテゴリ',
-  items: ['Python', 'PHP', 'Obj-c'],
+  items: props.category,
 })
 
 const sort = reactive({

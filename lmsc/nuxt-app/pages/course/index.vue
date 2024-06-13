@@ -1,34 +1,39 @@
 <script setup lang="ts">
 import { useGetCourseList } from '~/features/course/api/getCourseList'
-import { useGetCourse } from '~/features/course/api/getCourse'
+import { useStartCourse } from '~/features/course/api/startCourse'
+
 import CoursesList from '~/features/course/courseList/CourseList.vue'
 
-const { data, error, status } = useGetCourseList()
-console.log('コース一覧の情報', typeof data.value, data.value?.courses)
-console.log('エラー', error)
-console.log('ステータス', status)
+const { mutate: startCourse } = useStartCourse()
 
-const courses = computed(() => (Array.isArray(data.value) ? data.value : []))
-
-const courseDetails = ref<any[]>([])
-watchEffect(() => {
-  courseDetails.value = []
-  courses.value.forEach(async course => {
-    const { data, error, status } = useGetCourse(course.course_id)
-    if (data.value) {
-      courseDetails.value.push(data.value)
-    }
-    console.log(
-      `コース${data.value?.course_id}の情報`,
-      typeof data.value,
-      data.value
+const testStartCourse = async () => {
+  const postData = {
+    user_id: 1,
+    course_ids: [1, 2],
+  }
+  try {
+    await startCourse(
+      { postData },
+      {
+        onSuccess: () => {
+          console.log('コースの開始に成功しました')
+        },
+        onError: (error: any) => {
+          console.error('エラーが発生しました:', error.message)
+          throw error
+        },
+      }
     )
-    console.log('エラー', error)
-    console.log('ステータス', status)
-  })
-})
+  } catch (error) {
+    console.error('エラーの処理:', error)
+  }
+}
+
+const { data, error, status } = useGetCourseList()
+const courses = computed(() => data.value?.courses ?? [])
+testStartCourse()
 </script>
 
 <template>
-  <CoursesList :courses="courseDetails" />
+  <CoursesList :courses="courses" />
 </template>

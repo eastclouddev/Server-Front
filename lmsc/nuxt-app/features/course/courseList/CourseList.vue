@@ -16,50 +16,8 @@ const props = defineProps<{
   courses: any[]
 }>()
 
-// 仮データ
-
-type TestData = {
-  title: string
-  img: string
-  description: string
-  time: number
-  num: number
-  completed: number
-}
-
-const contents = reactive([
-  {
-    title:
-      'Python入門 基礎文法徹底解説:チュートリアル網羅で初心者でもプログラミングできるようになる',
-    img: PythonIcon,
-    description:
-      '現役エンジニアによる基礎文法徹底解説&ハンズオン。未経験者には意味不明な Python チュートリアルをしっ現役エンジニアによる基礎文法徹底解説&ハンズオン。未経験者には意味不明な Python チュートリアルをしっ現役エンジニアによる基礎文法徹底解説&ハンズオン。',
-    time: 80,
-    num: 24,
-    completed: 18,
-    category: 'Python',
-  },
-  {
-    title: 'JavaScript & jQuery基礎講座',
-    img: JQueryIcon,
-    description:
-      '最も人気のあるプログラミング言語のひとつ、JavaScriptを知識ゼロから習得できます。jQueryの使い方も同時に学べるビギナー向けのコースです。',
-    time: 100,
-    num: 30,
-    completed: 1,
-    category: 'jQuery',
-  },
-])
-
-const repeatedItems = computed(() => {
-  let resultItem: TestData[] = []
-  for (let i = 0; i < 3; i++) {
-    resultItem = resultItem.concat(contents)
-  }
-  return resultItem
-})
-
-const items = ref(repeatedItems.value)
+const courses = ref(props.courses)
+const category = ref([...new Set(courses.value.map(item => item.category))])
 
 const sortOption = ref('')
 const setSort = (newVal: string) => {
@@ -92,9 +50,10 @@ const options = computed(() => ({
         @updateSort="setSort"
         @updateCategory="setCategory"
         @updateKeyword="setKeyword"
+        :category="category"
       />
       <Title :item="title" />
-      <Contents :items="items" :courses="courses" :options="options" />
+      <Contents :courses="courses" :options="options" />
     </div>
   </main>
 </template>
