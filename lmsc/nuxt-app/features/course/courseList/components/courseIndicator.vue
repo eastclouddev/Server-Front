@@ -5,12 +5,13 @@ import { useMediaQuery } from '@vueuse/core'
 
 const props = defineProps<{
   length: number
-  completed: number
+  percentage: number
 }>()
 
-const progressValue = ref(props.completed)
+const completed = props.length * props.percentage
+const progressValue = ref(completed)
 const sectionLength = ref(props.length)
-const percentage = ref(0)
+const percentage = ref(props.percentage)
 const bufferValue = ref(15)
 const status = ref('')
 const statusIcon = ref('')

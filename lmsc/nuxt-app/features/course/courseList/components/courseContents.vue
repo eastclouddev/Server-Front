@@ -46,11 +46,6 @@ watch(
   }
 )
 
-const posts = reactive({
-  len: courses.value.map(item => item.num),
-  completed: courses.value.map(item => item.completed),
-})
-
 const isSP = useMediaQuery('(max-width: 768px)')
 const readText = (text: string, max_len: number) => {
   let len = 0
@@ -129,7 +124,7 @@ const setStartCourse = (course_id: number) => {
   <v-container class="frame">
     <v-row class="item" v-for="(item, ind) in sortedCourses" :key="ind">
       <v-col class="left">
-        <v-img class="img" :src="IMG" />
+        <v-img class="img" :src="item.thumbnail_url" />
       </v-col>
       <v-col class="right">
         <v-row class="content" :class="{ history: type == 'History' }">
@@ -153,7 +148,7 @@ const setStartCourse = (course_id: number) => {
               </v-card-text>
               <v-card-text>
                 <v-icon>mdi-book-open-blank-variant-outline</v-icon>
-                全{{ item.num }}セッション
+                全{{ item.total_curriculums }}セッション
               </v-card-text>
             </div>
           </v-col>
@@ -167,7 +162,8 @@ const setStartCourse = (course_id: number) => {
             </v-card-text>
             <v-card-text class="sec">
               <v-icon>mdi-book-open-blank-variant-outline</v-icon>
-              {{ item.completed }} / {{ item.num }}
+              {{ item.total_curriculums * item.progress_percentage }} /
+              {{ item.total_curriculums }}
               <span>セッション</span>
             </v-card-text>
           </v-col>
@@ -175,8 +171,8 @@ const setStartCourse = (course_id: number) => {
         <v-row class="indicator" v-if="type == 'History'">
           <v-col>
             <Indicator
-              :length="posts.len[ind]"
-              :completed="posts.completed[ind]"
+              :length="item.total_curriculums"
+              :percentage="item.progress_percentage"
             />
           </v-col>
         </v-row>
