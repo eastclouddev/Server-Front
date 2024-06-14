@@ -6,12 +6,6 @@ import CoursesList from '~/features/course/courseList/CourseList.vue'
 
 const { mutate: startCourse } = useStartCourse()
 
-const emitFlag = ref()
-const setFlag = (course_id: number) => {
-  console.log('get id: ', course_id)
-  emitFlag.value = course_id
-}
-
 const sampleFunc = async (course_id: number) => {
   console.log('get id: ', course_id)
   const postData = {
@@ -40,7 +34,7 @@ const sampleFunc = async (course_id: number) => {
   }
 }
 
-const { data, error, status } = useGetCourseList()
+const { data } = useGetCourseList()
 
 const courses = computed(() => data.value?.courses ?? [])
 </script>

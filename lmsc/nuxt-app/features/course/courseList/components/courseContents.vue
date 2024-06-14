@@ -123,7 +123,6 @@ const setStartCourse = (course_id: number) => {
   console.log('From Contents to set id: ', course_id)
   emit('startCourse', course_id)
 }
-// :to="`/course/${item.course_id}`"
 </script>
 
 <template>
@@ -187,7 +186,9 @@ const setStartCourse = (course_id: number) => {
               v-if="type == 'List'"
               @click="setStartCourse(item.course_id)"
             >
-              <NuxtLink class="NuxtLink"> 学習する </NuxtLink>
+              <NuxtLink class="NuxtLink" :to="`/course/${item.course_id}`">
+                学習する
+              </NuxtLink>
             </v-btn>
             <v-btn v-if="type == 'History'">
               <NuxtLink :to="`/course/${item.course_id}`" class="NuxtLink">
@@ -324,7 +325,6 @@ const setStartCourse = (course_id: number) => {
       .btn {
         width: 100%;
         height: 48px;
-        flex-direction: column;
         .v-col {
           height: 48px;
           .v-btn {
@@ -332,6 +332,8 @@ const setStartCourse = (course_id: number) => {
             height: 100%;
             background-color: #ff5a36;
             .NuxtLink {
+              width: 494px;
+              padding: 11.75px 0;
               color: #fff;
               font-size: 18px;
               font-weight: 700;

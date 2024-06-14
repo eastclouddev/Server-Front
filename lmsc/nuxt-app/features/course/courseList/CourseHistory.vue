@@ -1,70 +1,38 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
 import Title from '~/features/course/courseList/components/titleHeader.vue'
 import Contents from '~/features/course/courseList/components/courseContents.vue'
 import ProgressIcon from '~/assets/progress.svg'
-import PythonIcon from '~/assets/python.svg'
-import JQueryIcon from '~/assets/jQuery.svg'
-
-import { getCourse, useGetCourse } from '~/features/course/api/getCourse'
 
 const title = {
   img: ProgressIcon,
   title: '受講履歴',
 }
 
-const contents = reactive([
-  {
-    title:
-      'Python入門 基礎文法徹底解説:チュートリアル網羅で初心者でもプログラミングできるようになる',
-    img: PythonIcon,
-    desc: '現役エンジニアによる基礎文法徹底解説&ハンズオン。未経験者には意味不明な Python チュートリアルをしっ現役エンジニアによる基礎文法徹底解説&ハンズオン。未経験者には意味不明な Python チュートリアルをしっ現役エンジニアによる基礎文法徹底解説&ハンズオン。',
-    time: 80,
-    num: 24,
-    completed: 18,
-  },
-  {
-    title: 'JavaScript & jQuery基礎講座',
-    img: JQueryIcon,
-    desc: '最も人気のあるプログラミング言語のひとつ、JavaScriptを知識ゼロから習得できます。jQueryの使い方も同時に学べるビギナー向けのコースです。',
-    time: 100,
-    num: 30,
-    completed: 1,
-  },
-])
+const props = defineProps<{
+  courses: any[]
+}>()
 
-// type Data = {
-//   course_id: number
-//   title: string
-//   desc: string
-// }
+// 仮データ
+// const contents = reactive([
+//   {
+//     title:
+//       'Python入門 基礎文法徹底解説:チュートリアル網羅で初心者でもプログラミングできるようになる',
+//     img: PythonIcon,
+//     desc: '現役エンジニアによる基礎文法徹底解説&ハンズオン。未経験者には意味不明な Python チュートリアルをしっ現役エンジニアによる基礎文法徹底解説&ハンズオン。未経験者には意味不明な Python チュートリアルをしっ現役エンジニアによる基礎文法徹底解説&ハンズオン。',
+//     time: 80,
+//     num: 24,
+//     completed: 18,
+//   },
+//   {
+//     title: 'JavaScript & jQuery基礎講座',
+//     img: JQueryIcon,
+//     desc: '最も人気のあるプログラミング言語のひとつ、JavaScriptを知識ゼロから習得できます。jQueryの使い方も同時に学べるビギナー向けのコースです。',
+//     time: 100,
+//     num: 30,
+//     completed: 1,
+//   },
+// ])
 
-// const CourseContents = ref<Data[]>([])
-
-// let Beginning_id = 1
-// let End_id = 11
-
-// onMounted(async () => {
-//   for (let i = Beginning_id; i < End_id; i++) {
-//     try {
-//       const { data, error, status } = useGetCourse(i)
-//       await data.value
-//       if (!error.value && status.value !== 'error') {
-//         CourseContents.value.push(data.value) // データをcontentsに追加する
-//       } else {
-//         console.error(
-//           `Failed to fetch course information for course ID: ${i}`,
-//           error.value
-//         )
-//       }
-//     } catch (err) {
-//       console.error(
-//         `Failed to fetch course information for course ID: ${i}`,
-//         err
-//       )
-//     }
-//   }
-// })
 const options = computed(() => ({
   type: 'History', // Contentsの表示切替用変数
   len: 65, // Contents readText()の最大文字数
@@ -78,7 +46,7 @@ const options = computed(() => ({
   <main>
     <div class="main center">
       <Title :item="title" />
-      <Contents :courses="contents" :options="options" />
+      <Contents :courses="props.courses" :options="options" />
     </div>
   </main>
 </template>
