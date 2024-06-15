@@ -1,5 +1,12 @@
 import { defineStore } from 'pinia'
 
+/**
+ *role_idの説明
+ * 1: 管理者
+ * 2: メンター
+ * 3: 生徒
+ * 4: 法人
+ */
 interface User {
   id: number | null
   role_id: number | null

@@ -6,10 +6,9 @@
   </div>
 </template>
 <script>
-import NewsItem from "~/features/auth/dashboard/components/NewsItem.vue";
-import ProgressManagement  from "~/features/auth/dashboard/components/ProgressManagement.vue";
-import AccountManagement  from "~/features/auth/dashboard/components/AccountManagement.vue";
-
+import NewsItem from '~/features/dashboard/components/NewsItem.vue'
+import ProgressManagement from '~/features/dashboard/components/ProgressManagement.vue'
+import AccountManagement from '~/features/dashboard/components/AccountManagement.vue'
 
 export default {
   components: {

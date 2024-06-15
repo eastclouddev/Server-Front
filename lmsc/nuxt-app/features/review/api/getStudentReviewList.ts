@@ -4,11 +4,11 @@ import { apiClient } from '@/libs/axios'
 import { AxiosError } from 'axios'
 import { service } from '@/constants/service'
 
-export async function getReviewList(studentId: number) {
+export async function getStudentReviewList(mentorId: number): Promise<any> {
   try {
-    const response = await apiClient.students
-      ._student_id_number(studentId)
-      .reviews.$get()
+    const response = await apiClient.mentors
+      ._mentor_id(mentorId)
+      .students.reviews.$get()
     return response
   } catch (err) {
     const axiosError = err as AxiosError
@@ -19,14 +19,12 @@ export async function getReviewList(studentId: number) {
   }
 }
 
-export function useGetReviewList(studentId: number) {
+export function useGetStudentReviewList(mentorId: number) {
   const { data, error, status } = useAsyncData(
-    `course-${studentId}`,
-    () => getReviewList(studentId),
+    `course-${mentorId}`,
+    () => getStudentReviewList(mentorId),
     { server: true }
   )
 
   return { data, error, status }
 }
-
-export default useGetReviewList
