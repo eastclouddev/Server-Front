@@ -10,6 +10,7 @@ export type AllResponseList = {
   title: string
   content: string
   curriculum_id: number
+  tech_category: string
   created_at: string
   is_read: boolean
   is_closed: boolean
@@ -17,14 +18,22 @@ export type AllResponseList = {
 
 export type AnswerCreateRequestBody = {
   user_id: number
+  parent_answer_id?: number | undefined
   content: string
 }
 
 export type AnswerCreateResponseBody = {
   answer_id: number
   question_id: number
-  user_id: number
+
+  parent_answer_id: number | null
+
+  user: Schemas__questions__User
   content: string
+
+  media_content: null
+
+  created_at: string
 }
 
 export type AnswerUpdateRequestBody = {
@@ -50,6 +59,14 @@ export type AnswerUpdateResponseBody = {
   updated_at: string
 }
 
+export type Billing = {
+  billing_id: number
+  date: string
+  amount: number
+  status: string
+  description: string
+}
+
 export type BillingDetailResponseBody = {
   billing_id: number
   company_id: number
@@ -58,6 +75,10 @@ export type BillingDetailResponseBody = {
   status: string
 
   payment_details?: Payment | null | undefined
+}
+
+export type BillingListResponseBody = {
+  billings: Billing[]
 }
 
 export type Company = {
@@ -73,6 +94,106 @@ export type Company = {
   phone_number: string
   email: string
   created_at: string
+}
+
+export type CompanyBillingInfoCreateRequestBody = {
+  prefecture: string
+  city: string
+  town: string
+
+  address?: string | null | undefined
+
+  billing_email: string
+  invoice_number: string
+  tax_number: string
+  payment_method_id: number
+
+  notes?: string | null | undefined
+
+  last_receipt_number?: string | null | undefined
+}
+
+export type CompanyBillingInfoCreateResponseBody = {
+  id: number
+  prefecture: string
+  city: string
+  town: string
+
+  address: string | null
+
+  billing_email: string
+  invoice_number: string
+  tax_number: string
+  payment_method_id: number
+
+  notes: string | null
+
+  last_receipt_number: string | null
+
+  created_at: string
+}
+
+export type CompanyBillingInfoDetailResponseBody = {
+  id: number
+  prefecture: string
+  city: string
+  town: string
+
+  address: string | null
+
+  billing_email: string
+  invoice_number: string
+  tax_number: string
+  payment_method: string
+
+  description: string | null
+
+  notes: string | null
+
+  last_receipt_number: string | null
+
+  created_at: string
+  updated_at: string
+}
+
+export type CompanyBillingInfoUpdateRequestBody = {
+  prefecture: string
+  city: string
+  town: string
+
+  address?: string | null | undefined
+
+  billing_email: string
+  invoice_number: string
+  tax_number: string
+  payment_method_id: number
+
+  notes?: string | null | undefined
+
+  last_receipt_number?: string | null | undefined
+
+  updated_at: string
+}
+
+export type CompanyBillingInfoUpdateResponseBody = {
+  id: number
+  prefecture: string
+  city: string
+  town: string
+
+  address: string | null
+
+  billing_email: string
+  invoice_number: string
+  tax_number: string
+  payment_method_id: number
+
+  notes: string | null
+
+  last_receipt_number: string | null
+
+  created_at: string
+  updated_at: string
 }
 
 export type CompanyCreateRequestBody = {
@@ -286,28 +407,6 @@ export type NewsUpdateResponseBody = {
   updated_at: string
 }
 
-export type Notification = {
-  id: number
-  from_user_id: number
-  from_user_name: string
-  content: string
-
-  related_question_id: number | null
-
-  related_answer_id: number | null
-
-  related_review_request_id: number | null
-
-  related_review_response_id: number | null
-
-  is_read: boolean
-  created_at: string
-}
-
-export type NotificationListResponseBody = {
-  notifications: Notification[]
-}
-
 export type NotificationUpdateResponseBody = {
   message: string
   notification_id: number
@@ -342,8 +441,12 @@ export type ProgressesResponseList = {
 export type Question = {
   id: number
   title: string
+  objective: string
+  current_situation: string
+  research: string
   content: string
   curriculum_id: number
+  tech_category: string
   created_at: string
   is_read: boolean
   is_closed: boolean
@@ -396,9 +499,13 @@ export type QuestionUpdateResponseBody = {
 export type Questions = {
   id: number
   title: string
+  objective: string
+  current_situation: string
+  research: string
   content: string
   curriculum_id: number
   created_at: string
+  tech_category: string
   is_read: boolean
   is_closed: boolean
 }
@@ -431,7 +538,7 @@ export type ResponseBody = {
 export type ResponseList = {
   id: number
   question_id: number
-  user_id: number
+  user: Schemas__questions__User
 
   parent_answer_id: number | null
 
@@ -439,16 +546,21 @@ export type ResponseList = {
 
   media_content: null
 
-  is_read: boolean
   created_at: string
 }
 
 export type ResponseQuestion = {
   id: number
   curriculum_id: number
-  user_id: number
+  user: Schemas__questions__User
   title: string
+  objective: string
+  current_situation: string
+  research: string
   content: string
+
+  media_content: null
+
   is_closed: boolean
   created_at: string
 }
@@ -467,12 +579,14 @@ export type Review = {
 export type ReviewRequestBody = {
   id: number
   curriculum_id: number
-  user_id: number
+  user: Schemas__reviews__User
   title: string
   content: string
+
+  media_content: null
+
   is_closed: boolean
   created_at: string
-  updated_at: string
 }
 
 export type ReviewRequestCreateRequestBody = {
@@ -513,6 +627,7 @@ export type ReviewResponse = {
   title: string
   content: string
   curriculum_id: number
+  tech_category: string
   created_at: string
   is_read: boolean
   is_closed: boolean
@@ -521,12 +636,38 @@ export type ReviewResponse = {
 export type ReviewResponseBody = {
   id: number
   review_request_id: number
+  user: Schemas__reviews__User
+
+  parent_response_id: number | null
+
+  content: string
+
+  media_content: null
+
+  created_at: string
+}
+
+export type ReviewResponseCreateRequestBody = {
   user_id: number
 
   parent_response_id: number | null
 
   content: string
-  is_read: boolean
+
+  media_content?: null | undefined
+}
+
+export type ReviewResponseCreateResponseBody = {
+  id: number
+  review_request_id: number
+  user: Schemas__reviews__User
+
+  parent_response_id: number | null
+
+  content: string
+
+  media_content: null
+
   created_at: string
 }
 
@@ -550,7 +691,7 @@ export type ReviewResponseUpdateResponseBody = {
 
 export type ReviewThreadDetailResponseBody = {
   review_request: ReviewRequestBody
-  responses: ReviewResponseBody[]
+  review_responses: ReviewResponseBody[]
 }
 
 export type Role = {
@@ -581,13 +722,24 @@ export type StudentListResponseBody = {
   users: Student[]
 }
 
-export type User = {
+export type UserCreateRequestBody = {
+  first_name?: string | null | undefined
+
+  last_name?: string | null | undefined
+
+  first_name_kana?: string | null | undefined
+
+  last_name_kana?: string | null | undefined
+
+  email?: string | null | undefined
+
+  role?: string | null | undefined
+
+  company_id?: number | null | undefined
+}
+
+export type UserCreateResponseBody = {
   user_id: number
-  first_name: string
-  last_name: string
-  email: string
-  role: string
-  last_login: string
 }
 
 export type UserDetailResponseBody = {
@@ -597,12 +749,14 @@ export type UserDetailResponseBody = {
   first_name_kana: string
   last_name_kana: string
   email: string
+  company_name: string
+  is_enable: boolean
   role: string
   last_login: string
 }
 
 export type UserListResponseBody = {
-  users: User[]
+  users: Schemas__users__User[]
 }
 
 export type UserUpdateRequestBody = {
@@ -615,6 +769,8 @@ export type UserUpdateRequestBody = {
   last_name_kana?: string | null | undefined
 
   email?: string | null | undefined
+
+  is_enable?: boolean | null | undefined
 }
 
 export type ValidationError = {
@@ -640,6 +796,28 @@ export type Schemas__curriculums__ReviewRequestListResponseBody = {
   reviews: Review[]
 }
 
+export type Schemas__mentors__Notification = {
+  id: number
+  from_user: Schemas__mentors__User
+
+  question_id: number | null
+
+  answer_id: number | null
+
+  review_request_id: number | null
+
+  review_response_id: number | null
+
+  title: string
+  content: string
+  is_read: boolean
+  created_at: string
+}
+
+export type Schemas__mentors__NotificationListResponseBody = {
+  notifications: Schemas__mentors__Notification[]
+}
+
 export type Schemas__mentors__ProgressListResponseBody = {
   progresses: ProgressesResponseList[]
 }
@@ -652,8 +830,72 @@ export type Schemas__mentors__ReviewRequestListResponseBody = {
   reviews: AllResponseList[]
 }
 
+export type Schemas__mentors__User = {
+  id: number
+  name: string
+}
+
+export type Schemas__notifications__Notification = {
+  id: number
+  from_user: Schemas__notifications__User
+
+  question_id: number | null
+
+  answer_id: number | null
+
+  review_request_id: number | null
+
+  review_response_id: number | null
+
+  title: string
+  content: string
+  is_read: boolean
+  created_at: string
+}
+
+export type Schemas__notifications__NotificationListResponseBody = {
+  notifications: Schemas__notifications__Notification[]
+}
+
+export type Schemas__notifications__User = {
+  id: number
+  name: string
+}
+
 export type Schemas__progresses__ProgressListResponseBody = {
   progresses: ProgressesResponseList[]
+}
+
+export type Schemas__questions__User = {
+  user_id: number
+  name: string
+}
+
+export type Schemas__reviews__User = {
+  user_id: number
+  name: string
+}
+
+export type Schemas__students__Notification = {
+  id: number
+  from_user: Schemas__students__User
+
+  question_id: number | null
+
+  answer_id: number | null
+
+  review_request_id: number | null
+
+  review_response_id: number | null
+
+  title: string
+  content: string
+  is_read: boolean
+  created_at: string
+}
+
+export type Schemas__students__NotificationListResponseBody = {
+  notifications: Schemas__students__Notification[]
 }
 
 export type Schemas__students__ProgressListResponseBody = {
@@ -668,6 +910,21 @@ export type Schemas__students__ReviewRequestListResponseBody = {
   reviews: ReviewResponse[]
 }
 
+export type Schemas__students__User = {
+  id: number
+  name: string
+}
+
 export type Schemas__users__AccountListResponseBody = {
   role_counts: Role[]
+}
+
+export type Schemas__users__User = {
+  user_id: number
+  name: string
+  company_name: string
+  email: string
+  role: string
+  is_enable: boolean
+  last_login: string
 }

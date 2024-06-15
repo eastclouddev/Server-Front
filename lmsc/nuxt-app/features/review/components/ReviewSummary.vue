@@ -46,7 +46,7 @@
             <div>
               <p style="width:13rem; font-weight:bold;" class="mb-2 sp_categoly">{{ item.title }}</p>
               <div class="d-flex justify-space-between">
-                <NuxtLink to=/reviewdetail :style="{ color: '#242424', textDecoration: 'none' }">
+                <NuxtLink to=/review/${id} :style="{ color: '#242424', textDecoration: 'none' }">
                   {{ truncateText(item.message, 32) }}
                 </NuxtLink>
                 <div class="d-flex">

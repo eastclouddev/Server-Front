@@ -30,6 +30,7 @@
     "@vuepic/vue-datepicker": "^8.7.0",
     "aspida": "^1.14.0",
     "axios": "^1.6.8",
+    "fast-uri": "^2.4.0",
     "nuxt": "^3.10.2",
     "nuxt-sass-resources-loader": "^2.0.5",
     "pinia": "^2.1.7",
