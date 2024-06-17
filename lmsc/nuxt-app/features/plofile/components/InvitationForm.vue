@@ -27,8 +27,16 @@
       </v-card>
       <v-card flat class="mx-auto text-center">
         <PrivacyPolicyModal />
-        <TeamOfUseModal />
-        <Button type="submit" color="#FF5A36" style="font-size: 1.5em" @click="handleSubmit" buttonText="入力情報を確認する"></Button>
+        <TeamOfUseModal :checkbox="termsAccepted" @update:checkbox="termsAccepted = $event" />
+        <p v-if="!termsAccepted && showError" class="error_message text-center"
+        style="position: relative; top: -55px;">利用規約に同意してください。</p>
+        <Button
+          type="submit"
+          color="#FF5A36"
+          style="font-size: 1.5em"
+          @click="handleSubmit"
+          buttonText="入力情報を確認する"
+        ></Button>
       </v-card>
     </v-card>
   </v-container>
@@ -49,6 +57,8 @@ const router = useRouter()
 const passwordInput = ref('')
 const passwordConfirm = ref('')
 const userAcquisitionRef = ref(null)
+const termsAccepted = ref(false)
+const showError = ref(false)
 
 const passwordErrorMessage = computed(() => {
   if (!passwordInput.value) return 'パスワードを入力してください。'
@@ -63,6 +73,11 @@ const confirmPasswordErrorMessage = computed(() => {
 })
 
 const handleSubmit = () => {
+  if (!termsAccepted.value) {
+    showError.value = true
+    return
+  }
+
   const user = userStore.user
   const password = passwordInput.value
 
@@ -105,6 +120,7 @@ const handleSubmit = () => {
   color: #ff0000;
   font-size: 0.75em;
   text-align: left;
+  margin-top: 10px;
 }
 
 .required-mark {

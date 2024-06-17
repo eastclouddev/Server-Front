@@ -1,14 +1,14 @@
 <template>
   <v-container class="ma-0 d-flex justify-center">
-    <v-card flat class=" d-flex align-center" height="50">
-      <v-checkbox v-model="checkbox">
+    <v-card flat class="d-flex align-center pt-5 pb-0" height="40">
+      <v-checkbox v-model="localCheckbox" class="no-bottom-space">
         <template v-slot:label>
           <a class="sp_text" @click="termsModal = true" style="cursor: pointer; text-decoration: underline; color: #242424;">利用規約</a>
           <p class="sp_text" style="color: #242424;">を確認する。</p>
         </template>
       </v-checkbox>
     </v-card>
-    <v-dialog v-model="termsModal" max-width="760" height="475" @input="checkbox = termsModal">
+    <v-dialog v-model="termsModal" max-width="760" height="475">
       <v-card class="pa-5 ma-5" color="#F5F5F5">
         <v-card class="pa-5 ma-5" title="利用規約" style="max-height: 300px; overflow-y: auto;">
           <v-card-text>
@@ -35,53 +35,75 @@
 
 <script>
 export default {
+  props: {
+    checkbox: Boolean
+  },
   data() {
     return {
-      checkbox: false,
       termsModal: false,
-
+      localCheckbox: this.checkbox,
       items: [
         {
-          id:'1',
+          id: '1',
           heading: '総則',
           body: '本規約は、iDemy（以下、「当プラットフォーム」といいます）が提供するすべてのサービス（以下、「本サービス」といいます）の利用条件を定めるものです。ユーザーは、本サービスを利用することにより、本規約に同意したものとみなされます。'
         },
         {
-          id:'2',
+          id: '2',
           heading: 'アカウント登録',
           body: '本サービスの利用にはアカウント登録が必要です。ユーザーは、真実かつ正確な情報を提供し、常にこれを最新の状態に保つ責任があります。',
         },
         {
-          id:'3',
+          id: '3',
           heading: '著作権',
           body: '本サービス上の教材、テキスト、画像などすべてのコンテンツの著作権は、当プラットフォームまたは第三者に帰属します。ユーザーは、著作権法で明示的に許可されている場合を除き、これらのコンテンツを無断で複製、配布、公開することはできません。',
         },
         {
-          id:'4',
+          id: '4',
           heading: '禁止行為',
           body: 'ユーザーは、本サービスを不正な目的で使用したり、他のユーザーの利用を妨げたり、第三者の権利を侵害する行為をしてはなりません。'
         },
         {
-          id:'5',
+          id: '5',
           heading: '免責事項',
           body: '当プラットフォームは、本サービスの内容の正確性や完全性、特定の目的への適合性について、明示または暗示を問わず、いかなる保証も行いません。また、サービスの利用から生じるいかなる損害についても責任を負いません。'
         },
         {
-          id:'6',
+          id: '6',
           heading: '変更および終了',
           body: '当プラットフォームは、ユーザーに事前通告なしに本サービスの内容を変更または終了する権利を有します。また、ユーザーが本規約に違反した場合には、予告なくサービスの利用を禁止することがあります。'
         },
         {
-          id:'7',
+          id: '7',
           heading: '紛争解決',
           body: '本規約または本サービスの利用に関連して発生した紛争については、当プラットフォームの所在地を管轄する法院の専属的合意管轄とします。'
         },
       ]
     };
+  },
+  watch: {
+    checkbox(newVal) {
+      this.localCheckbox = newVal;
+    },
+    localCheckbox(newVal) {
+      this.$emit('update:checkbox', newVal);
+    }
   }
 };
 </script>
+
 <style lang="scss" scoped>
+.v-input__details {
+  display: none;
+}
+
+.no-bottom-space .v-input__details {
+  display: none;
+}
+.v-container {
+  padding: 0;
+  margin-bottom: 50px !important;
+}
 ::-webkit-scrollbar {
   width: 12px;
 }
@@ -103,4 +125,3 @@ export default {
   }
 }
 </style>
-
