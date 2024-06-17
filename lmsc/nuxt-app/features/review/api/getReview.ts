@@ -1,16 +1,24 @@
 
-//ユーザー情報のGET API参考にする
 import { useAsyncData } from '#app'
-import { apiClient } from '@/libs/axios'
+import apiClient from '@/libs/axios'
 import { AxiosError } from 'axios'
 import { service } from '@/constants/service'
 
-export async function getUser(userId: number) {
+export async function getReviewRequest(reviewRequestId: number) {
   try {
-    const response = await apiClient.users._user_id(userId).$get()
-    return response
+    const response = await apiClient.get(`/reviews/${reviewRequestId}`)
+    
+    console.log('API取得データ:', response.data)
+    return response.data
   } catch (err) {
     const axiosError = err as AxiosError
+    if (axiosError.response) {
+      console.error('レスポンスエラー:', axiosError.response)
+    } else if (axiosError.request) {
+      console.error('リクエストエラー:', axiosError.request)
+    } else {
+      console.error('設定エラー:', axiosError.message)
+    }
     if (axiosError.response?.status !== 404) {
       throw new Error(service.apiFetchError)
     }
@@ -18,10 +26,10 @@ export async function getUser(userId: number) {
   }
 }
 
-export function useGetUser(userId: number) {
+export function useGetReviewRequest(reviewRequestId: number) {
   const { data, error, status } = useAsyncData(
-    `user-${userId}`,
-    () => getUser(userId),
+    `reviewRequest-${reviewRequestId}`,
+    () => getReviewRequest(reviewRequestId),
     { server: true }
   )
 

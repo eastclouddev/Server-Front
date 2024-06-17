@@ -12,20 +12,23 @@ export type Methods = {
    * 
    * Returns
    * -----------------------
-   * id: int
-   *     レビューのID
-   * title: str
-   *     レビューのタイトル
-   * content: str
-   *     レビューの内容
-   * curriculum_id: int
-   *     紐づいたカリキュラムのID
-   * created_at: str
-   *     レビュー作成日
-   * is_read: bool
-   *     未読コメントの有無
-   * is_closed: bool
-   *     完了しているかどうか
+   * reviews: dict
+   *     id: int
+   *         レビューのID
+   *     title: str
+   *         レビューのタイトル
+   *     content: str
+   *         レビューの内容
+   *     curriculum_id: int
+   *         紐づいたカリキュラムのID
+   *     tech_category: str
+   *         カリキュラムのコースに紐づいた技術カテゴリ
+   *     created_at: str
+   *         レビュー作成日
+   *     is_read: bool
+   *         未読コメントの有無
+   *     is_closed: bool
+   *         完了しているかどうか
    */
   get: {
     status: 200

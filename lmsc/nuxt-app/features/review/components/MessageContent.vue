@@ -25,62 +25,73 @@
         </v-card>
       </v-sheet>
     </v-card>
+    <v-alert v-if="error" type="error">{{ error }}</v-alert>
   </v-card>
 </template>
 
 <script>
+
+import { ref, computed } from 'vue'
+import { useGetReviewRequest } from '~/features/review/api/getReview.ts';
 import ThreadItem from '~/components/ThreadItem.vue';
 
 export default {
   components: {
     ThreadItem,
   },
-  data() {
+  setup() {
+    const reviewRequestId = 2; // 実際のIDに置き換えてください
+    const { data, error } = useGetReviewRequest(reviewRequestId);
+
+    const threads = computed(() => {
+      if (data.value) {
+        console.log('API取得データ:', data.value)
+        const responses = data.value.review_responses || []; // responsesが存在しない場合に空の配列を使用
+        return [{
+          user_id: data.value.review_request.user.user_id,
+          user_name: data.value.review_request.user.name,
+          title: data.value.review_request.title,
+          content: data.value.review_request.content,
+          date: data.value.review_request.created_at,
+          messages: responses.map(message => ({
+            icon: '/assets/accountcircle.svg',
+            author: message.user.name,
+            title: message.title || '返信',
+            content: message.content,
+            date: message.created_at,
+            expanded: false,
+          }))
+        }];
+      }
+      return [];
+    });
+
+    const breadcrumbs = ref([
+      {
+        title: 'ダッシュボード',
+        disabled: false,
+        href: '/dashboard',
+      },
+      {
+        title: '課題提出一覧',
+        disabled: false,
+        href: '/review',
+      },
+      {
+        title: '文字列の配列について',
+        disabled: false,
+      },
+    ]);
+
+    if (error.value) {
+      console.error('API取得エラー:', error.value)
+    }
+
     return {
-      breadcrumbs: [
-        {
-          title: 'ダッシュボード',
-          disabled: false,
-          href: '/dashboard',
-        },
-        {
-          title: '課題提出一覧',
-          disabled: false,
-          href: '/review',
-        },
-        {
-          title: '文字列の配列について',
-          disabled: false,
-        },
-      ],
-      threads: [
-        {
-          student_id: '山田太郎',
-          title: '文字列の配列について',
-          content: 'コードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、どこがどこがコードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、',
-          date: '2024-05-20',
-          messages: [
-            {
-              icon: '/assets/accountcircle.svg',
-              author: '山田太郎',
-              title: '文字列の配列について',
-              content: 'コードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、どこがどこがコードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、',
-              date: '2024-05-20 10:00',
-              expanded: false,
-            },
-            {
-              icon: '/assets/accountcircle.svg',
-              author: '山田太郎',
-              title: '文字列の配列について',
-              content: 'コードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、どこがどこがコードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、どこがコードが正しく反映されないのですが、',
-              date: '2024-05-20 10:00',
-              expanded: false,
-            },
-          ],
-        },
-      ],
+      breadcrumbs,
+      threads,
+      error
     };
   },
 };
 </script>
-

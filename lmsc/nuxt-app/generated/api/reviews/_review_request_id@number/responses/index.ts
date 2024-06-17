@@ -3,36 +3,40 @@ import type * as Types from '../../../@types'
 
 export type Methods = {
   /**
-   * 質問回答投稿作成
+   * レビュー回答作成
    * 
    * Parameters
    * -----------------------
    * dict
    *     user_id: int
-   *         回答するユーザーのID
-   *     parent_answer_id: int
+   *         回答を投稿するユーザーのID
+   *     parent_response_id: int
    *         返信先の回答ID
    *     content: str
-   *         回答
+   *         回答の内容
    *     media_content: json
    *         関連するメディアコンテンツの情報
+   *         url: str
+   *             メディアコンテンツのURL
+   * review_request_id: int
+   *     回答を投稿したいレビューリクエストのID
    * 
    * Returns
    * -----------------------
    * dict
-   *     answer_id: int
-   *         作成された回答のID
-   *     question_id: int
-   *         回答に紐づく質問のID
-   *     parent_answer_id: int
-   *         返信先の回答ID
+   *     id: int
+   *         新しく作成された回答のID
+   *     review_request_id: int
+   *         回答が紐づくレビューリクエストのID
    *     user: dict
    *         user_id: int
-   *             回答したユーザーのID
+   *             回答を投稿したユーザーのID
    *         name: str
-   *             回答したユーザーの名前
+   *             回答を投稿したユーザーの名前
+   *     parent_response_id: int
+   *         返信先の回答ID
    *     content: str
-   *         回答
+   *         回答の内容
    *     media_content: json
    *         関連するメディアコンテンツの情報
    *         url: str
@@ -43,7 +47,7 @@ export type Methods = {
   post: {
     status: 201
     /** Successful Response */
-    resBody: Types.AnswerCreateResponseBody
-    reqBody: Types.AnswerCreateRequestBody
+    resBody: Types.ReviewResponseCreateResponseBody
+    reqBody: Types.ReviewResponseCreateRequestBody
   }
 }

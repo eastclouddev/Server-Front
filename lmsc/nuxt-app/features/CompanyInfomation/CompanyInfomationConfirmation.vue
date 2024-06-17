@@ -8,7 +8,7 @@
           会社情報
         </v-card-title>
         <v-divider class="#CFCFCF" thickness="1"></v-divider>
-        <v-card flat style="margin:10% 0;"> 
+        <v-card flat style="margin:10% 0;">
         <CompanyName :showSpan="false" label="会社名" placeholder="株式会社〇〇"/>
         <CompanyNameFurigana :showSpan="false" label="フリガナ" placeholder="カブシキガイシャ〇〇"/>
         <CompanyAddress :showSpan="false"/>

@@ -1,31 +1,32 @@
 /* eslint-disable */
-import type * as Types from '../@types'
+import type * as Types from '../../../@types'
 
 export type Methods = {
   /**
-   * 通知一覧(管理者)
+   * 通知一覧（メンター）
    * 
    * Parameters
    * -----------------------
-   * なし
-   * 
+   * mentor_id:int
+   *     ユーザーのID
+   * Returns
    * -----------------------
-   * dict: array
+   * notifications: array
    *     id: int
    *         通知のID
    *     from_user: dict
    *         id: int
-   *             ユーザーのID
+   *             通知を送ったユーザーのID
    *         name: str
-   *             ユーザーの名前
+   *             通知を送ったユーザーの名前
    *     question_id: int
    *         質問のID
    *     answer_id: int
    *         回答のID
-   *     related_review_request_id: int
+   *     review_request_id: int
    *         レビューリクエストのID
-   *     related_review_response_id: int
-   *         レビューレスポンスのID
+   *     review_respomse_id: int
+   *         レビューリスポンスのID
    *     title: str
    *         通知のタイトル
    *     content: str
@@ -37,11 +38,11 @@ export type Methods = {
    * 
    * explanation
    * -----------------------
-   * メンターは全ての通知を取得
+   * メンターが受け取る通知は受講生の質問・回答・レビュー依頼・レビュー回答
    */
   get: {
     status: 200
     /** Successful Response */
-    resBody: Types.Schemas__notifications__NotificationListResponseBody
+    resBody: Types.Schemas__mentors__NotificationListResponseBody
   }
 }

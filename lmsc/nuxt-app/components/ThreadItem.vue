@@ -11,7 +11,7 @@
         </li>
       </ul>
       <div class="d-flex align-center pb-15">
-        <p class="pr-5" style="color:#FF5A36;">{{ thread.student_id }}</p>
+        <p class="pr-5" style="color:#FF5A36;">{{ thread.user_name }}</p>
         <span style="font-size:0.8em; color:#BFBFBF;">{{ calculateTime(thread.date) }}</span>
       </div>
     </v-list-item-content>
@@ -78,7 +78,7 @@
         <Button @click="sendMessage" color="#FF5A36" width="8rem" buttonText="回答を追加"></Button>
       </div>
       <div class="d-flex justify-center mt-8">
-        <Button v-if="userRole === 2" color="#FF5A36" width="30rem" buttonText="解決"></Button>
+        <Button v-if="userRole === 2 || userRole === 4 " color="#FF5A36" width="30rem" buttonText="解決"></Button>
       </div>
 
       <v-dialog v-model="dialog" max-width="1200px">
@@ -104,8 +104,8 @@ export default {
   data() {
     return {
       newMessage: {
-        author: '山田太郎',
-        title: 'コードについて',
+        author: '',
+        title: '',
         content: '',
         fileUrl: null,
         fileName: '',
@@ -171,7 +171,6 @@ export default {
   },
 };
 </script>
-
 <style lang="scss">
 .v-list-item--density-default:not(.v-list-item--nav).v-list-item--one-line{
   background-color: #FFF7EC !important;
