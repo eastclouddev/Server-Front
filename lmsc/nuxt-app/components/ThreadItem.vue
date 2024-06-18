@@ -29,7 +29,7 @@
             <div class="d-flex align-start">
               <img src="@/assets/accountcircle.svg" alt="">
               <div class="pa-2">
-                <v-list-item-title style="font-weight:bold;" class="pb-5">{{ message.title }}</v-list-item-title>
+                <v-list-item-title style="font-weight:bold;" class="pb-5">{{ thread.title }}</v-list-item-title>
                 <v-list-item-text>
                   <div>
                     <span v-if="isTruncated(message.content) && !message.expanded">
@@ -65,6 +65,17 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+
+      <!-- Show selected file preview -->
+      <div v-if="newMessage.fileUrl" class="selected-file-preview">
+        <div v-if="isImage(newMessage.fileType)">
+          <v-img :src="newMessage.fileUrl" max-width="400" max-height="300"></v-img>
+        </div>
+        <div v-else>
+          <a :href="newMessage.fileUrl" download :style="{ color: '#FF5A36', textDecoration: 'underline' }">{{ newMessage.fileName }}</a>
+        </div>
+      </div>
+
       <v-text-field
         v-model="newMessage.content"
         @keydown.enter="sendMessage"
@@ -77,8 +88,9 @@
         <Fileinput @file-selected="onFileSelected" ref="fileInputComponent" class="sp_button" />
         <Button @click="sendMessage" color="#FF5A36" width="8rem" buttonText="回答を追加"></Button>
       </div>
+      <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
       <div class="d-flex justify-center mt-8">
-        <Button v-if="userRole === 2 || userRole === 4 " color="#FF5A36" width="30rem" buttonText="解決"></Button>
+        <Button v-if="userRole === 2 || userRole === 4" color="#FF5A36" width="30rem" buttonText="解決"></Button>
       </div>
 
       <v-dialog v-model="dialog" max-width="1200px">
@@ -93,6 +105,7 @@
 <script>
 import Fileinput from '~/features/question/components/Fileinput.vue';
 import { useUserStore } from '~/store/user.ts';
+import { createReviewResponse } from '~/features/review/api/postReview.ts';
 
 export default {
   props: {
@@ -104,21 +117,25 @@ export default {
   data() {
     return {
       newMessage: {
-        author: '',
-        title: '',
         content: '',
         fileUrl: null,
         fileName: '',
-        fileType: ''
+        fileType: '',
+        parent_response_id: null
       },
       dialog: false,
       dialogImage: null,
+      errorMessage:''
     };
   },
   computed: {
     userRole() {
       const userStore = useUserStore();
-      return userStore.user.role_id;
+      return userStore.user ? userStore.user.role_id : null;
+    },
+    userId() {
+      const userStore = useUserStore();
+      return userStore.user ? userStore.user.id : null;
     }
   },
   methods: {
@@ -127,10 +144,7 @@ export default {
       const postDate = new Date(date);
       const diff = now - postDate;
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      if (days === 0) {
-        return '';
-      }
-      return `${days}日前`;
+      return days === 0 ? '' : `${days}日前`;
     },
     isTruncated(content) {
       return content.length > 60;
@@ -141,25 +155,65 @@ export default {
     toggleMore(message) {
       message.expanded = !message.expanded;
     },
-    sendMessage() {
-      if (this.newMessage.content.trim() === '') {
+    async sendMessage() {
+if (!this.newMessage.content.trim() && !this.newMessage.fileUrl) {
+      this.errorMessage = 'コメントを入力してください。';
         return;
       }
-      const newMessage = {
-        ...this.newMessage,
-        date: new Date().toISOString(),
+
+      const user_id = this.userId;
+      const review_request_id = this.thread.review_request_id;
+
+      if (!user_id || !review_request_id) {
+        console.error('user_id or review_request_id is missing');
+        return;
+      }
+
+      const requestBody = {
+        user_id: user_id,
+        parent_response_id: null,
+        content: this.newMessage.content,
+        review_request_id: review_request_id
       };
-      this.thread.messages.push(newMessage);
-      this.newMessage.content = '';
-      this.newMessage.fileUrl = null;
-      this.newMessage.fileName = '';
-      this.newMessage.fileType = '';
-      this.$refs.fileInputComponent.resetFile();
+
+      if (this.newMessage.fileUrl) {
+        requestBody.media_content = { url: this.newMessage.fileUrl };
+      }
+
+      console.log('Sending request:', JSON.stringify(requestBody, null, 2));
+
+      try {
+        const newMessage = await createReviewResponse(review_request_id, requestBody);
+        this.thread.messages.push(newMessage);
+
+        this.newMessage.content = '';
+        this.newMessage.fileUrl = null;
+        this.newMessage.fileName = '';
+        this.newMessage.fileType = '';
+        this.$refs.fileInputComponent.resetFile();
+        this.errorMessage = '';
+      } catch (error) {
+        if (error.response) {
+          this.errorMessage = 'Error creating review response: ' + error.response.data;
+        } else {
+          this.errorMessage = 'Error creating review response: ' + error.message;
+        }
+      }
     },
     onFileSelected(file) {
-      this.newMessage.fileUrl = file.url;
-      this.newMessage.fileName = file.name;
-      this.newMessage.fileType = file.type;
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          this.newMessage.fileUrl = e.target.result;
+          this.newMessage.fileName = file.name;
+          this.newMessage.fileType = file.type;
+        };
+        reader.readAsDataURL(file);
+      } else {
+        this.newMessage.fileUrl = null;
+        this.newMessage.fileName = '';
+        this.newMessage.fileType = '';
+      }
     },
     openDialog(image) {
       this.dialogImage = image;
@@ -171,6 +225,7 @@ export default {
   },
 };
 </script>
+
 <style lang="scss">
 .v-list-item--density-default:not(.v-list-item--nav).v-list-item--one-line{
   background-color: #FFF7EC !important;
@@ -189,6 +244,11 @@ export default {
 }
 .message_image {
   cursor: pointer;
+}
+.error-message {
+color: red;
+margin-top: 10px;
+text-align: center;
 }
 @media screen and (max-width: 768px) {
   .sp_buttonwrap {

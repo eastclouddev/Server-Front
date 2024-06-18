@@ -30,7 +30,6 @@
 </template>
 
 <script>
-
 import { ref, computed } from 'vue'
 import { useGetReviewRequest } from '~/features/review/api/getReview.ts';
 import ThreadItem from '~/components/ThreadItem.vue';
@@ -40,7 +39,7 @@ export default {
     ThreadItem,
   },
   setup() {
-    const reviewRequestId = 2; // 実際のIDに置き換えてください
+    const reviewRequestId = 2; // Replace with actual ID
     const { data, error } = useGetReviewRequest(reviewRequestId);
 
     const threads = computed(() => {
@@ -53,6 +52,7 @@ export default {
           title: data.value.review_request.title,
           content: data.value.review_request.content,
           date: data.value.review_request.created_at,
+          review_request_id: data.value.review_request.id,
           messages: responses.map(message => ({
             icon: '/assets/accountcircle.svg',
             author: message.user.name,

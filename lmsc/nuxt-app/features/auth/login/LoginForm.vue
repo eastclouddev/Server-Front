@@ -116,7 +116,7 @@ const handleSubmit = async () => {
 
     console.log('User store after login:', userStore.$state);// ストアの状態をログに出力
 
-    await router.push('/dashboard');
+    await router.push('/review/index');
   } catch (error) {
     console.error('Login failed:', error);
   } finally {
