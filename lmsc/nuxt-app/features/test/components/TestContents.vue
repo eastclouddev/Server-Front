@@ -2,13 +2,19 @@
 import Problem from '~/features/test/components/Problem.vue'
 import Detail from '~/features/test/components/CourseDetail.vue'
 import Section from '~/features/test/components/CourseSection.vue'
+
+const props = defineProps({
+  ques: Object
+})
+const problem = props.ques
+
 </script>
 
 <template>
   <v-container class="whole">
     <v-row>
       <v-col class="left">
-        <Problem />
+        <Problem :text="problem"/>
         <Detail />
       </v-col>
       <v-col class="right">

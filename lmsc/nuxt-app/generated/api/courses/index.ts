@@ -22,12 +22,18 @@ export type Methods = {
    *         コースを作成したユーザーのID
    *     thumbnail_url: str
    *         コースのサムネイル画像のURL
+   *     expectesd_end_hours: int
+   *         コースの終了想定時間
+   *     total_curriculums: int
+   *         カリキュラム総数
+   *     tech_category: str
+   *         技術カテゴリ
    *     created_at: str
    *         コースの作成日時（ISO 8601形式）
    */
   get: {
     status: 200
     /** Successful Response */
-    resBody: Types.Schemas__courses__AllResponseBody
+    resBody: Types.CourseListResponseBody
   }
 }
