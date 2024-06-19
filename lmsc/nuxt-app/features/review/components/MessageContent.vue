@@ -95,3 +95,10 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+@media (max-width: 768px) {
+  .breadcrumbs {
+    font-size: 0.75em;
+  }
+}
+</style>

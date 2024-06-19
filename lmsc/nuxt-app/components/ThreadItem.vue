@@ -66,16 +66,6 @@
         </v-list-item>
       </v-list>
 
-      <!-- Show selected file preview -->
-      <div v-if="newMessage.fileUrl" class="selected-file-preview">
-        <div v-if="isImage(newMessage.fileType)">
-          <v-img :src="newMessage.fileUrl" max-width="400" max-height="300"></v-img>
-        </div>
-        <div v-else>
-          <a :href="newMessage.fileUrl" download :style="{ color: '#FF5A36', textDecoration: 'underline' }">{{ newMessage.fileName }}</a>
-        </div>
-      </div>
-
       <v-text-field
         v-model="newMessage.content"
         @keydown.enter="sendMessage"
@@ -125,7 +115,8 @@ export default {
       },
       dialog: false,
       dialogImage: null,
-      errorMessage:''
+      errorMessage:'',
+      loading: false // Add a loading state
     };
   },
   computed: {
@@ -156,8 +147,8 @@ export default {
       message.expanded = !message.expanded;
     },
     async sendMessage() {
-if (!this.newMessage.content.trim() && !this.newMessage.fileUrl) {
-      this.errorMessage = 'コメントを入力してください。';
+      if (!this.newMessage.content.trim() && !this.newMessage.fileUrl) {
+        this.errorMessage = 'コメントを入力してください。';
         return;
       }
 
@@ -180,7 +171,7 @@ if (!this.newMessage.content.trim() && !this.newMessage.fileUrl) {
         requestBody.media_content = { url: this.newMessage.fileUrl };
       }
 
-      console.log('Sending request:', JSON.stringify(requestBody, null, 2));
+      this.loading = true;
 
       try {
         const newMessage = await createReviewResponse(review_request_id, requestBody);
@@ -198,6 +189,8 @@ if (!this.newMessage.content.trim() && !this.newMessage.fileUrl) {
         } else {
           this.errorMessage = 'Error creating review response: ' + error.message;
         }
+      } finally {
+        this.loading = false;
       }
     },
     onFileSelected(file) {

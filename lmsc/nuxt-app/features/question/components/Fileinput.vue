@@ -2,7 +2,7 @@
   <div>
     <input type="file" @change="onFileChange" ref="fileInput" style="display: none;" />
     <Button
-      @click="triggerFileInput"
+      @click="triggerFileInputOnce"
       color="#FF5A36"
       style="background-color: #FFFFFF;"
       variant="outlined"
@@ -32,20 +32,21 @@ export default {
     triggerFileInput() {
       this.$refs.fileInput.click();
     },
+    triggerFileInputOnce() {
+      if (!this.triggered) {
+        this.triggerFileInput();
+        this.triggered = true;
+        setTimeout(() => {
+          this.triggered = false;
+        }, 1000);
+      }
+    },
     onFileChange(event) {
       const file = event.target.files[0];
       if (file) {
         this.file = file;
         this.fileName = file.name;
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          this.$emit('file-selected', {
-            name: file.name,
-            type: file.type,
-            url: e.target.result
-          });
-        };
-        reader.readAsDataURL(file);
+        this.$emit('file-selected', file);
       }
     },
     resetFile() {
@@ -53,6 +54,13 @@ export default {
       this.fileName = '';
       this.$refs.fileInput.value = '';
     },
+  },
+  data() {
+    return {
+      triggered: false,
+      file: null,
+      fileName: '',
+    };
   },
 };
 </script>
