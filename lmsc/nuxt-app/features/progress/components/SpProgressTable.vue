@@ -2,12 +2,12 @@
   <div>
   <table class="table_wrap" v-for="item in progress" :key="item.id">
   <div class="d-flex" style="width:100%;">
-  <tr class="d-flex flex-column" style="width:100%;">
+  <tr v-if="showNameColumn" class="d-flex flex-column" style="width:100%;">
     <th >名前</th>
     <td >{{ item.name }}</td>
   </tr>
   <tr v-if="showCompanyName" class="d-flex flex-column" style="width:100%;">
-    <th >会社名</th>
+    <th >所属会社</th>
     <td >{{ item.company }}</td>
   </tr>
   </div>
@@ -73,6 +73,10 @@ export default {
     showCompanyName: {
       type: Boolean,
       default: false
+    },
+    showNameColumn: {
+      type: Boolean,
+      default: true
     }
   },
   data () {

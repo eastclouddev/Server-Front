@@ -3,8 +3,8 @@
           
           <SearchForm />
         <template v-if="filteredList.length > 0">
-          <PcProgressTableList :filteredList="filteredList" />
-          <SpProgressTableList :filteredList="filteredList" />
+          <PcProgressTable :filteredList="filteredList" />
+          <SpProgressTable :filteredList="filteredList" />
 
         </template>
         <template v-else>
@@ -16,13 +16,13 @@
 
 <script>
 import SearchForm from '~/components/SearchForm.vue';
-import SpProgressTableList from "~/features/progress/components/SpProgressTableList.vue";
-import PcProgressTableList from "~/features/progress/components/PcProgressTableList.vue";
+import SpProgressTable from "~/features/progress/components/SpProgressTable.vue";
+import PcProgressTable from "~/features/progress/components/PcProgressTable.vue";
 
 export default {
   components: {
-    PcProgressTableList,
-    SpProgressTableList,
+    PcProgressTable,
+    SpProgressTable,
     SearchForm,
   },
   data() {

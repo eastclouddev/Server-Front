@@ -9,26 +9,63 @@
       </v-row>
         <v-divider class="#CFCFCF" thickness="1" style="padding-bottom: 50px;margin-top: 10px;"></v-divider>
         <Position :item="Links" style="margin-bottom: 30px !important;"/>
-        <ListStudyProgress />
+
+        <template v-if="userRole === 1">
+          <Admin />
+        </template>
+        <template v-else-if="userRole === 2">
+          <Mentor />
+        </template>
+        <template v-else-if="userRole === 4">
+          <Corporation />
+        </template>
+        
       </v-card>
     </v-container>
   </template>
 
-<script setup>
-import ListStudyProgress from '~/features/progress/components/ListStudyProgress.vue';
+<script>
+import { defineAsyncComponent } from 'vue';    
+import { useUserStore } from '~/store/user.ts';
 import Position from '~/features/CompanyInfomation/components/PositionInfo.vue';
 
-const  Links = {
-    title: '学習進捗詳細',
-}
+const Corporation  = defineAsyncComponent(() => import("~/features/progress/components/ListStudyProgress.vue"));
+const Admin = defineAsyncComponent(() => import("~/features/progress/components/ListCompanyStudyProgress.vue"));
+const Mentor = defineAsyncComponent(() => import("~/features/progress/components/ListCompanyStudyProgress.vue"));
 
-const returnLink = () => {
-  window.location.href = '/dashboard';
+export default {
+  components: {
+    Corporation,
+    Mentor,
+    Admin,
+    Position
+  },
+  data() {
+    return {
+      Links: {
+        title: '学習進捗詳細',
+        link: '/dashboard'
+      },
+      userRole: null
+    };
+  },
+  created() {
+    this.fetchUserRole();
+  },
+  methods: {
+    fetchUserRole() {
+      const userStore = useUserStore();
+      // this.userRole = userStore.userRole;　//TODO: APIつなぎこみ時　コメントアウトはずす＋仮設定削除
+      this.userRole = 4;  //ロールID仮設定
+    },
+    returnLink() {
+      window.location.href = this.Links.link;
+    }
+  }
 };
-
 </script>
   
-  <style lang="scss" scoped>
+<style lang="scss" scoped>
   @media screen and (max-width: 768px) {
     .sp {
       &_title {

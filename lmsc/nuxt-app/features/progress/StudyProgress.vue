@@ -13,62 +13,55 @@
         </v-card-title>
         <v-row style="background-color: #FBFBFB; border-radius: 5px; flex: none;height: fit-content;">
         <img src="/assets/accountcircle.svg" alt="account" style="padding:0 10px 0 20px;">
-        <v-card-title class="pt-2 pb-2 pl-0 sp_title"  style="font-size:1.5em; font-weight: bold;" color="#242424"> {{ username }} </v-card-title>
+        <v-card-title class="pt-2 pb-2 pl-0 sp_title"  style="font-size:1.5em; font-weight: bold;" color="#242424"> 
+          {{ username }} 
+        </v-card-title>
         </v-row>
       </v-row>
         <v-divider class="#CFCFCF" thickness="1" style="padding-bottom: 50px; margin-top: 10px;"></v-divider>
         <Position :item="Links" style="margin-bottom: 30px !important;"/>
-        <!-- デフォルト -->
-        <DetailStudyProgress /> 
-        <!-- 名前なし　Ver -->
-        <DetailNoNameStudyProgress />
-        <!-- 会社名ありVer -->
-        <DetailCompanyStudyProgress /> 
+        
+        <DetailStudyProgress />
+
       </v-card>
     </v-container>
-  </template>
+</template>
 
 <script >
+import { useUserStore } from '~/store/user.ts';
+
 import DetailStudyProgress from '~/features/progress/components/DetailStudyProgress.vue';
-import DetailNoNameStudyProgress from '~/features/progress/components/DetailNoNameStudyProgress.vue';
-import DetailCompanyStudyProgress from '~/features/progress/components/DetailCompanyStudyProgress.vue';
 import Position from '~/features/progress/components/Position.vue';
 
 export default {
   components: {
     DetailStudyProgress,
-    DetailNoNameStudyProgress,
-    DetailCompanyStudyProgress,
     Position,
   },
   data() {
     return {
-      username: '山田太郎',
-      Links :{
-        title : "",
-        link :"/",
+      username: '',
+      Links: {
+        title: '',
+        link: '/', //TODO: ユーザー情報の個人情報詳細画面のリンク　確認＋実装
       }
     };
   },
-
-  mounted() {
-    // ログイン情報を取得してアカウント名を設定
-    // サーバーからログインユーザーの情報を取得するAPIを呼び出す
-    this.username = '山田太郎';
-  },
-
   created() {
-    // コンポーネントの作成時に username を title に設定
-    this.Links.title = this.username;
+    this.fetchUsername();
   },
-
   methods: {
+    fetchUsername() {
+      const userStore = useUserStore();
+      // this.username = userStore.userName; //TODO: APIつなぎこみ時　コメントアウトはずす＋仮設定削除
+      this.username = "やまだ太郎"; //名前仮設定
+      this.Links.title = this.username;
+    },
     returnLink() {
       window.location.href = this.Links.link;
     }
   }
 };
-
 </script>
   
   <style lang="scss" scoped>

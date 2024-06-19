@@ -3,8 +3,8 @@
           
           <SearchForm />
         <template v-if="filteredList.length > 0">
-          <PcProgressTable :filteredList="filteredList" />
-          <SpProgressTable :filteredList="filteredList" />
+          <PcProgressTable :showNameColumn="false" :filteredList="filteredList" />
+          <SpProgressTable :showNameColumn="false" :filteredList="filteredList" />
 
         </template>
         <template v-else>
