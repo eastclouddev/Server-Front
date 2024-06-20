@@ -40,8 +40,8 @@ export type Methods = {
   post: {
     status: 201
     /** Successful Response */
-    resBody: Types.QuestionCreateResponseBody
-    reqBody: Types.QuestionCreateRequestBody
+    resBody: Types.Schemas__curriculums__ResponseBody
+    reqBody: Types.Schemas__curriculums__RequestBody
   }
 
   /**
@@ -73,6 +73,6 @@ export type Methods = {
   get: {
     status: 200
     /** Successful Response */
-    resBody: Types.Schemas__curriculums__QuestionListResponseBody
+    resBody: Types.QuestionResponseBody
   }
 }
