@@ -155,12 +155,12 @@ td {
     margin: auto;
     height: 70px;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 1279px) {
   .table_wrap {
     display: block;
   }
   }
-  @media (min-width: 769px) {
+  @media (min-width: 1280px) {
   .table_wrap{
     display: none;
   }
