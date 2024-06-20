@@ -1,4 +1,16 @@
 <template>
+<<<<<<< HEAD
+  <div>
+    <h2>ユーザー編集</h2>
+    <input v-model="userId" placeholder="User ID" type="number" />
+    <input v-model="editUserData.first_name" type="text" placeholder="Name" />
+    <input v-model="editUserData.last_name" type="text" placeholder="Name" />
+    <input v-model="editUserData.first_name_kana" type="text" placeholder="Name" />
+    <input v-model="editUserData.last_name_kana" type="text" placeholder="Name" />
+    <input v-model="editUserData.email" type="email" placeholder="Email" />
+    <button @click="updateUser">Update User</button>
+  </div>
+=======
   <NuxtLayout>
     <div>
       <h2>ユーザー編集</h2>
@@ -19,6 +31,7 @@
       <button @click="updateUser">Update User</button>
     </div>
   </NuxtLayout>
+>>>>>>> develop
 </template>
 
 <script setup>

@@ -1,103 +1,56 @@
 <template>
-  <!-- ログイン前のヘッダー -->
-
-    <!-- <v-toolbar v-if="!isLoggedIn" color="white">
-      <v-btn @click="buttonClicked">
+  <div>
+    <v-toolbar color="#FFFFFF" elevation="1">
+      <v-btn class="button_icon" to="/login">
         <img src="../assets/idemy_logo.svg" width="100%">
       </v-btn>
+      <v-spacer></v-spacer>
+      <div class="toolbar-actions" v-if="isAuthenticated">
+        <NotifiCation />
+        <HamburgerMenu />
+      </div>
     </v-toolbar>
-    <v-divider color="#BFBFBF"></v-divider>
-  </v-card>
-
-  <br /> -->
-
-    <!-- ログイン後のヘッダー -->
-    <!-- <v-card>
-    <v-toolbar v-if="!isLoggedIn" color="white">
-      <v-btn @click="buttonClicked">
-        <img src="../assets/idemy_logo.svg" width="100%">
-      </v-btn>
-      <v-container fluid>
-        <v-menu offset-y>
-          <template v-slot:activator="{ on }">
-            <v-btn color="primary" dark @click="on">
-              <v-app-bar-nav-icon />
-            </v-btn>
-          </template>
-          <v-list>
-            <v-list-item v-for="(item, index) in items" :key="index" @click="menuItemClicked(item)">
-              <v-list-item-title>{{ item }}</v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
-      </v-container>
-
-    </v-toolbar>
-    <v-divider color="#BFBFBF"></v-divider> -->
-
-    <v-card>
-      <v-toolbar color="white">
-        <v-btn class="button_icon" @click="buttonClicked">
-          <img src="../assets/idemy_logo.svg" width="100%">
-        </v-btn>
-        <v-container fluid v-if="isLoggedIn"> <!-- ログイン後に表示 -->
-          <v-menu offset-y>
-            <template v-slot:activator="{ on }">
-              <v-btn color="primary" dark @click="on">
-                <v-app-bar-nav-icon />
-              </v-btn>
-            </template>
-            <v-list>
-              <v-list-item v-for="(item, index) in items" :key="index" @click="menuItemClicked(item)">
-                <v-list-item-title>{{ item }}</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-menu>
-        </v-container>
-      </v-toolbar>
-      <v-divider color="#BFBFBF"></v-divider>
-    </v-card>
-
+  </div>
 </template>
 
 <script>
+import { useUserStore } from '~/store/user.ts';
+import NotifiCation from '~/components/NotifiCation.vue';
+import HamburgerMenu from '~/components/HamburgerMenu.vue';
+
 export default {
-  data() {
-    return {
-      isLoggedIn: false ,// ログイン状態を保持するデータ
-      items: [
-        'Item 1',
-        'Item 2',
-        'Item 3']
-    };
+  components: {
+    NotifiCation,
+    HamburgerMenu,
   },
-  methods: {
-    buttonClicked() {
-      const nextPageUrl = '/login';
-      window.location.href = nextPageUrl;
-    },
-    menuItemClicked(item) {
-      // メニュー項目がクリックされたときの処理
-      console.log('Clicked:', item);
-    },
-    // ログイン処理
-    login() {
-      // ログイン処理が成功した場合にisLoggedInをtrueに設定
-      this.isLoggedIn = true;
-    },
-    // ログアウト処理
-    logout() {
-      // ログアウト処理が成功した場合にisLoggedInをfalseに設定
-      this.isLoggedIn = false;
+  computed: {
+    isAuthenticated() {
+      const userStore = useUserStore();
+      return userStore.isAuthenticated;
     }
   }
-  
 };
 </script>
-<style>
-@media screen and (max-width: 768px) {
-  .button_icon{
-    margin: auto;
+
+<style scoped>
+.button_icon {
+  display: flex;
+  justify-content: center;
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .v-toolbar {
+    justify-content: space-between;
+  }
+  .button_icon {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 </style>

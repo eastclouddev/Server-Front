@@ -1,4 +1,11 @@
 <template>
+<<<<<<< HEAD
+  <div>
+    <h1>ユーザー削除</h1>
+    <input v-model="userId" type="number" placeholder="Enter User ID to delete" />
+    <button @click="deleteUser">Delete User</button>
+  </div>
+=======
   <NuxtLayout>
     <div>
       <h1>ユーザー削除</h1>
@@ -10,6 +17,7 @@
       <button @click="deleteUser">Delete User</button>
     </div>
   </NuxtLayout>
+>>>>>>> develop
 </template>
 
 <script setup>
