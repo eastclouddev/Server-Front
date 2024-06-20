@@ -5,12 +5,6 @@ export type Account = {
   count: number
 }
 
-export type Account = {
-  role_id: number
-  role_name: string
-  count: number
-}
-
 export type AllResponseList = {
   id: number
   title: string
@@ -522,8 +516,12 @@ export type Question = {
 }
 
 export type QuestionCreateRequestBody = {
-  user_id?: number | undefined
+  curriculum_id: number
+  user_id: number
   title: string
+  objective: string
+  current_situation: string
+  research: string
   content: string
   media_content: MediaContent[]
 }
@@ -531,10 +529,29 @@ export type QuestionCreateRequestBody = {
 export type QuestionCreateResponseBody = {
   question_id: number
   curriculum_id: number
-  user_id: number
+  user: Schemas__courses__User
   title: string
+  objective: string
+  current_situation: string
+  research: string
   content: string
   media_content: MediaContent[]
+  created_at: string
+  is_read: boolean
+  is_closed: boolean
+  reply_counts: number
+}
+
+export type QuestionList = {
+  question_id: number
+  user: Schemas__courses__User
+  title: string
+  content: string
+  curriculum_id: number
+  created_at: string
+  is_read: boolean
+  is_closed: boolean
+  reply_counts: number
 }
 
 export type QuestionThreadDetailResponseBody = {
@@ -553,70 +570,6 @@ export type QuestionUpdateRequestBody = {
 }
 
 export type QuestionUpdateResponseBody = {
-  id: number
-  curriculum_id: number
-  user_id: number
-  title: string
-  content: string
-
-  media_content: null
-
-  is_closed: boolean
-  updated_at: string
-}
-
-export type Questions = {
-  id: number
-  title: string
-  content: string
-  curriculum_id: number
-  created_at: string
-  is_read: boolean
-  is_closed: boolean
-  reply_counts: number
-}
-
-export type ReceiptDetailResponseBody = {
-  receipt_id: number
-  company_id: number
-  billing_id: number
-  date: string
-  amount: number
-  received_from: string
-  payment_method: string
-}
-
-export type RequestBody = {
-  email?: string | null | undefined
-
-  password?: string | null | undefined
-
-  device_info: DeviceInfo
-}
-
-export type ResponseBody = {
-  user_id: number
-  access_token: string
-  expires_in: number
-  role: string
-}
-
-export type ResponseList = {
-  id: number
-  question_id: number
-  user_id: number
-
-  parent_answer_id: number | null
-
-  content: string
-
-  media_content: null
-
-  is_read: boolean
-  created_at: string
-}
-
-export type ResponseQuestion = {
   id: number
   curriculum_id: number
   user_id: number
@@ -770,44 +723,12 @@ export type ReviewRequestUpdateResponseBody = {
   updated_at: string
 }
 
-export type ReviewRequestCreateRequestBody = {
-  user_id: number
-  title: string
-  content: string
-  is_closed: boolean
-}
-
-export type ReviewRequestCreateResponseBody = {
-  id: number
-  curriculum_id: number
-  user_id: number
-  title: string
-  content: string
-  is_closed: boolean
-  created_at: string
-}
-
-export type ReviewRequestUpdateRequestBody = {
-  title: string | null
-
-  content: string | null
-
-  is_closed: boolean | null
-}
-
-export type ReviewRequestUpdateResponseBody = {
-  id: number
-  title: string
-  content: string
-  is_closed: boolean
-  updated_at: string
-}
-
 export type ReviewResponse = {
   id: number
   title: string
   content: string
   curriculum_id: number
+  tech_category: string
   created_at: string
   is_read: boolean
   is_closed: boolean
@@ -1113,75 +1034,4 @@ export type Schemas__users__User = {
   role: string
   is_enable: boolean
   last_login: string
-}
-
-export type UserListResponseBody = {
-  users: User[]
-}
-
-export type UserUpdateRequestBody = {
-  first_name?: string | null | undefined
-
-  last_name?: string | null | undefined
-
-  first_name_kana?: string | null | undefined
-
-  last_name_kana?: string | null | undefined
-
-  email?: string | null | undefined
-}
-
-export type ValidationError = {
-  loc: (string | number)[]
-  msg: string
-  type: string
-}
-
-export type Schemas__companies__AccountListResponseBody = {
-  company_id: number
-  role_counts: Account[]
-}
-
-export type Schemas__companies__ProgressListResponseBody = {
-  progresses: ProgressesResponseList[]
-}
-
-export type Schemas__curriculums__QuestionListResponseBody = {
-  questions: QuestionCreateResponseBody[]
-}
-
-export type Schemas__curriculums__ReviewRequestListResponseBody = {
-  reviews: Review[]
-}
-
-export type Schemas__mentors__ProgressListResponseBody = {
-  progresses: ProgressesResponseList[]
-}
-
-export type Schemas__mentors__QuestionListResponseBody = {
-  questions: Question[]
-}
-
-export type Schemas__mentors__ReviewRequestListResponseBody = {
-  reviews: AllResponseList[]
-}
-
-export type Schemas__progresses__ProgressListResponseBody = {
-  progresses: ProgressesResponseList[]
-}
-
-export type Schemas__students__ProgressListResponseBody = {
-  progresses: Progress[]
-}
-
-export type Schemas__students__QuestionListResponseBody = {
-  questions: Questions[]
-}
-
-export type Schemas__students__ReviewRequestListResponseBody = {
-  reviews: ReviewResponse[]
-}
-
-export type Schemas__users__AccountListResponseBody = {
-  role_counts: Role[]
 }

@@ -10,7 +10,6 @@ import type { Methods as Methods_16y40ss } from './companies/_company_id@number/
 import type { Methods as Methods_18uwb4v } from './companies/_company_id@number/progresses';
 import type { Methods as Methods_hxcrb8 } from './companies/_company_id@number/users';
 import type { Methods as Methods_1rhnnoh } from './companies/_company_id@number/users/counts';
-import type { Methods as Methods_1rhnnoh } from './companies/_company_id@number/users/counts';
 import type { Methods as Methods_13yxxb0 } from './courses';
 import type { Methods as Methods_poio86 } from './courses/_course_id@number';
 import type { Methods as Methods_76nv1w } from './courses/_course_id@number/questions';
@@ -23,8 +22,6 @@ import type { Methods as Methods_1rpsris } from './logout';
 import type { Methods as Methods_1hb0s9x } from './mentors/_mentor_id@number/notifications';
 import type { Methods as Methods_w2iay8 } from './mentors/_mentor_id@number/progresses';
 import type { Methods as Methods_7zqsp5 } from './mentors/_mentor_id@number/students/questions';
-import type { Methods as Methods_1fsn4zt } from './mentors/_mentor_id@number/students/reviews';
-import type { Methods as Methods_1osy0o9 } from './mentors/counts';
 import type { Methods as Methods_1fsn4zt } from './mentors/_mentor_id@number/students/reviews';
 import type { Methods as Methods_1osy0o9 } from './mentors/counts';
 import type { Methods as Methods_t9xdat } from './news';

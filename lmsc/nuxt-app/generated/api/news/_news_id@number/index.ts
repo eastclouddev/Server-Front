@@ -3,32 +3,6 @@ import type * as Types from '../../@types'
 
 export type Methods = {
   /**
-   * ニュース詳細取得
-   * 
-   * Parameter
-   * -----------------------
-   * news_id: int
-   *     取得するニュースのID
-   * 
-   * Returns
-   * -----------------------
-   * dict
-   *     id: int
-   *         取得したニュースのID
-   *     title: str
-   *         ニュースのタイトル
-   *     content: str
-   *         ニュースの内容
-   *     published_at: str
-   *         ニュースの公開日（ISO 8601形式）
-   */
-  get: {
-    status: 200
-    /** Successful Response */
-    resBody: Types.NewsDetailResponseBody
-  }
-
-  /**
    * ニュース更新
    * 
    * Parameters
