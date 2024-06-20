@@ -64,7 +64,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@media (max-width: 768px) {
+@media (max-width: 1279px) {
 .sp {
   &_itembox {
     flex-direction: column;
