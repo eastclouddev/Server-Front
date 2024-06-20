@@ -170,7 +170,7 @@ const Scoring = () => {
             </v-btn>
           </v-card-actions>
           <v-card-actions class="Btns">
-            <v-btn class="skip">スキップ</v-btn>
+            <v-btn class="skip" @click="NextQue">スキップ</v-btn>
             <v-btn class="checkAns" @click="Scoring">解答を見る</v-btn>
           </v-card-actions>
         </v-card>
