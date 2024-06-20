@@ -1,20 +1,24 @@
 <script setup lang="ts">
 import Headline from '~/features/userList/components/headline.vue'
-import Options from '~/features/userList/components/userOptions.vue'
+import PosInfo from '~/features/userList/components/posInfo.vue'
 import Contents from '~/features/userList/components/userContents.vue'
 
 const title = {
   title: 'ユーザー一覧',
   img: 'mdi-account-outline',
 }
+
+const props = defineProps<{
+  role: string
+}>()
 </script>
 
 <template>
   <main>
     <div class="main center">
       <Headline :item="title" />
-      <Options />
-      <Contents />
+      <PosInfo pos="ユーザー一覧" v-if="props.role !== '管理者'" />
+      <Contents :role="props.role" />
     </div>
   </main>
 </template>
@@ -30,10 +34,6 @@ main {
   flex-direction: column;
   max-width: 1000px;
   width: auto;
-}
-.space {
-  width: 100%;
-  height: 149px;
 }
 
 .center {

@@ -29,10 +29,11 @@ export default {
 <style scoped lang="scss">
 .whole {
   height: 52px;
-  width: 1000px;
+  max-width: 1000px;
   margin-top: 80px;
   padding-bottom: 16px;
   border-bottom: 1px solid #cfcfcf;
+  margin-bottom: 40px;
 
   .title {
     display: flex;
@@ -67,9 +68,13 @@ export default {
     .title {
       margin-left: 17px;
       padding-top: 0;
-      img {
-        margin-right: 24px;
-        margin-top: 10px;
+      .v-icon {
+        margin-top: 5px;
+        width: 51px;
+        height: 51px;
+        &::before {
+          font-size: 62px;
+        }
       }
       h2 {
         height: 57px;

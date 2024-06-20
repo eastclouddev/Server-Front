@@ -6,12 +6,14 @@ const post = defineProps<{
   items: string[]
   label: string
   modelValue: string
+  role: string
 }>()
 
 const emit = defineEmits(['update:modelValue'])
 
 const items = ref(post.items) // 選択リスト
 const item = ref(post.label) // 選択アイテム
+const setVal = ref(post.label)
 const setItem = ref(item.value)
 const isItemMenuOpened = ref(false)
 const icon = ['mdi-chevron-down', 'mdi-chevron-up']
@@ -36,7 +38,14 @@ const selectMode = () => {
 </script>
 
 <template>
-  <v-container class="option">
+  <v-container
+    class="option"
+    :class="{
+      role: setVal === 'ロール絞り込み',
+      status: setVal === 'アカウント状態',
+      proxy: role === '法人代行',
+    }"
+  >
     <v-menu @update:modelValue="value => value || resetItem()">
       <template v-slot:activator="{ props }">
         <v-btn
@@ -105,12 +114,20 @@ const selectMode = () => {
 
 @media screen and (max-width: 768px) {
   .option {
-    width: 240px;
+    &.role {
+      width: 265px;
+      &.proxy {
+        width: 100%;
+      }
+    }
+    &.status {
+      width: 314px;
+    }
     height: 80px;
     .v-btn {
       &.v-btn--size-default {
-        font-size: 28px;
-        line-height: 44.8px;
+        font-size: 24px;
+        line-height: 38.4px;
       }
     }
   }
