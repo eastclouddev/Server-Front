@@ -57,7 +57,7 @@
           required
         />
         <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding: 10px; border-radius: 5px;">
-          <OutlinedButton @click="selectFile" color="#FF5A36" textColor="#FF5A36" fontSize="16px" fontWeight="normal" icon="mdi-paperclip">ファイル選択</OutlinedButton>
+          <OutlinedButton @click.prevent="selectFileOnce" color="#FF5A36" textColor="#FF5A36" fontSize="16px" fontWeight="normal" icon="mdi-paperclip">ファイル選択</OutlinedButton>
           <!-- v-file-inputは非表示 -->
           <v-file-input ref="fileInput" v-model="newQuestion.file" label="ファイル選択" prepend-icon="mdi-paperclip" variant="outlined" outlined style="display: none;"></v-file-input>
           <SolidButton type="submit" color="#FF5A36" textColor="white" fontSize="16px" icon="mdi-send">投稿する</SolidButton>
@@ -91,9 +91,19 @@ const curriculumId = Number(route.params.curriculumId) || 1;
 const courseId = 1;
 
 const fileInput = ref<HTMLInputElement | null>(null);
+let triggered = false;
 const selectFile = () => {
   fileInput.value?.click();
 };
+const selectFileOnce = () => {
+  if (!triggered) {
+    selectFile();
+    triggered = true;
+    setTimeout(() => {
+        triggered = false;
+    }, 1000);
+  }
+}
 
 const { mutate: createQuestion } = useCreateQuestion();
 

@@ -56,7 +56,7 @@
           outlined
         />
         <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding: 10px; border-radius: 5px;">
-          <OutlinedButton @click.prevent="selectFile" color="#FF5A36" textColor="#FF5A36" fontSize="16px" fontWeight="normal" icon="mdi-paperclip">ファイル選択</OutlinedButton>
+          <OutlinedButton @click.prevent="selectFileOnce" color="#FF5A36" textColor="#FF5A36" fontSize="16px" fontWeight="normal" icon="mdi-paperclip">ファイル選択</OutlinedButton>
           <!-- v-file-inputは非表示 -->
           <v-file-input ref="fileInput" v-model="newReply.file" label="ファイル選択" prepend-icon="mdi-paperclip" variant="outlined" outlined class="hidden-file-input" />
           <SolidButton type="submit" color="#FF5A36" textColor="white" fontSize="16px" icon="mdi-send">返信する</SolidButton>
@@ -113,6 +113,7 @@ const newReply = ref({
 
 const fileInput = ref<InstanceType<typeof VFileInput> | null>(null);
 
+let triggered = false;
 const selectFile = () => {
   if (fileInput.value) {
     const inputElement = fileInput.value.$el.querySelector('input');
@@ -121,6 +122,15 @@ const selectFile = () => {
     }
   }
 };
+const selectFileOnce = () => {
+  if (!triggered) {
+    selectFile();
+    triggered = true;
+    setTimeout(() => {
+        triggered = false;
+    }, 1000);
+  }
+}
 
 const { mutate: createAnswer } = useCreateAnswer();
 
