@@ -230,12 +230,16 @@ const formatTime = (min: number) => {
   const formattedS = s.toString().padStart(2, '0')
 
   return `${formattedM}:${formattedS}`
-}
+};
+
+const route = useRoute();
+const showTitle = ref(route.path !== '/course/description');
+
 </script>
 
 <template>
   <v-row>
-    <v-col class="title">
+    <v-col class="title" v-if="showTitle">
       <v-card-title>コースの内容</v-card-title>
     </v-col>
     <v-col v-for="(sec, num) in sections" class="section" :key="num">
