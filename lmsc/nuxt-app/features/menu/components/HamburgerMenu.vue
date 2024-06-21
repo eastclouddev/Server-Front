@@ -38,11 +38,11 @@
 
 <script>
 import { useUserStore } from '~/store/user.ts';
-import MenuStudent from "~/components/MenuStudent.vue";
-import MenuCorporation from "~/components/MenuCorporation.vue";
-import MenuActingdirector from "~/components/MenuActingdirector.vue";
-import MenuMentor from "~/components/MenuMentor.vue";
-import MenuAdmin from "~/components/MenuAdmin.vue";
+import MenuStudent from "~/features/menu/components/MenuStudent.vue";
+import MenuCorporation from "~/features/menu/components/MenuCorporation.vue";
+import MenuActingdirector from "~/features/menu/components/MenuActingdirector.vue";
+import MenuMentor from "~/features/menu/components/MenuMentor.vue";
+import MenuAdmin from "~/features/menu/components/MenuAdmin.vue";
 
 export default {
   name: 'ToolbarMenu',

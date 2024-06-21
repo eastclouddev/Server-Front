@@ -14,9 +14,9 @@
 </template>
 
 <script>
-import { useUserStore } from '~/store/user.ts';
-import NotifiCation from '~/components/NotifiCation.vue';
-import HamburgerMenu from '~/components/HamburgerMenu.vue';
+import { useUserStore } from '~/store/user';
+import NotifiCation from '~/features/notification/components/NotifiCation.vue';
+import HamburgerMenu from '~/features/menu/components/HamburgerMenu.vue';
 
 export default {
   components: {
