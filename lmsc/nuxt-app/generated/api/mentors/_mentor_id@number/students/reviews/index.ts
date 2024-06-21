@@ -21,6 +21,8 @@ export type Methods = {
    *         レビューの内容
    *     curriculum_id: int
    *         レビューに紐づくカリキュラムのID
+   *     tech_category: str
+   *         カリキュラムのコースに紐づいた技術カテゴリ
    *     created_at:str
    *         レビューの作成日（ISO 8601形式）
    *     is_read: bool

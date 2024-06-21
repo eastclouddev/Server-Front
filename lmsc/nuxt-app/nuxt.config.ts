@@ -1,5 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
 import VuetifyPlugin from 'vite-plugin-vuetify'
+import { VueQueryPlugin } from '@tanstack/vue-query'
 
 export default defineNuxtConfig({
   devtools: {
@@ -17,7 +19,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  css: ['vuetify/styles'],
+  css: ['~/assets/css/tailwind.css', 'vuetify/styles'],
   build: {
     transpile: ['vuetify', '@types/platform', '@types/uuid'],
   },
@@ -30,6 +32,10 @@ export default defineNuxtConfig({
       path: '~/features/**/components',
       pathPrefix: false,
     },
+    {
+      path: '~/features/**/components/**',
+      pathPrefix: false,
+    },
   ],
   vite: {
     ssr: {
@@ -40,7 +46,7 @@ export default defineNuxtConfig({
     },
     plugins: [VuetifyPlugin()],
   },
-  plugins: ["~/plugins/api"],
+  plugins: ['~/plugins/api', '~/plugins/vuetify', '~/plugins/vue-query'],
   vite: {
     ssr: {
       noExternal: ['vuetify'],
@@ -50,4 +56,4 @@ export default defineNuxtConfig({
     },
     plugins: [VuetifyPlugin()],
   },
-});
+})
