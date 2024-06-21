@@ -43,7 +43,7 @@ const selectMode = () => {
     :class="{
       role: setVal === 'ロール絞り込み',
       status: setVal === 'アカウント状態',
-      proxy: role === '法人代行',
+      proxy: post.role === '法人代行',
     }"
   >
     <v-menu @update:modelValue="value => value || resetItem()">
@@ -80,6 +80,11 @@ const selectMode = () => {
   margin: 0;
   padding: 0;
   font-family: 'Noto Sans';
+}
+
+.v-container {
+  padding: 0;
+  margin: 0;
 }
 
 .v-list-item-title {

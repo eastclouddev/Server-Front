@@ -19,8 +19,8 @@ const roles = reactive({
 
 const selectedStatus = ref('')
 const selectedRole = ref('')
-
 const inputText = ref('')
+
 const setText = () => {
   emit('updateKeyword', inputText.value)
 }
@@ -69,7 +69,9 @@ watch(selectedRole, newVal => {
         </v-btn>
       </v-card>
       <v-btn class="addUser">
-        <NuxtLink class="NuxtLink">ユーザー追加</NuxtLink>
+        <NuxtLink to="/userList/addUser" class="NuxtLink">
+          ユーザー追加
+        </NuxtLink>
       </v-btn>
     </v-col>
 
@@ -183,6 +185,11 @@ watch(selectedRole, newVal => {
         font-size: 18px;
         font-weight: 700;
         line-height: 24.52px;
+        text-decoration: none;
+        color: #fff;
+        &:visited {
+          color: #fff;
+        }
       }
     }
   }

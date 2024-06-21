@@ -6,7 +6,20 @@ const props = defineProps<{
 
 <template>
   <div class="link">
-    <NuxtLink to="/dashboard" class="NuxtLink"> ダッシュボード </NuxtLink>
+    <NuxtLink
+      v-if="props.pos === 'ダッシュボード'"
+      to="/dashboard"
+      class="NuxtLink"
+    >
+      ダッシュボード
+    </NuxtLink>
+    <NuxtLink
+      v-if="props.pos === 'ユーザー一覧'"
+      to="/userList"
+      class="NuxtLink"
+    >
+      ユーザー一覧
+    </NuxtLink>
     <v-icon>mdi-chevron-right</v-icon>
     <p>{{ props.pos }}</p>
   </div>

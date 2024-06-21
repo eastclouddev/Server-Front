@@ -18,9 +18,9 @@ export default {
 -->
 
 <template>
-  <div class="whole">
+  <div class="whole" :class="{ add: item.title === 'ユーザー追加' }">
     <div class="title">
-      <v-icon>{{ item.img }}</v-icon>
+      <v-icon v-if="item.img">{{ item.img }}</v-icon>
       <h2>{{ item.title }}</h2>
     </div>
   </div>
@@ -34,6 +34,10 @@ export default {
   padding-bottom: 16px;
   border-bottom: 1px solid #cfcfcf;
   margin-bottom: 40px;
+  &.add {
+    width: 620px;
+    margin-top: 120px;
+  }
 
   .title {
     display: flex;
@@ -64,6 +68,10 @@ export default {
     width: 702px;
     height: 72px;
     margin-top: 65px;
+    &.add {
+      width: 620px;
+      margin-top: 158px;
+    }
 
     .title {
       margin-left: 17px;

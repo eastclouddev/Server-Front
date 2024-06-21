@@ -51,14 +51,16 @@ watch(selectedRole, newVal => {
       </v-card>
     </v-col>
     <v-col class="dd">
-      <Dropdown v-bind="roles" v-model="selectedCondition" />
+      <Dropdown :role="props.role" v-bind="roles" v-model="selectedCondition" />
     </v-col>
   </v-row>
 
   <v-row v-else class="menu">
     <v-col class="sp_form">
       <v-btn class="addUser">
-        <NuxtLink class="NuxtLink">ユーザー追加</NuxtLink>
+        <NuxtLink to="/userList/addUser" class="NuxtLink">
+          ユーザー追加
+        </NuxtLink>
       </v-btn>
       <v-card class="search" flat>
         <v-text-field
@@ -74,8 +76,8 @@ watch(selectedRole, newVal => {
     </v-col>
 
     <v-col class="dd">
-      <Dropdown v-bind="roles" v-model="selectedCondition" />
-      <Dropdown v-bind="condition" v-model="selectedRole" />
+      <Dropdown :role="props.role" v-bind="roles" v-model="selectedCondition" />
+      <Dropdown :role="props.role" v-bind="condition" v-model="selectedRole" />
     </v-col>
   </v-row>
 </template>
@@ -183,6 +185,11 @@ watch(selectedRole, newVal => {
         font-size: 18px;
         font-weight: 700;
         line-height: 24.52px;
+        text-decoration: none;
+        color: #fff;
+        &:visited {
+          color: #fff;
+        }
       }
     }
   }
@@ -238,10 +245,15 @@ watch(selectedRole, newVal => {
         height: 94px;
         .NuxtLink {
           height: 100%;
-          padding: 23.165px 187.125px;
+          padding: 17.24px 26px;
           font-size: 35px;
           font-weight: 700;
           line-height: 47.67px;
+          text-decoration: none;
+          color: #fff;
+          &:visited {
+            color: #fff;
+          }
         }
       }
     }
