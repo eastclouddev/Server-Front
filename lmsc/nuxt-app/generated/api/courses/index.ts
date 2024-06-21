@@ -7,7 +7,15 @@ export type Methods = {
    * 
    * Parameter
    * -----------------------
-   * なし
+   * フィルター
+   *     category: str
+   * ソート
+   *     sort: str(sortとorderはセット)
+   *         time
+   *     order: str
+   *         asc, desc
+   * 検索
+   *     name: str
    * 
    * Returns
    * -----------------------
@@ -22,10 +30,23 @@ export type Methods = {
    *         コースを作成したユーザーのID
    *     thumbnail_url: str
    *         コースのサムネイル画像のURL
+   *     expectesd_end_hours: int
+   *         コースの終了想定時間
+   *     total_curriculums: int
+   *         カリキュラム総数
+   *     tech_category: str
+   *         技術カテゴリ
    *     created_at: str
    *         コースの作成日時（ISO 8601形式）
    */
   get: {
+    query?: {
+      category?: string | undefined
+      sort?: string | undefined
+      order?: string | undefined
+      name?: string | undefined
+    } | undefined
+
     status: 200
     /** Successful Response */
     resBody: Types.CourseListResponseBody

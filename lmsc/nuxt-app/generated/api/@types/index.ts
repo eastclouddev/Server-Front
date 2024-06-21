@@ -83,9 +83,15 @@ export type BillingListResponseBody = {
   billings: Billing[]
 }
 
+export type Category = {
+  category_id: number
+  category_name: string
+}
+
 export type Company = {
   company_id: number
   name: string
+  name_kana: string
   prefecture: string
   city: string
   town: string
@@ -200,6 +206,7 @@ export type CompanyBillingInfoUpdateResponseBody = {
 
 export type CompanyCreateRequestBody = {
   name: string
+  name_kana: string
   prefecture: string
   city: string
   town: string
@@ -214,6 +221,7 @@ export type CompanyCreateRequestBody = {
 export type CompanyCreateResponseBody = {
   company_id: number
   name: string
+  name_kana: string
   prefecture: string
   city: string
   town: string
@@ -228,6 +236,7 @@ export type CompanyCreateResponseBody = {
 export type CompanyDetailResponseBody = {
   company_id: number
   name: string
+  name_kana: string
   prefecture: string
   city: string
   town: string
@@ -243,6 +252,26 @@ export type CompanyListResponseBody = {
   companies: Company[]
 }
 
+export type CompanyUpdateRequestBody = {
+  name: string | null
+
+  name_kana: string | null
+
+  prefecture: string | null
+
+  city: string | null
+
+  town: string | null
+
+  address?: string | null | undefined
+
+  postal_code: string | null
+
+  phone_number: string | null
+
+  email: string | null
+}
+
 export type Course = {
   course_id: number
   title: string
@@ -251,6 +280,9 @@ export type Course = {
 
   thumbnail_url: string | null
 
+  expected_end_hours: number
+  total_curriculums: number
+  tech_category: string
   created_at: string
 }
 
@@ -259,6 +291,12 @@ export type CourseDetailResponseBody = {
   title: string
   description: string
   created_user_id: number
+
+  thumbnail_url: string | null
+
+  expected_end_hours: number
+  total_curriculums: number
+  tech_category: string
   created_at: string
   sections: Section[]
 }
@@ -286,6 +324,9 @@ export type Curriculum = {
   title: string
 
   description: string | null
+
+  duration: string
+  is_completed: boolean
 }
 
 export type CurriculumDetailResponseBody = {
@@ -297,7 +338,10 @@ export type CurriculumDetailResponseBody = {
 
   content?: string | null | undefined
 
-  is_test: boolean
+  is_quiz: boolean
+
+  quiz_content?: QuizContent[] | null | undefined
+
   display_no: number
 }
 
@@ -330,6 +374,14 @@ export type MentorsCountListResponseBody = {
 export type News = {
   id: number
   title: string
+  category: Category
+  published_at: string
+}
+
+export type NewsBody = {
+  id: number
+  title: string
+  category: NewsResponse
   published_at: string
 }
 
@@ -365,7 +417,7 @@ export type NewsCategoryUpdateResponseBody = {
 export type NewsCreateRequestBody = {
   title: string
   content: string
-  is_published: boolean
+  category_id: number
   published_at: string
 }
 
@@ -373,6 +425,7 @@ export type NewsCreateResponseBody = {
   id: number
   title: string
   content: string
+  category: NewsResponse
   is_published: boolean
   published_at: string
   created_at: string
@@ -382,20 +435,23 @@ export type NewsDetailResponseBody = {
   id: number
   title: string
   content: string
+  category: Category
   published_at: string
 }
 
 export type NewsListResponseBody = {
   news: News[]
-  page: number
-  limit: number
-  total_pages: number
-  total_news: number
+}
+
+export type NewsResponse = {
+  category_id: number
+  category_name: string
 }
 
 export type NewsUpdateRequestBody = {
   title?: string | undefined
   content?: string | undefined
+  category_id: number
   is_published?: boolean | undefined
   published_at?: string | undefined
 }
@@ -404,6 +460,7 @@ export type NewsUpdateResponseBody = {
   news_id: number
   title: string
   content: string
+  category: NewsResponse
   is_published: boolean
   published_at: string
   updated_at: string
@@ -438,6 +495,10 @@ export type ProgressesResponseList = {
 
   progress_percentage: number
   status: string
+}
+
+export type PublishedNewsListResponseBody = {
+  news: NewsBody[]
 }
 
 export type Question = {
@@ -533,6 +594,16 @@ export type Questions = {
   tech_category: string
   is_read: boolean
   is_closed: boolean
+}
+
+export type QuizContent = {
+  quiz_id: number
+  question: string
+
+  media_content?: null | undefined
+
+  correct_answer: number
+  explanation: string
 }
 
 export type ReceiptDetailResponseBody = {
@@ -736,15 +807,16 @@ export type Section = {
 
   description: string | null
 
+  duration: string
   curriculums: Curriculum[]
 }
 
 export type Student = {
   user_id: number
-  first_name: string
-  last_name: string
+  name: string
   email: string
   role: string
+  is_enable: boolean
   last_login: string
 }
 

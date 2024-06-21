@@ -7,7 +7,9 @@ export type Methods = {
    * 
    * Parameters
    * -----------------------
-   * なし
+   * 検索
+   *     name: str
+   *     company: str
    * 
    * Returns
    * -----------------------
@@ -28,6 +30,11 @@ export type Methods = {
    *         ステータス
    */
   get: {
+    query?: {
+      name?: string | undefined
+      company?: string | undefined
+    } | undefined
+
     status: 200
     /** Successful Response */
     resBody: Types.Schemas__mentors__ProgressListResponseBody

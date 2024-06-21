@@ -28,6 +28,7 @@ import type { Methods as Methods_t9xdat } from './news';
 import type { Methods as Methods_ah5d5l } from './news/_news_id@number';
 import type { Methods as Methods_1uxbl4e } from './news/categories';
 import type { Methods as Methods_ovggmd } from './news/categories/_category_id@number';
+import type { Methods as Methods_19fpiw4 } from './news/published';
 import type { Methods as Methods_sr2fny } from './notifications';
 import type { Methods as Methods_wemohn } from './notifications/_notification_id@number/mark_read';
 import type { Methods as Methods_oji007 } from './password_reset';
@@ -76,18 +77,19 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const PATH19 = '/mentors/counts/';
   const PATH20 = '/news/';
   const PATH21 = '/news/categories/';
-  const PATH22 = '/mark_read/';
-  const PATH23 = '/password_reset/';
-  const PATH24 = '/password_reset/confirm/';
-  const PATH25 = '/answers/';
-  const PATH26 = '/questions/answers/';
-  const PATH27 = '/receipts/';
-  const PATH28 = '/responses/';
-  const PATH29 = '/reviews/responses/';
-  const PATH30 = '/rewards/';
-  const PATH31 = '/samplechat/';
-  const PATH32 = '/students/';
-  const PATH33 = '/assign_mentor/';
+  const PATH22 = '/news/published/';
+  const PATH23 = '/mark_read/';
+  const PATH24 = '/password_reset/';
+  const PATH25 = '/password_reset/confirm/';
+  const PATH26 = '/answers/';
+  const PATH27 = '/questions/answers/';
+  const PATH28 = '/receipts/';
+  const PATH29 = '/responses/';
+  const PATH30 = '/reviews/responses/';
+  const PATH31 = '/rewards/';
+  const PATH32 = '/samplechat/';
+  const PATH33 = '/students/';
+  const PATH34 = '/assign_mentor/';
   const GET = 'GET';
   const POST = 'POST';
   const PUT = 'PUT';
@@ -498,6 +500,11 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * -----------------------
              * company_id: int
              *     会社のID
+             * フィルター
+             *     target_month: str
+             *         (YYYYMM形式)
+             *     status: str
+             *
              * Returns
              * -----------------------
              * dict
@@ -513,7 +520,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              *         請求内容の説明
              * @returns Successful Response
              */
-            get: (option?: { config?: T | undefined } | undefined) =>
+            get: (option?: { query?: Methods_16y40ss['get']['query'] | undefined, config?: T | undefined } | undefined) =>
               fetch<Methods_16y40ss['get']['resBody'], BasicHeaders, Methods_16y40ss['get']['status']>(prefix, `${prefix1}${PATH1}`, GET, option).json(),
             /**
              * 請求履歴一覧取得
@@ -522,6 +529,11 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * -----------------------
              * company_id: int
              *     会社のID
+             * フィルター
+             *     target_month: str
+             *         (YYYYMM形式)
+             *     status: str
+             *
              * Returns
              * -----------------------
              * dict
@@ -537,9 +549,10 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              *         請求内容の説明
              * @returns Successful Response
              */
-            $get: (option?: { config?: T | undefined } | undefined) =>
+            $get: (option?: { query?: Methods_16y40ss['get']['query'] | undefined, config?: T | undefined } | undefined) =>
               fetch<Methods_16y40ss['get']['resBody'], BasicHeaders, Methods_16y40ss['get']['status']>(prefix, `${prefix1}${PATH1}`, GET, option).json().then(r => r.body),
-            $path: () => `${prefix}${prefix1}${PATH1}`,
+            $path: (option?: { method?: 'get' | undefined; query: Methods_16y40ss['get']['query'] } | undefined) =>
+              `${prefix}${prefix1}${PATH1}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`,
           },
           progresses: {
             /**
@@ -547,7 +560,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              *
              * Parameters
              * -----------------------
-             * なし
+             * 検索
+             *     name: str
              *
              * Returns
              * -----------------------
@@ -568,14 +582,15 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              *         ステータス
              * @returns Successful Response
              */
-            get: (option?: { config?: T | undefined } | undefined) =>
+            get: (option?: { query?: Methods_18uwb4v['get']['query'] | undefined, config?: T | undefined } | undefined) =>
               fetch<Methods_18uwb4v['get']['resBody'], BasicHeaders, Methods_18uwb4v['get']['status']>(prefix, `${prefix1}${PATH4}`, GET, option).json(),
             /**
              * 進捗管理一覧
              *
              * Parameters
              * -----------------------
-             * なし
+             * 検索
+             *     name: str
              *
              * Returns
              * -----------------------
@@ -596,9 +611,10 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              *         ステータス
              * @returns Successful Response
              */
-            $get: (option?: { config?: T | undefined } | undefined) =>
+            $get: (option?: { query?: Methods_18uwb4v['get']['query'] | undefined, config?: T | undefined } | undefined) =>
               fetch<Methods_18uwb4v['get']['resBody'], BasicHeaders, Methods_18uwb4v['get']['status']>(prefix, `${prefix1}${PATH4}`, GET, option).json().then(r => r.body),
-            $path: () => `${prefix}${prefix1}${PATH4}`,
+            $path: (option?: { method?: 'get' | undefined; query: Methods_18uwb4v['get']['query'] } | undefined) =>
+              `${prefix}${prefix1}${PATH4}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`,
           },
           users: {
             counts: {
@@ -661,14 +677,14 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * users: array
              *     user_id: int
              *         ユーザーのID
-             *     first_name: str
-             *         ユーザーの名
-             *     last_name: str
-             *         ユーザーの姓
+             *     name: str
+             *         ユーザーの名前
              *     email: str
              *         ユーザーのメールアドレス
              *     role: str
              *         ユーザーのロール
+             *     is_enable: bool
+             *         アカウントの有効状態
              *     last_login: str
              *         最終ログイン日（ISO 8601形式）
              * @returns Successful Response
@@ -692,14 +708,14 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * users: array
              *     user_id: int
              *         ユーザーのID
-             *     first_name: str
-             *         ユーザーの名
-             *     last_name: str
-             *         ユーザーの姓
+             *     name: str
+             *         ユーザーの名前
              *     email: str
              *         ユーザーのメールアドレス
              *     role: str
              *         ユーザーのロール
+             *     is_enable: bool
+             *         アカウントの有効状態
              *     last_login: str
              *         最終ログイン日（ISO 8601形式）
              * @returns Successful Response
@@ -724,6 +740,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            *         会社のID
            *     name: str
            *         会社の名前
+           *     name: str
+           *         会社名のフリガナ
            *     prefecture: str
            *         所在地の都道府県
            *     city: str
@@ -761,6 +779,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            *         会社のID
            *     name: str
            *         会社の名前
+           *     name: str
+           *         会社名のフリガナ
            *     prefecture: str
            *         所在地の都道府県
            *     city: str
@@ -793,6 +813,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            * dict
            *     name: str
            *         会社名
+           *     name_kana: str
+           *         会社名フリガナ
            *     prefecture: str
            *         都道府県
            *     city: str
@@ -810,31 +832,11 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            *
            * Returns
            * -----------------------
-           * dict
-           *     company_id: int
-           *         会社のID
-           *     name: str
-           *         会社の名前
-           *     prefecture: str
-           *         所在地の都道府県
-           *     city: str
-           *         所在地の市区町村
-           *     town: str
-           *         所在地の町名・番地等
-           *     address: str
-           *         会社の詳細な住所
-           *     postal_code: str
-           *         郵便番号
-           *     phone_number: str
-           *         電話番号
-           *     email: str
-           *         会社のメールアドレス
-           *     updated_at: str
-           *         レコードの最終更新日時（ISO 8601形式）
-           * @returns Successful Response
+           * message: str
+           *     完了時のメッセージ(Company information updated successfully.)
            */
           patch: (option: { body: Methods_7dyior['patch']['reqBody'], config?: T | undefined }) =>
-            fetch<Methods_7dyior['patch']['resBody'], BasicHeaders, Methods_7dyior['patch']['status']>(prefix, `${prefix1}${PATH0}`, PATCH, option).json(),
+            fetch<void, BasicHeaders, Methods_7dyior['patch']['status']>(prefix, `${prefix1}${PATH0}`, PATCH, option).send(),
           /**
            * 会社情報更新
            *
@@ -845,6 +847,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            * dict
            *     name: str
            *         会社名
+           *     name_kana: str
+           *         会社名フリガナ
            *     prefecture: str
            *         都道府県
            *     city: str
@@ -862,31 +866,11 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            *
            * Returns
            * -----------------------
-           * dict
-           *     company_id: int
-           *         会社のID
-           *     name: str
-           *         会社の名前
-           *     prefecture: str
-           *         所在地の都道府県
-           *     city: str
-           *         所在地の市区町村
-           *     town: str
-           *         所在地の町名・番地等
-           *     address: str
-           *         会社の詳細な住所
-           *     postal_code: str
-           *         郵便番号
-           *     phone_number: str
-           *         電話番号
-           *     email: str
-           *         会社のメールアドレス
-           *     updated_at: str
-           *         レコードの最終更新日時（ISO 8601形式）
-           * @returns Successful Response
+           * message: str
+           *     完了時のメッセージ(Company information updated successfully.)
            */
           $patch: (option: { body: Methods_7dyior['patch']['reqBody'], config?: T | undefined }) =>
-            fetch<Methods_7dyior['patch']['resBody'], BasicHeaders, Methods_7dyior['patch']['status']>(prefix, `${prefix1}${PATH0}`, PATCH, option).json().then(r => r.body),
+            fetch<void, BasicHeaders, Methods_7dyior['patch']['status']>(prefix, `${prefix1}${PATH0}`, PATCH, option).send().then(r => r.body),
           $path: () => `${prefix}${prefix1}${PATH0}`,
         };
       },
@@ -904,6 +888,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        *         会社のID（int）
        *     name: str
        *         会社名
+       *     name_kana: str
+       *         会社名のフリガナ
        *     prefecture: str
        *         都道府県
        *     city: str
@@ -938,6 +924,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        *         会社のID（int）
        *     name: str
        *         会社名
+       *     name_kana: str
+       *         会社名のフリガナ
        *     prefecture: str
        *         都道府県
        *     city: str
@@ -966,6 +954,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        * dict
        *     name: str
        *         会社名
+       *     name_kana: str
+       *         会社名フリガナ
        *     prefecture: str
        *         都道府県
        *     city: str
@@ -988,6 +978,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        *         新しく作成された会社のID
        *     name: str
        *         会社名
+       *     name_kana: str
+       *         会社名フリガナ
        *     prefecture: str
        *         都道府県
        *     city: str
@@ -1014,6 +1006,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        * dict
        *     name: str
        *         会社名
+       *     name_kana: str
+       *         会社名フリガナ
        *     prefecture: str
        *         都道府県
        *     city: str
@@ -1036,6 +1030,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        *         新しく作成された会社のID
        *     name: str
        *         会社名
+       *     name_kana: str
+       *         会社名フリガナ
        *     prefecture: str
        *         都道府県
        *     city: str
@@ -1195,6 +1191,11 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * -----------------------
              * course_id: int
              *     質問一覧を取得したいコースのID
+             * フィルター
+             *     curriculum: int
+             *     my_questions: bool(my_questionsとuser_idはセット)
+             *     user_id: int
+             *     unanswered: bool
              *
              * Returns
              * -----------------------
@@ -1222,7 +1223,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              *         質問の返信数
              * @returns Successful Response
              */
-            get: (option?: { config?: T | undefined } | undefined) =>
+            get: (option?: { query?: Methods_76nv1w['get']['query'] | undefined, config?: T | undefined } | undefined) =>
               fetch<Methods_76nv1w['get']['resBody'], BasicHeaders, Methods_76nv1w['get']['status']>(prefix, `${prefix1}${PATH8}`, GET, option).json(),
             /**
              * コースの質問一覧
@@ -1231,6 +1232,11 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * -----------------------
              * course_id: int
              *     質問一覧を取得したいコースのID
+             * フィルター
+             *     curriculum: int
+             *     my_questions: bool(my_questionsとuser_idはセット)
+             *     user_id: int
+             *     unanswered: bool
              *
              * Returns
              * -----------------------
@@ -1258,9 +1264,10 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              *         質問の返信数
              * @returns Successful Response
              */
-            $get: (option?: { config?: T | undefined } | undefined) =>
+            $get: (option?: { query?: Methods_76nv1w['get']['query'] | undefined, config?: T | undefined } | undefined) =>
               fetch<Methods_76nv1w['get']['resBody'], BasicHeaders, Methods_76nv1w['get']['status']>(prefix, `${prefix1}${PATH8}`, GET, option).json().then(r => r.body),
-            $path: () => `${prefix}${prefix1}${PATH8}`,
+            $path: (option?: { method?: 'get' | undefined; query: Methods_76nv1w['get']['query'] } | undefined) =>
+              `${prefix}${prefix1}${PATH8}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`,
           },
           reviews: {
             /**
@@ -1462,6 +1469,14 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            *         コースの詳細な説明
            *     created_user_id: int
            *         コースを作成したユーザーのID
+           *     thumbnail_url: str
+           *         コースのサムネイル画像のURL
+           *     expectesd_end_hours: int
+           *         コースの終了想定時間
+           *     total_curriculums: int
+           *         カリキュラム総数
+           *     tech_category: str
+           *         技術カテゴリ
            *     created_at: str
            *         コースの作成日時（ISO 8601形式）
            *     sections: array
@@ -1472,6 +1487,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            *             セクションのタイトル
            *         description: str
            *             セクションの説明
+           *         duration: str
+           *             セクションの時間（HH:MM:SS形式）
            *         curriculums: array
            *             セクションに紐づくカリキュラムの一覧
            *             curriculum_id: int
@@ -1480,6 +1497,10 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            *                 カリキュラムのタイトル
            *             description: str
            *                 カリキュラムの説明
+           *             duration: str
+           *                 セクションの時間（HH:MM:SS形式）
+           *             is_completed: bool
+           *                 カリキュラム完了状況
            * @returns Successful Response
            */
           get: (option?: { config?: T | undefined } | undefined) =>
@@ -1503,6 +1524,14 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            *         コースの詳細な説明
            *     created_user_id: int
            *         コースを作成したユーザーのID
+           *     thumbnail_url: str
+           *         コースのサムネイル画像のURL
+           *     expectesd_end_hours: int
+           *         コースの終了想定時間
+           *     total_curriculums: int
+           *         カリキュラム総数
+           *     tech_category: str
+           *         技術カテゴリ
            *     created_at: str
            *         コースの作成日時（ISO 8601形式）
            *     sections: array
@@ -1513,6 +1542,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            *             セクションのタイトル
            *         description: str
            *             セクションの説明
+           *         duration: str
+           *             セクションの時間（HH:MM:SS形式）
            *         curriculums: array
            *             セクションに紐づくカリキュラムの一覧
            *             curriculum_id: int
@@ -1521,6 +1552,10 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            *                 カリキュラムのタイトル
            *             description: str
            *                 カリキュラムの説明
+           *             duration: str
+           *                 セクションの時間（HH:MM:SS形式）
+           *             is_completed: bool
+           *                 カリキュラム完了状況
            * @returns Successful Response
            */
           $get: (option?: { config?: T | undefined } | undefined) =>
@@ -1578,7 +1613,15 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        *
        * Parameter
        * -----------------------
-       * なし
+       * フィルター
+       *     category: str
+       * ソート
+       *     sort: str(sortとorderはセット)
+       *         time
+       *     order: str
+       *         asc, desc
+       * 検索
+       *     name: str
        *
        * Returns
        * -----------------------
@@ -1593,18 +1636,32 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        *         コースを作成したユーザーのID
        *     thumbnail_url: str
        *         コースのサムネイル画像のURL
+       *     expectesd_end_hours: int
+       *         コースの終了想定時間
+       *     total_curriculums: int
+       *         カリキュラム総数
+       *     tech_category: str
+       *         技術カテゴリ
        *     created_at: str
        *         コースの作成日時（ISO 8601形式）
        * @returns Successful Response
        */
-      get: (option?: { config?: T | undefined } | undefined) =>
+      get: (option?: { query?: Methods_13yxxb0['get']['query'] | undefined, config?: T | undefined } | undefined) =>
         fetch<Methods_13yxxb0['get']['resBody'], BasicHeaders, Methods_13yxxb0['get']['status']>(prefix, PATH7, GET, option).json(),
       /**
        * コース一覧取得
        *
        * Parameter
        * -----------------------
-       * なし
+       * フィルター
+       *     category: str
+       * ソート
+       *     sort: str(sortとorderはセット)
+       *         time
+       *     order: str
+       *         asc, desc
+       * 検索
+       *     name: str
        *
        * Returns
        * -----------------------
@@ -1619,13 +1676,20 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        *         コースを作成したユーザーのID
        *     thumbnail_url: str
        *         コースのサムネイル画像のURL
+       *     expectesd_end_hours: int
+       *         コースの終了想定時間
+       *     total_curriculums: int
+       *         カリキュラム総数
+       *     tech_category: str
+       *         技術カテゴリ
        *     created_at: str
        *         コースの作成日時（ISO 8601形式）
        * @returns Successful Response
        */
-      $get: (option?: { config?: T | undefined } | undefined) =>
+      $get: (option?: { query?: Methods_13yxxb0['get']['query'] | undefined, config?: T | undefined } | undefined) =>
         fetch<Methods_13yxxb0['get']['resBody'], BasicHeaders, Methods_13yxxb0['get']['status']>(prefix, PATH7, GET, option).json().then(r => r.body),
-      $path: () => `${prefix}${PATH7}`,
+      $path: (option?: { method?: 'get' | undefined; query: Methods_13yxxb0['get']['query'] } | undefined) =>
+        `${prefix}${PATH7}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`,
     },
     curriculums: {
       _curriculum_id: (val1: number) => {
@@ -1653,8 +1717,21 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            *         ビデオコンテンツのURL(ビデオが存在する場合のみ）
            *     content: str
            *         カリキュラムのテキストコンテンツ(テキストコンテンツが存在する場合のみ）
-           *     is_test: boolean
+           *     is_quiz: boolean
            *         このカリキュラムがテストかどうかを示すフラグ（boolean）
+           *     quiz_content: array
+           *         quiz_id: int
+           *             テストのID
+           *         question: str
+           *             問題文
+           *         media_content: str
+           *             メディアコンテンツのURL
+           *         options: array
+           *             選択肢
+           *         correct_answer: int
+           *             正しい回答
+           *         explanation: str
+           *             正解にする説明
            *     display_no: int
            *         カリキュラムの表示順
            * @returns Successful Response
@@ -1682,8 +1759,21 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            *         ビデオコンテンツのURL(ビデオが存在する場合のみ）
            *     content: str
            *         カリキュラムのテキストコンテンツ(テキストコンテンツが存在する場合のみ）
-           *     is_test: boolean
+           *     is_quiz: boolean
            *         このカリキュラムがテストかどうかを示すフラグ（boolean）
+           *     quiz_content: array
+           *         quiz_id: int
+           *             テストのID
+           *         question: str
+           *             問題文
+           *         media_content: str
+           *             メディアコンテンツのURL
+           *         options: array
+           *             選択肢
+           *         correct_answer: int
+           *             正しい回答
+           *         explanation: str
+           *             正解にする説明
            *     display_no: int
            *         カリキュラムの表示順
            * @returns Successful Response
@@ -1889,7 +1979,9 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              *
              * Parameters
              * -----------------------
-             * なし
+             * 検索
+             *     name: str
+             *     company: str
              *
              * Returns
              * -----------------------
@@ -1910,14 +2002,16 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              *         ステータス
              * @returns Successful Response
              */
-            get: (option?: { config?: T | undefined } | undefined) =>
+            get: (option?: { query?: Methods_w2iay8['get']['query'] | undefined, config?: T | undefined } | undefined) =>
               fetch<Methods_w2iay8['get']['resBody'], BasicHeaders, Methods_w2iay8['get']['status']>(prefix, `${prefix1}${PATH4}`, GET, option).json(),
             /**
              * 進捗管理一覧
              *
              * Parameters
              * -----------------------
-             * なし
+             * 検索
+             *     name: str
+             *     company: str
              *
              * Returns
              * -----------------------
@@ -1938,9 +2032,10 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              *         ステータス
              * @returns Successful Response
              */
-            $get: (option?: { config?: T | undefined } | undefined) =>
+            $get: (option?: { query?: Methods_w2iay8['get']['query'] | undefined, config?: T | undefined } | undefined) =>
               fetch<Methods_w2iay8['get']['resBody'], BasicHeaders, Methods_w2iay8['get']['status']>(prefix, `${prefix1}${PATH4}`, GET, option).json().then(r => r.body),
-            $path: () => `${prefix}${prefix1}${PATH4}`,
+            $path: (option?: { method?: 'get' | undefined; query: Methods_w2iay8['get']['query'] } | undefined) =>
+              `${prefix}${prefix1}${PATH4}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`,
           },
           students: {
             questions: {
@@ -2138,52 +2233,6 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
 
         return {
           /**
-           * ニュース詳細取得
-           *
-           * Parameter
-           * -----------------------
-           * news_id: int
-           *     取得するニュースのID
-           *
-           * Returns
-           * -----------------------
-           * dict
-           *     id: int
-           *         取得したニュースのID
-           *     title: str
-           *         ニュースのタイトル
-           *     content: str
-           *         ニュースの内容
-           *     published_at: str
-           *         ニュースの公開日（ISO 8601形式）
-           * @returns Successful Response
-           */
-          get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<Methods_ah5d5l['get']['resBody'], BasicHeaders, Methods_ah5d5l['get']['status']>(prefix, `${prefix1}${PATH0}`, GET, option).json(),
-          /**
-           * ニュース詳細取得
-           *
-           * Parameter
-           * -----------------------
-           * news_id: int
-           *     取得するニュースのID
-           *
-           * Returns
-           * -----------------------
-           * dict
-           *     id: int
-           *         取得したニュースのID
-           *     title: str
-           *         ニュースのタイトル
-           *     content: str
-           *         ニュースの内容
-           *     published_at: str
-           *         ニュースの公開日（ISO 8601形式）
-           * @returns Successful Response
-           */
-          $get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<Methods_ah5d5l['get']['resBody'], BasicHeaders, Methods_ah5d5l['get']['status']>(prefix, `${prefix1}${PATH0}`, GET, option).json().then(r => r.body),
-          /**
            * ニュース更新
            *
            * Parameters
@@ -2195,6 +2244,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            *         更新するニュースのタイトル
            *     content: str
            *         更新するニュースの本文
+           *     categoey_id: int
+           *         カテゴリのID
            *     is_published: bool
            *         公開フラグ
            *     published_at: str
@@ -2209,6 +2260,11 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            *         更新されたニュースのタイトル
            *     content: str
            *         更新されたニュースの内容
+           *     category: array
+           *         category_id: int
+           *             カテゴリのID
+           *         category_name: str
+           *             カテゴリの名前
            *     is_published: bool
            *         ニュースの公開フラグ
            *     published_at: str
@@ -2231,6 +2287,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            *         更新するニュースのタイトル
            *     content: str
            *         更新するニュースの本文
+           *     categoey_id: int
+           *         カテゴリのID
            *     is_published: bool
            *         公開フラグ
            *     published_at: str
@@ -2245,6 +2303,11 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
            *         更新されたニュースのタイトル
            *     content: str
            *         更新されたニュースの内容
+           *     category: array
+           *         category_id: int
+           *             カテゴリのID
+           *         category_name: str
+           *             カテゴリの名前
            *     is_published: bool
            *         ニュースの公開フラグ
            *     published_at: str
@@ -2364,8 +2427,68 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
           fetch<Methods_1uxbl4e['get']['resBody'], BasicHeaders, Methods_1uxbl4e['get']['status']>(prefix, PATH21, GET, option).json().then(r => r.body),
         $path: () => `${prefix}${PATH21}`,
       },
+      published: {
+        /**
+         * ニュース一覧取得
+         *
+         * Parameters
+         * -----------------------
+         * page: int
+         *     表示するページ
+         * limit: int
+         *     1ページに表示するニュース数
+         *
+         * Returns
+         * -----------------------
+         * news: array
+         *     id: int
+         *         ニュースのID
+         *     title: str
+         *         ニュースのタイトル
+         *     category: dict
+         *         category_id: int
+         *             カテゴリのID
+         *         category_name: str
+         *             カテゴリの名前
+         *     published_at: str
+         *         ニュースの公開日（ISO 8601形式）
+         * @returns Successful Response
+         */
+        get: (option: { query: Methods_19fpiw4['get']['query'], config?: T | undefined }) =>
+          fetch<Methods_19fpiw4['get']['resBody'], BasicHeaders, Methods_19fpiw4['get']['status']>(prefix, PATH22, GET, option).json(),
+        /**
+         * ニュース一覧取得
+         *
+         * Parameters
+         * -----------------------
+         * page: int
+         *     表示するページ
+         * limit: int
+         *     1ページに表示するニュース数
+         *
+         * Returns
+         * -----------------------
+         * news: array
+         *     id: int
+         *         ニュースのID
+         *     title: str
+         *         ニュースのタイトル
+         *     category: dict
+         *         category_id: int
+         *             カテゴリのID
+         *         category_name: str
+         *             カテゴリの名前
+         *     published_at: str
+         *         ニュースの公開日（ISO 8601形式）
+         * @returns Successful Response
+         */
+        $get: (option: { query: Methods_19fpiw4['get']['query'], config?: T | undefined }) =>
+          fetch<Methods_19fpiw4['get']['resBody'], BasicHeaders, Methods_19fpiw4['get']['status']>(prefix, PATH22, GET, option).json().then(r => r.body),
+        $path: (option?: { method?: 'get' | undefined; query: Methods_19fpiw4['get']['query'] } | undefined) =>
+          `${prefix}${PATH22}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`,
+      },
       /**
-       * ニュース一覧取得
+       * ニュース一覧(管理者)取得
        *
        * Parameters
        * -----------------------
@@ -2378,25 +2501,24 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        * -----------------------
        * news: array
        *     id: int
-       *         ニュースのID
+       *         取得したニュースのID
        *     title: str
        *         ニュースのタイトル
+       *     category: array
+       *         categoey_id: int
+       *             カテゴリのID
+       *         category_name: str
+       *             カテゴリのID
        *     published_at: str
        *         ニュースの公開日（ISO 8601形式）
-       * page: int
-       *     表示するページ
-       * limit: int
-       *     1ページに表示するニュース数
-       * total_page: int
-       *     全ページ数
-       * total_news: int
-       *     全ニュース数
+       *     is_published: bool
+       *         ニュース公開状態
        * @returns Successful Response
        */
       get: (option: { query: Methods_t9xdat['get']['query'], config?: T | undefined }) =>
         fetch<Methods_t9xdat['get']['resBody'], BasicHeaders, Methods_t9xdat['get']['status']>(prefix, PATH20, GET, option).json(),
       /**
-       * ニュース一覧取得
+       * ニュース一覧(管理者)取得
        *
        * Parameters
        * -----------------------
@@ -2409,19 +2531,18 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        * -----------------------
        * news: array
        *     id: int
-       *         ニュースのID
+       *         取得したニュースのID
        *     title: str
        *         ニュースのタイトル
+       *     category: array
+       *         categoey_id: int
+       *             カテゴリのID
+       *         category_name: str
+       *             カテゴリのID
        *     published_at: str
        *         ニュースの公開日（ISO 8601形式）
-       * page: int
-       *     表示するページ
-       * limit: int
-       *     1ページに表示するニュース数
-       * total_page: int
-       *     全ページ数
-       * total_news: int
-       *     全ニュース数
+       *     is_published: bool
+       *         ニュース公開状態
        * @returns Successful Response
        */
       $get: (option: { query: Methods_t9xdat['get']['query'], config?: T | undefined }) =>
@@ -2435,15 +2556,27 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        *         作成するニュースのタイトル
        *     content: str
        *         作成するニュースの本文
-       *     is_published: bool
-       *         公開フラグ
+       *     category_id: int
+       *         カテゴリのID
        *     published_at: str
        *         公開日（ISO 8601形式）
        *
        * Returns
        * -----------------------
        * dict
-       *    
+       *     news_id: int
+       *         ニュースのID
+       *     title: str
+       *         ニュースのタイトル
+       *     content: str
+       *         ニュースの本文
+       *     category: array
+       *         category_id: int
+       *             カテゴリのID
+       *         category_name: str
+       *             カテゴリの名前
+       *     is_published: bool
+       *         ニュース公開状態
        *     published_at: str
        *         ニュースの公開日（ISO 8601形式）
        *     created_at: str
@@ -2461,15 +2594,27 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        *         作成するニュースのタイトル
        *     content: str
        *         作成するニュースの本文
-       *     is_published: bool
-       *         公開フラグ
+       *     category_id: int
+       *         カテゴリのID
        *     published_at: str
        *         公開日（ISO 8601形式）
        *
        * Returns
        * -----------------------
        * dict
-       *    
+       *     news_id: int
+       *         ニュースのID
+       *     title: str
+       *         ニュースのタイトル
+       *     content: str
+       *         ニュースの本文
+       *     category: array
+       *         category_id: int
+       *             カテゴリのID
+       *         category_name: str
+       *             カテゴリの名前
+       *     is_published: bool
+       *         ニュース公開状態
        *     published_at: str
        *         ニュースの公開日（ISO 8601形式）
        *     created_at: str
@@ -2503,7 +2648,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * @returns Successful Response
              */
             patch: (option?: { config?: T | undefined } | undefined) =>
-              fetch<Methods_wemohn['patch']['resBody'], BasicHeaders, Methods_wemohn['patch']['status']>(prefix, `${prefix1}${PATH22}`, PATCH, option).json(),
+              fetch<Methods_wemohn['patch']['resBody'], BasicHeaders, Methods_wemohn['patch']['status']>(prefix, `${prefix1}${PATH23}`, PATCH, option).json(),
             /**
              * 通知内容を既読に更新
              *
@@ -2520,8 +2665,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * @returns Successful Response
              */
             $patch: (option?: { config?: T | undefined } | undefined) =>
-              fetch<Methods_wemohn['patch']['resBody'], BasicHeaders, Methods_wemohn['patch']['status']>(prefix, `${prefix1}${PATH22}`, PATCH, option).json().then(r => r.body),
-            $path: () => `${prefix}${prefix1}${PATH22}`,
+              fetch<Methods_wemohn['patch']['resBody'], BasicHeaders, Methods_wemohn['patch']['status']>(prefix, `${prefix1}${PATH23}`, PATCH, option).json().then(r => r.body),
+            $path: () => `${prefix}${prefix1}${PATH23}`,
           },
         };
       },
@@ -2610,16 +2755,16 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
     password_reset: {
       confirm: {
         post: (option?: { config?: T | undefined } | undefined) =>
-          fetch<void, BasicHeaders, Methods_vesziw['post']['status']>(prefix, PATH24, POST, option).send(),
+          fetch<void, BasicHeaders, Methods_vesziw['post']['status']>(prefix, PATH25, POST, option).send(),
         $post: (option?: { config?: T | undefined } | undefined) =>
-          fetch<void, BasicHeaders, Methods_vesziw['post']['status']>(prefix, PATH24, POST, option).send().then(r => r.body),
-        $path: () => `${prefix}${PATH24}`,
+          fetch<void, BasicHeaders, Methods_vesziw['post']['status']>(prefix, PATH25, POST, option).send().then(r => r.body),
+        $path: () => `${prefix}${PATH25}`,
       },
       post: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods_oji007['post']['status']>(prefix, PATH23, POST, option).send(),
+        fetch<void, BasicHeaders, Methods_oji007['post']['status']>(prefix, PATH24, POST, option).send(),
       $post: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods_oji007['post']['status']>(prefix, PATH23, POST, option).send().then(r => r.body),
-      $path: () => `${prefix}${PATH23}`,
+        fetch<void, BasicHeaders, Methods_oji007['post']['status']>(prefix, PATH24, POST, option).send().then(r => r.body),
+      $path: () => `${prefix}${PATH24}`,
     },
     progresses: {
       /**
@@ -2627,7 +2772,9 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        *
        * Parameters
        * -----------------------
-       * なし
+       * 検索
+       *     name: str
+       *     company: str
        *
        * Returns
        * -----------------------
@@ -2648,14 +2795,16 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        *         ステータス
        * @returns Successful Response
        */
-      get: (option?: { config?: T | undefined } | undefined) =>
+      get: (option?: { query?: Methods_1h2e7pl['get']['query'] | undefined, config?: T | undefined } | undefined) =>
         fetch<Methods_1h2e7pl['get']['resBody'], BasicHeaders, Methods_1h2e7pl['get']['status']>(prefix, PATH4, GET, option).json(),
       /**
        * 進捗管理一覧
        *
        * Parameters
        * -----------------------
-       * なし
+       * 検索
+       *     name: str
+       *     company: str
        *
        * Returns
        * -----------------------
@@ -2676,9 +2825,10 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
        *         ステータス
        * @returns Successful Response
        */
-      $get: (option?: { config?: T | undefined } | undefined) =>
+      $get: (option?: { query?: Methods_1h2e7pl['get']['query'] | undefined, config?: T | undefined } | undefined) =>
         fetch<Methods_1h2e7pl['get']['resBody'], BasicHeaders, Methods_1h2e7pl['get']['status']>(prefix, PATH4, GET, option).json().then(r => r.body),
-      $path: () => `${prefix}${PATH4}`,
+      $path: (option?: { method?: 'get' | undefined; query: Methods_1h2e7pl['get']['query'] } | undefined) =>
+        `${prefix}${PATH4}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`,
     },
     questions: {
       _question_id: (val1: number) => {
@@ -2726,7 +2876,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * @returns Successful Response
              */
             post: (option: { body: Methods_tnd0ic['post']['reqBody'], config?: T | undefined }) =>
-              fetch<Methods_tnd0ic['post']['resBody'], BasicHeaders, Methods_tnd0ic['post']['status']>(prefix, `${prefix1}${PATH25}`, POST, option).json(),
+              fetch<Methods_tnd0ic['post']['resBody'], BasicHeaders, Methods_tnd0ic['post']['status']>(prefix, `${prefix1}${PATH26}`, POST, option).json(),
             /**
              * 質問回答投稿作成
              *
@@ -2767,8 +2917,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * @returns Successful Response
              */
             $post: (option: { body: Methods_tnd0ic['post']['reqBody'], config?: T | undefined }) =>
-              fetch<Methods_tnd0ic['post']['resBody'], BasicHeaders, Methods_tnd0ic['post']['status']>(prefix, `${prefix1}${PATH25}`, POST, option).json().then(r => r.body),
-            $path: () => `${prefix}${prefix1}${PATH25}`,
+              fetch<Methods_tnd0ic['post']['resBody'], BasicHeaders, Methods_tnd0ic['post']['status']>(prefix, `${prefix1}${PATH26}`, POST, option).json().then(r => r.body),
+            $path: () => `${prefix}${prefix1}${PATH26}`,
           },
           /**
            * 質問スレッド詳細取得
@@ -2977,7 +3127,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       },
       answers: {
         _answer_id: (val2: number) => {
-          const prefix2 = `${PATH26}${val2}`;
+          const prefix2 = `${PATH27}${val2}`;
 
           return {
             /**
@@ -3061,7 +3211,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
     },
     receipts: {
       _receipt_id: (val1: number) => {
-        const prefix1 = `${PATH27}${val1}`;
+        const prefix1 = `${PATH28}${val1}`;
 
         return {
           /**
@@ -3247,7 +3397,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * @returns Successful Response
              */
             post: (option: { body: Methods_2cu3ed['post']['reqBody'], config?: T | undefined }) =>
-              fetch<Methods_2cu3ed['post']['resBody'], BasicHeaders, Methods_2cu3ed['post']['status']>(prefix, `${prefix1}${PATH28}`, POST, option).json(),
+              fetch<Methods_2cu3ed['post']['resBody'], BasicHeaders, Methods_2cu3ed['post']['status']>(prefix, `${prefix1}${PATH29}`, POST, option).json(),
             /**
              * レビュー回答作成
              *
@@ -3292,8 +3442,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * @returns Successful Response
              */
             $post: (option: { body: Methods_2cu3ed['post']['reqBody'], config?: T | undefined }) =>
-              fetch<Methods_2cu3ed['post']['resBody'], BasicHeaders, Methods_2cu3ed['post']['status']>(prefix, `${prefix1}${PATH28}`, POST, option).json().then(r => r.body),
-            $path: () => `${prefix}${prefix1}${PATH28}`,
+              fetch<Methods_2cu3ed['post']['resBody'], BasicHeaders, Methods_2cu3ed['post']['status']>(prefix, `${prefix1}${PATH29}`, POST, option).json().then(r => r.body),
+            $path: () => `${prefix}${prefix1}${PATH29}`,
           },
           /**
            * レビュースレッド詳細
@@ -3412,7 +3562,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
       },
       responses: {
         _response_id: (val2: number) => {
-          const prefix2 = `${PATH29}${val2}`;
+          const prefix2 = `${PATH30}${val2}`;
 
           return {
             /**
@@ -3490,21 +3640,21 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
     },
     rewards: {
       get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods_wq2jhe['get']['status']>(prefix, PATH30, GET, option).send(),
+        fetch<void, BasicHeaders, Methods_wq2jhe['get']['status']>(prefix, PATH31, GET, option).send(),
       $get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods_wq2jhe['get']['status']>(prefix, PATH30, GET, option).send().then(r => r.body),
-      $path: () => `${prefix}${PATH30}`,
+        fetch<void, BasicHeaders, Methods_wq2jhe['get']['status']>(prefix, PATH31, GET, option).send().then(r => r.body),
+      $path: () => `${prefix}${PATH31}`,
     },
     samplechat: {
       get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods_1o5yr5y['get']['status']>(prefix, PATH31, GET, option).send(),
+        fetch<void, BasicHeaders, Methods_1o5yr5y['get']['status']>(prefix, PATH32, GET, option).send(),
       $get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<void, BasicHeaders, Methods_1o5yr5y['get']['status']>(prefix, PATH31, GET, option).send().then(r => r.body),
-      $path: () => `${prefix}${PATH31}`,
+        fetch<void, BasicHeaders, Methods_1o5yr5y['get']['status']>(prefix, PATH32, GET, option).send().then(r => r.body),
+      $path: () => `${prefix}${PATH32}`,
     },
     students: {
       _student_id: (val1: number) => {
-        const prefix1 = `${PATH32}${val1}`;
+        const prefix1 = `${PATH33}${val1}`;
 
         return {
           assign_mentor: {
@@ -3521,7 +3671,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * なし
              */
             post: (option?: { config?: T | undefined } | undefined) =>
-              fetch<void, BasicHeaders, Methods_9ucswa['post']['status']>(prefix, `${prefix1}${PATH33}`, POST, option).send(),
+              fetch<void, BasicHeaders, Methods_9ucswa['post']['status']>(prefix, `${prefix1}${PATH34}`, POST, option).send(),
             /**
              * 受講生と担当メンターの関連付け
              *
@@ -3535,8 +3685,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * なし
              */
             $post: (option?: { config?: T | undefined } | undefined) =>
-              fetch<void, BasicHeaders, Methods_9ucswa['post']['status']>(prefix, `${prefix1}${PATH33}`, POST, option).send().then(r => r.body),
-            $path: () => `${prefix}${prefix1}${PATH33}`,
+              fetch<void, BasicHeaders, Methods_9ucswa['post']['status']>(prefix, `${prefix1}${PATH34}`, POST, option).send().then(r => r.body),
+            $path: () => `${prefix}${prefix1}${PATH34}`,
           },
           notifications: {
             /**
@@ -3630,6 +3780,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
           progresses: {
             /**
              * 現在の学習進捗
+             *
              * Parameters
              * -----------------------
              * request: Request
@@ -3654,6 +3805,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
               fetch<Methods_16cgbqo['get']['resBody'], BasicHeaders, Methods_16cgbqo['get']['status']>(prefix, `${prefix1}${PATH4}`, GET, option).json(),
             /**
              * 現在の学習進捗
+             *
              * Parameters
              * -----------------------
              * request: Request
@@ -3686,6 +3838,11 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * -----------------------
              * user_id: int
              *     取得するユーザーのID
+             * フィルター
+             *     category: str
+             * ソート
+             *     sort: str(sortとorderはセット)
+             *     order: str
              *
              * Returns
              * -----------------------
@@ -3714,7 +3871,7 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              *         完了しているかどうか
              * @returns Successful Response
              */
-            get: (option?: { config?: T | undefined } | undefined) =>
+            get: (option?: { query?: Methods_1qnirv8['get']['query'] | undefined, config?: T | undefined } | undefined) =>
               fetch<Methods_1qnirv8['get']['resBody'], BasicHeaders, Methods_1qnirv8['get']['status']>(prefix, `${prefix1}${PATH8}`, GET, option).json(),
             /**
              * 自分の質問を取得する
@@ -3723,6 +3880,11 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * -----------------------
              * user_id: int
              *     取得するユーザーのID
+             * フィルター
+             *     category: str
+             * ソート
+             *     sort: str(sortとorderはセット)
+             *     order: str
              *
              * Returns
              * -----------------------
@@ -3751,9 +3913,10 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              *         完了しているかどうか
              * @returns Successful Response
              */
-            $get: (option?: { config?: T | undefined } | undefined) =>
+            $get: (option?: { query?: Methods_1qnirv8['get']['query'] | undefined, config?: T | undefined } | undefined) =>
               fetch<Methods_1qnirv8['get']['resBody'], BasicHeaders, Methods_1qnirv8['get']['status']>(prefix, `${prefix1}${PATH8}`, GET, option).json().then(r => r.body),
-            $path: () => `${prefix}${prefix1}${PATH8}`,
+            $path: (option?: { method?: 'get' | undefined; query: Methods_1qnirv8['get']['query'] } | undefined) =>
+              `${prefix}${prefix1}${PATH8}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`,
           },
           reviews: {
             /**
@@ -3761,8 +3924,15 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              *
              * Parameters
              * -----------------------
-             * user_id:int
+             * user_id: int
              *     ユーザーのID
+             * フィルタ―
+             *     category: str
+             * ソート
+             *     sort: str(sortとorderはセット)
+             *         created_at
+             *     order: str
+             *         asc, desc
              *
              * Returns
              * -----------------------
@@ -3785,15 +3955,22 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              *         完了しているかどうか
              * @returns Successful Response
              */
-            get: (option?: { config?: T | undefined } | undefined) =>
+            get: (option?: { query?: Methods_1qnfpc0['get']['query'] | undefined, config?: T | undefined } | undefined) =>
               fetch<Methods_1qnfpc0['get']['resBody'], BasicHeaders, Methods_1qnfpc0['get']['status']>(prefix, `${prefix1}${PATH9}`, GET, option).json(),
             /**
              * 自分のレビュー一覧取得
              *
              * Parameters
              * -----------------------
-             * user_id:int
+             * user_id: int
              *     ユーザーのID
+             * フィルタ―
+             *     category: str
+             * ソート
+             *     sort: str(sortとorderはセット)
+             *         created_at
+             *     order: str
+             *         asc, desc
              *
              * Returns
              * -----------------------
@@ -3816,9 +3993,10 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              *         完了しているかどうか
              * @returns Successful Response
              */
-            $get: (option?: { config?: T | undefined } | undefined) =>
+            $get: (option?: { query?: Methods_1qnfpc0['get']['query'] | undefined, config?: T | undefined } | undefined) =>
               fetch<Methods_1qnfpc0['get']['resBody'], BasicHeaders, Methods_1qnfpc0['get']['status']>(prefix, `${prefix1}${PATH9}`, GET, option).json().then(r => r.body),
-            $path: () => `${prefix}${prefix1}${PATH9}`,
+            $path: (option?: { method?: 'get' | undefined; query: Methods_1qnfpc0['get']['query'] } | undefined) =>
+              `${prefix}${prefix1}${PATH9}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`,
           },
         };
       },

@@ -9,10 +9,10 @@
     <v-card-text>
       <v-row class="mb-3" v-if="!smAndDown" align-content="center">
         <v-col cols="3.5" class="d-flex align-center">
-          <v-select variant="outlined" :items="filters" label="フィルター" dense></v-select>
+          <v-select variant="outlined" :items="filters" label="フィルター" dense v-model="selectedFilter"></v-select>
         </v-col>
         <v-col cols="3.5" class="d-flex align-center">
-          <v-select variant="outlined" :items="sortOptions" label="質問を絞り込む" dense></v-select>
+          <v-select variant="outlined" :items="sortOptions" label="質問を絞り込む" dense v-model="selectedSort"></v-select>
         </v-col>
         <v-spacer></v-spacer>
         <v-col cols="4" class="align-center justify-end">
@@ -24,10 +24,10 @@
           <SolidButton color="#FF5A36" class="button" :fullWidth="true"  @click="$emit('switch-to-post')">質問する</SolidButton>
         </v-col>
         <v-col cols="5" class="d-flex align-center" style="height: 70px;">
-          <v-select variant="outlined" :items="filters" label="フィルター" dense></v-select>
+          <v-select variant="outlined" :items="filters" label="フィルター" dense v-model="selectedFilter"></v-select>
         </v-col>
         <v-col cols="7" class="d-flex align-center" style="height: 70px;">
-          <v-select variant="outlined" :items="sortOptions" label="質問を絞り込む" dense></v-select>
+          <v-select variant="outlined" :items="sortOptions" label="質問を絞り込む" dense v-model="selectedSort"></v-select>
         </v-col>
       </v-row>
       <div class="mt-3 mb-2" style="font-weight: bold; font-size: 24px;">このコースに関する質問 ({{ questionList.length }})</div>
@@ -69,7 +69,9 @@
 
 <script setup lang="ts">
 import { defineProps } from 'vue';
+import { useNuxtApp } from '#app';
 import { useDisplay } from 'vuetify';
+const { $api } = useNuxtApp();
 
 // 必要な Vuetify コンポーネントをインポート
 import { VAvatar, VListItem, VRow, VCol, VList, VCard, VCardText, VSelect, VSpacer, VListItemTitle, VListItemSubtitle } from 'vuetify/components';
@@ -78,8 +80,51 @@ const { smAndDown } = useDisplay();
 
 const props = defineProps<{ questionList: Array<any> }>();
 
+const questionList = ref(props.questionList);
+
 const filters = ['全カリキュラム', '現在のレクチャー'];
 const sortOptions = ['自分の質問', '未回答の質問'];
+
+const route = useRoute()
+const courseId = Number(route.params.id)
+let queryData = {}
+const selectedFilter = ref();
+watch(selectedFilter, async () => {
+  if (selectedFilter.value == filters[0]) {
+    queryData = {}
+  } else {
+    queryData = {
+      curriculum: 1 // Todo:固定値修正
+    }
+  }
+  let response = await $api.courses._course_id(courseId).questions.$get({
+    query: queryData
+  });
+  if (response.questions) {
+    questionList.value = response.questions;
+  }
+});
+
+const selectedSort = ref();
+watch(selectedSort, async () => {
+  if (selectedSort.value == sortOptions[0]) {
+    queryData = {
+      my_questions: true,
+      user_id: 11 // Todo:固定値修正
+    }
+  } else {
+    queryData = {
+      unanswered: true
+    }
+  }
+  let response = await $api.courses._course_id(courseId).questions.$get({
+    query: queryData
+  });
+  if (response.questions) {
+    questionList.value = response.questions;
+  }
+})
+
 </script>
 
 <style scoped>

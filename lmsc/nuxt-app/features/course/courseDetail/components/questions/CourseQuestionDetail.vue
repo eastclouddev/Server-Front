@@ -138,9 +138,9 @@ const submitReply = async () => {
   // 返信の送信処理を実装
   console.log(newReply.value);
 
-  const questionId = 1;
+  const questionId = 1; // Todo:固定値修正
   const replyData = {
-    user_id: 1,
+    user_id: 1, // Todo:固定値修正
     parent_answer_id: null,
     content: newReply.value.content,
     media_content: [ // Todo:media_contentはどこから取得?
