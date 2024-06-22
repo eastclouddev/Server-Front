@@ -1,6 +1,6 @@
 <template>
   <v-sheet
-    class="pl-5 pb-7 mb-9 mt-15 mx-auto"
+    class="pl-5 pb-7 mb-9 mx-auto"
     style="border-radius: 5px; border: solid 2px #ff5a36; height: 57px"
     width="100%"
   >
