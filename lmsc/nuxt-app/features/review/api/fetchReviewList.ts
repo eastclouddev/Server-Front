@@ -7,17 +7,21 @@ import type {
   Schemas__mentors__ReviewRequestListResponseBody,
 } from '~/generated/api/@types'
 
-async function fetchReviewListByRole(id: number, role: number) {
+async function fetchReviewListByRole(
+  id: number,
+  role: number,
+  sortOrder: string
+) {
   try {
     if (role === 3) {
       const response = await apiClient.students
         ._student_id_number(id)
-        .reviews.$get()
+        .reviews.$get({ sort_by: 'created_at', order: sortOrder })
       return response
     } else {
       const response = await apiClient.mentors
         ._mentor_id(id)
-        .students.reviews.$get()
+        .students.reviews.$get({ sort_by: 'created_at', order: sortOrder })
       return response
     }
   } catch (err) {
@@ -29,7 +33,11 @@ async function fetchReviewListByRole(id: number, role: number) {
   }
 }
 
-export async function fetchReviewList(id: number, role: number) {
+export async function fetchReviewList(
+  id: number,
+  role: number,
+  sortOrder: string
+) {
   const data = ref<
     | Schemas__students__ReviewRequestListResponseBody
     | Schemas__mentors__ReviewRequestListResponseBody
@@ -39,7 +47,7 @@ export async function fetchReviewList(id: number, role: number) {
   const status = ref<'pending' | 'success' | 'error'>('pending')
 
   try {
-    const response = await fetchReviewListByRole(id, role)
+    const response = await fetchReviewListByRole(id, role, sortOrder)
     data.value = response
     status.value = 'success'
   } catch (err) {

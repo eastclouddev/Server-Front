@@ -26,7 +26,7 @@
           v-model="selectedSort"
           :filterOptions="sortOptions"
           placeholderText="ソート"
-          @filter-change="filterData"
+          @filter-change="onSortChange"
         />
       </v-sheet>
 
