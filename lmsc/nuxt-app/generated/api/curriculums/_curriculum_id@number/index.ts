@@ -31,6 +31,6 @@ export type Methods = {
   get: {
     status: 200
     /** Successful Response */
-    resBody: Types.CurriculumDetailResponseBody
+    resBody: Types.Schemas__curriculums__DetailResponseBody
   }
 }
