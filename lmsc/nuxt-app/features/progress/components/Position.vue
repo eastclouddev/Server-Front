@@ -3,7 +3,7 @@ export default {
   props: {
     item: {
       type: Object,
-      title: String
+      title: String,
     },
   },
 }
@@ -12,17 +12,16 @@ export default {
 <template>
   <div class="link">
     <NuxtLink to="/dashboard" class="NuxtLink"> ダッシュボード </NuxtLink>
-    <div class="flex" >
+    <div class="flex">
       <div class="allow"></div>
     </div>
     <NuxtLink :to="item.link" class="NuxtLink"> {{ item.title }} </NuxtLink>
-    <div class="flex" >
+    <div class="flex">
       <div class="allow"></div>
     </div>
     <div class="flex">
       <p>学習進捗詳細</p>
     </div>
-    
   </div>
 </template>
 
