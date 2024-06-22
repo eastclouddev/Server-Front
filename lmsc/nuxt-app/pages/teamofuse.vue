@@ -8,5 +8,5 @@
   </v-container>
 </template>
 <script setup>
-import TeamOfUseContents from '~/features/auth/userInvitation/TeamOfUseContents.vue'
+import TeamOfUseContents from '~/features/userInvitation/TeamOfUseContents.vue'
 </script>

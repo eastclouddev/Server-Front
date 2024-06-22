@@ -4,9 +4,9 @@
     <Meta name="description" content="iDemy | 請求先情報画面" />
   </Head>
   <v-container>
-    <BillingInformationList/>
+    <BillingInformationList />
   </v-container>
 </template>
 <script setup>
-import BillingInformationList from '~/features/auth/billing/components/BillingInformationList.vue';
+import BillingInformationList from '~/features/billing/components/BillingInformationList.vue'
 </script>

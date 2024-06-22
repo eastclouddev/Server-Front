@@ -8,5 +8,5 @@
   </v-container>
 </template>
 <script setup>
-import PrivasyPolisyContents from '~/features/auth/userInvitation/PrivasyPolisyContents.vue'
+import PrivasyPolisyContents from '~/features/userInvitation/PrivasyPolisyContents.vue'
 </script>
