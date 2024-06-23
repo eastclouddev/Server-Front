@@ -4,7 +4,7 @@ import type * as Types from '../../../@types'
 export type Methods = {
   /**
    * 質問投稿作成取得
-   * 
+   *
    * Parameter
    * -----------------------
    * curriculum_id: int
@@ -14,13 +14,13 @@ export type Methods = {
    *         ユーザーのID
    *     title: str
    *         質問のタイトル
-   *     content: str 
+   *     content: str
    *         質問の内容
    *     media_content: str
    *         関連するメディアコンテンツの情報
    *         url: str
    *             メディアコンテンツのURL
-   * 
+   *
    * Returns
    * -----------------------
    * dict
@@ -32,9 +32,9 @@ export type Methods = {
    *         ユーザーのID
    *     title: str
    *         質問のタイトル
-   *     content: str 
+   *     content: str
    *         質問の内容
-   *     media_content: str 
+   *     media_content: str
    *         関連するメディアコンテンツの情報
    */
   post: {
@@ -46,12 +46,12 @@ export type Methods = {
 
   /**
    * カリキュラムの質問一覧
-   * 
+   *
    * Parameter
    * -----------------------
    * curriculum_id: int
    *     質問一覧を取得したいカリキュラムのID
-   * 
+   *
    * Returns
    * -----------------------
    * dict
@@ -63,7 +63,7 @@ export type Methods = {
    *         ユーザーのID
    *     title: str
    *         質問のタイトル
-   *     content: str 
+   *     content: str
    *         質問の内容
    *     media_content: str
    *         関連するメディアコンテンツの情報

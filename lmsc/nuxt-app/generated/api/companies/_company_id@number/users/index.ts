@@ -22,14 +22,14 @@ export type Methods = {
    * users: array
    *     user_id: int
    *         ユーザーのID
-   *     first_name: str
-   *         ユーザーの名
-   *     last_name: str
-   *         ユーザーの姓
+   *     name: str
+   *         ユーザーの名前
    *     email: str
    *         ユーザーのメールアドレス
    *     role: str
    *         ユーザーのロール
+   *     is_enable: bool
+   *         アカウントの有効状態
    *     last_login: str
    *         最終ログイン日（ISO 8601形式）
    */

@@ -18,6 +18,8 @@ export type Methods = {
    *         姓（カナ）
    *     email: str
    *         メールアドレス
+   *     is_enable: bool
+   *         アカウントの状態
    * user_id: int
    *     更新するユーザーのID
    * 
@@ -53,6 +55,10 @@ export type Methods = {
    *         姓（カナ）
    *     email: str
    *         メールアドレス
+   *     company_name: str
+   *         会社名
+   *     is_enable: bool
+   *         アカウントの状態
    *     role: str
    *         ユーザーのロール
    *     last_login: str

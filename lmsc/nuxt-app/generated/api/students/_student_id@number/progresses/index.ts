@@ -4,6 +4,7 @@ import type * as Types from '../../../@types'
 export type Methods = {
   /**
    * 現在の学習進捗
+   * 
    * Parameters
    * -----------------------
    * request: Request
