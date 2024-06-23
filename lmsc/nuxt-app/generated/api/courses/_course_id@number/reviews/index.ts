@@ -4,7 +4,7 @@ import type * as Types from '../../../@types'
 export type Methods = {
   /**
    * レビュー投稿
-   *
+   * 
    * Parameter
    * -----------------------
    * course_id: int
@@ -16,13 +16,13 @@ export type Methods = {
    *         ユーザーのID
    *     title: str
    *         レビューリクエストのタイトル
-   *     content: str
+   *     content: str 
    *         レビューリクエストの内容
    *     media_content: dict
    *         関連するメディアコンテンツの情報
    *         url: str
    *             メディアコンテンツのURL
-   *
+   * 
    * Returns
    * -----------------------
    * dict
@@ -37,7 +37,7 @@ export type Methods = {
    *             レビューを投稿したユーザーの名前
    *     title: str
    *         レビューリクエストのタイトル
-   *     content: str
+   *     content: str 
    *         レビューリクエストの内容
    *     media_content: array
    *         関連するメディアコンテンツの情報
@@ -61,12 +61,12 @@ export type Methods = {
 
   /**
    * コースのレビュー一覧
-   *
+   * 
    * Parameter
    * -----------------------
    * course_id: int
    *     レビュー一覧を取得したいコースのID
-   *
+   * 
    * Returns
    * -----------------------
    * reviews: array

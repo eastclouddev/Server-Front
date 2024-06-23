@@ -4,11 +4,11 @@ import type * as Types from '../@types'
 export type Methods = {
   /**
    * 通知一覧(管理者)
-   *
+   * 
    * Parameters
    * -----------------------
    * なし
-   *
+   * 
    * -----------------------
    * dict: array
    *     id: int
@@ -34,7 +34,7 @@ export type Methods = {
    *         通知が既読かどうか
    *     created_at: str
    *         通知が生成された日時（ISO 8601形式）
-   *
+   * 
    * explanation
    * -----------------------
    * メンターは全ての通知を取得

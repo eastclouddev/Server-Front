@@ -4,14 +4,14 @@ import type * as Types from '../@types'
 export type Methods = {
   /**
    * ニュース一覧(管理者)取得
-   *
+   * 
    * Parameters
    * -----------------------
    * page: int
    *     表示するページ
    * limit: int
    *     1ページに表示するニュース数
-   *
+   * 
    * Returns
    * -----------------------
    * news: array
@@ -37,7 +37,7 @@ export type Methods = {
 
     status: 200
     /** Successful Response */
-    resBody: Types.Schemas__news__AllResponseBody
+    resBody: Types.NewsListResponseBody
   }
 
   /**
@@ -53,7 +53,7 @@ export type Methods = {
    *         カテゴリのID
    *     published_at: str
    *         公開日（ISO 8601形式）
-   *
+   * 
    * Returns
    * -----------------------
    * dict
@@ -78,7 +78,7 @@ export type Methods = {
   post: {
     status: 201
     /** Successful Response */
-    resBody: Types.Schemas__news__CreateResponseBody
-    reqBody: Types.Schemas__news__CreateRequestBody
+    resBody: Types.NewsCreateResponseBody
+    reqBody: Types.NewsCreateRequestBody
   }
 }

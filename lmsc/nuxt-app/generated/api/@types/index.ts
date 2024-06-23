@@ -1,4 +1,10 @@
 /* eslint-disable */
+export type Account = {
+  role_id: number
+  role_name: string
+  count: number
+}
+
 export type AllResponseList = {
   id: number
   title: string
@@ -365,7 +371,7 @@ export type MentorsCountListResponseBody = {
   mentors: MentorsCountList[]
 }
 
-export type NewsBody = {
+export type News = {
   id: number
   title: string
   category: Category
@@ -476,14 +482,6 @@ export type Progress = {
   progress_percentage: number
   status: string
   last_accessed_at: string
-}
-
-export type ProgressesResponse = {
-  progresses: Progress[]
-}
-
-export type ProgressesResponseBody = {
-  progresses: ProgressesResponseList[]
 }
 
 export type ProgressesResponseList = {
@@ -696,7 +694,7 @@ export type ReviewRequestCreateRequestBody = {
   media_content: MediaContent[]
 }
 
-export type ReviewRequestBody_Output = {
+export type ReviewRequestCreateResponseBody = {
   id: number
   curriculum_id: number
   user: Schemas__courses__User
@@ -813,17 +811,7 @@ export type Section = {
   curriculums: Curriculum[]
 }
 
-export type UpdateAnswerRequestBody = {
-  content: string | null
-
-  media_content: null
-
-  is_read: boolean
-}
-
-export type UpdateAnswerResponseBody = {
-  id: number
-  question_id: number
+export type Student = {
   user_id: number
   name: string
   email: string
@@ -832,14 +820,8 @@ export type UpdateAnswerResponseBody = {
   last_login: string
 }
 
-export type UpdateQuestioinRequestBody = {
-  title: string | null
-
-  content: string | null
-
-  media_content: null
-
-  is_closed: boolean
+export type StudentListResponseBody = {
+  users: Student[]
 }
 
 export type UserCreateRequestBody = {
@@ -904,26 +886,8 @@ export type Schemas__companies__AccountListResponseBody = {
   role_counts: Account[]
 }
 
-export type Schemas__companies__ResponseList = {
-  user_id: number
-  first_name: string
-  last_name: string
-  email: string
-  role: string
-  last_login: string
-}
-
-export type Schemas__courses__AllResponseBody = {
-  courses: Course[]
-}
-
-export type Schemas__courses__DetailResponseBody = {
-  course_id: number
-  title: string
-  description: string
-  created_user_id: number
-  created_at: string
-  sections: Section[]
+export type Schemas__companies__ProgressListResponseBody = {
+  progresses: ProgressesResponseList[]
 }
 
 export type Schemas__courses__QuestionListResponseBody = {
@@ -961,32 +925,15 @@ export type Schemas__mentors__NotificationListResponseBody = {
   notifications: Schemas__mentors__Notification[]
 }
 
-export type Schemas__curriculums__ReviewResponse = {
-  id: number
-  curriculum_id: number
-  user_id: number
-  title: string
-  content: string
-  is_closed: boolean
-  created_at: string
+export type Schemas__mentors__ProgressListResponseBody = {
+  progresses: ProgressesResponseList[]
 }
 
-export type Schemas__login__RequestBody = {
-  email?: string | null | undefined
-
-  password?: string | null | undefined
-
-  device_info: DeviceInfo
+export type Schemas__mentors__QuestionListResponseBody = {
+  questions: Question[]
 }
 
-export type Schemas__login__ResponseBody = {
-  user_id: number
-  access_token: string
-  expires_in: number
-  role: string
-}
-
-export type Schemas__mentors__AllResponseBody = {
+export type Schemas__mentors__ReviewRequestListResponseBody = {
   reviews: AllResponseList[]
 }
 
@@ -1066,25 +1013,8 @@ export type Schemas__students__QuestionListResponseBody = {
   questions: Questions[]
 }
 
-export type Schemas__students__ReviewResponse = {
-  id: number
-  title: string
-  content: string
-  curriculum_id: number
-  created_at: string
-  is_read: boolean
-  is_closed: boolean
-}
-
-export type Schemas__users__DetailResponseBody = {
-  user_id: number
-  first_name: string
-  last_name: string
-  first_name_kana: string
-  last_name_kana: string
-  email: string
-  role: string
-  last_login: string
+export type Schemas__students__ReviewRequestListResponseBody = {
+  reviews: ReviewResponse[]
 }
 
 export type Schemas__students__User = {

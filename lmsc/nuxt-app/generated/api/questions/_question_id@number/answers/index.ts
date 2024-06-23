@@ -43,7 +43,7 @@ export type Methods = {
   post: {
     status: 201
     /** Successful Response */
-    resBody: Types.Schemas__questions__CreateResponseBody
-    reqBody: Types.Schemas__questions__CreateRequestBody
+    resBody: Types.AnswerCreateResponseBody
+    reqBody: Types.AnswerCreateRequestBody
   }
 }

@@ -4,7 +4,7 @@ import type * as Types from '../../@types'
 export type Methods = {
   /**
    * ニュース更新
-   *
+   * 
    * Parameters
    * -----------------------
    * news_id: int
@@ -20,7 +20,7 @@ export type Methods = {
    *         公開フラグ
    *     published_at: str
    *         公開日（ISO 8601形式）
-   *
+   * 
    * Returns
    * -----------------------
    * dict
@@ -45,7 +45,7 @@ export type Methods = {
   patch: {
     status: 200
     /** Successful Response */
-    resBody: Types.UpdateResponseBody
-    reqBody: Types.Schemas__news__RequestBody
+    resBody: Types.NewsUpdateResponseBody
+    reqBody: Types.NewsUpdateRequestBody
   }
 }
