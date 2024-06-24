@@ -127,7 +127,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps, computed } from 'vue'
+import { ref, defineProps, computed, defineEmits } from 'vue'
 import { useWindowSize } from '@vueuse/core'
 import { getAddressByPostalCode } from '~/libs/useZipCloud'
 import type { ZipCloudAddress } from '~/libs/useZipCloud'
@@ -139,6 +139,8 @@ const props = defineProps({
     default: true,
   },
 })
+
+const emits = defineEmits(['create'])
 
 const postalCodePart1 = ref('')
 const postalCodePart2 = ref('')
@@ -155,6 +157,18 @@ const searchAddress = async () => {
   if (address) {
     selected.value = prefectures.find(p => p.label === address.address1) || null
     city.value = address.address2
+
+    // データを親コンポーネントに送信
+    emitCreateEvent()
+  }
+}
+
+function emitCreateEvent() {
+  if (selected.value && city.value && postalCodePart1.value && postalCodePart2.value) {
+    const postal_code = `${postalCodePart1.value}-${postalCodePart2.value}`
+    const prefecture = selected.value.label
+    const cityValue = city.value
+    emits('create', { prefecture: prefecture, city: cityValue, postal_code: postal_code})
   }
 }
 </script>
