@@ -20,6 +20,7 @@
           label="建物名・部屋番号"
           placeholder="〇〇〇123号室"
         />
+        <CompanyStreetAddress />
         <CompanyPhoneNumber label="電話番号" placeholder="00000000000" />
         <CompanyMail label="メールアドレス" placeholder="XXXXXXX@example.com" />
         <CompanyBillingCheckButton label="請求先" />
@@ -46,6 +47,7 @@
 import CompanyName from '~/features/CompanyInfomation/components/CompanyName.vue'
 import CompanyNameFurigana from '~/features/CompanyInfomation/components/CompanyNameFurigana.vue'
 import CompanyAddress from '~/features/CompanyInfomation/components/CompanyAddress.vue'
+import CompanyStreetAddress from '~/features/CompanyInfomation/components/CompanyStreetAddress.vue'
 import CompanyBuildingRoomNumber from '~/features/CompanyInfomation/components/CompanyBuildingRoomNumber.vue'
 import CompanyPhoneNumber from '~/features/CompanyInfomation/components/CompanyPhoneNumber.vue'
 import CompanyMail from '~/features/CompanyInfomation/components/CompanyMail.vue'
