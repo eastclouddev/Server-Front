@@ -1,5 +1,5 @@
 import { defineEventHandler, readBody } from 'h3'
-import { uploadFileToS3 } from '../util/s3Upload'
+import { uploadFileToS3 } from '@/libs/s3Upload'
 
 interface UploadRequestBody {
   file: {
@@ -18,13 +18,14 @@ export default defineEventHandler(async event => {
   }
 
   const buffer = Buffer.from(file.content, 'base64')
-  const bucketName = process.env.CUSTOM_AWS_S3_BUCKET as string
-  const key = `${directory}/${Date.now()}_${file.name}`
+  const filePath = `${directory}/${Date.now()}_${file.name}`
 
   try {
-    await uploadFileToS3(bucketName, key, buffer)
-    return { success: true, message: 'File uploaded successfully' }
-  } catch (error) {
+    await uploadFileToS3(buffer, filePath)
+    const fileUrl = `https://${process.env.CUSTOM_AWS_S3_BUCKET}.s3.${process.env.CUSTOM_AWS_REGION}.amazonaws.com/${filePath}`
+    return { success: true, url: fileUrl }
+  } catch (error: unknown) {
+    console.error('Error uploading file:', error)
     return { success: false, message: (error as Error).message }
   }
 })

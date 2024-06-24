@@ -1,7 +1,7 @@
 import {
   S3Client,
   PutObjectCommand,
-  PutObjectCommandOutput,
+  type PutObjectCommandOutput,
 } from '@aws-sdk/client-s3'
 
 const s3Client = new S3Client({
