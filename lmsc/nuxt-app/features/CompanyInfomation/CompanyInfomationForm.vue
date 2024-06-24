@@ -20,7 +20,10 @@
           label="建物名・部屋番号"
           placeholder="〇〇〇123号室"
         />
-        <CompanyStreetAddress />
+        <CompanyStreetAddress 
+          label="番地"
+          placeholder="0-00-000"
+        />
         <CompanyPhoneNumber label="電話番号" placeholder="00000000000" />
         <CompanyMail label="メールアドレス" placeholder="XXXXXXX@example.com" />
         <CompanyBillingCheckButton label="請求先" />

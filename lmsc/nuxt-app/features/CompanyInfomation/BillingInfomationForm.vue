@@ -7,8 +7,8 @@
         <v-divider class="#CFCFCF" thickness="1"></v-divider>
         <v-card flat style="margin:10% 0;"> 
         <BillingAddress />
-        <BillingStreetAddress label="番地" placeholder="0-00-000" />
         <BillingBuildingRoomNumber label="建物名・部屋番号" placeholder="〇〇〇123号室"/>
+        <BillingStreetAddress label="番地" placeholder="0-00-000" />
         <BillingPhoneNumber label="電話番号" placeholder="00000000000"/>
         <BillingMail label="メールアドレス" placeholder="XXXXXXX@example.com"/>
         <BillingInvoice label="インボイス番号" placeholder="0-00-000"/>
