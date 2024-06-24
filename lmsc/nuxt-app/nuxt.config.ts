@@ -1,7 +1,15 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
-
 import VuetifyPlugin from 'vite-plugin-vuetify'
-import { VueQueryPlugin } from '@tanstack/vue-query'
+import { config as loadEnvConfig } from 'dotenv'
+
+loadEnvConfig()
+
+console.log('CUSTOM_AWS_ACCESS_KEY_ID:', process.env.CUSTOM_AWS_ACCESS_KEY_ID)
+console.log(
+  'CUSTOM_AWS_SECRET_ACCESS_KEY:',
+  process.env.CUSTOM_AWS_SECRET_ACCESS_KEY
+)
+console.log('CUSTOM_AWS_REGION:', process.env.CUSTOM_AWS_REGION)
+console.log('CUSTOM_AWS_S3_BUCKET:', process.env.CUSTOM_AWS_S3_BUCKET)
 
 export default defineNuxtConfig({
   devtools: {
@@ -32,10 +40,6 @@ export default defineNuxtConfig({
       path: '~/features/**/components',
       pathPrefix: false,
     },
-    {
-      path: '~/features/**/components/**',
-      pathPrefix: false,
-    },
   ],
   vite: {
     ssr: {
@@ -47,13 +51,25 @@ export default defineNuxtConfig({
     plugins: [VuetifyPlugin()],
   },
   plugins: ['~/plugins/api', '~/plugins/vuetify', '~/plugins/vue-query'],
-  vite: {
-    ssr: {
-      noExternal: ['vuetify'],
+  postcss: {
+    plugins: {
+      'postcss-import': {},
+      'tailwindcss/nesting': {},
+      tailwindcss: {},
+      autoprefixer: {},
     },
-    define: {
-      'process.env.DEBUG': false,
+  },
+  runtimeConfig: {
+    customAwsAccessKeyId: process.env.CUSTOM_AWS_ACCESS_KEY_ID,
+    customAwsSecretAccessKey: process.env.CUSTOM_AWS_SECRET_ACCESS_KEY,
+    customAwsRegion: process.env.CUSTOM_AWS_REGION,
+    customAwsS3Bucket: process.env.CUSTOM_AWS_S3_BUCKET,
+    public: {
+      mode: process.env.NUXT_PUBLIC_MODE,
+      isDev: process.env.NUXT_PUBLIC_DEV,
+      isProd: process.env.NUXT_PUBLIC_PROD,
+      serviceUrl: process.env.NUXT_PUBLIC_SERVICE_URL,
+      apiEndpoint: process.env.API_URL,
     },
-    plugins: [VuetifyPlugin()],
   },
 })
