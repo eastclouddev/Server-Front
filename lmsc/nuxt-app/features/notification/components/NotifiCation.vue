@@ -15,71 +15,54 @@
         </v-list-item-title>
       </v-list-item>
       <v-sheet class="ma-4">
-        <NuxtLink :to="`/${message.url}`" class="d-flex align-start pt-4" style="text-decoration: none; color:#242424;" v-for="(message, index) in messages.slice(0, 4)" :key="index">
-          <div>
-            <v-avatar v-if="message.unread" size="40">
-              <v-badge bordered bottom color="#FF5A36" dot offset-x="25" offset-y="25">
-                <img src="/assets/accountcircle.svg" alt="account">
-              </v-badge>
-            </v-avatar>
-            <v-avatar v-else size="40">
-              <img src="/assets/accountcircle.svg" alt="account">
-            </v-avatar>
+        <div v-if="messages.length === 0" class="d-flex flex-column  justify-center" style="height: 80px;">
+          <span>新しいお知らせはありません。</span>
+          <NuxtLink  @click="toggleMenu" style="display: flex; justify-content: flex-end; color:#242424; cursor:pointer; text-decoration: underline;"
+            class="mt-2 mb-2">閉じる</NuxtLink>
+        </div>
+        <div v-else>
+          <div v-for="(message, index) in messages.slice(0, 4)" :key="index">
+            <NuxtLink :to="`/${message.url}`" class="d-flex align-start pt-4" style="text-decoration: none; color:#242424;">
+              <div>
+                <v-avatar v-if="message.unread" size="40">
+                  <v-badge bordered bottom color="#FF5A36" dot offset-x="25" offset-y="25">
+                    <img :src="message.icon" alt="account" />
+                  </v-badge>
+                </v-avatar>
+                <v-avatar v-else size="40">
+                  <img :src="message.icon" alt="account" />
+                </v-avatar>
+              </div>
+              <div class="pl-3">
+                <p style="font-size:0.9em;">{{ message.category }}</p>
+                <v-list-item-title style="font-weight:bold; font-size:0.9em;">{{ truncateText(message.title, 12) }}</v-list-item-title>
+                <p style="font-size:0.9em;">{{ message.content }}</p>
+                <p style="font-size:0.8em; color:#BFBFBF;" class="pb-2">{{ calculateTime(message.date) }}</p>
+                <v-divider color="#BFBFBF"></v-divider>
+              </div>
+            </NuxtLink>
           </div>
-          <div class="pl-3">
-            <p style="font-size:0.9em;">{{ message.category }}</p>
-            <v-list-item-title style="font-weight:bold; font-size:0.9em;">{{ truncateText(message.title,12) }}</v-list-item-title>
-            <p style="font-size:0.9em;">{{ message.content }}</p>
-            <p style="font-size:0.8em; color:#BFBFBF;" class="pb-2">{{ calculateTime(message.date) }}</p>
-            <v-divider color="#BFBFBF"></v-divider>
-          </div>
-        </NuxtLink>
-        <NuxtLink to="/" style="display: flex; justify-content: flex-end; color:#242424;" class="mt-2 mb-2">すべて表示</NuxtLink>
+          <NuxtLink to="/" style="display: flex; justify-content: flex-end; color:#242424; cursor: pointer;" class="mt-2 mb-2">
+          すべて表示
+          </NuxtLink>
+        </div>
       </v-sheet>
     </v-list>
   </v-menu>
 </template>
 
 <script>
+import { fetchNotifications } from '~/features/notification/api/getNotifi.ts';
+import AccountIcon from '~/assets/accountcircle.svg';
+
 export default {
   name: 'ToolbarMenu',
   data() {
     return {
       menu: false,
-      messages: [
-        {
-          title: 'コードが正しく反映されないのでレビューを依頼します。',
-          content: 'メンターからの返信が来ています',
-          category: 'Python',
-          date: '2024-05-01T12:30:00',
-          url: '/',
-          unread: true // 未読のメッセージ
-        },
-        {
-          title: 'コードが正しく反映されないのでレビューを依頼します。',
-          content: 'メンターからの返信が来ています',
-          category: 'PHP',
-          date: '2024-05-02T10:45:00',
-          url: '/',
-          unread: true // 未読のメッセージ
-        },
-        {
-          title: 'コードが正しく反映されないのでレビューを依頼します。',
-          content: 'メンターからの返信が来ています',
-          category: 'Obj-c',
-          date: '2024-05-03T15:20:00',
-          url: '/',
-          unread: true // 既読
-        },
-        {
-          title: 'コードが正しく反映されないのでレビューを依頼します。',
-          content: 'メンターからの返信が来ています',
-          category: 'Obj-c',
-          date: '2024-05-04T09:10:00',
-          url: '/',
-          unread: false // 既読
-        },
-      ]
+      messages: [],
+      userRole: 1, // 例として1（admin）を使用
+      userId: 1 // 例としてユーザーID 1を使用
     }
   },
   computed: {
@@ -106,7 +89,30 @@ export default {
     },
     unreadMessagesCount() {
       return this.messages.filter(message => message.unread).length;
+    },
+    async loadNotifications() {
+      try {
+        const data = await fetchNotifications(this.userRole, this.userId);
+        console.log('Fetched data:', data);
+
+        if (data && Array.isArray(data.notifications)) {
+          this.messages = data.notifications.map(notification => ({
+            icon: AccountIcon,
+            title: notification.title,
+            content: notification.content,
+            date: notification.created_at,
+            url: `/notifications/${notification.id}`,
+            unread: !notification.is_read,
+          }));
+          console.log(this.messages);
+        }
+      } catch (error) {
+        console.error('エラー設定:', error.config);
+      }
     }
+  },
+  created() {
+    this.loadNotifications();
   },
   beforeRouteLeave(to, from, next) {
     this.messages.forEach((message, index) => {
