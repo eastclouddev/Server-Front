@@ -2,13 +2,13 @@
     <v-container class="" fill-height>
       <v-row justify="center">
         <span class="sp_a" style="color: #000000DE; font-size: 17px;">個人情報は</span>
-        <a class="sp_a" style="color: #000000DE; font-size: 17px;"  href="http://localhost:3000/privasypolisy" target="_blank">プライバシーポリシー</a>
+        <a class="sp_a" style="color: #000000DE; font-size: 17px;"  href="http://localhost:3000//privacy" target="_blank">プライバシーポリシー</a>
         <span class="sp_a" style="color: #000000DE; font-size: 17px;">に従って取り扱いします。</span>
       </v-row>
       <v-row justify="center">
         <v-checkbox class="sp_checkbox"></v-checkbox>
         <div style="padding-top: 16px">
-          <a class="sp_a" style="color: #000000DE; font-size: 17px;"  href="http://localhost:3000/teamofuse" target="_blank">利用規約</a>
+          <a class="sp_a" style="color: #000000DE; font-size: 17px;"  href="http://localhost:3000/term" target="_blank">利用規約</a>
           <span class="sp_a" style="color: #000000DE; font-size: 17px;" >に同意する</span>
         </div>
       </v-row>
