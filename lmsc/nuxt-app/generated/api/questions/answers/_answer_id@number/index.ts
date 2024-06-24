@@ -39,7 +39,7 @@ export type Methods = {
   patch: {
     status: 200
     /** Successful Response */
-    resBody: Types.UpdateAnswerResponseBody
-    reqBody: Types.UpdateAnswerRequestBody
+    resBody: Types.AnswerUpdateResponseBody
+    reqBody: Types.AnswerUpdateRequestBody
   }
 }

@@ -16,6 +16,8 @@ export type Methods = {
    *         会社のID（int）
    *     name: str
    *         会社名
+   *     name_kana: str
+   *         会社名のフリガナ
    *     prefecture: str
    *         都道府県
    *     city: str
@@ -36,7 +38,7 @@ export type Methods = {
   get: {
     status: 200
     /** Successful Response */
-    resBody: Types.Schemas__companies__AllResponseBody
+    resBody: Types.CompanyListResponseBody
   }
 
   /**
@@ -47,6 +49,8 @@ export type Methods = {
    * dict
    *     name: str
    *         会社名
+   *     name_kana: str
+   *         会社名フリガナ
    *     prefecture: str
    *         都道府県
    *     city: str
@@ -69,6 +73,8 @@ export type Methods = {
    *         新しく作成された会社のID
    *     name: str
    *         会社名
+   *     name_kana: str
+   *         会社名フリガナ
    *     prefecture: str
    *         都道府県
    *     city: str
@@ -87,7 +93,7 @@ export type Methods = {
   post: {
     status: 200
     /** Successful Response */
-    resBody: Types.Schemas__companies__CreateResponseBody
-    reqBody: Types.Schemas__companies__CreateRequestBody
+    resBody: Types.CompanyCreateResponseBody
+    reqBody: Types.CompanyCreateRequestBody
   }
 }

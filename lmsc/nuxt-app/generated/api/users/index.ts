@@ -19,14 +19,16 @@ export type Methods = {
    * users: array
    *     user_id: int
    *         ユーザーのID
-   *     first_name: str
-   *         名前
-   *     last_name: str
-   *         姓
+   *     name: str
+   *         ユーザーの名前
+   *     company_name: str
+   *         ユーザーの所属会社
    *     email: str
    *         メールアドレス
    *     role: str
    *         ユーザーの役割
+   *     is_enable: bool
+   *         アカウントの有効状態
    *     last_login: str
    *         最終ログイン日時（ISO 8601形式）
    */
@@ -39,6 +41,6 @@ export type Methods = {
 
     status: 200
     /** Successful Response */
-    resBody: Types.UserResponseBody
+    resBody: Types.UserListResponseBody
   }
 }

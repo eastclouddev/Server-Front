@@ -3,7 +3,7 @@ import type * as Types from '../@types'
 
 export type Methods = {
   /**
-   * ニュース一覧取得
+   * ニュース一覧(管理者)取得
    * 
    * Parameters
    * -----------------------
@@ -16,19 +16,18 @@ export type Methods = {
    * -----------------------
    * news: array
    *     id: int
-   *         ニュースのID
+   *         取得したニュースのID
    *     title: str
    *         ニュースのタイトル
+   *     category: array
+   *         categoey_id: int
+   *             カテゴリのID
+   *         category_name: str
+   *             カテゴリのID
    *     published_at: str
    *         ニュースの公開日（ISO 8601形式）
-   * page: int
-   *     表示するページ
-   * limit: int
-   *     1ページに表示するニュース数
-   * total_page: int
-   *     全ページ数
-   * total_news: int
-   *     全ニュース数
+   *     is_published: bool
+   *         ニュース公開状態
    */
   get: {
     query: {
@@ -38,7 +37,7 @@ export type Methods = {
 
     status: 200
     /** Successful Response */
-    resBody: Types.Schemas__news__AllResponseBody
+    resBody: Types.NewsListResponseBody
   }
 
   /**
@@ -50,22 +49,27 @@ export type Methods = {
    *         作成するニュースのタイトル
    *     content: str
    *         作成するニュースの本文
-   *     is_published: bool
-   *         公開フラグ
+   *     category_id: int
+   *         カテゴリのID
    *     published_at: str
    *         公開日（ISO 8601形式）
    * 
    * Returns
    * -----------------------
    * dict
-   *     id: int
-   *         作成されたニュースのID
+   *     news_id: int
+   *         ニュースのID
    *     title: str
-   *         作成されたニュースのタイトル
+   *         ニュースのタイトル
    *     content: str
-   *         作成されたニュースの内容
+   *         ニュースの本文
+   *     category: array
+   *         category_id: int
+   *             カテゴリのID
+   *         category_name: str
+   *             カテゴリの名前
    *     is_published: bool
-   *         ニュースの公開フラグ
+   *         ニュース公開状態
    *     published_at: str
    *         ニュースの公開日（ISO 8601形式）
    *     created_at: str
@@ -74,7 +78,7 @@ export type Methods = {
   post: {
     status: 201
     /** Successful Response */
-    resBody: Types.Schemas__news__CreateResponseBody
-    reqBody: Types.Schemas__news__CreateRequestBody
+    resBody: Types.NewsCreateResponseBody
+    reqBody: Types.NewsCreateRequestBody
   }
 }

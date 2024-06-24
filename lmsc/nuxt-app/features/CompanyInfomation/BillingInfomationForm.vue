@@ -7,6 +7,7 @@
         <v-divider class="#CFCFCF" thickness="1"></v-divider>
         <v-card flat style="margin:10% 0;"> 
         <BillingAddress />
+        <BillingStreetAddress label="番地" placeholder="0-00-000" />
         <BillingBuildingRoomNumber label="建物名・部屋番号" placeholder="〇〇〇123号室"/>
         <BillingPhoneNumber label="電話番号" placeholder="00000000000"/>
         <BillingMail label="メールアドレス" placeholder="XXXXXXX@example.com"/>
@@ -26,6 +27,7 @@
 
 <script setup>
 import BillingAddress from "~/features/CompanyInfomation/components/BillingAddress.vue";
+import BillingStreetAddress from "~/features/CompanyInfomation/components/BillingStreetAddress.vue";
 import BillingBuildingRoomNumber from "~/features/CompanyInfomation/components/BillingBuildingRoomNumber.vue";
 import BillingPhoneNumber from "~/features/CompanyInfomation/components/BillingPhoneNumber.vue";
 import BillingMail from "~/features/CompanyInfomation/components/BillingMail.vue";
