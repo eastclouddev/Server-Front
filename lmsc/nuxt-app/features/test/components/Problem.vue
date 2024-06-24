@@ -58,18 +58,23 @@ const selectAns = ref(Array(ques.value.length).fill(null))
 let answerData = ref(new Array)
 answerData = answers.value[0]
 
+// スキップボタンの表示切替
+let isActive = true;
+
 const NextQue = () => {
   queNum.value += 1
   answerData = answers.value[queNum.value - 1]; // 選択肢の切替
+  if (queNum.value == ques.value.length) {
+    isActive = false;
+  }
 }
 
 const BackQue = () => {
   queNum.value -= 1
   answerData = answers.value[queNum.value - 1]; // 選択肢の切替
-}
-
-const test = () => {
-  console.log(selectAns)
+  if (queNum.value != ques.value.length) {
+    isActive = true;
+  }
 }
 
 const ansFlag = ref(new Array(ques.value.length).fill(-1))
@@ -170,7 +175,7 @@ const Scoring = () => {
             </v-btn>
           </v-card-actions>
           <v-card-actions class="Btns">
-            <v-btn class="skip" @click="NextQue">スキップ</v-btn>
+            <v-btn class="skip" @click="NextQue" v-show="isActive">スキップ</v-btn>
             <v-btn class="checkAns" @click="Scoring">解答を見る</v-btn>
           </v-card-actions>
         </v-card>
