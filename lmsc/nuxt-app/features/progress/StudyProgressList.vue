@@ -17,7 +17,7 @@
           <Mentor />
         </template>
         <template v-else-if="userRole === 4">
-          <Corporation />
+          <Corporation :userRole="userRole"/>
         </template>
         
       </v-card>
@@ -25,7 +25,7 @@
   </template>
 
 <script>
-import { defineAsyncComponent } from 'vue';    
+import { defineAsyncComponent } from 'vue';
 import { useUserStore } from '~/store/user.ts';
 import Position from '~/features/CompanyInfomation/components/PositionInfo.vue';
 

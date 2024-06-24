@@ -3,8 +3,8 @@
           
           <SearchForm />
         <template v-if="filteredList.length > 0">
-          <PcProgressTable :filteredList="filteredList" />
-          <SpProgressTable :filteredList="filteredList" />
+          <PcProgressTable :filteredList="filteredList" :childUserRole="userRole" />
+          <SpProgressTable :filteredList="filteredList" :childUserRole="userRole" />
 
         </template>
         <template v-else>
@@ -20,6 +20,13 @@ import SpProgressTable from "~/features/progress/components/SpProgressTable.vue"
 import PcProgressTable from "~/features/progress/components/PcProgressTable.vue";
 
 export default {
+  props: {
+    userRole: {
+      type: Number,
+      default: null,
+      required: true
+    }
+  },
   components: {
     PcProgressTable,
     SpProgressTable,
