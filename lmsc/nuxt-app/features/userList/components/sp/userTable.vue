@@ -24,7 +24,11 @@ const isVisible = ref<{
       <div class="row">
         <div class="col" :class="{ full: props.role !== '管理者' }">
           <div class="header">名前</div>
-          <div class="item">{{ user.name }}</div>
+          <div class="item">
+            <NuxtLink to="" class="NuxtLink">
+              {{ user.name }}
+            </NuxtLink>
+          </div>
         </div>
         <div class="col" v-if="props.role === '管理者'">
           <div class="header">所属会社</div>
@@ -105,6 +109,11 @@ const isVisible = ref<{
             font-size: 24px;
             font-weight: 400;
             line-height: 32.69px;
+            .NuxtLink {
+              &:visited {
+                color: #242424;
+              }
+            }
           }
         }
       }

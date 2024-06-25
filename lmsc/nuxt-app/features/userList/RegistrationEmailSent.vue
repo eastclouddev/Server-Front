@@ -20,7 +20,7 @@ import Mail_Icon from '~/assets/SendEmail.svg'
         <img :src="Mail_Icon" alt="MailIcon" />
       </div>
       <v-btn>
-        <NuxtLink class="NuxtLink">戻る</NuxtLink>
+        <NuxtLink to="/userList" class="NuxtLink">戻る</NuxtLink>
       </v-btn>
     </div>
   </main>

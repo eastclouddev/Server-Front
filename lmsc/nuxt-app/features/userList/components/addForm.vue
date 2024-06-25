@@ -99,7 +99,11 @@ const selectedRole = ref('')
       </div>
     </div>
     <div class="btn">
-      <v-btn>ユーザーを追加する</v-btn>
+      <v-btn>
+        <NuxtLink class="NuxtLink" to="/userList/confirmation">
+          ユーザーを追加する
+        </NuxtLink>
+      </v-btn>
     </div>
   </v-container>
 </template>
@@ -156,12 +160,21 @@ const selectedRole = ref('')
       border-radius: 5px 5px;
       box-shadow: 3px 3px 10px 0 #f2eeee40;
       color: #fff;
-      width: 400px;
-      height: 48px;
-      * {
+      height: auto;
+      margin-bottom: 120px;
+      .NuxtLink {
+        display: inline-block;
+        width: 400px;
+        height: 48px;
+        text-align: center;
         font-size: 18px;
         font-weight: 700;
-        line-height: 24.52px;
+        line-height: 48px;
+        color: #fff;
+        text-decoration: none;
+        &:visited {
+          color: #fff;
+        }
       }
     }
   }
@@ -216,9 +229,11 @@ const selectedRole = ref('')
       .v-btn {
         width: 548px;
         height: 95px;
-        * {
+        .NuxtLink {
+          width: 548px;
+          height: 95px;
           font-size: 32px;
-          line-height: 43.58px;
+          line-height: 95px;
         }
       }
     }

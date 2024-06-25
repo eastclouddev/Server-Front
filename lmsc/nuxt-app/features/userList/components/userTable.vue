@@ -43,7 +43,11 @@ const isVisible = ref<{
             :style="{ display: flag === false ? 'none' : '' }"
             :class="{ center: i === 3, centerText: i === 4 }"
           >
-            <template v-if="i === 0">{{ user.name }}</template>
+            <template v-if="i === 0">
+              <NuxtLink to="" class="NuxtLink">
+                {{ user.name }}
+              </NuxtLink>
+            </template>
             <template v-else-if="i === 1">{{ user.company }}</template>
             <template v-else-if="i === 2">{{ user.email }}</template>
             <template v-else-if="i === 3">
@@ -149,7 +153,7 @@ $widths: (
     }
     .spacer-row {
       height: 8px;
-      td {
+      tr {
         padding: 0;
         border: none;
       }
@@ -159,6 +163,11 @@ $widths: (
       white-space: nowrap;
       padding: 16px;
       height: 50px;
+      .NuxtLink {
+        &:visited {
+          color: #242424;
+        }
+      }
       div {
         color: #fff;
         border-radius: 5px;
