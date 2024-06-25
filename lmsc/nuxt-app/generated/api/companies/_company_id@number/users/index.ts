@@ -14,8 +14,11 @@ export type Methods = {
    * limit: int
    *     1ページ当たりの記事数
    * 
+   * 
    * Returns
    * -----------------------
+   * {"users": users_list} : dic{}
+   *                 受け取ったroleと一致するユーザー全員の情報
    * users: array
    *     user_id: int
    *         ユーザーのID
@@ -39,6 +42,6 @@ export type Methods = {
 
     status: 200
     /** Successful Response */
-    resBody: Types.StudentListResponseBody
+    resBody: Types.Schemas__companies__ResponseBody
   }
 }

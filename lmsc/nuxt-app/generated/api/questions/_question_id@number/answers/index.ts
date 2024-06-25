@@ -27,7 +27,7 @@ export type Methods = {
   post: {
     status: 201
     /** Successful Response */
-    resBody: Types.AnswerCreateResponseBody
-    reqBody: Types.AnswerCreateRequestBody
+    resBody: Types.Schemas__questions__CreateResponseBody
+    reqBody: Types.Schemas__questions__CreateRequestBody
   }
 }

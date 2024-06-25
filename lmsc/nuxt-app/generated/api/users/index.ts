@@ -39,6 +39,6 @@ export type Methods = {
 
     status: 200
     /** Successful Response */
-    resBody: Types.UserListResponseBody
+    resBody: Types.UserResponseBody
   }
 }
