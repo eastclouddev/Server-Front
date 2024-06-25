@@ -6,7 +6,7 @@
       </v-btn>
       <v-spacer></v-spacer>
       <div class="toolbar-actions" v-if="isAuthenticated">
-        <NotifiCation />
+        <NotifiCation v-if="showNotification" />
         <HamburgerMenu />
       </div>
     </v-toolbar>
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { useUserStore } from '~/store/user';
+import { useUserStore } from '~/store/user.ts';
 import NotifiCation from '~/features/notification/components/NotifiCation.vue';
 import HamburgerMenu from '~/features/menu/components/HamburgerMenu.vue';
 
@@ -27,6 +27,13 @@ export default {
     isAuthenticated() {
       const userStore = useUserStore();
       return userStore.isAuthenticated;
+    },
+    userRole() {
+      const userStore = useUserStore();
+      return userStore.user.role_id;
+    },
+    showNotification() {
+      return this.userRole !== 4 && this.userRole !== 5;
     }
   }
 };

@@ -17,7 +17,7 @@
       <template v-else-if="userRole === 3">
         <DashboardStudent />
       </template>
-      <template v-else-if="userRole === 4">
+      <template v-else-if="userRole === 4 || userRole === 5">
         <DashboardCorporation />
       </template>
       <template v-else>
@@ -46,11 +46,11 @@ export default {
   computed: {
     userRole() {
       const userStore = useUserStore();
-      return userStore.userRole;
+      return userStore.user.role_id; // ユーザーロールを取得
     },
     loggedInUsername() {
       const userStore = useUserStore();
-      return userStore.userName;
+      return userStore.user.first_name + ' ' + userStore.user.last_name; // フルネームを取得
     },
     welcomeMessage() {
       return `${this.loggedInUsername} さんおかえりなさい`;

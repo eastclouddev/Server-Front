@@ -72,6 +72,7 @@ const roleMap = {
   mentor: 2,
   student: 3,
   corporation: 4,
+  Actingdirector: 5
 };
 
 const handleSubmit = async () => {

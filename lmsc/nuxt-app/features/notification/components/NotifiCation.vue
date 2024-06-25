@@ -54,6 +54,7 @@
 import { fetchNotifications } from '~/features/notification/api/getNotifi.ts';
 import { markNotificationAsRead } from '~/features/notification/api/patchNotifi.ts';
 import AccountIcon from '~/assets/accountcircle.svg';
+import { useUserStore } from '~/store/user.ts';
 
 export default {
   name: 'ToolbarMenu',
@@ -61,13 +62,19 @@ export default {
     return {
       menu: false,
       messages: [],
-      userRole: 1, // 例として1（admin）を使用
-      userId: 1 // 例としてユーザーID 1を使用
     }
   },
   computed: {
     menuStyle() {
       return window.innerWidth <= 768 ? 'width: 100%; top: 50px;' : 'top: 50px;';
+    },
+    userRole() {
+      const userStore = useUserStore();
+      return userStore.user.role_id;
+    },
+    userId() {
+      const userStore = useUserStore();
+      return userStore.user.id;
     }
   },
   methods: {
@@ -138,6 +145,7 @@ export default {
     right: 350px;
   }
 }
+
 @media screen and (max-width: 768px) {
 .v-overlay-container {
   .v-overlay {

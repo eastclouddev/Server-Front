@@ -1,7 +1,9 @@
 <template>
   <v-menu flat v-model="menu" style="top: 50px" width="18rem">
     <template v-slot:activator>
-      <v-app-bar-nav-icon @click="toggleMenu" style="border-radius: 0"></v-app-bar-nav-icon>
+      <v-btn icon @click="toggleMenu" style="border-radius: 0">
+        <v-icon>{{ menu ? 'mdi-close' : 'mdi-menu' }}</v-icon>
+      </v-btn>
     </template>
     <v-list>
       <v-list-item>
@@ -61,17 +63,17 @@ export default {
   computed: {
     userRole() {
       const userStore = useUserStore();
-      return userStore.userRole;
+      return userStore.user.role_id;
     },
     userName() {
       const userStore = useUserStore();
-      console.log('User Name:', userStore.userName); // ユーザー名をログに出力
-      return userStore.userName;
+      console.log('User Name:', userStore.user.first_name + ' ' + userStore.user.last_name);
+      return userStore.user.first_name + ' ' + userStore.user.last_name;
     },
     userEmail() {
       const userStore = useUserStore();
-      console.log('User Email:', userStore.userEmail); // メールアドレスをログに出力
-      return userStore.userEmail;
+      console.log('User Email:', userStore.user.email);
+      return userStore.user.email;
     }
   },
   methods: {
