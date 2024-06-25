@@ -1,5 +1,5 @@
 <template>
-  <v-menu flat v-model="menu" style="top: 50px" width="18rem">
+  <v-menu flat v-model="menu" width="18rem">
     <template v-slot:activator>
       <v-btn icon @click="toggleMenu" style="border-radius: 0">
         <v-icon>{{ menu ? 'mdi-close' : 'mdi-menu' }}</v-icon>
@@ -39,7 +39,9 @@
 </template>
 
 <script>
+import { computed, ref, watch } from 'vue';
 import { useUserStore } from '~/store/user.ts';
+import { useGetUser } from '~/features/plofile/api/getProfile.ts';
 import MenuStudent from "~/features/menu/components/MenuStudent.vue";
 import MenuCorporation from "~/features/menu/components/MenuCorporation.vue";
 import MenuActingdirector from "~/features/menu/components/MenuActingdirector.vue";
@@ -55,38 +57,42 @@ export default {
     MenuMentor,
     MenuAdmin,
   },
-  data() {
-    return {
-      menu: false,
+  setup() {
+    const userStore = useUserStore();
+    const menu = ref(false);
+    const userId = computed(() => userStore.user.id);
+
+    const { data: userData, error, status } = useGetUser(userId.value);
+
+    const userRole = computed(() => userStore.userRole);
+    const userName = computed(() => userData.value?.first_name + ' ' + userData.value?.last_name);
+    const userEmail = computed(() => userData.value?.email);
+
+    const toggleMenu = () => {
+      menu.value = !menu.value;
     };
-  },
-  computed: {
-    userRole() {
-      const userStore = useUserStore();
-      return userStore.user.role_id;
-    },
-    userName() {
-      const userStore = useUserStore();
-      console.log('User Name:', userStore.user.first_name + ' ' + userStore.user.last_name);
-      return userStore.user.first_name + ' ' + userStore.user.last_name;
-    },
-    userEmail() {
-      const userStore = useUserStore();
-      console.log('User Email:', userStore.user.email);
-      return userStore.user.email;
-    }
-  },
-  methods: {
-    toggleMenu() {
-      this.menu = !this.menu;
-    },
-  },
+
+    watch(menu, (newVal) => {
+      if (newVal) {
+        useGetUser(userId.value);
+      }
+    });
+
+    return {
+      menu,
+      userRole,
+      userName,
+      userEmail,
+      toggleMenu,
+    };
+  }
 };
 </script>
 
 <style scoped lang="scss">
 .v-overlay-container {
   .v-overlay {
+    top: 50px;
     left: auto;
     right: 300px;
   }
