@@ -15,14 +15,13 @@
         </v-list-item-title>
       </v-list-item>
       <v-sheet class="ma-4">
-        <div v-if="messages.length === 0" class="d-flex flex-column  justify-center" style="height: 80px;">
+        <div v-if="messages.length === 0" class="d-flex flex-column justify-center" style="height: 80px;">
           <span>新しいお知らせはありません。</span>
-          <NuxtLink  @click="toggleMenu" style="display: flex; justify-content: flex-end; color:#242424; cursor:pointer; text-decoration: underline;"
-            class="mt-2 mb-2">閉じる</NuxtLink>
+          <NuxtLink @click="toggleMenu" style="display: flex; justify-content: flex-end; color:#242424; cursor:pointer; text-decoration: underline;" class="mt-2 mb-2">閉じる</NuxtLink>
         </div>
         <div v-else>
           <div v-for="(message, index) in messages.slice(0, 4)" :key="index">
-            <NuxtLink :to="`/${message.url}`" class="d-flex align-start pt-4" style="text-decoration: none; color:#242424;">
+            <NuxtLink :to="`/${message.url}`" class="d-flex align-start pt-4" style="text-decoration: none; color:#242424;" @click.native="markAsRead(message.id, index)">
               <div>
                 <v-avatar v-if="message.unread" size="40">
                   <v-badge bordered bottom color="#FF5A36" dot offset-x="25" offset-y="25">
@@ -43,7 +42,7 @@
             </NuxtLink>
           </div>
           <NuxtLink to="/" style="display: flex; justify-content: flex-end; color:#242424; cursor: pointer;" class="mt-2 mb-2">
-          すべて表示
+            すべて表示
           </NuxtLink>
         </div>
       </v-sheet>
@@ -53,6 +52,7 @@
 
 <script>
 import { fetchNotifications } from '~/features/notification/api/getNotifi.ts';
+import { markNotificationAsRead } from '~/features/notification/api/patchNotifi.ts';
 import AccountIcon from '~/assets/accountcircle.svg';
 
 export default {
@@ -84,8 +84,13 @@ export default {
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       return `${days}日前`;
     },
-    markAsRead(messageIndex) {
-      this.messages[messageIndex].unread = false;
+    async markAsRead(messageId, messageIndex) {
+      try {
+        await markNotificationAsRead(messageId);
+        this.messages[messageIndex].unread = false;
+      } catch (error) {
+        console.error('Error marking notification as read:', error);
+      }
     },
     unreadMessagesCount() {
       return this.messages.filter(message => message.unread).length;
@@ -97,6 +102,7 @@ export default {
 
         if (data && Array.isArray(data.notifications)) {
           this.messages = data.notifications.map(notification => ({
+            id: notification.id,
             icon: AccountIcon,
             title: notification.title,
             content: notification.content,
@@ -117,7 +123,7 @@ export default {
   beforeRouteLeave(to, from, next) {
     this.messages.forEach((message, index) => {
       if (message.unread) {
-        this.markAsRead(index);
+        this.markAsRead(message.id, index);
       }
     });
     next();
@@ -140,4 +146,5 @@ export default {
   }
 }
 }
+
 </style>

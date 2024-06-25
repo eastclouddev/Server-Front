@@ -14,7 +14,7 @@ export async function fetchNotifications(userRole, userId) {
         ._student_id(userId)
         .notifications.$get()
     }
-    console.log('API Response:', response) // APIのレスポンスをログに表示
+    console.log('API Response:', response)
     return response
   } catch (err) {
     const axiosError = err as AxiosError
