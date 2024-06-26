@@ -48,3 +48,10 @@ export default {
   }
 }
 </script>
+<style>
+@media (max-width: 768px) {
+.sp_menu {
+  padding: 40px;
+}
+}
+</style>

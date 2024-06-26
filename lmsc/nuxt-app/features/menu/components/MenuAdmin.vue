@@ -1,5 +1,5 @@
 <template>
-  <v-list>
+  <v-list class="sp_menu">
     <v-sheet v-for="(section, index) in settingsSections" :key="index" class="pa-3">
       <v-list-item v-if="section.icon && section.title" class="pb-5">
         <div class="d-flex align-center">
@@ -50,3 +50,11 @@ export default {
   },
 }
 </script>
+
+<style>
+@media (max-width: 768px) {
+.sp_menu {
+  padding: 40px;
+}
+}
+</style>

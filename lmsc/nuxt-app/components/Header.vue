@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-toolbar color="#FFFFFF" elevation="1">
+    <v-toolbar color="#FFFFFF" elevation="1" app>
       <v-btn class="button_icon" to="/login">
         <img src="../assets/idemy_logo.svg" width="100%">
       </v-btn>
@@ -39,7 +39,14 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.v-toolbar {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
 .button_icon {
   display: flex;
   justify-content: center;
@@ -60,4 +67,5 @@ export default {
     transform: translateX(-50%);
   }
 }
+
 </style>

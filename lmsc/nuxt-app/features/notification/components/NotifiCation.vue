@@ -1,27 +1,54 @@
 <template>
-  <v-menu flat v-model="menu" :style="menuStyle" width="18rem">
-    <template v-slot:activator>
-      <v-btn @click="toggleMenu">
+  <v-menu
+    flat
+    v-model="notificationMenu"
+    :width="menuWidth"
+    :absolute="isSmallScreen"
+    class="custom-menu"
+  >
+    <template v-slot:activator="{ on, attrs }">
+      <v-btn v-bind="attrs" v-on="on" icon @click="toggleNotificationMenu" style="border-radius: 0">
         <v-icon color="#242424" size="23">mdi-bell</v-icon>
-        <v-badge color="#FF5A36" :content="unreadMessagesCount()" offset-x="0" offset-y="-8" v-if="unreadMessagesCount() > 0"></v-badge>
+        <v-badge
+          color="#FF5A36"
+          :content="unreadMessagesCount()"
+          offset-x="0"
+          offset-y="-8"
+          v-if="unreadMessagesCount() > 0"
+        ></v-badge>
       </v-btn>
     </template>
     <v-list>
       <v-list-item>
         <v-list-item-title class="d-flex align-center" style="font-weight:bold;">
-          <v-icon color="#242424" size="23" class="ma-3">mdi-bell</v-icon>
+          <v-icon color="#242424" size="23" class="ma-3 list_item">mdi-bell</v-icon>
           お知らせ
-          <v-badge color="#FF5A36" :content="unreadMessagesCount()" offset-x="-25" offset-y="-3" v-if="unreadMessagesCount() > 0"></v-badge>
+          <v-badge
+            color="#FF5A36"
+            :content="unreadMessagesCount()"
+            offset-x="-25"
+            offset-y="-3"
+            v-if="unreadMessagesCount() > 0"
+          ></v-badge>
         </v-list-item-title>
       </v-list-item>
       <v-sheet class="ma-4">
         <div v-if="messages.length === 0" class="d-flex flex-column justify-center" style="height: 80px;">
           <span>新しいお知らせはありません。</span>
-          <NuxtLink @click="toggleMenu" style="display: flex; justify-content: flex-end; color:#242424; cursor:pointer; text-decoration: underline;" class="mt-2 mb-2">閉じる</NuxtLink>
+          <NuxtLink
+            @click="toggleNotificationMenu"
+            style="display: flex; justify-content: flex-end; color:#242424; cursor:pointer; text-decoration: underline;"
+            class="mt-2 mb-2"
+          >閉じる</NuxtLink>
         </div>
         <div v-else>
           <div v-for="(message, index) in messages.slice(0, 4)" :key="index">
-            <NuxtLink :to="`/${message.url}`" class="d-flex align-start pt-4" style="text-decoration: none; color:#242424;" @click.native="markAsRead(message.id, index)">
+            <NuxtLink
+              :to="`/${message.url}`"
+              class="d-flex align-start pt-4 list_item"
+              style="text-decoration: none; color:#242424;"
+              @click.native="markAsRead(message.id, index)"
+            >
               <div>
                 <v-avatar v-if="message.unread" size="40">
                   <v-badge bordered bottom color="#FF5A36" dot offset-x="25" offset-y="25">
@@ -49,7 +76,6 @@
     </v-list>
   </v-menu>
 </template>
-
 <script>
 import { fetchNotifications } from '~/features/notification/api/getNotifi.ts';
 import { markNotificationAsRead } from '~/features/notification/api/patchNotifi.ts';
@@ -57,17 +83,16 @@ import AccountIcon from '~/assets/accountcircle.svg';
 import { useUserStore } from '~/store/user.ts';
 
 export default {
-  name: 'ToolbarMenu',
+  name: 'NotificationMenu',
   data() {
     return {
-      menu: false,
+      notificationMenu: false,
       messages: [],
-    }
+      menuWidth: window.innerWidth <= 768 ? '100%' : '18rem',
+      isSmallScreen: window.innerWidth <= 768
+    };
   },
   computed: {
-    menuStyle() {
-      return window.innerWidth <= 768 ? 'width: 100%; top: 50px;' : 'top: 50px;';
-    },
     userRole() {
       const userStore = useUserStore();
       return userStore.user.role_id;
@@ -78,8 +103,8 @@ export default {
     }
   },
   methods: {
-    toggleMenu() {
-      this.menu = !this.menu;
+    toggleNotificationMenu() {
+      this.notificationMenu = !this.notificationMenu;
     },
     truncateText(text, maxLength) {
       return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
@@ -122,10 +147,19 @@ export default {
       } catch (error) {
         console.error('エラー設定:', error.config);
       }
+    },
+    updateMenuWidth() {
+      const isSmall = window.innerWidth <= 768;
+      this.menuWidth = isSmall ? '100%' : '18rem';
+      this.isSmallScreen = isSmall;
     }
   },
   created() {
     this.loadNotifications();
+    window.addEventListener('resize', this.updateMenuWidth);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.updateMenuWidth);
   },
   beforeRouteLeave(to, from, next) {
     this.messages.forEach((message, index) => {
@@ -135,24 +169,36 @@ export default {
     });
     next();
   }
-}
+};
 </script>
-
-<style lang="scss" scoped>
+<style scoped lang="scss">
 .v-overlay-container {
   .v-overlay {
     left: auto;
     right: 350px;
+    top: 50px;
   }
 }
 
 @media screen and (max-width: 768px) {
-.v-overlay-container {
-  .v-overlay {
-    top: 15px;
-    box-shadow: none;
+  .list_item {
+    padding: 30px;
+  }
+  .v-overlay-container {
+    .v-overlay {
+      top: 65px !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      background-color: rgba(255, 255, 255, 0.9) !important;
+      position: fixed !important;
+      box-shadow: none !important;
+    }
   }
 }
-}
 
+/* カスタムボックスシャドウを追加 */
+.custom-menu .v-menu__content {
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1) !important; 
+}
 </style>

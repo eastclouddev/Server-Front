@@ -1,13 +1,18 @@
 <template>
-  <v-menu flat v-model="menu" width="18rem">
+  <v-menu
+    flat
+    v-model="menu"
+    :width="menuWidth"
+    :absolute="isSmallScreen"
+    >
     <template v-slot:activator>
       <v-btn icon @click="toggleMenu" style="border-radius: 0">
         <v-icon>{{ menu ? 'mdi-close' : 'mdi-menu' }}</v-icon>
       </v-btn>
     </template>
     <v-list>
-      <v-list-item>
-        <div class="d-flex align-start pa-3">
+      <v-list-item >
+        <div class="d-flex align-start list_item">
           <img src="/assets/accountcircle.svg" alt="account" class="pr-3" width="60rem" />
           <div style="font-size: 0.9em; font-weight: lighter">
             <p style="font-weight: bold">{{ userName }}</p>
@@ -31,15 +36,14 @@
       <template v-else-if="userRole === 5">
         <MenuActingdirector />
       </template>
-      <template v-else>
-        <p>メニューがありません</p>
+      <template v-else >
+        <p class="pa-4">メニューがありません</p>
       </template>
     </v-list>
   </v-menu>
 </template>
-
 <script>
-import { computed, ref, watch } from 'vue';
+import { computed, ref, watch, onMounted, onBeforeUnmount } from 'vue';
 import { useUserStore } from '~/store/user.ts';
 import { useGetUser } from '~/features/plofile/api/getProfile.ts';
 import MenuStudent from "~/features/menu/components/MenuStudent.vue";
@@ -78,18 +82,41 @@ export default {
       }
     });
 
+    const menuWidth = ref(window.innerWidth <= 768 ? '100%' : '18rem');
+    const isSmallScreen = ref(window.innerWidth <= 768);
+
+    const updateMenuWidth = () => {
+      const isSmall = window.innerWidth <= 768;
+      menuWidth.value = isSmall ? '100%' : '18rem';
+      isSmallScreen.value = isSmall;
+    };
+
+    onMounted(() => {
+      window.addEventListener('resize', updateMenuWidth);
+      updateMenuWidth();
+    });
+
+    onBeforeUnmount(() => {
+      window.removeEventListener('resize', updateMenuWidth);
+    });
+
     return {
       menu,
       userRole,
       userName,
       userEmail,
       toggleMenu,
+      menuWidth,
+      isSmallScreen
     };
   }
 };
 </script>
-
 <style scoped lang="scss">
+.list_item {
+  padding: 10px;
+}
+
 .v-overlay-container {
   .v-overlay {
     top: 50px;
@@ -97,4 +124,22 @@ export default {
     right: 300px;
   }
 }
+
+@media (max-width: 768px) {
+  .list_item {
+    padding: 40px;
+  }
+
+  .v-overlay-container {
+    .v-overlay {
+      top: 65px !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      background-color: rgba(255, 255, 255, 0.9) !important;
+      position: fixed !important;
+    }
+  }
+}
+
 </style>
