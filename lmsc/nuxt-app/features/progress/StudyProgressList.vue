@@ -22,23 +22,24 @@
       ></v-divider>
       <Position :item="Links" style="margin-bottom: 30px !important" />
 
-      <template v-if="userRole === 1">
-        <Admin />
-      </template>
-      <template v-else-if="userRole === 2">
-        <Mentor />
-      </template>
-      <template v-else-if="userRole === 4">
-        <Corporation />
-      </template>
-    </v-card>
-  </v-container>
-</template>
+        <template v-if="userRole === 1">
+          <Admin />
+        </template>
+        <template v-else-if="userRole === 2">
+          <Mentor />
+        </template>
+        <template v-else-if="userRole === 4">
+          <Corporation :userRole="userRole"/>
+        </template>
+        
+      </v-card>
+    </v-container>
+  </template>
 
 <script>
-import { defineAsyncComponent } from 'vue'
-import { useUserStore } from '~/store/user.ts'
-import Position from '~/features/CompanyInfomation/components/PositionInfo.vue'
+import { defineAsyncComponent } from 'vue';
+import { useUserStore } from '~/store/user.ts';
+import Position from '~/features/CompanyInfomation/components/PositionInfo.vue';
 
 const Corporation = defineAsyncComponent(
   () => import('~/features/progress/components/ListStudyProgress.vue')
@@ -107,5 +108,4 @@ export default {
   width: 100%;
   border-top: 2px dotted #cfcfcf;
   margin: 20px 0;
-}
 </style>

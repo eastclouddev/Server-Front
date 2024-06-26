@@ -208,6 +208,10 @@
 </template>
 
 <script>
+// import { useGetProgresses } from '~/features/progress/api/getProgresses';
+import { useGetCorporationProgresses } from '~/features/progress/api/getCorporationProgresses';
+// import { useGetMentorProgresses } from '~/features/progress/api/getMentorProgresses';
+// import { useGetStudentProgresses } from '~/features/progress/api/getStudentProgresses';
 export default {
   props: {
     showNameColumn: {
@@ -216,8 +220,11 @@ export default {
     },
     showCompanyName: {
       type: Boolean,
-      default: false,
+      default: false
     },
+    childUserRole: {
+      type: Number
+    }
   },
   data() {
     return {
@@ -278,7 +285,11 @@ export default {
           remainingTime: '5時間',
         },
       ],
-    }
+    };
+  },
+  created() {
+    this.checkData();
+    this.fetchProgressData();
   },
   methods: {
     getStatus(progressPercentage) {
@@ -290,8 +301,23 @@ export default {
         return { status: '完了', icon: 'mdi-check-circle', color: '#10BED2' }
       }
     },
-  },
-}
+    checkData() {
+      console.log("さらに子画面", this.childUserRole)
+    },
+    async fetchProgressData() {
+      if (this.childUserRole == 4) {
+        const {
+            data: resData,
+            error: resError,
+            status: resStatus
+        } = useGetCorporationProgresses(1)
+        if (resData.value) {
+          console.log(resData.value)
+        }
+      }
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
