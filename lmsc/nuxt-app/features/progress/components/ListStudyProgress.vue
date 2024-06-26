@@ -1,23 +1,27 @@
 <template>
-  <v-container style="margin-bottom:10%;padding-top: 15px !important; padding: 6%; background-color: #F5F5F5 !important">
-          
-          <SearchForm />
-        <template v-if="filteredList.length > 0">
-          <PcProgressTable :filteredList="filteredList" />
-          <SpProgressTable :filteredList="filteredList" />
-
-        </template>
-        <template v-else>
-          <p class="message">該当するデータがありません</p>
-        </template>
-
+  <v-container
+    style="
+      margin-bottom: 10%;
+      padding-top: 15px !important;
+      padding: 6%;
+      background-color: #f5f5f5 !important;
+    "
+  >
+    <SearchForm />
+    <template v-if="filteredList.length > 0">
+      <PcProgressTable :filteredList="filteredList" />
+      <SpProgressTable :filteredList="filteredList" />
+    </template>
+    <template v-else>
+      <p class="message">該当するデータがありません</p>
+    </template>
   </v-container>
 </template>
 
 <script>
-import SearchForm from '~/components/SearchForm.vue';
-import SpProgressTable from "~/features/progress/components/SpProgressTable.vue";
-import PcProgressTable from "~/features/progress/components/PcProgressTable.vue";
+import SearchForm from '~/components/SearchForm.vue'
+import SpProgressTable from '~/features/progress/components/SpProgressTable.vue'
+import PcProgressTable from '~/features/progress/components/PcProgressTable.vue'
 
 export default {
   components: {
@@ -77,7 +81,7 @@ export default {
   },
   methods: {
     returnLink() {
-      window.location.href = '/company/list';
+      window.location.href = '/company/list'
     },
   },
 }
@@ -97,9 +101,9 @@ export default {
 }
 
 .return-mark {
-  color: #FF5136;
-  background-color: #FFFF;
-  border: 1px solid #FF5136;
+  color: #ff5136;
+  background-color: #ffff;
+  border: 1px solid #ff5136;
   border-radius: 5px;
   padding: 0 1%;
   width: 260px !important;
