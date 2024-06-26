@@ -18,6 +18,8 @@
             :placeholder="placeholder"
             variant="plain"
             full-width
+            v-model="inputValue"
+            @input="emitCreateEvent"
           ></v-text-field>
         </v-sheet>
       </v-card>
@@ -25,7 +27,7 @@
   </v-container>
 </template>
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, defineProps, defineEmits, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
@@ -43,9 +45,21 @@ const props = defineProps({
   placeholder: String,
   showSpan: {
     type: Boolean,
-    default: true,
-  },
+    default: true
+  }
 })
+
+const emits = defineEmits(['create'])
+
+const inputValue = ref(props.modelValue)
+
+watch(inputValue, (newValue) => {
+  emits('create', newValue)
+})
+
+function emitCreateEvent() {
+  emits('create', inputValue.value)
+}
 </script>
 <style lang="scss" scoped>
 .error {
