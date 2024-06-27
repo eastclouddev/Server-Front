@@ -8,7 +8,7 @@ export type Methods = {
    * -----------------------
    * request: Request
    *     headersから情報を取得する
-   * 
+   *
    * Returns
    * -----------------------
    * progresses: array
