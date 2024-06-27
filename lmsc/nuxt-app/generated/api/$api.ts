@@ -220,8 +220,11 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * limit: int
              *     1ページ当たりの記事数
              *
+             *
              * Returns
              * -----------------------
+             * {"users": users_list} : dic{}
+             *                 受け取ったroleと一致するユーザー全員の情報
              * users: array
              *     user_id: int
              *         ユーザーのID
@@ -251,8 +254,11 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
              * limit: int
              *     1ページ当たりの記事数
              *
+             *
              * Returns
              * -----------------------
+             * {"users": users_list} : dic{}
+             *                 受け取ったroleと一致するユーザー全員の情報
              * users: array
              *     user_id: int
              *         ユーザーのID

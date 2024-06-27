@@ -20,14 +20,13 @@
 <script>
 import StudyIcon from '~/assets/study.svg';
 import SettingIcon from '~/assets/setting.svg';
-
 export default {
   data() {
     return {
       settingsSections: [
         {
-          icon: StudyIcon,
           title: '進捗管理',
+          icon: StudyIcon  ,
           links: [
             { text: '進捗管理一覧', url: '/' },
             { text: 'コース一覧', url: '/' },
@@ -46,11 +45,6 @@ export default {
           ]
         }
       ]
-    }
-  },
-   methods: {
-    getIconPath(icon) {
-      return require(`@/${icon}`);
     }
   },
 }

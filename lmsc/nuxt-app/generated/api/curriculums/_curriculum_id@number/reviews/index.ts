@@ -33,7 +33,7 @@ export type Methods = {
   get: {
     status: 200
     /** Successful Response */
-    resBody: Types.Schemas__curriculums__ReviewRequestListResponseBody
+    resBody: Types.ReviewsResponseBody
   }
 
   /**
@@ -73,7 +73,7 @@ export type Methods = {
   post: {
     status: 201
     /** Successful Response */
-    resBody: Types.ReviewRequestCreateResponseBody
-    reqBody: Types.ReviewRequestCreateRequestBody
+    resBody: Types.Schemas__curriculums__ReviewResponse
+    reqBody: Types.ReviewRequestBody_Input
   }
 }

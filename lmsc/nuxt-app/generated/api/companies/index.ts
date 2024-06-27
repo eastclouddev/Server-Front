@@ -36,7 +36,7 @@ export type Methods = {
   get: {
     status: 200
     /** Successful Response */
-    resBody: Types.CompanyListResponseBody
+    resBody: Types.Schemas__companies__AllResponseBody
   }
 
   /**
@@ -87,7 +87,7 @@ export type Methods = {
   post: {
     status: 200
     /** Successful Response */
-    resBody: Types.CompanyCreateResponseBody
-    reqBody: Types.CompanyCreateRequestBody
+    resBody: Types.Schemas__companies__CreateResponseBody
+    reqBody: Types.Schemas__companies__CreateRequestBody
   }
 }

@@ -133,12 +133,12 @@ export default {
   line-height: 22px;
   margin-left: 7px;
 }
-  @media (max-width: 768px) {
+  @media (max-width: 1279px) {
   .table_wrap {
     display: none;
   }
   }
-  @media (min-width: 769px) {
+  @media (min-width: 1280px) {
   .table_wrap{
     display: block;
   }
