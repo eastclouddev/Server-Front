@@ -14,8 +14,8 @@
           :content="unreadMessagesCount()"
           offset-x="0"
           offset-y="-8"
-          v-if="unreadMessagesCount() > 0"
-        ></v-badge>
+          v-if="unreadMessagesCount() > 0">
+        </v-badge>
       </v-btn>
     </template>
     <v-list>
@@ -47,7 +47,7 @@
               :to="`/${message.url}`"
               class="d-flex align-start pt-4 list_item"
               style="text-decoration: none; color:#242424;"
-              @click.native="markAsRead(message.id, index)"
+              @click="markAsRead(message.id, index)"
             >
               <div>
                 <v-avatar v-if="message.unread" size="40">
@@ -76,6 +76,7 @@
     </v-list>
   </v-menu>
 </template>
+
 <script>
 import { fetchNotifications } from '~/features/notification/api/getNotifi.ts';
 import { markNotificationAsRead } from '~/features/notification/api/patchNotifi.ts';
@@ -171,6 +172,7 @@ export default {
   }
 };
 </script>
+
 <style scoped lang="scss">
 .v-overlay-container {
   .v-overlay {
@@ -202,3 +204,4 @@ export default {
   box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1) !important; 
 }
 </style>
+
