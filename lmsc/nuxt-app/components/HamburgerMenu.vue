@@ -1,5 +1,5 @@
 <template>
-  <v-menu flat v-model="menu" style="top:50px; right:30px;" width="18rem">
+  <v-menu flat v-model="menu" style="top:50px;" width="18rem">
     <template v-slot:activator>
       <v-app-bar-nav-icon @click="toggleMenu" style="border-radius: 0;"></v-app-bar-nav-icon>
     </template>
@@ -53,3 +53,11 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.v-overlay-container {
+  .v-overlay {
+    left: auto;
+    right: 300px;
+  }
+}
+</style>

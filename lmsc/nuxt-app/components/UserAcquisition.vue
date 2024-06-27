@@ -12,7 +12,6 @@
   </v-container>
 </template>
 
-<<<<<<< HEAD
 <script>
 import { ref } from 'vue';
 
@@ -29,9 +28,6 @@ data() {
     }
   }
 }
-=======
-<script setup>
->>>>>>> develop
 const items = [
   {
     label: "お名前",

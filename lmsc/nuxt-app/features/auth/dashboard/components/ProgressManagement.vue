@@ -24,7 +24,7 @@ import PcProgressTable from './PcProgressTable.vue';
 export default {
     components: {
     SpProgressTable,
-    PcProgressTable
+    PcProgressTable,
   },
 }
 </script>

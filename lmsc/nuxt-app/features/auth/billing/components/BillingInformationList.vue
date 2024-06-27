@@ -11,20 +11,47 @@
         請求先情報
         </v-card-title>
         <v-divider class="#CFCFCF" thickness="1"></v-divider>
-          <Button to="/billing" color="#FF5136" style="background-color: #FFFFFF;" width="15em" class="mt-5"
-          variant="outlined" buttonText="戻る">
-          </Button>
+
+        <v-card flat width="80%" class="mx-auto mt-15 mb-15">
+          <BillingAddress />
+          <BillingBuildingRoomNumber label="建物名・部屋番号" placeholder="〇〇〇123号室"/>
+          <BillingPhoneNumber label="電話番号" placeholder="00000000000"/>
+          <BillingMail label="メールアドレス" placeholder="XXXXXXX@example.com"/>
+          <BillingInvoice label="インボイス番号" placeholder="0-00-000"/>
+          <BillingTaxNumber label="税金番号" placeholder="0-00-000"/>
+          <BillingColumn label="備考欄" placeholder="テキスト入力"/>
+          <div class="d-flex justify-center mt-10 mb-10">
+            <Button to="/billing" color="#FFFFFF" style="background-color: #FF5136;" width="30em" class="mt-5"
+              variant="outlined" buttonText="更新する"></Button>
+          </div>
+        </v-card>
+
       </v-sheet>
     </v-card>
   </v-container>
 </template>
 
 <script>
-import EmailForm from '~/components/EmailForm.vue';
+import BillingAddress from "~/features/CompanyInfomation/components/BillingAddress.vue";
+import BillingBuildingRoomNumber from "~/features/CompanyInfomation/components/BillingBuildingRoomNumber.vue";
+import BillingPhoneNumber from "~/features/CompanyInfomation/components/BillingPhoneNumber.vue";
+import BillingMail from "~/features/CompanyInfomation/components/BillingMail.vue";
+import BillingInvoice from "~/features/CompanyInfomation/components/BillingInvoice.vue";
+import BillingTaxNumber from "~/features/CompanyInfomation/components/BillingTaxNumber.vue";
+import BillingColumn from "~/features/CompanyInfomation/components/BillingColumn.vue";
+import BillingPrivacyCheckButton from "~/features/CompanyInfomation/components/BillingPrivacyCheckButton.vue";
 
 export default {
   components: {
-    EmailForm,
+    BillingAddress,
+    BillingPhoneNumber,
+    BillingInvoice,
+    BillingTaxNumber,
+    BillingMail,
+    BillingBuildingRoomNumber,
+    BillingTaxNumber,
+    BillingColumn,
+    BillingPrivacyCheckButton
   },
   data() {
     return {

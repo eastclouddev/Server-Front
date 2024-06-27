@@ -1,3 +1,4 @@
+
 <template>
   <v-container>
     <v-row class="align-center justify-space-between flex-column-sm">
@@ -7,10 +8,11 @@
           <v-text-field hide-details="auto" :placeholder="placeholder" variant="plain" class="mb-"
             :type="showPassword ? 'text' : 'password'" :value="modelValue" @input="updatePassword" full-width>
             <template #append>
-              <v-icon @click="togglePasswordVisibility">{{ showPassword ? 'mdi-eye-off' : 'mdi-eye' }}</v-icon>
+              <v-icon @click="togglePasswordVisibility">{{ showPassword ? 'mdi-eye' : 'mdi-eye-off' }}</v-icon>
             </template>
           </v-text-field>
         </v-sheet>
+        <p class="password_conditions">{{ passwordConditions }}</p>
         <p class="error_message">{{ errors.password }}</p>
       </v-card>
     </v-row>
@@ -31,7 +33,8 @@ setLocale({
 const props = defineProps({
   modelValue: String,
   label: String,
-  placeholder: String
+  placeholder: String,
+  passwordConditions: String // パスワードの条件を受け取るprops
 });
 const emits = defineEmits(['update:modelValue']);
 
@@ -60,6 +63,7 @@ function updatePassword(event) {
 }
 </script>
 
+
 <style lang="scss" scoped>
 .error {
   border: 1px solid red;
@@ -71,6 +75,11 @@ function updatePassword(event) {
   font-size: 0.75em;
   text-align: left;
   padding: 1% 0;
+}
+
+.password_conditions {
+  font-size: 0.75em;
+  color: #666;
 }
 @media screen and (max-width: 768px) {
   .sp {
@@ -85,7 +94,7 @@ function updatePassword(event) {
   }
 
   .error_message {
-    font-size: 1.5em;
+    font-size: 0.75em;
   }
 }
 </style>
