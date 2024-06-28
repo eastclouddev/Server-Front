@@ -38,6 +38,8 @@ import BillingColumn from "~/features/CompanyInfomation/components/BillingColumn
 import BillingPrivacyCheckButton from "~/features/CompanyInfomation/components/BillingPrivacyCheckButton.vue";
 import Button from '~/components/Button.vue'
 import { createBillingInfo } from '~/features/CompanyInfomation/api/createBillingInfo.ts'
+import { computed } from 'vue';
+import { useUserStore } from '@/stores/userStore';
 
 const billingAddress = ref('')
 const billingStreetAddress = ref('')
@@ -106,10 +108,15 @@ async function handleBillingSubmit() {
     tax_number: billingTaxNumber.value,
     notes: billingColumn.value,
   }
+
+  const userStore = useUserStore();
+  const userCompany = computed(() => userStore.userCompany);
+
   const company_id = 1 // ーーーーーーーーーーーーーーーーーーTODO：company_idの設定or取得
   console.log("送信データ", requestBody)
   try {
-    const response = await createBillingInfo(requestBody, company_id)
+    const response = await createBillingInfo(requestBody, company_id)  //仮　id設定　　//本番はこちらを削除
+    // const response = await createBillingInfo(requestBody, userCompany)　　　//本番はこちらを利用
     console.log('請求先情報作成 成功:', response)
     errorMessage.value = '請求先情報の作成に成功しました。'
   } catch (error) {
