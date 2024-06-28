@@ -9,6 +9,11 @@ export type Methods = {
    * -----------------------
    * company_id: int
    *     会社のID
+   * フィルター
+   *     target_month: str
+   *         (YYYYMM形式)
+   *     status: str
+   * 
    * Returns
    * -----------------------
    * dict
@@ -24,6 +29,11 @@ export type Methods = {
    *         請求内容の説明
    */
   get: {
+    query?: {
+      target_month?: string | undefined
+      status?: string | undefined
+    } | undefined
+
     status: 200
     /** Successful Response */
     resBody: Types.BillingListResponseBody

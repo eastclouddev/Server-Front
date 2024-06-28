@@ -7,7 +7,14 @@ export type Methods = {
    * 
    * Parameter
    * -----------------------
-   * なし
+   * 検索
+   *     name: str
+   *     course: str
+   * ソート
+   *     sort: str
+   *         coutns, questions, reviews
+   *     order: str
+   *         asc, desc
    * 
    * Returns
    * -----------------------
@@ -20,6 +27,13 @@ export type Methods = {
    *         そのメンターが担当する受講生の数
    */
   get: {
+    query?: {
+      name?: string | undefined
+      course?: string | undefined
+      sort?: string | undefined
+      order?: string | undefined
+    } | undefined
+
     status: 200
     /** Successful Response */
     resBody: Types.MentorsCountListResponseBody

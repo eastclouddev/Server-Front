@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="billing-container">
     <div class="d-flex">
       <img src="/assets/progress.svg" class="pr-5" />
       <v-card-title
@@ -25,60 +25,27 @@
       "
     >
       <v-sheet color="#F5F5F5" width="80%" class="mx-auto mb-8 mt-8">
-        <div class="d-flex justify-space-between">
-          <!-- <v-select
+        <div class="filter-container">
+          <FilterSelect
             v-model="selectedMonth"
-            :items="months"
-            variant="outlined"
-            @change="filterData"
-            class="mr-6"
-            style="width: 15rem;"
-          >
-            <template v-slot:selection="data">
-              <span v-if="!selectedMonth" class="placeholder-text">請求対象月を選択</span>
-              <span v-else>{{ data.item.title }}</span>
-            </template>
-          </v-select>
-          <v-select
+            :filterOptions="months"
+            placeholderText="請求対象月"
+            @filter-change="filterData"
+          />
+          <FilterSelect
             v-model="selectedStatus"
-            :items="statuses"
-            variant="outlined"
-            @change="filterData"
-            class="mr-6"
-            style="width: 15rem;"
-            placeholderText="ステータス">
-        <template v-slot:selection="data">
-          <span v-if="!selectedStatus" class="placeholder-text">ステータスを選択</span>
-          <span v-else>{{ data.item.title }}</span>
-        </template>
-      </v-select>
- -->
-          <div class="d-flex">
-            <FilterSelect
-              v-model="selectedMonth"
-              :filterOptions="months"
-              placeholderText="請求対象月"
-              @filter-change="filterData"
-            />
-
-            <FilterSelect
-              v-model="selectedStatus"
-              :filterOptions="statuses"
-              placeholderText="ステータス"
-              @filter-change="filterData"
-            />
-          </div>
-
+            :filterOptions="statuses"
+            placeholderText="ステータス"
+            @filter-change="filterData"
+          />
           <Button
             to="/billingInformation"
             color="#FF5136"
             class="sp_button"
             style="width: 10rem; height: 40px"
             buttonText="請求先情報編集"
-          >
-          </Button>
+          />
         </div>
-
         <template v-if="filteredList.length > 0">
           <PcBillingTable :filteredList="filteredList" />
           <SpBillingTable :filteredList="filteredList" />
@@ -94,7 +61,7 @@
 <script>
 import PcBillingTable from '~/features/auth/billing/components/PcBillingTable.vue'
 import SpBillingTable from '~/features/auth/billing/components/SpBillingTable.vue'
-import FilterSelect from '~/components/FilterSerlect.vue'
+import FilterSelect from '~/components/FilterSelect.vue'
 
 export default {
   components: {
@@ -146,15 +113,8 @@ export default {
         },
       ],
       items: [
-        {
-          title: 'ダッシュボード',
-          disabled: false,
-          href: '/dashboard',
-        },
-        {
-          title: '請求先情報',
-          disabled: false,
-        },
+        { title: 'ダッシュボード', disabled: false, href: '/dashboard' },
+        { title: '請求先情報', disabled: false },
       ],
     }
   },
@@ -175,6 +135,31 @@ export default {
 </script>
 
 <style>
+.billing-container {
+  max-width: 100%;
+  padding: 0;
+}
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.filter-container > * {
+  margin: 0.5rem;
+}
+@media (max-width: 768px) {
+  .filter-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .filter-container > * {
+    width: 100%;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+  }
+  .sp_button {
+    margin-bottom: 2.5rem;
+  }
+}
 .unclaimed {
   color: #ffffff;
   background-color: #ff5a36;
@@ -211,7 +196,6 @@ export default {
   padding: 50px;
   margin-top: 50px;
 }
-
 .v-select .v-field.v-field {
   background-color: #ffffff;
 }

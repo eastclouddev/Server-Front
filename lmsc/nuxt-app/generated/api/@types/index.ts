@@ -83,6 +83,12 @@ export type BillingListResponseBody = {
   billings: Billing[]
 }
 
+export type BillingSummaryResponseBody = {
+  month: string
+
+  total_billed_amount: number | number
+}
+
 export type Category = {
   category_id: number
   category_name: string
