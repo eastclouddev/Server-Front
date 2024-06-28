@@ -4,6 +4,7 @@ import type * as Types from '../../../@types'
 export type Methods = {
   /**
    * 現在の学習進捗
+   * 
    * Parameters
    * -----------------------
    * request: Request
@@ -26,6 +27,6 @@ export type Methods = {
   get: {
     status: 200
     /** Successful Response */
-    resBody: Types.ProgressesResponse
+    resBody: Types.Schemas__students__ProgressListResponseBody
   }
 }

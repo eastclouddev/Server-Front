@@ -4,7 +4,7 @@ import { AxiosError } from "axios";
 import { service } from "@/constants/service";
 
 
-export async function createCompany(companyId: number,companyData: any) {
+export async function createCompany(companyData: any) {
   try {
     const response = await apiClient.companies.$post({
       body: companyData,
@@ -17,11 +17,4 @@ export async function createCompany(companyId: number,companyData: any) {
     }
     throw err;
   }
-}
-
-
-export function useCreateCompany() {
-  return useMutation({
-    mutationFn: (params: { companyId: number, companyData: any }) => createCompany(params.companyId, params.companyData),
-  });
 }

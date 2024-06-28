@@ -100,6 +100,7 @@ const handleSubmit = async () => {
     console.log('First Name:', response.first_name);
     console.log('Last Name:', response.last_name);
     console.log('Email:', response.email);
+    console.log('Company ID:', response.company_id);
 
 
     const user = {
@@ -109,6 +110,8 @@ const handleSubmit = async () => {
         first_name: response.first_name,
         last_name: response.last_name,
         email: response.email,
+        company_id: response.company_id,
+
       },
       isAuthenticated: true,
     };

@@ -6,6 +6,7 @@ interface User {
   first_name: string
   last_name: string
   email: string
+  company_id: number | null
 }
 
 interface Payload {
@@ -21,6 +22,7 @@ export const useUserStore = defineStore('user', {
       first_name: '',
       last_name: '',
       email: '',
+      company_id: null,
     } as User,
     isAuthenticated: false,
   }),
@@ -36,6 +38,7 @@ export const useUserStore = defineStore('user', {
         first_name: '',
         last_name: '',
         email: '',
+        company_id: null,
       }
       this.isAuthenticated = false
     },
@@ -49,6 +52,7 @@ export const useUserStore = defineStore('user', {
     },
     userRole: state => (state.user ? state.user.role_id : null),
     userEmail: state => (state.user ? state.user.email : ''),
+    userCompany: state => (state.user ? state.user.company_id : null),
   },
   persist: true,
 })

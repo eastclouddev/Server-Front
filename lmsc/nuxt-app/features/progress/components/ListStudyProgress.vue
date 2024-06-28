@@ -24,6 +24,13 @@ import SpProgressTable from '~/features/progress/components/SpProgressTable.vue'
 import PcProgressTable from '~/features/progress/components/PcProgressTable.vue'
 
 export default {
+  props: {
+    userRole: {
+      type: Number,
+      default: null,
+      required: true
+    }
+  },
   components: {
     PcProgressTable,
     SpProgressTable,
