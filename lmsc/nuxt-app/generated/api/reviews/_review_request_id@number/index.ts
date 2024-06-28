@@ -58,6 +58,6 @@ export type Methods = {
   get: {
     status: 200
     /** Successful Response */
-    resBody: Types.AllReviewResponse
+    resBody: Types.ReviewThreadDetailResponseBody
   }
 }

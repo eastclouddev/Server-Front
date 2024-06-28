@@ -76,6 +76,11 @@ export type Methods = {
    * -----------------------
    * course_id: int
    *     質問一覧を取得したいコースのID
+   * フィルター
+   *     curriculum: int
+   *     my_questions: bool(my_questionsとuser_idはセット)
+   *     user_id: int
+   *     unanswered: bool
    * 
    * Returns
    * -----------------------
@@ -103,6 +108,13 @@ export type Methods = {
    *         質問の返信数
    */
   get: {
+    query?: {
+      curriculum?: number | undefined
+      my_questions?: boolean | undefined
+      user_id?: number | undefined
+      unanswered?: boolean | undefined
+    } | undefined
+
     status: 200
     /** Successful Response */
     resBody: Types.Schemas__courses__QuestionListResponseBody

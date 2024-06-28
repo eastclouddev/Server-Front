@@ -7,8 +7,15 @@ export type Methods = {
    * 
    * Parameters
    * -----------------------
-   * user_id:int
+   * user_id: int
    *     ユーザーのID
+   * フィルタ―
+   *     category: str
+   * ソート
+   *     sort: str(sortとorderはセット)
+   *         created_at
+   *     order: str
+   *         asc, desc
    * 
    * Returns
    * -----------------------
@@ -31,8 +38,14 @@ export type Methods = {
    *         完了しているかどうか
    */
   get: {
+    query?: {
+      category?: string | undefined
+      sort?: string | undefined
+      order?: string | undefined
+    } | undefined
+
     status: 200
     /** Successful Response */
-    resBody: Types.Schemas__students__AllResponseBody
+    resBody: Types.Schemas__students__ReviewRequestListResponseBody
   }
 }

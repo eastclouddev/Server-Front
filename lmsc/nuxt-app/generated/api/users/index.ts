@@ -7,12 +7,16 @@ export type Methods = {
    * 
    * Parameters
    * -----------------------
-   * role: str
-   *     ユーザーの役割
    * page: int
    *     取得するページ番号
    * limit: int
    *     1ページ当たりの記事数
+   * 検索
+   *     name: str
+   *     company: str
+   * フィルター
+   *     role: str
+   *     enable: bool
    * 
    * Return
    * -----------------------
@@ -34,13 +38,16 @@ export type Methods = {
    */
   get: {
     query: {
-      role: string
       page: number
       limit: number
+      name?: string | undefined
+      company?: string | undefined
+      role?: string | undefined
+      enable?: boolean | undefined
     }
 
     status: 200
     /** Successful Response */
-    resBody: Types.UserResponseBody
+    resBody: Types.UserListResponseBody
   }
 }

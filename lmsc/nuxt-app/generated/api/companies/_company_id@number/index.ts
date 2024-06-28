@@ -17,6 +17,8 @@ export type Methods = {
    *         会社のID
    *     name: str
    *         会社の名前
+   *     name: str
+   *         会社名のフリガナ
    *     prefecture: str
    *         所在地の都道府県
    *     city: str
@@ -39,7 +41,7 @@ export type Methods = {
   get: {
     status: 200
     /** Successful Response */
-    resBody: Types.Schemas__companies__DetailResponseBody
+    resBody: Types.CompanyDetailResponseBody
   }
 
   /**
@@ -52,6 +54,8 @@ export type Methods = {
    * dict
    *     name: str
    *         会社名
+   *     name_kana: str
+   *         会社名フリガナ
    *     prefecture: str
    *         都道府県
    *     city: str
@@ -69,32 +73,11 @@ export type Methods = {
    * 
    * Returns
    * -----------------------
-   * dict
-   *     company_id: int
-   *         会社のID
-   *     name: str
-   *         会社の名前
-   *     prefecture: str
-   *         所在地の都道府県
-   *     city: str
-   *         所在地の市区町村
-   *     town: str
-   *         所在地の町名・番地等
-   *     address: str
-   *         会社の詳細な住所
-   *     postal_code: str
-   *         郵便番号
-   *     phone_number: str
-   *         電話番号
-   *     email: str
-   *         会社のメールアドレス
-   *     updated_at: str
-   *         レコードの最終更新日時（ISO 8601形式）
+   * message: str
+   *     完了時のメッセージ(Company information updated successfully.)
    */
   patch: {
     status: 200
-    /** Successful Response */
-    resBody: Types.CompanyBillingInfoUpdateResponseBody
-    reqBody: Types.CompanyBillingInfoUpdateRequestBody
+    reqBody: Types.CompanyUpdateRequestBody
   }
 }

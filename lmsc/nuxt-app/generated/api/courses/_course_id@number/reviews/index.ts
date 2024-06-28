@@ -7,47 +7,8 @@ export type Methods = {
    * 
    * Parameter
    * -----------------------
-<<<<<<< HEAD:lmsc/nuxt-app/generated/api/courses/_course_id@number/reviews/index.ts
    * course_id: int
    *     レビューを取得したいコースのID
-=======
-   * curriculum_id: int
-   *     レビュー一覧を取得したいカリキュラムのID
-   * 
-   * Returns
-   * -----------------------
-   * reviews: array
-   *     id: int
-   *         レビューリクエストのID
-   *     curriculum_id: int
-   *         関連するカリキュラムのID
-   *     user_id: int
-   *         レビューリクエストを投稿したユーザーのID
-   *     title: str
-   *         レビューリクエストのタイトル
-   *     content: str
-   *         レビューリクエストの内容
-   *     is_closed: bool
-   *         レビューリクエストがクローズされているかどうか
-   *     created_at: str
-   *         レビューリクエストが作成された日時（ISO 8601形式）
-   *     updated_at: str
-   *         レビューリクエストが最後に更新された日時（ISO 8601形式）
-   */
-  get: {
-    status: 200
-    /** Successful Response */
-    resBody: Types.ReviewsResponseBody
-  }
-
-  /**
-   * レビュー作成
-   * 
-   * Parameter
-   * -----------------------
-   * curriculum_id: int
-   *     詳細を取得したいカリキュラムのID
->>>>>>> develop:lmsc/nuxt-app/generated/api/curriculums/_curriculum_id@number/reviews/index.ts
    * dict
    *     curriculum_id: int
    *         レビューが紐づくカリキュラムのID
@@ -94,8 +55,8 @@ export type Methods = {
   post: {
     status: 201
     /** Successful Response */
-    resBody: Types.Schemas__curriculums__ReviewResponse
-    reqBody: Types.ReviewRequestBody_Input
+    resBody: Types.ReviewRequestCreateResponseBody
+    reqBody: Types.ReviewRequestCreateRequestBody
   }
 
   /**
