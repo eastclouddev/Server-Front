@@ -41,7 +41,7 @@ import PasswordInput from '~/components/PasswordInput.vue';
 import Button from '~/components/Button.vue';
 import platform from 'platform';
 import { v4 as uuidv4 } from 'uuid';
-import { useUserStore } from '~/store/user';
+import { useUserStore } from '~/store/user.ts';
 
 const { $api } = useNuxtApp();
 const router = useRouter();
@@ -72,6 +72,7 @@ const roleMap = {
   mentor: 2,
   student: 3,
   corporation: 4,
+  Actingdirector: 5
 };
 
 const handleSubmit = async () => {
@@ -94,29 +95,19 @@ const handleSubmit = async () => {
       },
     });
 
-    console.log('Login succeeded:', response);
-
-    console.log('API Response:', response);
-    console.log('First Name:', response.first_name);
-    console.log('Last Name:', response.last_name);
-    console.log('Email:', response.email);
-
-
-    const user = {
-      user: {
+    if (response.user_id) {
+      const user = {
         id: response.user_id,
         role_id: roleMap[response.role], // ロールを数値に変換
         first_name: response.first_name,
         last_name: response.last_name,
         email: response.email,
-      },
-      isAuthenticated: true,
-    };
-    userStore.setUser(user);
-
-    console.log('User store after login:', userStore.$state);// ストアの状態をログに出力
-
-    await router.push('/dashboard');
+      };
+      userStore.setUser({ user, isAuthenticated: true }); // Store user data
+      await router.push('/dashboard');
+    } else {
+      throw new Error('Invalid response');
+    }
   } catch (error) {
     console.error('Login failed:', error);
   } finally {
@@ -124,7 +115,6 @@ const handleSubmit = async () => {
   }
 };
 </script>
-
 <style lang="scss" scoped>
 .error {
   border: 1px solid red;

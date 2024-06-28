@@ -8,7 +8,7 @@
           v-model="password" full-width disabled></v-text-field>
         </v-sheet>
       </v-card>
-      <v-divider class="#CFCFCF mb-5" thickness="1" dotted></v-divider>
+    <v-divider class="#CFCFCF mb-5" thickness="1" dashed></v-divider>
     </v-row>
     <v-row class="align-center justify-space-between pb-4">
       <label class="sp_label" style="font-size: 1em; font-weight: bold;">パスワード</label>
@@ -19,7 +19,7 @@
           :type="showPassword ? 'text' : 'password'" readonly full-width></v-text-field>
         </v-sheet>
       </v-card>
-      <v-divider class="#CFCFCF" thickness="1"></v-divider>
+    <v-divider class="#CFCFCF mb-5" thickness="1" dashed></v-divider>
     </v-row>
   </v-container>
 </template>
