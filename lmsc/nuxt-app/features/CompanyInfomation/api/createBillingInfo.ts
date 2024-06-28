@@ -4,10 +4,10 @@ import { AxiosError } from "axios";
 import { service } from "@/constants/service";
 
 
-export async function createBillingInfo(billingData: any,company_id: number) {
+export async function createBillingInfo(requestBody: any,company_id: number) {
   try {
     const response = await apiClient.companies._company_id(company_id).billing_info.$post({
-      body: billingData, 
+      body: requestBody, 
     });
     return response;
   } catch (err) {

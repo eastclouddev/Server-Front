@@ -105,13 +105,8 @@ async function handleBillingSubmit() {
     invoice_number: billingInvoice.value,
     tax_number: billingTaxNumber.value,
     notes: billingColumn.value,
-    // last_receipt_number:  UI不足？ 
-    // payment_method_id:  UI不足？
-
-    payment_method_id: 1,   //仮設定
-    last_receipt_number: "xxx"  //仮設定
   }
-  const company_id = 1 // ここで適切な会社IDを設定してくださいーーーーーーーーーーーーーーーーーーTODO：company_idの設定or取得の仕方
+  const company_id = 1 // ーーーーーーーーーーーーーーーーーーTODO：company_idの設定or取得
   console.log("送信データ", requestBody)
   try {
     const response = await createBillingInfo(requestBody, company_id)
