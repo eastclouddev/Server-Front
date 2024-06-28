@@ -1,12 +1,30 @@
 <template>
   <v-list>
-    <v-sheet v-for="(section, index) in settingsSections" :key="index" class="pa-3">
+    <v-sheet
+      v-for="(section, index) in settingsSections"
+      :key="index"
+      class="pa-3"
+    >
       <v-list-item v-if="section.icon && section.title" class="pb-5">
         <div class="d-flex align-center">
-          <img :src="section.icon" alt="icon" class="pr-3" style="width: 35px;">
-          <v-list-item-title style="font-weight: bold;">{{ section.title }}</v-list-item-title>
+          <img
+            :src="section.icon"
+            alt="icon"
+            class="pr-3"
+            style="width: 35px"
+          />
+          <v-list-item-title style="font-weight: bold">{{
+            section.title
+          }}</v-list-item-title>
         </div>
-        <NuxtLink v-for="(link, linkIndex) in section.links" :to="link.url" class="d-flex align-start pt-3" :key="linkIndex" style="text-decoration: none; color:#242424;">
+        <NuxtLink
+          v-for="(link, linkIndex) in section.links"
+          :to="link.url"
+          class="d-flex align-start pt-3"
+          :key="linkIndex"
+          style="text-decoration: none; color: #242424"
+          @click="link.text === 'ログアウト' ? handleLogout($event) : null"
+        >
           {{ link.text }}
         </NuxtLink>
       </v-list-item>
@@ -18,20 +36,27 @@
 </template>
 
 <script>
-import StudyIcon from '~/assets/study.svg';
-import SettingIcon from '~/assets/setting.svg';
-export default {
+import StudyIcon from '~/assets/study.svg'
+import SettingIcon from '~/assets/setting.svg'
+import useLogout from '~/features/auth/api/useLogout'
+
+export default defineComponent({
+  setup() {
+    const { handleLogout } = useLogout()
+
+    return { handleLogout }
+  },
   data() {
     return {
       settingsSections: [
         {
           title: '進捗管理',
-          icon: StudyIcon  ,
+          icon: StudyIcon,
           links: [
             { text: '進捗管理一覧', url: '/' },
             { text: 'コース一覧', url: '/' },
-            { text: 'ユーザー一覧', url: '/' }
-          ]
+            { text: 'ユーザー一覧', url: '/' },
+          ],
         },
         {
           icon: SettingIcon,
@@ -41,11 +66,11 @@ export default {
             { text: 'メールアドレス変更', url: '/' },
             { text: '会社情報', url: '/' },
             { text: '請求情報', url: '/' },
-            { text: 'ログアウト', url: '/' },
-          ]
-        }
-      ]
+            { text: 'ログアウト', url: '/login' },
+          ],
+        },
+      ],
     }
   },
-}
+})
 </script>
