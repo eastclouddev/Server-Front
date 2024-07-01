@@ -20,7 +20,4 @@ import QuestionList from "~/features/auth/dashboard/components/QuestionList.vue"
 import ReviewList from "~/features/auth/dashboard/components/ReviewList.vue";
 
 </script>
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/feature/billing
