@@ -112,11 +112,25 @@ const handleSubmit = async () => {
       },
       isAuthenticated: true,
     };
+    console.log('isAuthenticated_setBeffore:',userStore.isAuthenticated);
+    console.log('redirectURL_setBeffore:',userStore.redirectPath);
+    console.log('変更した');
     userStore.setUser(user);
-
+    console.log('redirectURL:',userStore.redirectPath);
     console.log('User store after login:', userStore.$state);// ストアの状態をログに出力
 
-    await router.push('/dashboard');
+    // 認証ロジック
+    //await userStore.login(/* ログイン情報 */)
+
+    // ログイン成功後のリダイレクト
+    const test = userStore.redirectPath;
+    console.log('redirectURL:', test);
+    const redirectPath = userStore.redirectPath || '/dashboard'
+    
+    router.push(redirectPath)
+    //userStore.clearRedirectPath()
+
+    //await router.push('/dashboard');
   } catch (error) {
     console.error('Login failed:', error);
   } finally {

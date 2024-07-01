@@ -9,5 +9,8 @@
   </v-container>
 </template>
 <script setup>
+definePageMeta({
+  middleware: 'auth',
+})
 import userInvitationConfilmForm from '~/features/auth/userInvitation/userInvitationConfilmForm.vue'
 </script>

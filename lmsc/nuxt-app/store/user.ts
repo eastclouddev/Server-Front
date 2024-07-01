@@ -23,6 +23,7 @@ export const useUserStore = defineStore('user', {
       email: '',
     } as User,
     isAuthenticated: false,
+    redirectPath: '',
   }),
   actions: {
     setUser(payload: Payload) {
@@ -38,6 +39,19 @@ export const useUserStore = defineStore('user', {
         email: '',
       }
       this.isAuthenticated = false
+    },
+    setRedirectPath(path: string) {
+      console.log('setRedirectPath called with:', path)
+      this.redirectPath = path
+      console.log('Redirect path after set:', this.redirectPath)
+    },
+    login(/* ログイン情報 */) {
+      // 認証ロジック
+      this.isAuthenticated = true
+      console.log("loginメソッド");
+    },
+    clearRedirectPath() {
+      this.redirectPath = ''
     },
   },
   getters: {

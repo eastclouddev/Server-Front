@@ -8,5 +8,8 @@
     </v-container>
 </template>
 <script setup>
+definePageMeta({
+  middleware: 'auth',
+})
 import QuestionSummary from '~/features/auth/question/components/QuestionSummary.vue';
 </script>

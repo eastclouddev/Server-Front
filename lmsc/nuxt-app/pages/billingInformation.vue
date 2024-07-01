@@ -8,5 +8,8 @@
   </v-container>
 </template>
 <script setup>
+definePageMeta({
+  middleware: 'auth',
+})
 import BillingInformationList from '~/features/auth/billing/components/BillingInformationList.vue';
 </script>

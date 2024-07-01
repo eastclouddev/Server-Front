@@ -7,4 +7,8 @@
     <Completed titleText="ユーザー登録が完了しました。" icon="mdi-check-circle" />
   </v-container>
 </template>
-
+<script setup>
+definePageMeta({
+  middleware: 'auth',
+})
+</script>

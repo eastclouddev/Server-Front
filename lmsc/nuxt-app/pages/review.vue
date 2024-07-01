@@ -8,5 +8,8 @@
     </v-container>
 </template>
 <script setup>
+definePageMeta({
+  middleware: 'auth',
+})
 import ReviewSummary from '~/features/auth/review/components/ReviewSummary.vue';
 </script>

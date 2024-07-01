@@ -10,5 +10,8 @@
   </div>
 </template>
 <script setup>
+definePageMeta({
+  middleware: 'auth',
+})
 import PasswordResettingsMailFormLogined from "~/features/PasswordResettings/PasswordResettingsMailFormLogined.vue";
 </script>

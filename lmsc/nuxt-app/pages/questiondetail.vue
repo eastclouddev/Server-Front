@@ -8,6 +8,9 @@
     </v-container>
 </template>
 <script setup>
+definePageMeta({
+  middleware: 'auth',
+})
 import MessageContent from '~/features/auth/question/components/MessageContent.vue';
 
 </script>

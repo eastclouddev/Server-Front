@@ -8,5 +8,8 @@
   </v-container>
 </template>
 <script setup>
+definePageMeta({
+  middleware: 'auth',
+})
 import TeamOfUseContents from '~/features/auth/userInvitation/TeamOfUseContents.vue'
 </script>
