@@ -14,6 +14,7 @@
         </div>
         <v-divider color="#BFBFBF"></v-divider>
       </v-list-item>
+<<<<<<< HEAD
       <template v-if="userRole === 1">
         <MenuAdmin />
       </template>
@@ -32,6 +33,14 @@
       <template v-else>
         <p>メニューがありません</p>
       </template>
+=======
+      <!-- 受講生メニュー -->
+      <MenuStudent />
+      <!-- 法人・法人代行メニュー -->
+      <MenuCorporation />
+      <!-- メンターメニュー -->
+      <!-- 管理者メニュー -->
+>>>>>>> c0313ab (UI修正中)
     </v-list>
   </v-menu>
 </template>
