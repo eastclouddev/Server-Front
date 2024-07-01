@@ -15,7 +15,7 @@
               <v-card-title>{{ sec.title }}</v-card-title>
               <v-card-text>
                 <v-icon>mdi-clock-outline</v-icon>
-                {{ sec.time }} 分
+                {{ sec.duration }} 分
               </v-card-text>
               <v-icon v-if="isClose[num]">mdi-chevron-down</v-icon>
               <v-icon v-else>mdi-chevron-up</v-icon>
@@ -28,7 +28,7 @@
                 </v-card-text>
                 <v-card-text>
                   <v-img :src="PlayBtn" />
-                  {{ formatTime(cur.time) }}
+                  {{ formatTime(cur.duration) }}
                 </v-card-text>
               </v-card>
             </template>
@@ -40,36 +40,33 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
+import { useGetCourse } from '~/features/course/api/getCourse.ts';
 import PlayBtn from '~/assets/playBtn.svg';
 
-// 仮データ
-const sections = ref([
-  {
-    title: 'セクション1',
-    time: 15,
-    curriculums: [
-      { title: 'カリキュラム/タイトル', time: 150 },
-      { title: 'カリキュラム/タイトル', time: 330 },
-      { title: 'カリキュラム/タイトル', time: 120 },
-      { title: 'カリキュラム/タイトル', time: 240 },
-    ],
-  },
-  {
-    title: 'セクション2',
-    time: 11,
-    curriculums: [
-      { title: 'カリキュラム/タイトル', time: 150 },
-      { title: 'カリキュラム/タイトル', time: 330 },
-      { title: 'カリキュラム/タイトル', time: 120 },
-      { title: 'カリキュラム/タイトル', time: 240 },
-    ],
-  },
-  // 他のセクションも同様に追加
-]);
+const courseId = 1;  // 取得したいコースのIDを設定
+const { data, error, status } = useGetCourse(courseId);
 
-const isClose = ref(new Array(sections.value.length).fill(true));
+const sections = ref([]);
+watch(data, (newData) => {
+  if (newData) {
+    sections.value = newData.sections.map(section => ({
+      title: section.title,
+      duration: section.duration,
+      curriculums: section.curriculums.map(curriculum => ({
+        title: curriculum.title,
+        duration: curriculum.duration
+      }))
+    }));
+  }
+});
+
+const isClose = ref([]);
+watch(sections, (newSections) => {
+  isClose.value = new Array(newSections.length).fill(true);
+});
+
 const isSectionOpened = (num) => {
   if (isClose.value[num] === true) {
     const allAreTrue = isClose.value.every((value) => value);
@@ -85,14 +82,13 @@ const CheckIt = (num) => {
   isChecked.value[num] = !isChecked.value[num];
 };
 
-const formatTime = (min) => {
-  const m = Math.floor(min / 60);
-  const s = min % 60;
-  const formattedM = m.toString().padStart(2, '0');
-  const formattedS = s.toString().padStart(2, '0');
+const formatTime = (duration) => {
+  const [hours, minutes, seconds] = duration.split(':').map(Number);
+  const totalMinutes = hours * 60 + minutes + Math.round(seconds / 60);
+  const formattedM = Math.floor(totalMinutes / 60).toString().padStart(2, '0');
+  const formattedS = (totalMinutes % 60).toString().padStart(2, '0');
   return `${formattedM}:${formattedS}`;
 };
-
 </script>
 
 <style scoped lang="scss">

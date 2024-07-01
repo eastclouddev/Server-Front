@@ -8,13 +8,13 @@
             <div class="d-flex mb-5" style="align-items: flex-start;">
               <img :src="section.icon || 'assets/default_icon.svg'" alt="section.title" class="pr-4">
               <div>
-                <h3 class="mb-3">{{ section.title }}</h3>
-                <p class="mb-3">{{ section.description }}</p>
+                <h3 class="mb-3">{{ data.title }}</h3>
+                <p class="mb-3">{{ data.description }}</p>
                 <div class="d-flex align-center">
                   <span class="pr-2"><v-icon color="#FF5A36">mdi-clock-outline</v-icon></span>
                   <h4 class="pr-8">終了想定時間：{{ data.expected_end_hours }}時間</h4>
                   <span class="pr-2"><v-icon color="#FF5A36">mdi-book-open-blank-variant-outline</v-icon></span>
-                  <h4>全{{ section.curriculums.length }}セッション</h4>
+                  <h4>全{{ data.total_curriculums }}セッション</h4>
                 </div>
               </div>
             </div>
