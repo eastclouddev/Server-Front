@@ -45,16 +45,16 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
-import { useNuxtApp, useRouter } from '#app'
-import { useField, useForm } from 'vee-validate'
-import { schema } from '~/features/auth/login/schema'
-import EmailInput from '~/components/EmailInput.vue'
-import PasswordInput from '~/components/PasswordInput.vue'
-import Button from '~/components/Button.vue'
-import platform from 'platform'
-import { v4 as uuidv4 } from 'uuid'
-import { useUserStore } from '~/store/user'
+import { ref, computed, onMounted } from 'vue';
+import { useNuxtApp, useRouter } from '#app';
+import { useField, useForm } from 'vee-validate';
+import { schema } from '~/features/auth/login/schema';
+import EmailInput from '~/components/EmailInput.vue';
+import PasswordInput from '~/components/PasswordInput.vue';
+import Button from '~/components/Button.vue';
+import platform from 'platform';
+import { v4 as uuidv4 } from 'uuid';
+import { useUserStore } from '~/store/user.ts';
 
 const { $api } = useNuxtApp()
 const router = useRouter()
@@ -85,7 +85,8 @@ const roleMap = {
   mentor: 2,
   student: 3,
   corporation: 4,
-}
+  Actingdirector: 5
+};
 
 const handleSubmit = async () => {
   isSubmitting.value = true
@@ -123,14 +124,12 @@ const handleSubmit = async () => {
         first_name: response.first_name,
         last_name: response.last_name,
         email: response.email,
-      },
-      isAuthenticated: true,
+      };
+      userStore.setUser({ user, isAuthenticated: true }); // Store user data
+      await router.push('/dashboard');
+    } else {
+      throw new Error('Invalid response');
     }
-    userStore.setUser(user)
-
-    console.log('User store after login:', userStore.$state)
-
-    await router.push('/dashboard')
   } catch (error) {
     console.error('Login failed:', error)
   } finally {
@@ -138,7 +137,6 @@ const handleSubmit = async () => {
   }
 }
 </script>
-
 <style lang="scss" scoped>
 .error {
   border: 1px solid red;

@@ -17,7 +17,7 @@
       <template v-else-if="userRole === 3">
         <DashboardStudent />
       </template>
-      <template v-else-if="userRole === 4">
+      <template v-else-if="userRole === 4 || userRole === 5">
         <DashboardCorporation />
       </template>
       <template v-else>
@@ -28,8 +28,9 @@
 </template>
 
 <script>
-import { defineAsyncComponent } from 'vue';
+import { computed, ref, onMounted } from 'vue';
 import { useUserStore } from '~/store/user.ts';
+import { useGetUser } from '~/features/plofile/api/getProfile.ts';
 
 const DashboardStudent = defineAsyncComponent(() => import("~/features/auth/dashboard/components/DashboardStudent.vue"));
 const DashboardCorporation = defineAsyncComponent(() => import("~/features/auth/dashboard/components/DashboardCorporation.vue"));
@@ -43,18 +44,26 @@ export default {
     DashboardMentor,
     DashboardAdmin,
   },
-  computed: {
-    userRole() {
-      const userStore = useUserStore();
-      return userStore.userRole;
-    },
-    loggedInUsername() {
-      const userStore = useUserStore();
-      return userStore.userName;
-    },
-    welcomeMessage() {
-      return `${this.loggedInUsername} さんおかえりなさい`;
-    }
-  }
+  setup() {
+    const userStore = useUserStore();
+    const userId = computed(() => userStore.user.id);
+
+    const { data: userData, error, status } = useGetUser(userId.value);
+
+    const userRole = computed(() => userStore.userRole);
+    const loggedInUsername = computed(() => {
+      if (userData.value) {
+        return `${userData.value.first_name} ${userData.value.last_name}`;
+      }
+      return '';
+    });
+    const welcomeMessage = computed(() => `${loggedInUsername.value} さんおかえりなさい`);
+
+    return {
+      userRole,
+      loggedInUsername,
+      welcomeMessage,
+    };
+  },
 };
 </script>
