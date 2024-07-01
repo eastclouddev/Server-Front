@@ -9,6 +9,11 @@ export type Methods = {
    * -----------------------
    * user_id: int
    *     取得するユーザーのID 
+   * フィルター
+   *     category: str
+   * ソート
+   *     sort: str(sortとorderはセット)
+   *     order: str
    * 
    * Returns
    * -----------------------
@@ -37,6 +42,12 @@ export type Methods = {
    *         完了しているかどうか
    */
   get: {
+    query?: {
+      category?: string | undefined
+      sort?: string | undefined
+      order?: string | undefined
+    } | undefined
+
     status: 200
     /** Successful Response */
     resBody: Types.Schemas__students__QuestionListResponseBody

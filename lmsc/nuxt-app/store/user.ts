@@ -49,6 +49,7 @@ export const useUserStore = defineStore('user', {
     },
     userRole: state => (state.user ? state.user.role_id : null),
     userEmail: state => (state.user ? state.user.email : ''),
+    userId: state => state.user.id,
   },
   persist: true,
 })

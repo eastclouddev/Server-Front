@@ -3,32 +3,6 @@ import type * as Types from '../../@types'
 
 export type Methods = {
   /**
-   * ニュース詳細取得
-   * 
-   * Parameter
-   * -----------------------
-   * news_id: int
-   *     取得するニュースのID
-   * 
-   * Returns
-   * -----------------------
-   * dict
-   *     id: int
-   *         取得したニュースのID
-   *     title: str
-   *         ニュースのタイトル
-   *     content: str
-   *         ニュースの内容
-   *     published_at: str
-   *         ニュースの公開日（ISO 8601形式）
-   */
-  get: {
-    status: 200
-    /** Successful Response */
-    resBody: Types.NewsDetailResponseBody
-  }
-
-  /**
    * ニュース更新
    * 
    * Parameters
@@ -40,6 +14,8 @@ export type Methods = {
    *         更新するニュースのタイトル
    *     content: str
    *         更新するニュースの本文
+   *     categoey_id: int
+   *         カテゴリのID
    *     is_published: bool
    *         公開フラグ
    *     published_at: str
@@ -54,6 +30,11 @@ export type Methods = {
    *         更新されたニュースのタイトル
    *     content: str
    *         更新されたニュースの内容
+   *     category: array
+   *         category_id: int
+   *             カテゴリのID
+   *         category_name: str
+   *             カテゴリの名前
    *     is_published: bool
    *         ニュースの公開フラグ
    *     published_at: str
