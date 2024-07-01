@@ -3,8 +3,7 @@
     <v-sheet
       v-for="(section, index) in settingsSections"
       :key="index"
-      class="pa-3"
-    >
+      class="pa-3">
       <v-list-item v-if="section.icon && section.title" class="pb-5">
         <div class="d-flex align-center">
           <img

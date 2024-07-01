@@ -4,8 +4,7 @@
       <v-card-title
         class="pt-2 pb-2 pl-0"
         style="font-size: 1.6em; font-weight: bold"
-        color="#242424"
-      >
+        color="#242424">
         ログイン
       </v-card-title>
       <v-divider class="#CFCFCF" thickness="1"></v-divider>

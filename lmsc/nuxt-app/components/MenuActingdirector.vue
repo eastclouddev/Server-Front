@@ -23,8 +23,7 @@
           class="d-flex align-start pt-3"
           :key="linkIndex"
           style="text-decoration: none; color: #242424"
-          @click="link.text === 'ログアウト' ? handleLogout($event) : null"
-        >
+          @click="link.text === 'ログアウト' ? handleLogout($event) : null">
           {{ link.text }}
         </NuxtLink>
       </v-list-item>
