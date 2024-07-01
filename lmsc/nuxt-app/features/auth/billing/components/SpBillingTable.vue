@@ -11,7 +11,7 @@
       </tr>
       <tr class="d-flex flex-column" style="width: 100%">
         <th style="width: 100%">金額</th>
-        <td>{{ item.payment }}</td>
+        <td>¥{{ item.payment }}</td>
       </tr>
     </div>
     <div class="d-flex" style="width: 100%">

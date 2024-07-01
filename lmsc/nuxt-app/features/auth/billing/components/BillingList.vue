@@ -25,8 +25,13 @@
       "
     >
       <v-sheet color="#F5F5F5" width="80%" class="mx-auto mb-8 mt-8">
+<<<<<<< HEAD
+        <div class="d-flex justify-space-between sp_select">
+          <!-- <v-select
+=======
         <div class="filter-container">
           <FilterSelect
+>>>>>>> develop
             v-model="selectedMonth"
             :filterOptions="months"
             placeholderText="請求対象月"
@@ -34,15 +39,47 @@
           />
           <FilterSelect
             v-model="selectedStatus"
+<<<<<<< HEAD
+            :items="statuses"
+            variant="outlined"
+            @change="filterData"
+            class="mr-6"
+            style="width: 15rem;"
+            placeholderText="ステータス">
+        <template v-slot:selection="data">
+          <span v-if="!selectedStatus" class="placeholder-text">ステータスを選択</span>
+          <span v-else>{{ data.item.title }}</span>
+        </template>
+      </v-select>
+ -->
+          <div class="d-flex sp_selectbox" >
+            <FilterSelect
+              v-model="selectedMonth"
+              :filterOptions="months"
+              placeholderText="請求対象月"
+              @filter-change="filterData"
+              class="mr-5"
+            />
+
+            <FilterSelect
+              v-model="selectedStatus"
+              :filterOptions="statuses"
+              placeholderText="ステータス"
+              @filter-change="filterData"
+            />
+          </div>
+
+=======
             :filterOptions="statuses"
             placeholderText="ステータス"
             @filter-change="filterData"
           />
+>>>>>>> develop
           <Button
             to="/billingInformation"
             color="#FF5136"
             class="sp_button"
-            style="width: 10rem; height: 40px"
+            style="width:10rem; height: 40px"
             buttonText="請求先情報編集"
           />
         </div>
@@ -198,5 +235,24 @@ export default {
 }
 .v-select .v-field.v-field {
   background-color: #ffffff;
+}
+
+
+@media screen and (max-width: 768px) {
+  .sp_select {
+    flex-direction:  column-reverse;
+  }
+  .sp_selectbox {
+    justify-content: center;
+    padding: 20px;
+  }
+  .v-input__control {
+    width: 12rem;
+  }
+
+  .custom_btn {
+    width: 10rem !important;
+    margin: auto;
+  }
 }
 </style>

@@ -7,8 +7,12 @@
       density="compact"
       variant="outlined"
       class="mr-5 custom-select"
+<<<<<<< HEAD:lmsc/nuxt-app/components/FilterSerlect.vue
+      style="width: 100%;">
+=======
       style="width: 100%; min-width: 150px"
     >
+>>>>>>> develop:lmsc/nuxt-app/components/FilterSelect.vue
       <template v-slot:selection="data">
         <span v-if="!selectedFilter" class="placeholder-text">{{
           placeholderText

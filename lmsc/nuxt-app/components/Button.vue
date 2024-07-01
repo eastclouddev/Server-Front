@@ -40,7 +40,7 @@ export default {
 }
 @media screen and (max-width: 768px) {
   .custom_btn {
-      width: 35rem!important;
+      width: 35rem;
       height: 6ex;
     }
 }
