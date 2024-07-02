@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import PythonIcon from '~/assets/python_icon.svg'
+import PythonIcon from '~/assets/python.svg'
 import Section from '~/features/test/components/CourseSection.vue'
 
 const sampleInfo = `スキルレベル：初級

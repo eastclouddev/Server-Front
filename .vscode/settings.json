@@ -13,5 +13,21 @@
   },
   "prettier.configPath": "./.prettierrc",
   "prettier.requireConfig": true,
-  "cSpell.words": ["Nuxt", "vuetify"]
+  "cSpell.words": ["Nuxt", "vuetify"],
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "test_connection",
+      "database": "database",
+      "username": "db-user",
+      "password": "db-pass"
+    }
+  ]
 }
