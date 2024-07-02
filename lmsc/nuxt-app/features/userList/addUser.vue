@@ -45,6 +45,8 @@ main {
   display: flex;
   flex-direction: column;
   max-width: 620px;
+  justify-content: center;
+  align-items: center;
   p {
     width: 100%;
     text-align: left;
@@ -72,7 +74,7 @@ main {
   .main {
     max-width: 548px;
     p {
-      width: 620px;
+      width: 100%;
       font-size: 30px;
       line-height: 40.86px;
       margin-top: 20px;

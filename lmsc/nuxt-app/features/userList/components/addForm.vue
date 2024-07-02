@@ -139,15 +139,7 @@ const selectedRole = ref('')
     flex-direction: column;
     gap: 8px;
   }
-  .role {
-    height: 156px;
-    &.manager {
-      height: 256px;
-    }
-  }
-  .course {
-    height: 206px;
-  }
+
   .v-input {
     color: #242424;
   }
@@ -196,7 +188,8 @@ const selectedRole = ref('')
   }
 
   .v-container {
-    width: 548px;
+    max-width: 548px;
+    width: 100%;
     gap: 60px;
     .name,
     .ruby {
@@ -212,19 +205,6 @@ const selectedRole = ref('')
       }
     }
 
-    .role {
-      height: 324px;
-      &.manager {
-        height: 564px;
-      }
-      .v-container {
-        width: 314px;
-      }
-    }
-
-    .course {
-      height: 404px;
-    }
     .btn {
       .v-btn {
         width: 548px;

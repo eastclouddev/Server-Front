@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Mail_Icon from '~/assets/SendEmail.svg'
+import Mail_Icon from '~/assets/send_mail.png'
 </script>
 
 <template>
