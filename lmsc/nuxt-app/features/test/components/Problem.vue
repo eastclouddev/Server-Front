@@ -3,68 +3,87 @@ import { ref } from 'vue'
 import CorrectMark from '~/assets/bulb_circle.svg'
 import IncorrectMark from '~/assets/exclamation_mark.svg'
 
+const props = defineProps({
+    text: Array
+})
+let arrayData: Array = props.text;
+
 // 表示する問題番号
 let queNum = ref(1)
 
 // 問題テキスト
-const ques = ref([
-  {
-    id: 1,
-    text:
-      '〇〇について××の場合、使用できないものを一つ選択してください。テキストが入ります。<br />' +
-      '〇〇について××の場合、使用できないものを一つ選択してください。テキストが入ります。<br />' +
-      '〇〇について××の場合、使用できないものを一つ選択してください。テキストが入ります。<br />',
-  },
-  {
-    id: 2,
-    text:
-      '〇〇について××の場合、使用できないものを一つ選択してください。テキストが入ります。<br />' +
-      '〇〇について××の場合、使用できないものを一つ選択してください。テキストが入ります。<br />' +
-      '〇〇について××の場合、使用できないものを一つ選択してください。テキストが入ります。<br />' +
-      'part.2<br />',
-  },
-  {
-    id: 3,
-    text:
-      '〇〇について××の場合、使用できないものを一つ選択してください。テキストが入ります。<br />' +
-      '〇〇について××の場合、使用できないものを一つ選択してください。テキストが入ります。<br />' +
-      '〇〇について××の場合、使用できないものを一つ選択してください。テキストが入ります。<br />' +
-      'part.3<br />',
-  },
-])
+const ques = ref(new Array())
+// 問題文の選択肢
+const answers = ref(new Array())
+// 正解
+let correctNum = new Array()
+
+for (let i = 0; i < arrayData.length; i++) {
+    // 問題
+    ques.value.push({
+        id: i + 1,
+        text: arrayData[i].question
+    })
+    // 選択肢
+    let bufList = new Array();
+    bufList.push({
+        id: 1,
+        text: arrayData[i].options["op1"]
+    })
+    bufList.push({
+        id: 2,
+        text: arrayData[i].options["op2"]
+    })
+    bufList.push({
+        id: 3,
+        text: arrayData[i].options["op3"]
+    })
+    bufList.push({
+        id: 4,
+        text: arrayData[i].options["op4"]
+    })
+    answers.value.push(bufList)
+    // 正解
+    correctNum.push(arrayData[i].correct_answer)
+}
 
 const hint = ref(
   'ヒント：テキストが入りますテキストが入りますテキストが入ります。'
 )
 
-// 表示する選択肢
-const answers = ref([
-  { id: 1, text: '問題１ 正解' },
-  { id: 2, text: '不正解' },
-  { id: 3, text: '問題２ 正解' },
-  { id: 4, text: '問題３ 正解' },
-])
-
 // 選択した答えを入れる箱
 const selectAns = ref(Array(ques.value.length).fill(null))
 
+// 表示する選択肢
+let answerData = ref(new Array)
+answerData = answers.value[0]
+
+// スキップボタンの表示切替
+let isActive = true;
+
 const NextQue = () => {
   queNum.value += 1
+  answerData = answers.value[queNum.value - 1]; // 選択肢の切替
+  if (queNum.value == ques.value.length) {
+    isActive = false;
+  }
 }
 
 const BackQue = () => {
   queNum.value -= 1
-}
-
-const test = () => {
-  console.log(selectAns)
+  answerData = answers.value[queNum.value - 1]; // 選択肢の切替
+  if (queNum.value != ques.value.length) {
+    isActive = true;
+  }
 }
 
 const ansFlag = ref(new Array(ques.value.length).fill(-1))
 const Result = ref(new Array(ques.value.length).fill({ text: '', icon: '' }))
 const Scoring = () => {
-  const correctNum = [1, 3, 4]
   for (let i = 0; i < ques.value.length; i++) {
+    if (selectAns.value[ques.value[i].id - 1] === null) { // 未選択時は正誤判定・表示を行わない
+        continue;
+    }
     if (selectAns.value[ques.value[i].id - 1] === correctNum[i]) {
       ansFlag.value[i] = 1
     } else {
@@ -129,7 +148,7 @@ const Scoring = () => {
             hide-details
           >
             <v-radio
-              v-for="(answer, index) in answers"
+              v-for="(answer, index) in answerData"
               class="answer"
               :key="index"
               :label="answer.text"
@@ -156,7 +175,7 @@ const Scoring = () => {
             </v-btn>
           </v-card-actions>
           <v-card-actions class="Btns">
-            <v-btn class="skip">スキップ</v-btn>
+            <v-btn class="skip" @click="NextQue" v-show="isActive">スキップ</v-btn>
             <v-btn class="checkAns" @click="Scoring">解答を見る</v-btn>
           </v-card-actions>
         </v-card>
