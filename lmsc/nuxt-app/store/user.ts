@@ -42,7 +42,7 @@ export const useUserStore = defineStore('user', {
   },
   getters: {
     userName: state => {
-      if (state.user) {
+      if (state.user && state.user.first_name && state.user.last_name) {
         return `${state.user.first_name} ${state.user.last_name}`
       }
       return ''

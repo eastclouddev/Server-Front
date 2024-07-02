@@ -30,11 +30,7 @@
           </span>
         </div>
         <div>
-<<<<<<< HEAD:lmsc/nuxt-app/features/auth/dashboard/components/StudyItem.vue
           <NuxtLink to="/" style="color:#242424;" >学習記録</NuxtLink>
-=======
-          <a href="" style="color:#222222;">学習記録詳細</a>
->>>>>>> develop:lmsc/nuxt-app/components/StudyItem.vue
         </div>
         </v-sheet>
         <v-sheet color="#FFF7EC" class="d-flex" style="align-items: flex-end;">
