@@ -9,31 +9,29 @@
     <v-divider class="#CFCFCF" thickness="1"></v-divider>
     <v-card flat class="d-flex align-center pa-10 mb-6 mt-6" style="border-radius: 5px 5px 0 0; box-shadow: 4px 0px 6px -3px rgba(0, 0, 0, 0.2);">
       <v-row>
-        <template v-for="(sec, num) in sections" :key="num">
-          <v-col class="section">
-            <v-card variant="text" @click="isSectionOpened(num)" :ripple="false">
-              <v-card-title>{{ sec.title }}</v-card-title>
-              <v-card-text>
-                <v-icon>mdi-clock-outline</v-icon>
-                {{ sec.duration }} 分
+        <v-col v-for="(sec, num) in sections" :key="num" class="section">
+          <v-card variant="text" @click="isSectionOpened(num)" :ripple="false">
+            <v-card-title>{{ sec.title }}</v-card-title>
+            <v-card-text>
+              <v-icon>mdi-clock-outline</v-icon>
+              {{ sec.duration }} 分
+            </v-card-text>
+            <v-icon v-if="isClose[num]">mdi-chevron-down</v-icon>
+            <v-icon v-else>mdi-chevron-up</v-icon>
+          </v-card>
+          <template v-if="!isClose[num]">
+            <v-card v-for="(cur, ind) in sec.curriculums" class="curriculum" variant="text" :key="ind">
+              <v-card-text class="checkBox">
+                <v-checkbox :key="ind" v-model="isChecked[ind]" disabled hide-details />
+                {{ ind + 1 + '.' + cur.title }}
               </v-card-text>
-              <v-icon v-if="isClose[num]">mdi-chevron-down</v-icon>
-              <v-icon v-else>mdi-chevron-up</v-icon>
+              <v-card-text>
+                <v-img :src="PlayBtn" />
+                {{ formatTime(cur.duration) }}
+              </v-card-text>
             </v-card>
-            <template v-if="!isClose[num]">
-              <v-card v-for="(cur, ind) in sec.curriculums" class="curriculum" variant="text" :key="ind">
-                <v-card-text class="checkBox">
-                  <v-checkbox :key="ind" v-model="isChecked[ind]" disabled hide-details />
-                  {{ ind + 1 + '.' + cur.title }}
-                </v-card-text>
-                <v-card-text>
-                  <v-img :src="PlayBtn" />
-                  {{ formatTime(cur.duration) }}
-                </v-card-text>
-              </v-card>
-            </template>
-          </v-col>
-        </template>
+          </template>
+        </v-col>
       </v-row>
     </v-card>
   </div>

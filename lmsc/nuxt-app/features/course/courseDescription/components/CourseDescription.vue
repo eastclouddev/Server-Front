@@ -7,7 +7,8 @@
     </v-breadcrumbs>
     <descriptionItem />
     <CuriculumList />
-    <RecommendItem />
+    <!-- 今回実装不要のためコメントアウト -->
+    <!-- <RecommendItem /> -->
   </v-container>
 </template>
 
