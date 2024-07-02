@@ -7,7 +7,7 @@
       <v-spacer></v-spacer>
       <div class="toolbar-actions" v-if="isAuthenticated">
         <NotifiCation v-if="showNotification" />
-        <HamburgerMenu />
+        <!-- <HamburgerMenu /> -->
       </div>
     </v-toolbar>
   </div>
@@ -16,12 +16,12 @@
 <script>
 import { useUserStore } from '~/store/user.ts';
 import NotifiCation from '~/features/notification/components/NotifiCation.vue';
-import HamburgerMenu from '~/features/menu/components/HamburgerMenu.vue';
+// import HamburgerMenu from '~/features/menu/components/HamburgerMenu.vue';
 
 export default {
   components: {
     NotifiCation,
-    HamburgerMenu,
+    // HamburgerMenu,
   },
   computed: {
     isAuthenticated() {
