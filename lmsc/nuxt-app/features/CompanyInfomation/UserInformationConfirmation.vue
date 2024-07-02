@@ -55,7 +55,7 @@
 // ]
 
 const returnLink = () => {
-  // ここにreturnLinkのロジックを追加します
+  router.push('/profile/edit')
 };
 
 // const submit = async () => {
