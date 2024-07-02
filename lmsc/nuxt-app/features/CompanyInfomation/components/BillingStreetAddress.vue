@@ -3,16 +3,19 @@
     <v-row class="align-center justify-space-between flex-column-sm">
       <div class="sp_width" style="width: 200px; display: flex; align-items: center;" >
         <label class="sp_label" style="font-size: 1em; font-weight: bold;">{{ label }}</label>
+        <span v-if="showSpan" class="required-mark">必須</span>
       </div>
       <v-card flat class="sp_field d-flex flex-column" width="25rem">
-        <v-sheet class="sp_field2 my-0 pr-4 pb-4 pl-4"  style="width: 200px; border-radius: 5px; padding-top: 15px;">
-          <span class="sp_label2" hide-details="auto"  variant="plain" full-width >{{ placeholder }}</span>
+        <v-sheet class="sp_field my-0 pr-4 pb-4 pl-4" color="#EBEBEB" style="width: 200px; border-radius: 5px;">
+          <v-text-field hide-details="auto" :placeholder="placeholder" variant="plain" full-width v-model="inputValue" @input="emitCreateEvent"></v-text-field>
         </v-sheet>
       </v-card>
     </v-row>
   </v-container>
 </template>
 <script setup>
+import { ref, defineProps, defineEmits, watch } from 'vue'
+
 
 const props = defineProps({
   modelValue: String,
@@ -22,7 +25,19 @@ const props = defineProps({
     type: Boolean,
     default: true
   }
-});
+})
+
+const emits = defineEmits(['create'])
+
+const inputValue = ref(props.modelValue)
+
+watch(inputValue, (newValue) => {
+  emits('create', newValue)
+})
+
+function emitCreateEvent() {
+  emits('create', inputValue.value)
+}
 </script>
 <style lang="scss" scoped>
 .required-mark {
@@ -38,19 +53,10 @@ const props = defineProps({
     &_label {
       font-size: 2em !important;
     }
-    &_label2 {
-      font-size: 1.7em !important;
-    }
 
     &_field {
       width: 100% !important;
     }
-    &_field2 {
-      width: 100% !important;
-      padding-left: 0 !important;
-      padding-bottom: 0 !important;
-    }
-    
 
     &_width {
       width: 100% !important;

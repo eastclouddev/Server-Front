@@ -5,8 +5,8 @@
         <label class="sp_label" style="font-size: 1em; font-weight: bold;">{{ label }}</label>
       </div>
       <v-card flat class="sp_field d-flex flex-column" width="25rem">
-        <v-sheet class="my-0 pr-4 pb-4 pl-4" >
-          <v-text-field hide-details="auto" :placeholder="placeholder" variant="plain" full-width ></v-text-field>
+        <v-sheet class="sp_field2 my-0 pr-4 pb-4 pl-4"  style="width: 200px; border-radius: 5px; padding-top: 15px;">
+          <span class="sp_label2" hide-details="auto"  variant="plain" full-width >{{ placeholder }}</span>
         </v-sheet>
       </v-card>
     </v-row>
@@ -25,15 +25,6 @@ const props = defineProps({
 });
 </script>
 <style lang="scss" scoped>
-.error {
-  border: 1px solid red;
-  border-radius: 5px;
-}
-
-.error_message {
-  color: #FF0000;
-  font-size: 0.75em;
-}
 .required-mark {
   color: #FFFF;
   background-color: #FF5A36;
@@ -47,18 +38,23 @@ const props = defineProps({
     &_label {
       font-size: 2em !important;
     }
+    &_label2 {
+      font-size: 1.7em !important;
+    }
 
     &_field {
       width: 100% !important;
     }
+    &_field2 {
+      width: 100% !important;
+      padding-left: 0 !important;
+      padding-bottom: 0 !important;
+    }
     
+
     &_width {
       width: 100% !important;
     }
-  }
-
-  .error_message {
-    font-size: 1.5em;
   }
 }
 </style>
